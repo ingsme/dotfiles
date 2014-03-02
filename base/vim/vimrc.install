@@ -1,0 +1,26 @@
+#!/bin/bash
+
+echo -e "\033[0;32m==>\033[0m Installing vim Bundles with vundle..."
+
+# Clone vundle into the directory if it's not already
+if [[ ! -e bundle/vundle/.git ]]
+then
+	mkdir -p bundle
+	rm -rf bundle/vundle
+	git clone --quiet https://github.com/gmarik/vundle.git bundle/vundle
+fi
+
+# Make directories
+if [ -n $XDG_CACHE_HOME ]
+then
+  if [[ ! -e $XDG_CACHE_HOME/vim ]] 
+  then 
+    mkdir $XDG_CACHE_HOME/vim 
+  fi
+  if [[ ! -e $XDG_CACHE_HOME/viminfo ]]
+  then
+    mkdir $XDG_CACHE_HOME/viminfo
+  fi
+fi
+
+vim +BundleInstall +qall 2&> /dev/null

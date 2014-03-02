@@ -1,0 +1,11 @@
+#!/bin/bash
+
+ln -sf $HOME/.config/zsh/zshrc $HOME/.zshrc
+
+# Clone vundle into the directory if it's not already
+if [[ ! -e oh-my-zsh/.git ]]
+then
+  echo -e "\033[0;32m==>\033[0m Installing oh-my-zsh..."
+	rm -rf oh-my-zsh
+	git clone --quiet https://github.com/robbyrussell/oh-my-zsh oh-my-zsh
+fi
