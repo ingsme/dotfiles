@@ -1,0 +1,9 @@
+[Mm]*)
+ # monitor
+    if [ "$name" = "DVI-I-3" ] ; then
+      wm_infos="$wm_infos %{B#ff332d29} %{F#ff9f7155}%{F-} %{B-}"
+    else
+      wm_infos="$wm_infos %{B#ff332d29} %{F#ff9f7155}%{F-} %{B-}"
+    fi
+    ;;
+

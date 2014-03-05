@@ -1,0 +1,49 @@
+#!/bin/sh
+
+  while read -r line ; do
+      case $line in
+          S*)
+              sys_infos="%{r}%{F#ff857b52}${line#?}%{F-}"
+              ;;
+          T*)
+              # xtitle output
+              title="%{l}%{B#ff332d29}%{F#ff9f7155}%{A:~/bin/menu:} » %{A}%{F-}%{B-} %{F#ff857b52}${line#?}%{F-}"
+              ;;
+          W*)
+              wm_infos="%{c}"
+              IFS=':'
+              set -- ${line#?}
+              while [ $# -gt 0 ] ; do
+                item=$1
+                name=${item#?} 
+                case $item in
+                [OFU]*)
+                  # active desktop
+                           wm_infos="$wm_infos %{F#ff857b52}%{F-} "
+                           ;;
+                        o*)
+                           # inactive but occupied desktop
+                           wm_infos="$wm_infos %{F#ff605655}%{F-} "
+                           ;;
+                        f*)
+                           # inactive desktop
+                           wm_infos="$wm_infos %{F#ff332d29}%{F-} "
+                           ;;
+                        u*)
+                           # urgent desktop
+                           wm_infos="$wm_infos %{F#ff8c644c}%{F-} "
+                           ;;
+                        L*)
+                           # layout
+                           layout=""
+                           wm_infos="$wm_infos$layout"
+                           ;;
+                        !!@@monitors
+                     esac
+                     shift
+                done
+                ;;
+            esac
+    printf '%s' "$title $wm_infos $sys_infos"
+    printf '\n'
+done
