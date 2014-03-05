@@ -7,6 +7,9 @@ fi
 
 trap 'trap - TERM; kill 0' INT TERM QUIT EXIT
 
+[ -e "$PANEL_FIFO" ] && rm "$PANEL_FIFO"
+mkfifo "$PANEL_FIFO"
+
 bspc control --subscribe > "$PANEL_FIFO" &
 xtitle -sf 'T%s' > "$PANEL_FIFO" &
 conky > "$PANEL_FIFO" &
