@@ -1,13 +1,16 @@
 #!/bin/sh
 
-  while read -r line ; do
+#icons
+guillemet="%{B#ff332d29}%{F#ff9f7155}%{A:~/bin/menu:} » %{A}%{F-}%{B-}"
+
+while read -r line ; do
       case $line in
           S*)
               sys_infos="%{r}%{F#ff857b52}${line#?}%{F-}"
               ;;
           T*)
               # xtitle output
-              title="%{l}%{B#ff332d29}%{F#ff9f7155}%{A:~/bin/menu:} » %{A}%{F-}%{B-} %{F#ff857b52}${line#?}%{F-}"
+              title="%{F#ff857b52}${line#?}%{F-}"
               ;;
           W*)
               wm_infos="%{c}"
@@ -44,6 +47,6 @@
                 done
                 ;;
             esac
-    printf '%s' "$title $wm_infos $sys_infos"
+    printf '%s' "%{l}$guillemet $title $wm_infos $sys_infos"
     printf '\n'
 done
