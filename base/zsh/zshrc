@@ -34,7 +34,8 @@ ZSH_CUSTOM=$XDG_CONFIG_HOME/zsh/oh-my-zsh-custom
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(zsh-syntax-highlighting)
+
+plugins=(zsh-syntax-highlighting ssh-agent git)
 
 source $ZSH/oh-my-zsh.sh
 
