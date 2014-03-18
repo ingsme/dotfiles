@@ -1,13 +1,13 @@
 # my dotfiles
 
 ## dotfiles
-These are my current dotfiles. I use [dots](
+These are my current dotfiles. I use [dots](https://github.com/EvanPurkhiser/dots) to manage my dotfiles.
 
 ### vim
 Vim is divided into vundles and setings where I split the loading ov vundles into separate groups and try to separate the settings into logical files. The handling and grouping of vundles are copied from [Yan Pritzer](https://github.com/skwp), and is probably going to change as I start modifying it to my needs.
 
 ### bash
-Bash is located under $XDG_CONFIG_HOME/bash and $HOME/.profile is where I set $XDG_CONFIG_HOME and source bashrc. This means that the shell have to be a login shell in order for this to work. This way I can start a shell with +ls if I should ever need an environment without my settings.
+Bash is located under `$XDG_CONFIG_HOME/bash` and `$HOME/.profile` is where I set `$XDG_CONFIG_HOME` and source bashrc. This means that the shell have to be a login shell in order for this to work. This way I can start a shell with +ls if I should ever need an environment without my settings.
 
 ## usage
 1. clone repo
