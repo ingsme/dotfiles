@@ -13,12 +13,12 @@ filetype off
 " Borrowed from Erik Zaadi http://www.erikzaadi.com/
 " Setting up Vundle - the vim plugin bundler
 let iCanHazVundle=1
-let vundle_readme=expand('$XDG_CONFIG_HOME/bundle/vundle/README.md')
+let vundle_readme=expand('$XDG_CONFIG_HOME/vim/bundle/vundle/README.md')
 if !filereadable(vundle_readme)
 echo "Installing Vundle.."
     echo ""
-    silent !mkdir -p $XDG_CONFIG_HOME/bundle
-    silent !git clone https://github.com/gmarik/vundle $XDG_CONFIG_HOME/bundle/vundle
+    silent !mkdir -p $XDG_CONFIG_HOME/vim/bundle
+    silent !git clone https://github.com/gmarik/vundle $XDG_CONFIG_HOME/vim/bundle/vundle
     let iCanHazVundle=0
 endif
 

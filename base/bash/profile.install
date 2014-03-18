@@ -1,3 +1,10 @@
 #!/bin/bash
 
-ln -sf profile $HOME/.profile
+if [ -z $XDG_CONFIG_HOME ]; then
+	XDG_CONFIG_HOME=$HOME/.config
+fi
+
+if [ -e ~/.profile ]; then
+	/bin/rm -f ~/.profile
+fi
+ln -sf $XDG_CONFIG_HOME/bash/profile $HOME/.profile
