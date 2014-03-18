@@ -1,0 +1,15 @@
+#!/bin/bash
+mkmod () {
+  mkdir -p "$1"/{manifests,templates}
+  cat >> "$1"/manifests/init.pp << EOF
+# == Class: ${1}
+# === Parameters:
+#   [* *]   - The paramter description
+# === Sample Usage
+# 
+# ingar.smedstad@adm.uib.no
+class ${1} {
+  
+}
+EOF
+}

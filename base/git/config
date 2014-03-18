@@ -1,0 +1,24 @@
+[user]
+	name = Ingar Smedstad
+	email = ingar.smedstad@adm.uib.no
+[alias]
+	unstage = reset HEAD --
+	last = log -1 HEAD
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	pretty = log --pretty=format:\"%h - %an, %ar : %s\"
+	timeline = log --oneline --graph --decorate
+	timeline-all = log --oneline --all --graph --decorate
+[core]
+	pager = less -M
+[color]
+	ui = true
+	branch = auto
+	diff = auto
+	status = auto
+[merge]
+	tool = kdiff3
+[github]
+	user = ingsme

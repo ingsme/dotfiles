@@ -1,0 +1,14 @@
+#!/bin/bash
+
+mktmplt () {
+  #git clone git@git.uib.no:packages/precise/template ${1}
+  mkdir ${1}
+  cd ${1}
+  git init
+  cp /git/packages/template/* .
+  git add *
+  git commit -m"initial release"
+  git remote add origin git@git.uib.no:packages/precise/${1}
+  git push -u origin master
+}
+

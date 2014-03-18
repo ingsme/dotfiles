@@ -1,0 +1,5 @@
+#!/bin/bash
+
+gitc() {
+	git clone git.git.uib.no:$1
+}
