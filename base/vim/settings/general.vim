@@ -16,4 +16,5 @@ if has("syntax")
   syntax on
 endif
 "
-
+" Keep 3 lines above and below cursor
+set scrolloff=3

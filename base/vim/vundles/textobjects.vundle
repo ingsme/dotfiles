@@ -9,7 +9,7 @@
 "Bundle "kana/vim-textobj-function"
 "Bundle "kana/vim-textobj-user"
 "Bundle "lucapette/vim-textobj-underscore"
-"Bundle "nathanaelkane/vim-indent-guides"
+Bundle "nathanaelkane/vim-indent-guides"
 "Bundle "nelstrom/vim-textobj-rubyblock"
 "Bundle "thinca/vim-textobj-function-javascript"
 "Bundle "vim-scripts/argtextobj.vim"
