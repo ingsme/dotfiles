@@ -17,24 +17,6 @@ set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
 set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$XDG_CONFIG_HOME/vim/bundle/vundle
 
 
-" ============== General Config =======================
-" Enable code folding, type za to open and close
-set foldmethod=indent
-set foldlevel=99
-
-"set mouse=a " Enable mouse usage (all modes)
-set number
-set backspace=2 " Makes backspace work like it should!
-
-" This makes vim act like all other editors, buffers can
-" exist in the background without being in a window.
-" http://items.sjbach.com/319/configuring-vim-right
-set hidden
-
-if has("syntax")
-  syntax on
-endif
-
 " Change leader to a comma because the backslash is too far away
 " That means all \x commands turn into ,x
 " The mapleader has to be set before vundle starts loading all 
@@ -47,37 +29,6 @@ let mapleader=","
 if filereadable(expand("$XDG_CONFIG_HOME/vim/handle_vundles.vim"))
   source $XDG_CONFIG_HOME/vim/handle_vundles.vim
 endif
-
-" ================ Indentation ======================
-
-set autoindent
-set smartindent
-set smarttab
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
-set expandtab
-
-filetype plugin on
-filetype indent on
-
-" Display tabs and trailing spaces visually
-set list listchars=tab:\ \ ,trail:·
-
-" ================ Completion =======================
-
-set wildmode=list:longest
-set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
-set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
-set wildignore+=*vim/backups*
-set wildignore+=*sass-cache*
-set wildignore+=*DS_Store*
-set wildignore+=vendor/rails/**
-set wildignore+=vendor/cache/**
-set wildignore+=*.gem
-set wildignore+=log/**
-set wildignore+=tmp/**
-set wildignore+=*.png,*.jpg,*.gif
 
 " ================ Custom Settings ========================
 so $XDG_CONFIG_HOME/vim/handle_settings.vim

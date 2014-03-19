@@ -26,3 +26,6 @@ else
   let g:CSApprox_loaded = 1
 endif
 
+" Display tabs and trailing spaces visually
+set list listchars=tab:\ \ ,trail:·
+

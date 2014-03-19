@@ -10,7 +10,9 @@ fi
 
 source $DOTS_SOURCE/base/bash/environment
 
-echo -e "\033[0;32m==>\033[0m Installing vim Bundles with vundle..."
+if [[ ! -e $XDG_CONFIG_HOME/vim/bundle/vundle/.git ]]; then
+  echo -e "\033[0;32m==>\033[0m Installing vim Bundles with vundle..."
+fi
 
 ## This is now handled by vimrc ##
 # Clone vundle into the directory if it's not already
