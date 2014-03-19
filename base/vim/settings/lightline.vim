@@ -1,6 +1,6 @@
 set laststatus=2
 let g:lightline = { 
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'solarized',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'fugitive', 'filename' ] ] 
@@ -11,8 +11,8 @@ let g:lightline = {
       \   'modified': 'MyModified',
       \   'filename': 'MyFilename'
       \ },
-      \ 'separator': { 'left': '⮀', 'right': '⮂' },
-      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
+      \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+      \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
       \ }
 
 function! MyModified()
@@ -31,7 +31,7 @@ function! MyReadonly()
   if &filetype == "help"
     return ""
   elseif &readonly
-    return "⭤" 
+    return "\ue0a2"
   else
     return ""
   endif
@@ -40,7 +40,7 @@ endfunction
 function! MyFugitive()
   if exists("*fugitive#head")
     let _ = fugitive#head()
-    return strlen(_) ? '⭠ '._ : ''
+    return strlen(_) ? "\ue0a0"._ : ''
   endif
   return ''
 endfunction
