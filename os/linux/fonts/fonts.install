@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if [ -e $HOME/.fonts.conf ]; then
+  rm $HOME/.fonts.conf
+fi
+
+mv fonts $HOME/.fonts.conf
