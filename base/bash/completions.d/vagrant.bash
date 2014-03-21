@@ -1,6 +1,3 @@
-cite about-plugin
-about-plugin 'set up vagrant autocompletion'
-
 _vagrant()
 {
     cur="${COMP_WORDS[COMP_CWORD]}"

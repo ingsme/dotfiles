@@ -1,0 +1,11 @@
+#!/bin/bash
+
+alias reload="source $XDG_CONFIG_HOME/bash/bashrc"
+
+alias ll='ls -al'
+alias la='ls -A'
+alias l='ls -l'
+
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
