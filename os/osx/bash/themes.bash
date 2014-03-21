@@ -1,3 +1,4 @@
+export BASH_IT_THEME=
 #export BASH_IT_THEME=bakke
 #export BASH_IT_THEME=bobby
 #export BASH_IT_THEME=candy
@@ -17,7 +18,7 @@
 #export BASH_IT_THEME=nwinkler
 #export BASH_IT_THEME=pete
 #export BASH_IT_THEME=powerline
-export BASH_IT_THEME=powerline-plain
+#export BASH_IT_THEME=powerline-plain
 #export BASH_IT_THEME=pure
 #export BASH_IT_THEME=rainbowbrite
 #export BASH_IT_THEME=rjorgenson
