@@ -1,5 +1,5 @@
 " ================ Indentation ======================
-
+set backspace=2
 set autoindent
 set smartindent
 set smarttab
