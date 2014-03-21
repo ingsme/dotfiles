@@ -22,3 +22,5 @@
 	tool = kdiff3
 [github]
 	user = ingsme
+[push]
+  default = simple
