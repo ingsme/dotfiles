@@ -98,10 +98,6 @@ for f in $XDG_CONFIG_HOME/bash/functions.d/*; do source "$f"; done
 # Source bash competions
 for f in $XDG_CONFIG_HOME/bash/completions.d/*; do source "$f"; done
 
-# Setup dircolors
-test -r "$XDG_CONFIG_HOME/bash/dircolors" && eval $(dircolors -b "$XDG_CONFIG_HOME/bash/dircolors") || eval "$(dircolors -b)"
-
-
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
