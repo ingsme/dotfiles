@@ -1,0 +1,6 @@
+#!/bin/bash
+
+felles() {
+  sudo mount felles.uib.no:/vol/felles_adm/IT /mnt -o rw,sloppy,intr,vers=4,sec=krb5
+}
+

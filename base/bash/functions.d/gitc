@@ -1,5 +1,5 @@
 #!/bin/bash
 
 gitc() {
-	git clone git.git.uib.no:$1
+	git clone git@git.uib.no:$1
 }
