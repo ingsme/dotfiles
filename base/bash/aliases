@@ -6,6 +6,9 @@ alias ll='ls -al'
 alias la='ls -A'
 alias l='ls -l'
 
+alias ..='cd ..'
+alias ...='cd ../..'
+
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
