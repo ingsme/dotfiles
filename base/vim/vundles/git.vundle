@@ -1,4 +1,5 @@
 "Bundle "gregsexton/gitv"
 "Bundle "mattn/gist-vim"
 Bundle "tpope/vim-fugitive"
+Bundle "gregsexton/gitv"
 "Bundle "tpope/vim-git"
