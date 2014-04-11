@@ -3,11 +3,12 @@
 	email = ingar.smedstad@adm.uib.no
 [alias]
 	unstage = reset HEAD --
-	last = log -1 HEAD
+	last = log -1 HEAD --no-pager
 	co = checkout
 	br = branch
 	ci = commit
 	st = status
+    loll = log --graph --decorate --pretty=oneline --abbrev-commit
 	pretty = log --pretty=format:\"%h - %an, %ar : %s\"
 	timeline = log --oneline --graph --decorate
 	timeline-all = log --oneline --all --graph --decorate
