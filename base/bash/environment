@@ -21,3 +21,6 @@ export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 
 # Less history file location
 export LESSHISTFILE="$XDG_CACHE_HOME/less_history"
+
+# Set the terminal
+export TERM=xterm-256color
