@@ -22,7 +22,9 @@ mkmod () {
 #
 class ${1} {
   class {'${1}::install':} ->
-  class {'${1}::config':}
+  class {'${1}::config':} ~>
+  class {'${1}::service':} ->
+  Class['${1}']
 }
 EOF
   cat >> "$1"/manifests/install.pp << EOF
@@ -68,6 +70,29 @@ EOF
 # Copyright 2014 UiB
 #
 class ${1}::config {
+
+}
+EOF
+   cat >> "$1"/manifests/service.pp << EOF
+# == Class: ${1}::service
+#
+# === Parameters:
+#
+#   [* *]   - The paramter description
+#
+# === Sample Usage
+#
+# class {'${1}::service':}
+#
+# === Authors
+#
+# Ingar Smedstad <ingar.smedstad@adm.uib.no>
+#
+# === Copyright
+#
+# Copyright 2014 UiB
+#
+class ${1}::service {
 
 }
 EOF
