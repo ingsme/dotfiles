@@ -1,0 +1,74 @@
+#!/bin/bash
+mkmod () {
+  mkdir -p "$1"/{manifests,templates}
+  cat >> "$1"/manifests/init.pp << EOF
+# == Class: ${1}
+#
+# === Parameters:
+#
+#   [* *]   - The paramter description
+#
+# === Sample Usage
+#
+# class {'${1}':}
+#
+# === Authors
+#
+# Ingar Smedstad <ingar.smedstad@adm.uib.no>
+#
+# === Copyright
+#
+# Copyright 2014 UiB
+#
+class ${1} {
+  class {'${1}::install':} ->
+  class {'${1}::config':}
+}
+EOF
+  cat >> "$1"/manifests/install.pp << EOF
+# == Class: ${1}::install
+#
+# === Parameters:
+#
+#   [* *]   - The paramter description
+#
+# === Sample Usage
+#
+# class {'${1}::install':}
+#
+# === Authors
+#
+# Ingar Smedstad <ingar.smedstad@adm.uib.no>
+#
+# === Copyright
+#
+# Copyright 2014 UiB
+#
+class ${1}::install {
+
+}
+EOF
+   cat >> "$1"/manifests/config.pp << EOF
+# == Class: ${1}::config
+#
+# === Parameters:
+#
+#   [* *]   - The paramter description
+#
+# === Sample Usage
+#
+# class {'${1}::config':}
+#
+# === Authors
+#
+# Ingar Smedstad <ingar.smedstad@adm.uib.no>
+#
+# === Copyright
+#
+# Copyright 2014 UiB
+#
+class ${1}::config {
+
+}
+EOF
+}
