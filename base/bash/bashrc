@@ -17,7 +17,6 @@ shopt -s dotglob 	# include dotfiles in pathname expansion
 shopt -s expand_aliases # expand aliases
 shopt -s extglob 	# enable extended pattern-matching features
 shopt -s histreedit 	# Add failed commands to the bash history
-shopt -s autocd 	# Autocd	
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000

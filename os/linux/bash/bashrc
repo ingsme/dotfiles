@@ -1,3 +1,4 @@
 #
+shopt -s autocd
 
 test -r "$XDG_CONFIG_HOME/bash/dircolors" && eval $(dircolors -b "$XDG_CONFIG_HOME/bash/dircolors") || eval "$(dirco    lors -b)"
