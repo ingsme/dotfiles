@@ -2,3 +2,16 @@
 shopt -s autocd
 
 test -r "$XDG_CONFIG_HOME/bash/dircolors" && eval $(dircolors -b "$XDG_CONFIG_HOME/bash/dircolors") || eval "$(dirco    lors -b)"
+
+# BASH_IT themes
+source "$XDG_CONFIG_HOME/bash/themes.bash"
+source "$XDG_CONFIG_HOME/bash/themes/colors.theme.bash"
+source "$XDG_CONFIG_HOME/bash/themes/base.theme.bash"
+if [[ $BASH_IT_THEME ]]; then
+    source "$XDG_CONFIG_HOME/bash/themes/$BASH_IT_THEME/$BASH_IT_THEME.theme.bash"
+fi
+if [[ $PROMPT ]]; then
+    export PS1=$PROMPT
+else
+    source "$XDG_CONFIG_HOME/bash/prompt"
+fi
