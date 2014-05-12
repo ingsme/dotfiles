@@ -3,8 +3,6 @@
 "set foldmethod=indent
 "set foldlevel=99
 set foldlevelstart=0
-nnoremap <Space> za
-vnoremap <Space> za
 
 "
 " "set mouse=a " Enable mouse usage (all modes)
