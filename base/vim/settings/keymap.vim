@@ -44,39 +44,6 @@ nmap <silent> <unique> <Leader>tn :set number! <CR>
 "imap <silent> <D-K> -
 "imap <silent> <D-D> -
 
-" <Leader># Surround a word with #{ruby interpolation}
-map <Leader># ysiw#
-vmap <Leader># c#{<C-R>"}<ESC>
-
-" <Leader>" Surround a word with "quotes"
-map <Leader>" ysiw"
-vmap <Leader>" c"<C-R>""<ESC>
-
-" <Leader>' Surround a word with 'single quotes'
-map <Leader>' ysiw'
-vmap <Leader>' c'<C-R>"'<ESC>
-
-" <Leader>) or ,( Surround a word with (parens)
-" The difference is in whether a space is put in
-map <Leader>( ysiw(
-map <Leader>) ysiw)
-vmap <Leader>( c( <C-R>" )<ESC>
-vmap <Leader>) c(<C-R>")<ESC>
-
-" <Leader>[ Surround a word with [brackets]
-map <Leader>] ysiw]
-map <Leader>[ ysiw[
-vmap <Leader>[ c[ <C-R>" ]<ESC>
-vmap <Leader>] c[<C-R>"]<ESC>
-
-" <Leader>{ Surround a word with {braces}
-map <Leader>} ysiw}
-map <Leader>{ ysiw{
-vmap <Leader>} c{ <C-R>" }<ESC>
-vmap <Leader>{ c{<C-R>"}<ESC>
-
-map <Leader>` ysiw`
-
 " gary bernhardt's hashrocket
 imap <c-l> <space>=><space>
 
@@ -101,14 +68,6 @@ nnoremap <Leader>. '.
 " the first quote will autoclose so you'll get 'foo' and hitting <c-a> will
 " put the cursor right after the quote
 imap <C-a> <esc>wa
-
-" ==== NERD tree
-" Cmd-Shift-N for nerd tree
-"nmap <D-N> :NERDTreeToggle<CR>
-nmap <silent> <Leader>n :NERDTreeTabsToggle<CR>
-nnoremap <silent> <Leader>\ :NERDTreeFind<CR>:vertical res 30<CR>
-" Open the project tree and expose current file in the nerdtree with Ctrl-\
-"nnoremap <silent> <C-\> :NERDTreeFind<CR>:vertical res 30<CR>
 
 " <Leader>q to toggle quickfix window (where you have stuff like Ag)
 " <Leader>oq to open it back up (rare)
