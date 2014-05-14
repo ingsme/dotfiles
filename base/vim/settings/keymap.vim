@@ -105,7 +105,7 @@ imap <C-a> <esc>wa
 " ==== NERD tree
 " Cmd-Shift-N for nerd tree
 "nmap <D-N> :NERDTreeToggle<CR>
-nmap <silent> <Leader>n :NerdTreeToggle<CR>
+nmap <silent> <Leader>n :NERDTreeTabsToggle<CR>
 nnoremap <silent> <Leader>\ :NERDTreeFind<CR>:vertical res 30<CR>
 " Open the project tree and expose current file in the nerdtree with Ctrl-\
 "nnoremap <silent> <C-\> :NERDTreeFind<CR>:vertical res 30<CR>
