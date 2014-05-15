@@ -10,7 +10,7 @@ fi
 
 source $DOTS_SOURCE/base/bash/environment
 
-if [[ ! -e $XDG_CONFIG_HOME/vim/bundle/vundle/.git ]]; then
+if [ ! -e $XDG_CONFIG_HOME/vim/bundle/vundle/.git ]; then
   echo -e "\033[0;32m==>\033[0m Installing vim Bundles with vundle..."
 fi
 
@@ -25,11 +25,11 @@ fi
 # Make directories
 if [ -n $XDG_CACHE_HOME ]
 then
-  if [[ ! -e $XDG_CACHE_HOME/vim ]]
+  if [ ! -e $XDG_CACHE_HOME/vim ]
   then
     mkdir $XDG_CACHE_HOME/vim
   fi
-  if [[ ! -e $XDG_CACHE_HOME/viminfo ]]
+  if [ ! -e $XDG_CACHE_HOME/viminfo ]
   then
     mkdir $XDG_CACHE_HOME/viminfo
   fi
