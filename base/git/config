@@ -9,11 +9,11 @@
 	ci = commit
 	st = status
     loll = log --graph --decorate --pretty=oneline --abbrev-commit
-	pretty = log --pretty=format:\"%h - %an, %ar : %s\"
+    pretty = log --pretty=format:"%C(yellow)%h\\ %ar%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
 	timeline = log --oneline --graph --decorate
 	timeline-all = log --oneline --all --graph --decorate
 [core]
-	pager = less -M
+	pager = less -R
 [color]
 	ui = true
 	branch = auto
