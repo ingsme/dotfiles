@@ -1,4 +1,4 @@
-if exists(:UndotreeToggle)
+if exists(":UndoTreeToggle")
     let vimcachedir = "$XDG_CACHE_HOME/vim"
     let &runtimepath.=',',vimcachedir
 
