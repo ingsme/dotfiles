@@ -4,7 +4,10 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # XDG directories
 export XDG_CONFIG_HOME="$HOME/.config"
-#export XDG_CACHE_HOME="$HOME/.cache"
+if [ -z $XDG_CACHE_HOME ]; then
+    export XDG_CACHE_HOME="$HOME/.cache"
+fi
+
 export XDG_DATA_HOME="$HOME/.local/share"
 
 # Set path to inputrc configuration
