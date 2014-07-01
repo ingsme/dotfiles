@@ -8,7 +8,7 @@ mktmplt () {
   cp /git/packages/template/* .
   git add *
   git commit -m"initial release"
-  git remote add origin git@git.uib.no:packages/precise/${1}
+  git remote add origin git@git.uib.no:packages/ubuntu/${1}
   git push -u origin master
 }
 
