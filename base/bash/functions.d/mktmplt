@@ -6,9 +6,10 @@ mktmplt () {
   cd ${1}
   git init
   cp /git/packages/template/* .
+  sed -i "s/NAME=/NAME=${1}/g" Makefile
   git add *
   git commit -m"initial release"
-  git remote add origin git@git.uib.no:packages/ubuntu/${1}
-  git push -u origin master
+  #git remote add origin git@git.uib.no:packages/ubuntu/${1}
+  #git push -u origin master
 }
 
