@@ -5,7 +5,9 @@ ZSH=$XDG_CONFIG_HOME/zsh/oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="budspencer"
+!!@@theme
+#ZSH_THEME="budspencer"
+#DEFAULT_USER=ism089
 
 ZSH_CUSTOM=$XDG_CONFIG_HOME/zsh/oh-my-zsh-custom
 
@@ -61,7 +63,5 @@ alias vagrant='TERM=rxvt-unicode vagrant'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias ll='ls -l'
-alias la='ls -A'
 alias mkdir='mkdir -p -v'
 alias cal='cal -3'
