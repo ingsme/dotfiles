@@ -37,6 +37,7 @@ zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 setopt autocd
 setopt noclobber
+setopt bashautolist
 #unsetopt correct_all
 set -o vi
 bindkey '^R' history-incremental-search-backward
