@@ -1,13 +1,7 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$XDG_CONFIG_HOME/zsh/oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
 !!@@theme
-#ZSH_THEME="budspencer"
-#DEFAULT_USER=ism089
 
 ZSH_CUSTOM=$XDG_CONFIG_HOME/zsh/oh-my-zsh-custom
 
@@ -33,11 +27,7 @@ ZSH_CUSTOM=$XDG_CONFIG_HOME/zsh/oh-my-zsh-custom
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
 
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-
-plugins=(ssh-agent git history-substring-search sudo zsh-syntax-highlighting)
+!!@@plugins
 
 source $ZSH/oh-my-zsh.sh
 
@@ -56,6 +46,8 @@ bindkey '^[[B' history-substring-search-down
 # bind k and j for VI mode
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+# Sudo 
+bindkey "^S" sudo-command-line
 
 # Base alias
 alias ssh='TERM=rxvt-unicode ssh'
