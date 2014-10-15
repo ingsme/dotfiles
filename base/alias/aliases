@@ -1,15 +1,16 @@
 #!/bin/bash
 
-alias reload="source $XDG_CONFIG_HOME/bash/bashrc"
-
 alias ll='ls -al'
 alias la='ls -A'
 alias l='ls -l'
 
 alias ..='cd ..'
 alias ...='cd ../..'
+alias -='cd -'
 
 alias mkdir='mkdir -pv'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+
+alias cal='cal -3'

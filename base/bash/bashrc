@@ -86,7 +86,8 @@ GIT_PS1_SHOWUNTRACKEDFILES=true
 source "$XDG_CONFIG_HOME/bash/prompt"
 
 # source aliases
-source "$XDG_CONFIG_HOME/bash/aliases"
+source "$XDG_CONFIG_HOME/alias/aliases"
+alias reload="source $XDG_CONFIG_HOME/bash/bashrc"
 
 # Source environment
 source "$XDG_CONFIG_HOME/bash/environment"
