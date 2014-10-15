@@ -51,10 +51,6 @@ bindkey -M vicmd 'j' history-substring-search-down
 bindkey "^S" sudo-command-line
 
 # Base alias
+source "$XDG_CONFIG_HOME/alias/aliases"
 alias ssh='TERM=rxvt-unicode ssh'
 alias vagrant='TERM=rxvt-unicode vagrant'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
-alias mkdir='mkdir -p -v'
-alias cal='cal -3'
