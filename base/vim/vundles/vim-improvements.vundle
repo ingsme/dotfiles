@@ -8,6 +8,7 @@ Bundle "godlygeek/tabular"
 Bundle "mbbill/undotree"
 Bundle "tomtom/tcomment_vim"
 Bundle "taylor/vim-zoomwin"
+Bundle 'christoomey/vim-tmux-navigator'
 "Bundle "scrooloose/nerdcommenter"
 "Bundle "vim-scripts/camelcasemotion"
 "Bundle "vim-scripts/matchit.zip"
