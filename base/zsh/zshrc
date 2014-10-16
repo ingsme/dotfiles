@@ -54,3 +54,8 @@ bindkey "^S" sudo-command-line
 source "$XDG_CONFIG_HOME/alias/aliases"
 alias ssh='TERM=rxvt-unicode ssh'
 alias vagrant='TERM=rxvt-unicode vagrant'
+
+autoload bashcompinit
+bashcompinit
+#source $HOME/.local/lib/dots/contrib/bash_completion
+source $HOME/.config/bash/completions.d/*.bash
