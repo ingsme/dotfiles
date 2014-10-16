@@ -210,3 +210,83 @@ client.urgent #dc322f #dc322f #fdf6e3
 # #client.background #000000
 
 # vim: fdm=marker
+
+exec --no-startup-id feh --bg-scale ~/Pictures/vim-shortcuts.png
+
+assign [class="(?i)thunderbird"] 5: mail
+assign [class="(?i)firefox"] 6: web 
+assign [class="(?i)smuxi-frontend-gnome"] 6: web 
+assign [class="(?i)polly"] 6: web 
+assign [class="(?i)birdie"] 6: web 
+assign [class="(?i)geppetto"] 3: geppetto
+
+######################################
+# WORKSPACE KEYBINDINGS AND SETTINGS #
+######################################
+
+workspace "1: work" output DVI-I-2
+workspace "2: comm" output DVI-I-3
+workspace "3: gepetto" output DVI-I-2
+workspace "4: puppet" output DVI-I-3
+workspace "5: mail" output DVI-I-2
+workspace "6: web" output DVI-I-3
+workspace "7: fpm" output DVI-I-2
+workspace "8: fpm" output DVI-I-3
+workspace "9: div" output DVI-I-2
+workspace "10: src" output DVI-I-3
+
+# switch to workspace
+bindsym F1 workspace 1: work
+bindsym F2 workspace 2: comm
+bindsym F3 workspace 3: geppetto
+bindsym F4 workspace 4: puppet
+bindsym F5 workspace 5: mail
+bindsym F6 workspace 6: web
+bindsym F7 workspace 7: fpm
+bindsym F8 workspace 8: fpm
+bindsym F9 workspace 9: div
+bindsym F10 workspace 10: src
+bindsym $mod+1 workspace 1: work
+bindsym $mod+2 workspace 2: comm
+bindsym $mod+3 workspace 3: geppetto
+bindsym $mod+4 workspace 4: puppet
+bindsym $mod+5 workspace 5: mail
+bindsym $mod+6 workspace 6: web
+bindsym $mod+7 workspace 7: fpm
+bindsym $mod+8 workspace 8: fpm
+bindsym $mod+9 workspace 9: div
+bindsym $mod+0 workspace 10: src
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1: work
+bindsym $mod+Shift+2 move container to workspace 2: comm
+bindsym $mod+Shift+3 move container to workspace 3: geppetto
+bindsym $mod+Shift+4 move container to workspace 4: puppet
+bindsym $mod+Shift+5 move container to workspace 5: mail
+bindsym $mod+Shift+6 move container to workspace 6: web
+bindsym $mod+Shift+7 move container to workspace 7: fpm
+bindsym $mod+Shift+8 move container to workspace 8: fpm
+bindsym $mod+Shift+9 move container to workspace 9: div
+bindsym $mod+Shift+0 move container to workspace 10: src
+
+#############
+# AUTOSTART #
+#############
+exec gnome-settings-daemon
+exec volumicon
+exec geppetto
+exec thunderbird
+exec firefox
+exec smuxi-frontend-gnome
+exec polly
+exec --no-startup-id i3-msg 'workspace "1: work"; exec i3-sensible-terminal'
+exec --no-startup-id i3-msg 'workspace "1: work"; exec i3-sensible-terminal'
+exec --no-startup-id i3-msg 'workspace "7: fpm"; exec i3-sensible-terminal'
+#exec --no-startup-id i3-msg 'workspace "7: fpm"; exec i3-sensible-terminal'
+exec --no-startup-id i3-msg 'workspace "8: fpm"; exec i3-sensible-terminal'
+#exec --no-startup-id i3-msg 'workspace "8: fpm"; exec i3-sensible-terminal'
+exec --no-startup-id i3-msg 'workspace "4: puppet"; exec i3-sensible-terminal'
+#exec --no-startup-id i3-msg 'workspace "4: puppet"; exec i3-sensible-terminal'
+
+# Start the synergy server
+exec synergys --config /etc/synergy.conf
