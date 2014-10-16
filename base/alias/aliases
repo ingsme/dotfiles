@@ -13,3 +13,5 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 alias cal='cal -3'
+
+#alias mux='tmuxinator'

@@ -27,7 +27,20 @@ ZSH_CUSTOM=$XDG_CONFIG_HOME/zsh/oh-my-zsh-custom
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 # COMPLETION_WAITING_DOTS="true"
 
-!!@@plugins
+plugins=( \
+    git \
+    gitfast \
+    history-substring-search \
+    ssh-agent \
+    sudo \
+    themes \
+    tmux \
+    tmuxinator \
+    vagrant \
+    web-search \
+    zsh-syntax-highlighting \
+    !!@@plugins
+)
 
 source $ZSH/oh-my-zsh.sh
 
