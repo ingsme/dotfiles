@@ -21,8 +21,10 @@
 # => Color definitions
 ##################################################
 # INSERT mode color
-INSCOL=136
+#INSCOL=136
 INSCURSCOL="#b58900"
+INSCOL=123
+#INSCURSCOL="#a0e4d3"
 
 # NORMAL mode color
 NORMCOL=33
