@@ -1,0 +1,9 @@
+#!/bin/bash
+
+psg () {
+    ps auxww |grep --color=always $* |grep -v grep
+}
+
+pse () {
+    ps -ef |grep --color=always $* |grep -v grep
+}

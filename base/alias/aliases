@@ -14,4 +14,11 @@ alias egrep='egrep --color=auto'
 
 alias cal='cal -3'
 
+alias dut="du -hx * | sort -rh | head -10"
+alias dfu="df -hT -x devtmpfs -x tmpfs"
+
+alias volup="amixer set Master playback 3dB+"
+alias voldown="amixer set Master playback 3dB-"
+
+
 #alias mux='tmuxinator'

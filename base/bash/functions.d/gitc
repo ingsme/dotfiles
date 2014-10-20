@@ -3,3 +3,7 @@
 gitc() {
 	git clone git@git.uib.no:$1
 }
+
+githc() {
+    git clone https://github.com/$*
+}
