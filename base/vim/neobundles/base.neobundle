@@ -1,0 +1,32 @@
+NeoBundle "skwp/vim-colors-solarized"
+NeoBundle "itchyny/lightline.vim"
+NeoBundle "bogado/file-line.git"
+NeoBundle "adonis0147/prettyGuides"
+NeoBundle "tpope/vim-fugitive"
+NeoBundle "gregsexton/gitv"
+NeoBundle "gitignore"
+NeoBundle "jistr/vim-nerdtree-tabs.git"
+NeoBundle "scrooloose/nerdtree.git"
+NeoBundle "kien/ctrlp.vim"
+NeoBundle "skwp/vim-easymotion"
+NeoBundle "terryma/vim-expand-region"
+NeoBundle "AndrewRadev/splitjoin.vim"
+NeoBundle "briandoll/change-inside-surroundings.vim"
+NeoBundle "godlygeek/tabular"
+NeoBundle "tomtom/tcomment_vim"
+NeoBundle "terryma/vim-multiple-cursors"
+NeoBundle "mal/vim-pastemode"
+NeoBundle "nelstrom/vim-markdown-folding"
+NeoBundle "rodjek/vim-puppet"
+NeoBundle "jtratner/vim-flavored-markdown"
+NeoBundle "isnowfy/python-vim-instant-markdown"
+NeoBundle "scrooloose/syntastic.git"
+NeoBundle "honza/vim-snippets"
+NeoBundle "Raimondi/delimitMate"
+NeoBundle "tpope/vim-endwise"
+NeoBundle "Valloric/YouCompleteMe" , {
+    \ 'build' : {
+    \    'unix' : './install.sh --clang-completer --system-libclang',
+    \    'mac'  : './install.sh',
+    \},
+\}

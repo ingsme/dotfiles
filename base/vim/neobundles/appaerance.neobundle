@@ -1,4 +1,0 @@
-NeoBundle "skwp/vim-colors-solarized"
-NeoBundle "itchyny/lightline.vim"
-NeoBundle "bogado/file-line.git"
-NeoBundle "adonis0147/prettyGuides"
