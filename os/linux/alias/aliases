@@ -5,3 +5,4 @@ alias ls='ls --group-directories-first --color=auto -h'
 alias pwdb="cd && keepassx -cfg $HOME/.pwdb.ini &"
 alias hjemmekontor="rdesktop -g 1024x768 -a 16 -k no -d UiB hjemmekontor.uib.no &"
 alias gitls='ssh git@git.uib.no'
+alias aps='aptitude search'
