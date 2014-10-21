@@ -290,4 +290,4 @@ exec --no-startup-id i3-msg 'workspace "4: puppet"; exec i3-sensible-terminal'
 #exec --no-startup-id i3-msg 'workspace "4: puppet"; exec i3-sensible-terminal'
 
 # Start the synergy server
-exec synergys --config /etc/synergy.conf
+# exec synergys --config /etc/synergy.conf
