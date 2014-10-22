@@ -1,2 +1,1 @@
-alias puppetdir='cd /git/puppet'
-alias gitdir='cd /git'
+alias puppetdir='cd /disk2/puppet'
