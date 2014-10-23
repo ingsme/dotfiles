@@ -31,7 +31,7 @@ function! MyModified()
 endfunction
 
 function! MyReadonly()
-  return &ft !~? 'help' && &readonly ? 'X' : ''
+  return &ft !~? 'help' && &readonly ? "\ue0A2" : ''
 endfunction
 
 function! MyFugitive()
@@ -39,7 +39,7 @@ function! MyFugitive()
     if expand('%:t') !~? 'Tagbar\|Gundo\|NERD' && exists("*fugitive#head")
       let mark = ''  " Edit here for cool mark"
       let _ = fugitive#head()
-      return strlen(_) ? mark._ : ''
+      return strlen(_) ? "\ue0A0 "._ : ''
     endif
   catch
   endtry
