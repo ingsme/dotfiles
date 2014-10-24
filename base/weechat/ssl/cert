@@ -1,0 +1,17 @@
+# wechat commands
+/set irc.server.freenode.addresses chat.freenode.net/6697
+/set irc.server.freenode.sasl_mechanism external
+/set irc.server.freenode.sasl_username ingsme
+/set irc.server.freenode.ssl on
+/set irc.server.freenode.ssl_cert %h/ssl/nick.pem
+/set irc.server.freenode.ssl_dhkey_size 1024
+/set irc.server.freenode.ssl_verify off
+/msg NickServ IDENTIFY
+/msg NickServ CERT ADD
+
+# weechat relay
+/relay sslcertkey
+/relay add ssl.irc.freenode 8000
+/set relay.network.ipv6 off
+/set relay.network.allowed_ips "127.0.0.1,129.177.10.121"
+
