@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Generate certificate
+openssl req -nodes -newkey rsa:2048 -keyout nick.key -x509 -days 365 -out nick.cer -subj "/C=NO/ST=Hordaland/L=Bergen/O=UiB/OU=IT Department/CN=Ingar Smedstad"
+cat nick.cer nick.key > nick.pem
