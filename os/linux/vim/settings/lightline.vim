@@ -1,6 +1,7 @@
 set laststatus=2
 let g:lightline = { 
       \ 'colorscheme': 'solarized',
+      \ 'mode_map': { 'c': 'NORMAL' },
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'fugitive', 'filename' ] ] 
@@ -9,7 +10,11 @@ let g:lightline = {
       \   'fugitive': 'MyFugitive',
       \   'readonly': 'MyReadonly',
       \   'modified': 'MyModified',
-      \   'filename': 'MyFilename'
+      \   'filename': 'MyFilename',
+      \   'fileformat': 'MyFileformat',
+      \   'filetype': 'MyFiletype',
+      \   'fileencoding': 'MyFileencoding',
+      \   'mode': 'MyMode',
       \ },
       \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
       \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
@@ -51,3 +56,18 @@ function! MyFilename()
        \ ('' != MyModified() ? ' ' . MyModified() : '') 
 endfunction
 
+function! MyFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype : 'no ft') : ''
+endfunction
+
+function! MyFileencoding()
+  return winwidth(0) > 70 ? (strlen(&fenc) ? &fenc : &enc) : ''
+endfunction
+
+function! MyMode()
+  return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
