@@ -11,4 +11,3 @@ let g:syntastic_mode_map = { 'mode': 'active',
 
 " check syntax on file open
 let g:syntastic_check_on_open=1
-

@@ -26,8 +26,10 @@ nnoremap 0 ^
 nnoremap ^ 0
 
 " Some usefull options
-:inoremap jk <esc>
-:inoremap <esc> <nop>
+inoremap jk <esc>
+inoremap <esc> <nop>
+vnoremap jk <esc>
+vnoremap <esc> <nop>
 
 "" Some toggles
 nmap <silent> <unique> <Leader>tn :set number! <CR>

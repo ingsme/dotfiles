@@ -1,28 +1,34 @@
+" Diverse {{{
+" -----------
 NeoBundle "skwp/vim-colors-solarized"
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'christoomey/vim-tmux-navigator'
+NeoBundle 'regedarek/ZoomWin'
 NeoBundle "itchyny/lightline.vim"
 NeoBundle "bogado/file-line.git"
 NeoBundle "adonis0147/prettyGuides"
 NeoBundle "tpope/vim-fugitive"
-NeoBundle "gregsexton/gitv"
+" NeoBundle "gregsexton/gitv"
 NeoBundle "gitignore"
-NeoBundle "jistr/vim-nerdtree-tabs.git"
-NeoBundle "scrooloose/nerdtree.git"
-NeoBundle "kien/ctrlp.vim"
-NeoBundle "skwp/vim-easymotion"
+" NeoBundle "jistr/vim-nerdtree-tabs.git"
+" NeoBundle "scrooloose/nerdtree.git"
+" NeoBundle "kien/ctrlp.vim"
+"NeoBundle "skwp/vim-easymotion"
 NeoBundle "terryma/vim-expand-region"
 NeoBundle "AndrewRadev/splitjoin.vim"
 NeoBundle "briandoll/change-inside-surroundings.vim"
 NeoBundle "godlygeek/tabular"
-NeoBundle "tomtom/tcomment_vim"
-NeoBundle "terryma/vim-multiple-cursors"
+" NeoBundle "tomtom/tcomment_vim"
+" NeoBundle "terryma/vim-multiple-cursors"
 NeoBundle "mal/vim-pastemode"
 NeoBundle "nelstrom/vim-markdown-folding"
 NeoBundle "rodjek/vim-puppet"
 NeoBundle "jtratner/vim-flavored-markdown"
 NeoBundle "isnowfy/python-vim-instant-markdown"
 NeoBundle "scrooloose/syntastic.git"
-NeoBundle "honza/vim-snippets"
-NeoBundle "Raimondi/delimitMate"
+" NeoBundle "honza/vim-snippets"
+" NeoBundle "Raimondi/delimitMate"
 NeoBundle "tpope/vim-endwise"
 NeoBundle "Valloric/YouCompleteMe" , {
     \ 'build' : {
@@ -30,3 +36,95 @@ NeoBundle "Valloric/YouCompleteMe" , {
     \    'mac'  : './install.sh',
     \},
 \}
+" }}}
+" Commands {{{
+" --------
+NeoBundleLazy 'rafi/vim-tinycomment.git', {
+            \ 'directory': 'tinycomment',
+            \ 'augroup': 'tinycomment',
+            \ 'commands': [ 'TinyCommentLines', 'TinyCommentBlock' ],
+            \ 'mappings': [
+            \ [ 'n', '<leader>v' ], [ 'v', '<leader>v' ],
+            \ [ 'v', '<leader>V' ]
+            \ ]}
+NeoBundleLazy 'Shougo/vimfiler.vim', {
+    \ 'depends': [ 'Shougo/unite.vim', 'Shougo/tabpagebuffer.vim' ],
+    \ 'mappings': '<Plug>',
+    \ 'explorer': 1,
+    \ 'commands': [
+    \    { 'name': [ 'VimFiler', 'Edit', 'Write'],
+    \      'complete': 'customlist,vimfiler#complete' },
+    \    'Read', 'Source'
+    \ ]}
+NeoBundleLazy 'gorkunov/smartpairs.vim', {
+    \ 'autoload': {
+    \  'commands': [ 'SmartPairs', 'SmartPairsI', 'SmartPairsA' ],
+    \  'mappings': [[ 'n', 'viv' ], [ 'v', 'v' ]]
+    \}}
+" NeoBundleLazy 'tpope/vim-fugitive', {
+    " \ 'autoload': {
+    " \   'augroup': 'fugitive',
+    " \   'commands': [
+    " \     'Git', 'Gdiff', 'Gstatus', 'Gwrite', 'Gcd', 'Glcd',
+    " \     'Ggrep', 'Glog', 'Gcommit', 'Gblame', 'Gbrowse'
+    " \   ]
+    " \ }}
+NeoBundleLazy 'gregsexton/gitv', {
+    \ 'depends': 'tpope/vim-fugitive',
+    \ 'autoload': { 'commands': [ 'Gitv' ] }
+    \ }
+NeoBundleLazy 't9md/vim-smalls', { 'mappings': '<Plug>' }
+" }}}
+" Unite {{{
+" -----
+NeoBundleLazy 'Shougo/unite.vim', {
+    \ 'depends': 'Shougo/tabpagebuffer.vim',
+    \ 'commands': [
+    \   { 'name': 'Unite', 'complete': 'customlist,unite#complete_source' }
+    \ ]}
+" }}}
+" Unite sources {{{
+" -------------
+NeoBundleLazy 'Shougo/unite-build'
+NeoBundleLazy 'ujihisa/unite-colorscheme'
+NeoBundleLazy 'Shougo/neossh.vim', {
+    \ 'filetypes': 'vimfiler',
+    \ 'sources': 'ssh',
+    \ }
+NeoBundleLazy 'Shougo/unite-outline', {
+    \  'unite_sources': 'outline'
+    \ }
+NeoBundleLazy 'osyo-manga/unite-quickfix', {
+    \  'unite_sources': [ 'quickfix', 'location_list' ]
+    \ }
+NeoBundleLazy 'tsukkee/unite-tag', {
+    \  'unite_sources': [ 'tag', 'tag/file', 'tag/include' ]
+    \ }
+NeoBundleLazy 'joker1007/unite-pull-request', {
+    \  'depends': 'mattn/webapi-vim',
+    \  'unite_sources': [ 'pull_request', 'pull_request_file' ]
+    \ }
+NeoBundleLazy 'rhysd/unite-stackoverflow.vim', {
+    \  'unite_sources': 'stackoverflow'
+    \ }
+" }}}
+" Completion {{{
+" ----------
+NeoBundleLazy 'Raimondi/delimitMate', { 'insert': 1 }
+NeoBundleLazy 'Shougo/echodoc.vim', { 'insert': 1 }
+NeoBundleLazy 'kana/vim-smartchr', { 'insert': 1 }
+NeoBundleLazy 'Shougo/neocomplete', {
+    \ 'depends': 'Shougo/context_filetype.vim',
+    \ 'disabled': ! has('lua'),
+    \ 'vim_version': '7.3.885',
+    \ 'insert': 1
+    \ }
+NeoBundleLazy 'Shougo/neosnippet.vim', {
+    \ 'depends': 'Shougo/context_filetype.vim',
+    \ 'insert': 1,
+    \ 'filetypes': 'snippet',
+    \ 'unite_sources': [
+    \    'neosnippet', 'neosnippet/user', 'neosnippet/runtime'
+    \ ]}
+
+" }}}

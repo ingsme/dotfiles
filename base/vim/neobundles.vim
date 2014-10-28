@@ -17,15 +17,15 @@ call neobundle#begin(expand("$XDG_CONFIG_HOME/vim/bundle"))
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-runtime general.neobundle
-runtime appaerance.neobundle
-runtime programming.neobundle
+runtime base.neobundle
 
 if GotTheNeo == 0
     echo "Installing Bundles, please ignore key map error messages"
     echo ""
     :NeoBundleInstall
 endif
+
+call neobundle#end()
 
 filetype plugin indent on
 
