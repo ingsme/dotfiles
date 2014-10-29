@@ -1,6 +1,8 @@
 " Diverse {{{
 " -----------
 NeoBundle "skwp/vim-colors-solarized"
+NeoBundle "edkolev/tmuxline.vim"
+NeoBundle "lilydjwg/colorizer"
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'Shougo/neomru.vim'
 NeoBundle 'christoomey/vim-tmux-navigator'
@@ -30,12 +32,19 @@ NeoBundle "scrooloose/syntastic.git"
 " NeoBundle "honza/vim-snippets"
 " NeoBundle "Raimondi/delimitMate"
 NeoBundle "tpope/vim-endwise"
+NeoBundle 'Shougo/vimproc.vim', {
+    \  'build': {
+    \    'unix': 'make -f make_unix.mak',
+    \    'mac': 'make -f make_mac.mak',
+    \    'cygwin': 'make -f make_cygwin.mak',
+    \    'windows': 'tools\\update-dll-mingw'
+    \ }}
 NeoBundle "Valloric/YouCompleteMe" , {
     \ 'build' : {
     \    'unix' : './install.sh --clang-completer --system-libclang',
     \    'mac'  : './install.sh',
     \},
-\}
+    \}
 " }}}
 " Commands {{{
 " --------

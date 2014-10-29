@@ -12,11 +12,6 @@
 " FIXME: will not properly repeat when you use a dot (tie into repeat.vim)
 "nnoremap <Leader>ow "_diwhp
 
-"make Y consistent with C and D
-"nnoremap Y y$
-"function! YRRunAfterMaps()
-  "nnoremap Y   :<C-U>YRYankCount 'y$'<CR>
-"endfunction
 
 " Make 0 go to the first character rather than the beginning
 " of the line. When we're programming, we're almost always
@@ -33,35 +28,6 @@ vnoremap <esc> <nop>
 
 "" Some toggles
 nmap <silent> <unique> <Leader>tn :set number! <CR>
-
-" ========================================
-" RSI Prevention - keyboard remaps
-" ========================================
-" Certain things we do every day as programmers stress
-" out our hands. For example, typing underscores and
-" dashes are very common, and in position that require
-" a lot of hand movement. Vim to the rescue
-"
-" Now using the middle finger of either hand you can type
-" underscores with apple-k or apple-d, and add Shift
-" to type dashes
-"imap <silent> <D-k> _
-"imap <silent> <D-d> _
-"imap <silent> <D-K> -
-"imap <silent> <D-D> -
-
-" gary bernhardt's hashrocket
-imap <c-l> <space>=><space>
-
-" Change inside various enclosures with Cmd-" and Cmd-'
-" The f makes it find the enclosure so you don't have
-" to be standing inside it
-nnoremap <D-'> f'ci'
-nnoremap <D-"> f"ci"
-nnoremap <D-(> f(ci(
-nnoremap <D-)> f)ci)
-nnoremap <D-[> f[ci[
-nnoremap <D-]> f]ci]
 
 "Go to last edit location with <Leader>.
 nnoremap <Leader>. '.
@@ -91,31 +57,6 @@ nmap <silent> <Leader>qo :copen<CR>
 "autocmd FileType javascript map <buffer> <D-k> }
 "autocmd FileType javascript map <buffer> <D-j> {
 
-
-" Command-/ to toggle comments
-"map <D-/> :TComment<CR>
-"imap <D-/> <Esc>:TComment<CR>i
-
-
-"Move back and forth through previous and next buffers
-"with <Leader>z and ,x
-"nnoremap <silent> <Leader>z :bp<CR>
-"nnoremap <silent> <Leader>x :bn<CR>
-
-" ==============================
-" Window/Tab/Split Manipulation
-" ==============================
-" Move between split windows by using the four directions H, L, I, N
-"nnoremap <silent> <C-h> <C-w>h
-"nnoremap <silent> <C-l> <C-w>l
-"nnoremap <silent> <C-k> <C-w>k
-"nnoremap <silent> <C-j> <C-w>j
-
-" Make gf (go to file) create the file, if not existent
-nnoremap gf :e<cfile><CR>
-nnoremap <C-w>f :sp +e<cfile><CR>
-nnoremap <C-w>gf :tabe<cfile><CR>
-
 " Zoom in and out of current window with <Leader>gz
 map <silent> <Leader>gz <C-w>o
 
@@ -142,53 +83,11 @@ nnoremap <D-Down> <C-w>-
 nnoremap <D-Left> <C-w><
 nnoremap <D-Right>  <C-w>>
 
-" create <%= foo %> erb tags using Ctrl-k in edit mode
-"imap <silent> <C-K> <%=   %><Esc>3hi
-
-" create <%= foo %> erb tags using Ctrl-j in edit mode
-"imap <silent> <C-J> <%  %><Esc>2hi
-
-" ============================
-" Shortcuts for everyday tasks
-" ============================
-
-" copy current filename into system clipboard - mnemonic: (c)urrent(f)ilename
-" this is helpful to paste someone the path you're looking at
-"nnoremap <silent> <Leader>cf :let @* = expand("%:~")<CR>
-"nnoremap <silent> <Leader>cn :let @* = expand("%:t")<CR>
-
 "Clear current search highlight by double tapping //
 nmap <silent> // :nohlsearch<CR>
 
-"(v)im (c)ommand - execute current line as a vim command
-"nmap <silent> <Leader>vc yy:<C-f>p<C-c><CR>
-
-"(v)im (r)eload
-"nmap <silent> <Leader>vr :so %<CR>
-
 " Type <Leader>hl to toggle highlighting on/off, and show current value.
 noremap <Leader>hl :set hlsearch! hlsearch?<CR>
-
-" These are very similar keys. Typing 'a will jump to the line in the current
-" file marked with ma. However, `a will jump to the line and column marked
-" with ma.  It’s more useful in any case I can imagine, but it’s located way
-" off in the corner of the keyboard. The best way to handle this is just to
-"" swap them: http://items.sjbach.com/319/configuring-vim-right
-"nnoremap ' `
-"nnoremap ` '
-
-" ============================
-" Tabularize - alignment
-" ============================
-" Hit Cmd-Shift-A then type a character you want to align by
-"nmap <D-A> :Tabularize /
-"vmap <D-A> :Tabularize /
-
-" ============================
-" SplitJoin plugin
-" ============================
-"nmap sj :SplitjoinSplit<cr>
-"nmap sk :SplitjoinJoin<cr>
 
 " Get the current highlight group. Useful for then remapping the color
 "map <Leader>hi :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">" . " FG:" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"fg#")<CR>
