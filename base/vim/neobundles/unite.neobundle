@@ -1,0 +1,46 @@
+" Unite {{{
+" -----
+NeoBundle 'Shougo/unite.vim', {
+    \ 'depends': 'Shougo/tabpagebuffer.vim',
+    \ 'commands': [
+    \   { 'name': 'Unite', 'complete': 'customlist,unite#complete_source' }
+    \ ]}
+" }}}
+" Unite sources {{{
+" -------------
+NeoBundle 'Shougo/unite-build'
+NeoBundle 'ujihisa/unite-colorscheme'
+NeoBundle 'Shougo/neossh.vim', {
+    \ 'filetypes': 'vimfiler',
+    \ 'sources': 'ssh',
+    \ }
+NeoBundle 'Shougo/unite-outline', {
+    \  'unite_sources': 'outline'
+    \ }
+NeoBundle 'osyo-manga/unite-quickfix', {
+    \  'unite_sources': [ 'quickfix', 'location_list' ]
+    \ }
+NeoBundle 'tsukkee/unite-tag', {
+    \  'unite_sources': [ 'tag', 'tag/file', 'tag/include' ]
+    \ }
+NeoBundle 'joker1007/unite-pull-request', {
+    \  'depends': 'mattn/webapi-vim',
+    \  'unite_sources': [ 'pull_request', 'pull_request_file' ]
+    \ }
+NeoBundle 'rhysd/unite-stackoverflow.vim', {
+    \  'unite_sources': 'stackoverflow'
+    \ }
+" }}}
+" Proc {{{
+" ----
+NeoBundle 'Shougo/vimproc.vim', {
+    \ 'build' : {
+    \     'windows' : 'tools\\update-dll-mingw',
+    \     'cygwin' : 'make -f make_cygwin.mak',
+    \     'mac' : 'make -f make_mac.mak',
+    \     'linux' : 'make',
+    \     'unix' : 'gmake',
+    \    },
+    \ }
+" }}}
+

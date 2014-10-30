@@ -10,22 +10,26 @@ if !filereadable(neobundle_readme)
 endif
 
 set rtp+=$XDG_CONFIG_HOME/vim/bundle/neobundle.vim
-set rtp+=$XDG_CONFIG_HOME/vim/neobundles
+"set rtp+=$XDG_CONFIG_HOME/vim/neobundles
 call neobundle#begin(expand("$XDG_CONFIG_HOME/vim/bundle"))
 
 " Let NeoBundle manage NeoBundle
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-runtime general.neobundle
-runtime appaerance.neobundle
-runtime programming.neobundle
+"for fpath in split(globpath('$XDG_CONFIG_HOME/vim/neobundles', '*.neobundle'), '\n')
+"    execute 'source' fpath
+"endfor
+
+runtime! neobundles/*.neobundle
 
 if GotTheNeo == 0
     echo "Installing Bundles, please ignore key map error messages"
     echo ""
     :NeoBundleInstall
 endif
+
+call neobundle#end()
 
 filetype plugin indent on
 

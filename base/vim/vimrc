@@ -14,7 +14,7 @@ set directory=$XDG_CACHE_HOME/vim,~/,/tmp
 set backupdir=$XDG_CACHE_HOME/vim,~/,/tmp
 set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
 "set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNTIME
-set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$XDG_CONFIG_HOME/vim/bundle/vundle
+set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$XDG_CONFIG_HOME/vim/bundle/neobundle
 
 
 " The mapleader has to be set before vundle starts loading all 
@@ -24,10 +24,9 @@ let mapleader="\<space>"
 " =============== Vundle Initialization ===============
 " This loads all the plugins specified in ~/.vim/vundle.vim
 " Use Vundle plugin to manage all other plugins
-if filereadable(expand("$XDG_CONFIG_HOME/vim/vundles.vim"))
-  source $XDG_CONFIG_HOME/vim/vundles.vim
+if filereadable(expand("$XDG_CONFIG_HOME/vim/neobundles.vim"))
+  source $XDG_CONFIG_HOME/vim/neobundles.vim
 endif
 
 " ================ Custom Settings ========================
 so $XDG_CONFIG_HOME/vim/settings.vim
-
