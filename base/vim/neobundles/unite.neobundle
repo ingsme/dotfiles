@@ -42,5 +42,13 @@ NeoBundle 'Shougo/vimproc.vim', {
     \     'unix' : 'gmake',
     \    },
     \ }
+NeoBundle 'rhysd/vim-operator-surround', {
+    \ 'depends': 'kana/vim-operator-user',
+    \ 'mappings': '<Plug>'
+    \ }
+NeoBundle 'kana/vim-operator-replace', {
+    \ 'depends': 'kana/vim-operator-user',
+    \ 'autoload': {
+    \ 'mappings': [[ 'nx', '<Plug>(operator-replace)' ]]
+    \ }}
 " }}}
-

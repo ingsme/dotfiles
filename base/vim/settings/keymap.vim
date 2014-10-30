@@ -22,15 +22,21 @@ nnoremap ^ 0
 
 " Some usefull options
 inoremap jk <esc>
-inoremap <esc> <nop>
+"inoremap <esc> <nop>
 vnoremap jk <esc>
-vnoremap <esc> <nop>
+"vnoremap <esc> <nop>
 
 "" Some toggles
 nmap <silent> <unique> <Leader>tn :set number! <CR>
 
 "Go to last edit location with <Leader>.
 nnoremap <Leader>. '.
+
+"" Use tab for indenting in normal/visual modes
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
 
 "When typing a string, your quotes auto complete. Move past the quote
 "while still in insert mode by hitting Ctrl-a. Example:
@@ -96,4 +102,10 @@ noremap <Leader>hl :set hlsearch! hlsearch?<CR>
 "map <D-%> :so %<CR>
 
 " <Leader>hp = html preview
+"" Use tab for indenting in normal/visual modes
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
 "map <silent> <Leader>hp :!open -a Safari %<CR><CR>
