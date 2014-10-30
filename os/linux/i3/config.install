@@ -1,0 +1,5 @@
+#!/bin/bash
+
+#git clone https://github.com/okraits/j4-make-config
+#cp j4-make-config/j4-make-config ~/.local/bin
+#cp -r j4-make-config/themes .
