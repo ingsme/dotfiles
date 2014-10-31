@@ -1,8 +1,8 @@
 " Make it beautiful - colors and fonts
 
 " http://ethanschoonover.com/solarized/vim-colors-solarized
-"colorscheme solarized
-colorscheme hybrid
+colorscheme solarized
+"colorscheme hybrid
 set background=dark
 
 if has("gui_running")
