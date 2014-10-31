@@ -30,3 +30,6 @@ function! s:vimfiler_settings()
     nmap <buffer> <C-q> <Plug>(vimfiler_quick_look)
     nmap <buffer> <C-w> <Plug>(vimfiler_switch_to_history_directory)
 endfunction
+
+nnoremap <silent> <Leader>f :<C-u>VimFiler<CR>
+nnoremap <Leader>ff :<C-u>VimFilerExplorer<CR>
