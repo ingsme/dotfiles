@@ -1,0 +1,9 @@
+#!/bin/bash
+
+vakt () {
+    if [ $# -eq 0 ]; then
+        curl -s http://vakt.unix.uib.no/ukl/current | jq -r '.name'
+    else
+        curl -s http://vakt.unix.uib.no/ukl | jq ".[] | .[] | select(.week==${1}) |.name"
+    fi
+}

@@ -1,2 +1,1 @@
 alias puppetdir='cd /disk2/puppet'
-alias vakt="curl -s http://vakt.unix.uib.no/ukl/current | jq -r '.name'"
