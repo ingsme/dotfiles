@@ -3,6 +3,8 @@
 NeoBundle "PotatoesMaster/i3-vim-syntax"
 NeoBundle "skwp/vim-colors-solarized"
 NeoBundle "edkolev/tmuxline.vim"
+NeoBundle "kchmck/vim-coffee-script"
+NeoBundle "vim-ruby/vim-ruby"
 NeoBundle "lilydjwg/colorizer"
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'Shougo/neomru.vim'
