@@ -67,15 +67,20 @@ nmap <silent> <Leader>qo :copen<CR>
 map <silent> <Leader>gz <C-w>o
 
 " Use numbers to pick the tab you want (like iTerm)
-map <silent> <D-1> :tabn 1<cr>
-map <silent> <D-2> :tabn 2<cr>
-map <silent> <D-3> :tabn 3<cr>
-map <silent> <D-4> :tabn 4<cr>
-map <silent> <D-5> :tabn 5<cr>
-map <silent> <D-6> :tabn 6<cr>
-map <silent> <D-7> :tabn 7<cr>
-map <silent> <D-8> :tabn 8<cr>
-map <silent> <D-9> :tabn 9<cr>
+"map <silent> <D-1> :tabn 1<cr>
+"map <silent> <D-2> :tabn 2<cr>
+"map <silent> <D-3> :tabn 3<cr>
+"map <silent> <D-4> :tabn 4<cr>
+"map <silent> <D-5> :tabn 5<cr>
+"map <silent> <D-6> :tabn 6<cr>
+"map <silent> <D-7> :tabn 7<cr>
+"map <silent> <D-8> :tabn 8<cr>
+"map <silent> <D-9> :tabn 9<cr>
+
+" choose buffer with <Leader>1..9
+for i in [1,2,3,4,5,6,7,8,9]
+    exec "map <Leader>" . i . " :buffer " . i . "<cr>"
+endfor
 
 " Create window splits easier. The default
 " way is Ctrl-w,v and Ctrl-w,s. I remap

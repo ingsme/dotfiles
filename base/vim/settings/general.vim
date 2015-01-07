@@ -7,6 +7,7 @@ set foldlevelstart=0
 "
 " "set mouse=a " Enable mouse usage (all modes)
 set number
+set cursorline!
 set backspace=2 " Makes backspace work like it should!
 "
 " " This makes vim act like all other editors, buffers can
@@ -24,3 +25,6 @@ set scrolloff=3
 if has('patch-7.3.541')
     set formatoptions+=j " Remove comment leader when joining lines
 endif
+
+" Remove triling white space before saving
+autocmd BufFilePre * :%s/\s\+$//e

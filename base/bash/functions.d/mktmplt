@@ -5,7 +5,7 @@ mktmplt () {
   mkdir ${1}
   cd ${1}
   git init
-  cp /git/packages/template/* .
+  cp /disk2/packages/template/* .
   sed -i "s/NAME=/NAME=${1}/g" Makefile
   git add *
   git commit -m"initial release"
