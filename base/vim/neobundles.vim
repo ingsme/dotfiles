@@ -55,6 +55,7 @@ NeoBundle "jez/vim-superman"
 NeoBundle "christoomey/vim-tmux-navigator"
 NeoBundle "edkolev/tmuxline.vim"
 " ----- Syntax plugins ------------------------------------------------
+NeoBundleLazy 'klen/python-mode', {'autoload': {'filetypes': ['python']}}
 NeoBundle "jez/vim-c0"
 NeoBundle "jez/vim-ispc"
 NeoBundle "kchmck/vim-coffee-script"
