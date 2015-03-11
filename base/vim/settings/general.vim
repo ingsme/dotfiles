@@ -7,6 +7,7 @@ set foldlevelstart=0
 "
 " "set mouse=a " Enable mouse usage (all modes)
 set number
+set relativenumber
 set cursorline!
 set backspace=2 " Makes backspace work like it should!
 " ================ Indentation ======================
@@ -127,6 +128,35 @@ augroup END
 nnoremap 0 ^
 nnoremap ^ 0
 
+" Move between Vim and Tmux windows {{{
+
+if exists('$TMUX')
+  function! TmuxOrSplitSwitch(wincmd, tmuxdir)
+    let previous_winnr = winnr()
+    execute "wincmd " . a:wincmd
+    if previous_winnr == winnr()
+      " The sleep and & gives time to get back to vim so tmux's focus tracking
+      " can kick in and send us our ^[[O
+      execute "silent !sh -c 'sleep 0.01; tmux select-pane -" . a:tmuxdir . "' &"
+      redraw!
+    endif
+  endfunction
+  let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
+  let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
+  let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
+  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<CR>
+  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<CR>
+  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<CR>
+  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<CR>
+else
+  map <C-h> <C-w>h
+  map <C-j> <C-w>j
+  map <C-k> <C-w>k
+  map <C-l> <C-w>l
+endif
+
+" }}}
+
 " Some usefull options
 inoremap jk <esc>
 "inoremap <esc> <nop>
@@ -134,7 +164,37 @@ vnoremap jk <esc>
 "vnoremap <esc> <nop>
 
 "" Some toggles
-nmap <silent> <unique> <Leader>tn :set number! <CR>
+nmap <silent> <unique> <Leader>tn :call ToggleRelativeAbsoluteNumber()<CR>
+function! ToggleRelativeAbsoluteNumber()
+  if !&number && !&relativenumber
+      set number
+      set norelativenumber
+  elseif &number && !&relativenumber
+      set nonumber
+      set relativenumber
+  elseif !&number && &relativenumber
+      set number
+      set relativenumber
+  elseif &number && &relativenumber
+      set nonumber
+      set norelativenumber
+  endif
+endfunction
+
+map <Leader>p :call  TogglePaste()<CR>
+function!  TogglePaste()
+    if  !&paste
+        set invpaste
+        :PrettyGuidesDisable
+        set nonumber
+        set norelativenumber
+    elseif  &paste
+        set invpaste
+        :PrettyGuidesEnable
+        set number
+        set relativenumber
+    endif
+endfunction
 
 "Go to last edit location with <Leader>.
 nnoremap <Leader>. '.
@@ -228,3 +288,22 @@ iabbrev ccopy Copyright 2014 Ingar Smedstad.
 " w!! to write a file as sudo
 " stolen from Steve Losh
 cmap w!! w !sudo tee % >/dev/null
+
+" Execution permissions by default to shebang (#!) files {{{
+
+augroup shebang_chmod
+  autocmd!
+  autocmd BufNewFile  * let b:brand_new_file = 1
+  autocmd BufWritePost * unlet! b:brand_new_file
+  autocmd BufWritePre *
+        \ if exists('b:brand_new_file') |
+        \   if getline(1) =~ '^#!' |
+        \     let b:chmod_post = '+x' |
+        \   endif |
+        \ endif
+  autocmd BufWritePost,FileWritePost *
+        \ if exists('b:chmod_post') && executable('chmod') |
+        \   silent! execute '!chmod '.b:chmod_post.' "<afile>"' |
+        \   unlet b:chmod_post |
+        \ endif
+augroup END

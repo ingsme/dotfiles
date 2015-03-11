@@ -47,7 +47,7 @@ NeoBundle "airblade/vim-gitgutter"
 NeoBundle "tpope/vim-fugitive"
 NeoBundle "gitignore"
 " ----- Other text editing features -----------------------------------
-NeoBundle "Raimondi/delimitMate"
+NeoBundle "Raimondi/delimitMate", { 'insert': 1 }
 NeoBundle  "SirVer/ultisnips"
 NeoBundle  "honza/vim-snippets"
 " ----- man pages, tmux -----------------------------------------------
