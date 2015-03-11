@@ -21,7 +21,8 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle "altercation/vim-colors-solarized"
 NeoBundle "w0ng/vim-hybrid"
 NeoBundle "tomasr/molokai"
-NeoBundle "itchyny/lightline.vim"
+"NeoBundle "itchyny/lightline.vim"
+NeoBundle "bling/vim-airline"
 NeoBundle "adonis0147/prettyGuides"
 " ----- Vim as a programmer's text editor -----------------------------
 NeoBundle "scrooloose/nerdtree"
