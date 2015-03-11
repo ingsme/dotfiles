@@ -17,11 +17,59 @@ call neobundle#begin(expand("$XDG_CONFIG_HOME/vim/bundle"))
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-"for fpath in split(globpath('$XDG_CONFIG_HOME/vim/neobundles', '*.neobundle'), '\n')
-"    execute 'source' fpath
-"endfor
-
-runtime! neobundles/*.neobundle
+" ----- Making Vim look good ------------------------------------------
+NeoBundle "altercation/vim-colors-solarized"
+NeoBundle "w0ng/vim-hybrid"
+NeoBundle "tomasr/molokai"
+NeoBundle "itchyny/lightline.vim"
+NeoBundle "adonis0147/prettyGuides"
+" ----- Vim as a programmer's text editor -----------------------------
+NeoBundle "scrooloose/nerdtree"
+NeoBundle "jistr/vim-nerdtree-tabs"
+NeoBundle "fholgado/minibufexpl.vim"
+NeoBundle "scrooloose/syntastic"
+NeoBundle "xolox/vim-misc"
+NeoBundle "xolox/vim-easytags"
+NeoBundle "majutsushi/tagbar"
+NeoBundle "kien/ctrlp.vim"
+NeoBundle "vim-scripts/a.vim"
+NeoBundle "ervandew/supertab"
+NeoBundle "briandoll/change-inside-surroundings.vim"
+NeoBundle "Valloric/YouCompleteMe" , {
+    \ 'build' : {
+    \    'unix' : './install.sh --clang-completer --system-libclang',
+    \    'mac'  : './install.sh',
+    \},
+    \}
+" ----- Working with Git ----------------------------------------------
+NeoBundle "airblade/vim-gitgutter"
+NeoBundle "tpope/vim-fugitive"
+NeoBundle "gitignore"
+" ----- Other text editing features -----------------------------------
+NeoBundle "Raimondi/delimitMate"
+NeoBundle  "SirVer/ultisnips"
+NeoBundle  "honza/vim-snippets"
+" ----- man pages, tmux -----------------------------------------------
+NeoBundle "jez/vim-superman"
+NeoBundle "christoomey/vim-tmux-navigator"
+NeoBundle "edkolev/tmuxline.vim"
+" ----- Syntax plugins ------------------------------------------------
+NeoBundle "jez/vim-c0"
+NeoBundle "jez/vim-ispc"
+NeoBundle "kchmck/vim-coffee-script"
+NeoBundle "PotatoesMaster/i3-vim-syntax"
+NeoBundle "lilydjwg/colorizer"
+NeoBundle "kchmck/vim-coffee-script"
+NeoBundle "vim-ruby/vim-ruby"
+NeoBundle "rodjek/vim-puppet"
+NeoBundle "rafi/vim-tinycomment.git", {
+            \ 'directory': 'tinycomment',
+            \ 'augroup': 'tinycomment',
+            \ 'commands': [ 'TinyCommentLines', 'TinyCommentBlock' ],
+            \ 'mappings': [
+            \ [ 'n', '<leader>v' ], [ 'v', '<leader>v' ],
+            \ [ 'v', '<leader>V' ]
+            \ ]}
 
 if GotTheNeo == 0
     echo "Installing Bundles, please ignore key map error messages"
