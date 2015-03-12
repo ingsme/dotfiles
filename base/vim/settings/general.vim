@@ -43,6 +43,7 @@ autocmd BufFilePre * :%s/\s\+$//e
 " http://ethanschoonover.com/solarized/vim-colors-solarized
 "colorscheme solarized
 "colorscheme hybrid
+colorscheme gruvbox
 set background=dark
 
 if has("gui_running")

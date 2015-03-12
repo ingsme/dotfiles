@@ -19,6 +19,7 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 
 " ----- Making Vim look good ------------------------------------------
 NeoBundle "altercation/vim-colors-solarized"
+NeoBundle 'morhetz/gruvbox'
 NeoBundle "w0ng/vim-hybrid"
 NeoBundle "tomasr/molokai"
 "NeoBundle "itchyny/lightline.vim"
