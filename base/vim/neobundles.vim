@@ -50,6 +50,11 @@ NeoBundle "gitignore"
 NeoBundle "Raimondi/delimitMate", { 'insert': 1 }
 NeoBundle  "SirVer/ultisnips"
 NeoBundle  "honza/vim-snippets"
+NeoBundle 'gorkunov/smartpairs.vim', {
+    \ 'autoload': {
+    \  'commands': [ 'SmartPairs', 'SmartPairsI', 'SmartPairsA' ],
+    \  'mappings': [[ 'n', 'viv' ], [ 'v', 'v' ]]}}
+
 " ----- man pages, tmux -----------------------------------------------
 NeoBundle "jez/vim-superman"
 NeoBundle "christoomey/vim-tmux-navigator"
