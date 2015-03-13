@@ -37,12 +37,23 @@ NeoBundle "kien/ctrlp.vim"
 NeoBundle "vim-scripts/a.vim"
 NeoBundle "ervandew/supertab"
 NeoBundle "briandoll/change-inside-surroundings.vim"
-NeoBundle "Valloric/YouCompleteMe" , {
-    \ 'build' : {
-    \    'unix' : './install.sh --clang-completer --system-libclang',
-    \    'mac'  : './install.sh',
-    \},
-    \}
+NeoBundle  "Shugo/neocomplete", {
+    \ 'depends': 'Shugo/context_filetype.vim',
+    \ 'disabled': ! has('lua'),
+    \ 'insert': 1
+    \ }
+NeoBundle  "davidhalter/jedi-vim", {
+    \ 'build': {
+    \     'unix': 'git submodule update --init',
+    \     'mac': 'git submodule update --init',
+    \   },
+    \ }
+"NeoBundle "Valloric/YouCompleteMe" , {
+"    \ 'build' : {
+"    \    'unix' : './install.sh --clang-completer --system-libclang',
+"    \    'mac'  : './install.sh',
+"    \},
+"    \}
 " ----- Working with Git ----------------------------------------------
 NeoBundle "airblade/vim-gitgutter"
 NeoBundle "tpope/vim-fugitive"
