@@ -42,12 +42,6 @@ NeoBundle  "Shugo/neocomplete", {
     \ 'disabled': ! has('lua'),
     \ 'insert': 1
     \ }
-NeoBundle  "davidhalter/jedi-vim", {
-    \ 'build': {
-    \     'unix': 'git submodule update --init',
-    \     'mac': 'git submodule update --init',
-    \   },
-    \ }
 "NeoBundle "Valloric/YouCompleteMe" , {
 "    \ 'build' : {
 "    \    'unix' : './install.sh --clang-completer --system-libclang',
@@ -73,6 +67,12 @@ NeoBundle "christoomey/vim-tmux-navigator"
 NeoBundle "edkolev/tmuxline.vim"
 " ----- Syntax plugins ------------------------------------------------
 NeoBundleLazy 'klen/python-mode', {'autoload': {'filetypes': ['python']}}
+NeoBundle  "davidhalter/jedi-vim", {
+    \ 'build': {
+    \     'unix': 'git submodule update --init',
+    \     'mac': 'git submodule update --init',
+    \   },
+    \ }
 NeoBundle "jez/vim-c0"
 NeoBundle "jez/vim-ispc"
 NeoBundle "kchmck/vim-coffee-script"

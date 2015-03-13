@@ -4,8 +4,7 @@
 "set foldlevel=99
 set foldlevelstart=0
 
-"
-" "set mouse=a " Enable mouse usage (all modes)
+"set mouse=a " Enable mouse usage (all modes)
 set number
 set relativenumber
 set cursorline!
@@ -19,7 +18,14 @@ set softtabstop=4
 set tabstop=4
 set expandtab
 
-"
+"""" Reading/Writing
+set noautowrite             " Never write a file unless I request it.
+set noautowriteall          " NEVER.
+set autoread                " (Don't) automatically re-read changed files.
+set modeline                " Allow vim options to be embedded in files;
+set modelines=5             " they must be within the first or last 5 lines.
+set ffs=unix,dos,mac        " Try recognizing dos, unix, and mac line endings.
+
 " " This makes vim act like all other editors, buffers can
 " " exist in the background without being in a window.
 " " http://items.sjbach.com/319/configuring-vim-right
@@ -103,6 +109,7 @@ augroup my_auto_commands
     autocmd Filetype vim setlocal foldmethod=marker foldlevel=1000
     autocmd FileType ruby,yaml,erb,sass set ai sw=2 sts=2 ts=2 et
     autocmd Filetype python setlocal foldlevel=1000
+    autocmd Filetype python set colorcolumn=79
     " Instead of reverting the cursor to the last position in the buffer, we
     " set it to the first line when editing a git commit message
     autocmd FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
