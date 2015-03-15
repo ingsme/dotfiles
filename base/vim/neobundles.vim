@@ -28,7 +28,7 @@ NeoBundle "adonis0147/prettyGuides"
 " ----- Vim as a programmer's text editor -----------------------------
 NeoBundle "scrooloose/nerdtree"
 NeoBundle "jistr/vim-nerdtree-tabs"
-NeoBundle "fholgado/minibufexpl.vim"
+"NeoBundle "fholgado/minibufexpl.vim"
 NeoBundle "scrooloose/syntastic"
 NeoBundle "xolox/vim-misc"
 NeoBundle "xolox/vim-easytags"
@@ -37,8 +37,8 @@ NeoBundle "kien/ctrlp.vim"
 NeoBundle "vim-scripts/a.vim"
 NeoBundle "ervandew/supertab"
 NeoBundle "briandoll/change-inside-surroundings.vim"
-NeoBundle  "Shugo/neocomplete", {
-    \ 'depends': 'Shugo/context_filetype.vim',
+NeoBundle "Shougo/neocomplete.vim", {
+    \ 'depends': 'Shougo/context_filetype.vim',
     \ 'disabled': ! has('lua'),
     \ 'insert': 1
     \ }
