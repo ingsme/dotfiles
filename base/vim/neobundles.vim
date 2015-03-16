@@ -38,6 +38,7 @@ NeoBundle "kien/ctrlp.vim"
 NeoBundle "vim-scripts/a.vim"
 NeoBundle "ervandew/supertab"
 NeoBundle "briandoll/change-inside-surroundings.vim"
+<<<<<<< HEAD
 "NeoBundle  "Shugo/neocomplete", {
 "    \ 'depends': 'Shugo/context_filetype.vim',
 "    \ 'disabled': ! has('lua'),
