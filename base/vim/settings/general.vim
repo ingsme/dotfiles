@@ -25,9 +25,21 @@ set noautowriteall          " NEVER.
 set autoread                " (Don't) automatically re-read changed files.
 set modeline                " Allow vim options to be embedded in files;
 set modelines=5             " they must be within the first or last 5 lines.
-set incsearch
 set ffs=unix,dos,mac        " Try recognizing dos, unix, and mac line endings.
 set encoding=utf-8
+
+"""" Searching
+set incsearch
+set showmatch
+set hlsearch
+set smartcase
+set ignorecase
+
+"""" History
+set history=1000
+set undofile
+set undoreload=1000
+set noswapfile
 
 " " This makes vim act like all other editors, buffers can
 " " exist in the background without being in a window.
@@ -87,10 +99,7 @@ else
 endif
 
 " Display tabs and trailing spaces visually
-set list listchars=tab:\ \ ,trail:.
-
-" Hightligh searches
-set hlsearch
+set list listchars=tab:\ \ ,trail:·,extends:↷,precedes:↶
 
 " Use h,j,k,l to move around in vim! Don't cheat!
 noremap <Up> <NOP>
@@ -167,9 +176,7 @@ endif
 
 " Some usefull options
 inoremap jk <esc>
-"inoremap <esc> <nop>
 vnoremap jk <esc>
-"vnoremap <esc> <nop>
 
 "" Some toggles
 nmap <silent> <unique> <Leader>tn :call ToggleRelativeAbsoluteNumber()<CR>
@@ -253,18 +260,11 @@ nmap <silent> // :nohlsearch<CR>
 " Type <Leader>hl to toggle highlighting on/off, and show current value.
 noremap <Leader>hl :set hlsearch! hlsearch?<CR>
 
-"" Use tab for indenting in normal/visual modes
-nnoremap <Tab> >>_
-nnoremap <S-Tab> <<_
-vnoremap <Tab> >gv
-vnoremap <S-Tab> <gv
-
 " Abbreviations
 iabbrev @@ ingar.smedstad@adm.uib.no
 iabbrev ccopy Copyright 2014 Ingar Smedstad.
 
 " w!! to write a file as sudo
-" stolen from Steve Losh
 cmap w!! w !sudo tee % >/dev/null
 
 " Execution permissions by default to shebang (#!) files {{{

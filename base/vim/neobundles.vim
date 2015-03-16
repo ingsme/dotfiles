@@ -36,19 +36,19 @@ NeoBundle "xolox/vim-easytags"
 NeoBundle "majutsushi/tagbar"
 NeoBundle "kien/ctrlp.vim"
 NeoBundle "vim-scripts/a.vim"
-NeoBundle "ervandew/supertab"
+"NeoBundle "ervandew/supertab"
 NeoBundle "briandoll/change-inside-surroundings.vim"
-"NeoBundle  "Shugo/neocomplete", {
-"    \ 'depends': 'Shugo/context_filetype.vim',
-"    \ 'disabled': ! has('lua'),
-"    \ 'insert': 1
-"    \ }
-NeoBundle "Valloric/YouCompleteMe" , {
-    \ 'build' : {
-    \    'unix' : './install.sh --clang-completer --system-libclang',
-    \    'mac'  : './install.sh',
-    \},
-    \}
+NeoBundle  "Shougo/neocomplete", {
+    \ 'depends': 'Shougo/context_filetype.vim',
+    \ 'disabled': ! has('lua'),
+    \ 'insert': 1
+    \ }
+"NeoBundle "Valloric/YouCompleteMe" , {
+"    \ 'build' : {
+"    \    'unix' : './install.sh --clang-completer --system-libclang',
+"    \    'mac'  : './install.sh',
+"    \},
+"    \}
 " ----- Working with Git ----------------------------------------------
 NeoBundle "airblade/vim-gitgutter"
 NeoBundle "tpope/vim-fugitive"
@@ -57,11 +57,23 @@ NeoBundle "gitignore"
 NeoBundle "Raimondi/delimitMate", { 'insert': 1 }
 NeoBundle  "SirVer/ultisnips"
 NeoBundle  "honza/vim-snippets"
+NeoBundleLazy 'sjl/gundo.vim', { 'autoload' : {'commands': 'GundoToggle'}}
+NeoBundle 'tpope/vim-characterize'
+NeoBundle "vits/ZoomWin"
 NeoBundle 'gorkunov/smartpairs.vim', {
     \ 'autoload': {
     \  'commands': [ 'SmartPairs', 'SmartPairsI', 'SmartPairsA' ],
     \  'mappings': [[ 'n', 'viv' ], [ 'v', 'v' ]]}}
-
+" ----- Utilities -----------------------------------------------------
+NeoBundle 'Shougo/vimproc.vim', {
+\ 'build' : {
+\     'windows' : 'tools\\update-dll-mingw',
+\     'cygwin' : 'make -f make_cygwin.mak',
+\     'mac' : 'make -f make_mac.mak',
+\     'linux' : 'make',
+\     'unix' : 'gmake',
+\    },
+\ }
 " ----- man pages, tmux -----------------------------------------------
 NeoBundle "jez/vim-superman"
 NeoBundle "christoomey/vim-tmux-navigator"
@@ -79,7 +91,12 @@ NeoBundle "jez/vim-ispc"
 NeoBundle "kchmck/vim-coffee-script"
 NeoBundle "PotatoesMaster/i3-vim-syntax"
 NeoBundle "lilydjwg/colorizer"
-NeoBundle "kchmck/vim-coffee-script"
+NeoBundle 'kchmck/vim-coffee-script',{'autoload' : {
+            \ 'commands' : [
+                             \ 'CoffeeCompile', 'CoffeeLint', 'CoffeeMake',
+                             \ 'CoffeeRun', 'CoffeeWatch'],
+            \ 'filetypes' : ['coffee']
+            \ }}
 NeoBundle "vim-ruby/vim-ruby"
 NeoBundle "rodjek/vim-puppet"
 NeoBundle "rafi/vim-tinycomment.git", {
