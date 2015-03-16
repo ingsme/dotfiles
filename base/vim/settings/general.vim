@@ -50,6 +50,7 @@ autocmd BufFilePre * :%s/\s\+$//e
 "colorscheme solarized
 "colorscheme hybrid
 colorscheme gruvbox
+"colorscheme kolor
 set background=dark
 
 if has("gui_running")

@@ -1,4 +1,5 @@
 " Open/close NERDTree Tabs with \t
-nmap <silent> <leader>t :NERDTreeTabsToggle<CR>
+"nmap <silent> <leader>nt NERDTreeTabsToggle<CR>
+nmap <silent> <leader>nt <Plug>NERDTreeTabsToggle<CR>
 " To have NERDTree always open on startup
-let g:nerdtree_tabs_open_on_console_startup = 0 
+let g:nerdtree_tabs_open_on_console_startup = 0
