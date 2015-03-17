@@ -8,6 +8,8 @@ set foldlevelstart=0
 set number
 set relativenumber
 set cursorline!
+autocmd WinLeave * setlocal nocursorline
+autocmd WinEnter * setlocal cursorline
 set backspace=2 " Makes backspace work like it should!
 " ================ Indentation ======================
 set autoindent
@@ -40,6 +42,10 @@ set history=1000
 set undofile
 set undoreload=1000
 set noswapfile
+
+"""" Split
+set splitbelow
+set splitright
 
 " " This makes vim act like all other editors, buffers can
 " " exist in the background without being in a window.
@@ -106,6 +112,9 @@ noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
+" change cursor position in insert mode
+inoremap <C-h> <left>
+inoremap <C-l> <right>
 
 " ================ Completion =======================
 
