@@ -1,0 +1,10 @@
+#!/bin/bash
+
+if [ -z $XDG_CONFIG_HOME ]; then
+	XDG_CONFIG_HOME=$HOME/.config
+fi
+
+if [ -e ~/.ctags ]; then
+	/bin/rm -f ~/.ctags
+fi
+ln -sf $XDG_CONFIG_HOME/ctags/ctags $HOME/.ctags
