@@ -30,7 +30,7 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'jistr/vim-nerdtree-tabs'
 NeoBundle "scrooloose/syntastic"
 NeoBundle "xolox/vim-misc"
-NeoBundle "xolox/vim-easytags"
+"NeoBundle "xolox/vim-easytags"
 NeoBundle "majutsushi/tagbar"
 NeoBundle "kien/ctrlp.vim"
 NeoBundle "vim-scripts/a.vim"
@@ -122,3 +122,4 @@ NeoBundleCheck
 "NeoBundle 'kana/vim-textobj-indent'
 "NeoBundle 'kana/vim-textobj-entire'
 "NeoBundle 'lucapette/vim-textobj-underscore'
+"NeoBundle 'yuratomo/w3m.vim'

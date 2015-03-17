@@ -52,6 +52,9 @@ set splitright
 " " http://items.sjbach.com/319/configuring-vim-right
 set hidden
 
+"""" Keep 3 lines above and below cursor
+set scrolloff=3
+
 if has("syntax")
   syntax on
 endif
@@ -64,9 +67,6 @@ if has('clipboard')
     endif
 endif
 
-" Keep 3 lines above and below cursor
-set scrolloff=3
-
 if has('patch-7.3.541')
     set formatoptions+=j " Remove comment leader when joining lines
 endif
@@ -74,8 +74,7 @@ endif
 " Remove triling white space before saving
 autocmd BufFilePre * :%s/\s\+$//e
 
-" Make it beautiful - colors and fonts
-" http://ethanschoonover.com/solarized/vim-colors-solarized
+"""" Make it beautiful - colors and fonts
 "colorscheme solarized
 "colorscheme hybrid
 colorscheme gruvbox
@@ -136,8 +135,9 @@ augroup my_auto_commands
     autocmd!
     autocmd BufNewFile,BufRead *.neobundle set filetype=vim
     autocmd BufNewFile,BufRead *.vundle set filetype=vim
+    autocmd BufNewFile,BufRead *.tex set filetype=latex
     autocmd FileType gitcommit setlocal spell
-    autocmd Filetype vim setlocal foldmethod=marker foldlevel=1000
+    autocmd Filetype vim setlocal fdm=marker ts=2 sts=2 sw=2 fdl=99
     autocmd FileType ruby,yaml,erb,sass set ai sw=2 sts=2 ts=2 et
     autocmd Filetype python setlocal foldmethod=indent foldlevel=99
     autocmd Filetype python set colorcolumn=79
@@ -189,7 +189,7 @@ vnoremap jk <esc>
 
 "" Some toggles
 nmap <silent> <unique> <Leader>tn :call ToggleRelativeAbsoluteNumber()<CR>
-function! ToggleRelativeAbsoluteNumber()
+function! ToggleRelativeAbsoluteNumber() "{{{
   if !&number && !&relativenumber
       set number
       set norelativenumber
@@ -203,10 +203,10 @@ function! ToggleRelativeAbsoluteNumber()
       set nonumber
       set norelativenumber
   endif
-endfunction
+endfunction "}}}
 
 map <Leader>p :call  TogglePaste()<CR>
-function!  TogglePaste()
+function!  TogglePaste() "{{{
     if  !&paste
         set invpaste
         :PrettyGuidesDisable
@@ -218,7 +218,16 @@ function!  TogglePaste()
         set number
         set relativenumber
     endif
-endfunction
+endfunction "}}}
+
+function! Preserve(command) "{{{
+  let _s=@/
+  let l = line(".")
+  let c = col(".")
+  execute a:command
+  let @/=_s
+  call cursor(l,c)
+endfunction "}}}
 
 "Go to last edit location with <Leader>.
 nnoremap <Leader>. '.
@@ -229,17 +238,6 @@ nnoremap <S-Tab> <<_
 vnoremap <Tab> >gv
 vnoremap <S-Tab> <gv
 
-"When typing a string, your quotes auto complete. Move past the quote
-"while still in insert mode by hitting Ctrl-a. Example:
-"
-" type 'foo<c-a>
-"
-" the first quote will autoclose so you'll get 'foo' and hitting <c-a> will
-" put the cursor right after the quote
-"imap <C-a> <esc>wa
-
-" <Leader>q to toggle quickfix window (where you have stuff like Ag)
-" <Leader>oq to open it back up (rare)
 nmap <silent> <Leader>qc :cclose<CR>
 nmap <silent> <Leader>qo :copen<CR>
 
