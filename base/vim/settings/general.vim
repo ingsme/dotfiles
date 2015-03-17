@@ -205,7 +205,7 @@ function! ToggleRelativeAbsoluteNumber() "{{{
   endif
 endfunction "}}}
 
-map <Leader>p :call  TogglePaste()<CR>
+map <Leader>pp :call  TogglePaste()<CR>
 function!  TogglePaste() "{{{
     if  !&paste
         set invpaste
