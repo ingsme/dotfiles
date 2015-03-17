@@ -53,6 +53,7 @@ NeoBundle "vits/ZoomWin"
 NeoBundle "briandoll/change-inside-surroundings.vim"
 NeoBundle "jiangmiao/auto-pairs"
 NeoBundle "justinmk/vim-sneak"
+NeoBundle 'godlygeek/tabular'
 NeoBundle 'gorkunov/smartpairs.vim', {
     \ 'autoload': {
     \  'commands': [ 'SmartPairs', 'SmartPairsI', 'SmartPairsA' ],
