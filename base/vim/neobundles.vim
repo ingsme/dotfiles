@@ -3,10 +3,10 @@ filetype off
 let GotTheNeo=1
 let neobundle_readme=expand('$XDG_CONFIG_HOME/vim/bundle/neobundle.vim/README.md')
 if !filereadable(neobundle_readme)
-    echo ""
-    silent !mkdir -p $XDG_CONFIG_HOME/vim/bundle
-    silent !git clone https://github.com/Shougo/neobundle.vim $XDG_CONFIG_HOME/vim/bundle/neobundle.vim
-    let GotTheNeo=0
+  echo ""
+  silent !mkdir -p $XDG_CONFIG_HOME/vim/bundle
+  silent !git clone https://github.com/Shougo/neobundle.vim $XDG_CONFIG_HOME/vim/bundle/neobundle.vim
+  let GotTheNeo=0
 endif
 
 set rtp+=$XDG_CONFIG_HOME/vim/bundle/neobundle.vim
@@ -34,11 +34,17 @@ NeoBundle "xolox/vim-misc"
 NeoBundle "majutsushi/tagbar"
 NeoBundle "kien/ctrlp.vim"
 NeoBundle "vim-scripts/a.vim"
-NeoBundle  "Shougo/neocomplete", {
-    \ 'depends': 'Shougo/context_filetype.vim',
-    \ 'disabled': ! has('lua'),
-    \ 'insert': 1
-    \ }
+NeoBundle "Valloric/YouCompleteMe", { 
+      \ 'build': { 
+      \ 'unix': './install.sh',
+      \ 'mac': './install.sh'
+      \ },
+      \ }
+"NeoBundle  "Shougo/neocomplete", {
+"    \ 'depends': 'Shougo/context_filetype.vim',
+"    \ 'disabled': ! has('lua'),
+"    \ 'insert': 1
+"    \ }
 " ----- Working with Git ----------------------------------------------
 NeoBundle "airblade/vim-gitgutter"
 NeoBundle "tpope/vim-fugitive"
@@ -55,27 +61,27 @@ NeoBundle "jiangmiao/auto-pairs"
 NeoBundle "justinmk/vim-sneak"
 NeoBundle 'godlygeek/tabular'
 NeoBundle 'gorkunov/smartpairs.vim', {
-    \ 'autoload': {
-    \  'commands': [ 'SmartPairs', 'SmartPairsI', 'SmartPairsA' ],
-    \  'mappings': [[ 'n', 'viv' ], [ 'v', 'v' ]]}}
+      \ 'autoload': {
+      \  'commands': [ 'SmartPairs', 'SmartPairsI', 'SmartPairsA' ],
+      \  'mappings': [[ 'n', 'viv' ], [ 'v', 'v' ]]}}
 NeoBundle "rafi/vim-tinycomment.git", {
-            \ 'directory': 'tinycomment',
-            \ 'augroup': 'tinycomment',
-            \ 'commands': [ 'TinyCommentLines', 'TinyCommentBlock' ],
-            \ 'mappings': [
-            \ [ 'n', '<leader>v' ], [ 'v', '<leader>v' ],
-            \ [ 'v', '<leader>V' ]
-            \ ]}
+      \ 'directory': 'tinycomment',
+      \ 'augroup': 'tinycomment',
+      \ 'commands': [ 'TinyCommentLines', 'TinyCommentBlock' ],
+      \ 'mappings': [
+      \ [ 'n', '<leader>v' ], [ 'v', '<leader>v' ],
+      \ [ 'v', '<leader>V' ]
+      \ ]}
 " ----- Utilities -----------------------------------------------------
 NeoBundle 'Shougo/vimproc.vim', {
-\ 'build' : {
-\     'windows' : 'tools\\update-dll-mingw',
-\     'cygwin' : 'make -f make_cygwin.mak',
-\     'mac' : 'make -f make_mac.mak',
-\     'linux' : 'make',
-\     'unix' : 'gmake',
-\    },
-\ }
+      \ 'build' : {
+      \     'windows' : 'tools\\update-dll-mingw',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'linux' : 'make',
+      \     'unix' : 'gmake',
+      \    },
+      \ }
 " ----- man pages, tmux -----------------------------------------------
 NeoBundle "jez/vim-superman"
 NeoBundle "christoomey/vim-tmux-navigator"
@@ -83,30 +89,30 @@ NeoBundle "edkolev/tmuxline.vim"
 " ----- Syntax plugins ------------------------------------------------
 NeoBundleLazy 'klen/python-mode', {'autoload': {'filetypes': ['python']}}
 NeoBundle  "davidhalter/jedi-vim", {
-    \ 'build': {
-    \     'unix': 'git submodule update --init',
-    \     'mac': 'git submodule update --init',
-    \   },
-    \ }
+      \ 'build': {
+      \     'unix': 'git submodule update --init',
+      \     'mac': 'git submodule update --init',
+      \   },
+      \ }
 NeoBundle "jez/vim-c0"
 NeoBundle "jez/vim-ispc"
 NeoBundle "PotatoesMaster/i3-vim-syntax"
 NeoBundle "lilydjwg/colorizer"
 NeoBundle 'kchmck/vim-coffee-script',{'autoload' : {
-            \ 'commands' : [
-                             \ 'CoffeeCompile', 'CoffeeLint', 'CoffeeMake',
-                             \ 'CoffeeRun', 'CoffeeWatch'],
-            \ 'filetypes' : ['coffee']
-            \ }}
+      \ 'commands' : [
+      \ 'CoffeeCompile', 'CoffeeLint', 'CoffeeMake',
+      \ 'CoffeeRun', 'CoffeeWatch'],
+      \ 'filetypes' : ['coffee']
+      \ }}
 NeoBundle "vim-ruby/vim-ruby"
 NeoBundle "rodjek/vim-puppet"
 " ----- Misc ------------------------------------------------------------
 NeoBundle 'mhinz/vim-startify'
 
 if GotTheNeo == 0
-    echo "Installing Bundles, please ignore key map error messages"
-    echo ""
-    :NeoBundleInstall
+  echo "Installing Bundles, please ignore key map error messages"
+  echo ""
+  :NeoBundleInstall
 endif
 
 call neobundle#end()
