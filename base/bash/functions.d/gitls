@@ -1,0 +1,11 @@
+#!/bin/bash
+
+gitls() {
+    if [ $# -eq 0 ]; then
+        ssh git@git.uib.no
+    elif [ $# -eq 1 ]; then
+        ssh git@git.uib.no | grep $1
+    else 
+        echo "Usage: $0 [searchterm]"
+    fi
+}
