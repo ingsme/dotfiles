@@ -4,4 +4,4 @@ nmap <silent> <leader>f <Plug>NERDTreeTabsToggle<CR>
 let g:nerdtree_tabs_open_on_console_startup = 0
 let NERDTreeShowHidden=1
 let NERDTreeShowLineNumbers=1
-let NERDTreeIgnore=['\.git','\.hg']
+let NERDTreeIgnore=['\.git','\.hg','\.vagrant']
