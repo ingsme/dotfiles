@@ -72,6 +72,7 @@ NeoBundle "rafi/vim-tinycomment.git", {
       \ [ 'n', '<leader>v' ], [ 'v', '<leader>v' ],
       \ [ 'v', '<leader>V' ]
       \ ]}
+NeoBundle 'nelstrom/vim-markdown-folding'
 " ----- Utilities -----------------------------------------------------
 NeoBundle 'Shougo/vimproc.vim', {
       \ 'build' : {
