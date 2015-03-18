@@ -18,10 +18,17 @@
 	ui = true
 	branch = auto
 	diff = auto
+    grep = auto
+    interactive = auto
 	status = auto
+[column]
+    ui = auto
 [merge]
 	tool = kdiff3
 [github]
 	user = ingsme
 [push]
   default = simple
+[branch]
+    autosetuprebase = always
+
