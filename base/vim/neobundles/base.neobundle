@@ -1,7 +1,7 @@
 " Diverse {{{
 " -----------
 NeoBundle "PotatoesMaster/i3-vim-syntax"
-NeoBundle "skwp/vim-colors-solarized"
+NeoBundle "altercation/vim-colors-solarized"
 NeoBundle "edkolev/tmuxline.vim"
 NeoBundle "kchmck/vim-coffee-script"
 NeoBundle "vim-ruby/vim-ruby"
@@ -29,6 +29,7 @@ NeoBundle "godlygeek/tabular"
 NeoBundle "mal/vim-pastemode"
 NeoBundle "nelstrom/vim-markdown-folding"
 NeoBundle "rodjek/vim-puppet"
+NeoBundle "tpope/vim-markdown"
 NeoBundle "jtratner/vim-flavored-markdown"
 NeoBundle "isnowfy/python-vim-instant-markdown"
 NeoBundle "scrooloose/syntastic.git"

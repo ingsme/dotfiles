@@ -2,11 +2,21 @@
 " " Enable code folding, type za to open and close
 "set foldmethod=indent
 "set foldlevel=99
-set foldlevelstart=0
+"set foldlevelstart=0
+
+" Want utf8 at all times
+set termencoding=utf-8
+set encoding=utf-8
+set fileencoding=utf-8
+
+set ignorecase
+set smartcase
+set shortmess=atI
 
 "
 " "set mouse=a " Enable mouse usage (all modes)
 set number
+set relativenumber
 set cursorline!
 set backspace=2 " Makes backspace work like it should!
 "

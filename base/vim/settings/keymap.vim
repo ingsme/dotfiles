@@ -27,7 +27,22 @@ vnoremap jk <esc>
 "vnoremap <esc> <nop>
 
 "" Some toggles
-nmap <silent> <unique> <Leader>tn :set number! <CR>
+nmap <silent> <unique> <Leader>tn :call ToggleRelativeAbsoluteNumber() <CR>
+function! ToggleRelativeAbsoluteNumber()
+    if !&number && !&relativenumber
+        set number
+        set norelativenumber
+    elseif &number && !&relativenumber
+        set nonumber
+        set relativenumber
+    elseif !&number && &relativenumber
+        set number
+        set relativenumber
+    elseif &number && &relativenumber
+        set nonumber
+        set norelativenumber
+    endif
+endfunction
 
 "Go to last edit location with <Leader>.
 nnoremap <Leader>. '.

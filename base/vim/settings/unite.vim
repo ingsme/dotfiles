@@ -1,4 +1,4 @@
-
+if exists('g:loaded_unite')
 " Unite
 " -----
 
@@ -166,7 +166,6 @@ call unite#custom#profile('navigate,source/grep', 'context', {
 	\   'no_quit': 1,
 	\ })
 " }}}
-
 " [DISABLED] Converters {{{
 " Source output converters
 "call unite#custom#source('buffer', 'converters', [ 'converter_file_directory' ])
@@ -182,3 +181,4 @@ call unite#custom#profile('navigate,source/grep', 'context', {
 " }}}
 
 " vim: set ts=2 sw=2 tw=80 noet :
+endif
