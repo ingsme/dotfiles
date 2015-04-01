@@ -73,6 +73,8 @@ NeoBundle "rafi/vim-tinycomment.git", {
       \ [ 'v', '<leader>V' ]
       \ ]}
 NeoBundle 'nelstrom/vim-markdown-folding'
+"NeoBundle "AlxHnr/clear_fold_text"
+NeoBundle "vim-scripts/create_start_fold_marker.vim"
 " ----- Utilities -----------------------------------------------------
 NeoBundle 'Shougo/vimproc.vim', {
       \ 'build' : {
