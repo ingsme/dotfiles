@@ -137,8 +137,8 @@ augroup my_auto_commands
     autocmd BufNewFile,BufRead *.vundle set filetype=vim
     autocmd BufNewFile,BufRead *.tex set filetype=latex
     autocmd FileType gitcommit setlocal spell
-    autocmd FileType vim setlocal fdm=marker ts=2 sts=2 sw=2 fdl=99
-    autocmd FileType ruby,yaml,erb,sass set ai sw=2 sts=2 ts=2 et fdl=99
+    autocmd FileType vim setlocal fdm=marker ts=2 sts=2 sw=2
+    autocmd FileType ruby,yaml,erb,sass set ai sw=2 sts=2 ts=2 et
     autocmd FileType python set colorcolumn=79
     " Instead of reverting the cursor to the last position in the buffer, we
     " set it to the first line when editing a git commit message
