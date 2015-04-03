@@ -2,7 +2,7 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" ========= XDG ====================
+" ========= XDG ==================== {{{1
 if empty($XDG_CACHE_HOME)
         let $XDG_CACHE_HOME="$HOME/.cache"
 endif
@@ -20,8 +20,8 @@ set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM/vimfiles,$V
 " The mapleader has to be set before we load plugins
 let mapleader="\<space>"
 
-" Plugin configuration {{{
-" Initialization {{{
+" Plugin configuration  {{{1
+" Initialization  {{{2
 filetype off
 
 let GotTheNeo=1
@@ -39,9 +39,9 @@ call neobundle#begin(expand("$XDG_CONFIG_HOME/vim/bundle"))
 
 " Let NeoBundle manage NeoBundle
 " Required:
-NeoBundleFetch 'Shougo/neobundle.vim' " }}}
+NeoBundleFetch 'Shougo/neobundle.vim'
 
-" Look and Feel {{{
+" Look and Feel  {{{2
 NeoBundle "altercation/vim-colors-solarized"
 let g:solarized_termtrans=1
 let g:solarized_termcolors=256
@@ -65,9 +65,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_min_count = 1
 NeoBundle "adonis0147/prettyGuides"
-" }}}
 
-" IDE settings {{{
+" IDE settings  {{{2
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'jistr/vim-nerdtree-tabs'
 nmap <silent> <leader>f <Plug>NERDTreeTabsToggle<CR>
@@ -78,23 +77,21 @@ let NERDTreeIgnore=['\.git','\.hg','\.vagrant']
 NeoBundle "scrooloose/syntastic"
 " map for syntastic errors window
 nnoremap <LEADER>e :SyntasticCheck<CR>:Errors<CR>
-
 " syntastic checking mode
 let g:syntastic_mode_map = { 'mode': 'active',
       \ 'active_filetypes': ['ruby', 'python', 'perl', 'shell', 'puppet' ],
       \ 'passive_filetypes': ['php', 'html'] }
-
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_style_error_symbol  = '⚡'
 let g:syntastic_style_warning_symbol  = '⚡'
-
 " check syntax on file open
 let g:syntastic_check_on_open=1
 " autoclose syntastic's error windown when no errors
 let g:syntastic_auto_loc_list=2
+
 NeoBundle "xolox/vim-misc"
-NeoBundle "majutsushi/tagbar" " {{{
+NeoBundle "majutsushi/tagbar" "{{{3
 nmap <silent> <leader>tb :TagbarToggle<CR>
 " Uncomment to open tagbar automatically whenever possible
 "autocmd BufEnter * nested :call tagbar#autoopen(0)
@@ -156,24 +153,26 @@ let g:tagbar_type_tex = {
       \ 'p:pagerefs:1:0'
       \ ],
       \ 'sort' : 0,
-      \ }
+      \ } "}}}3
+
 NeoBundle "kien/ctrlp.vim"
 map <leader>pb :CtrlPBuffer<CR>
 set wildignore+=*/tmp/*,*.so,*.swp
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
 NeoBundle "vim-scripts/a.vim"
 NeoBundle "Valloric/YouCompleteMe", {
       \ 'build': {
       \ 'unix': './install.sh',
       \ 'mac': './install.sh'
       \ },
-      \ } "}}}
-" }}}
+      \ }
 
-" GIT {{{
+" GIT  {{{2
 NeoBundle "airblade/vim-gitgutter"
 let g:gitgutter_max_signs = 1000
+
 NeoBundle "tpope/vim-fugitive"
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gd :Gdiff<CR>
@@ -184,23 +183,23 @@ nnoremap <silent> <leader>gp :Git push<CR>
 nnoremap <silent> <leader>gw :Gwrite<CR>
 nnoremap <silent> <leader>gr :Gremove<CR>
 autocmd BufReadPost fugitive://* set bufhidden=delete
+
 NeoBundle "gitignore"
 
-" }}}
-
-" Text editing features {{{
+" Text editing features  "{{{2
 NeoBundle  "SirVer/ultisnips"
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<leader>u"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+
 NeoBundle  "honza/vim-snippets"
 NeoBundleLazy 'sjl/gundo.vim', { 'autoload' : {'commands': 'GundoToggle'}}
 nnoremap <Leader>u :GundoToggle<CR>
 let g:gundo_preview_bottom=1
+
 NeoBundle 'tpope/vim-characterize'
 NeoBundle "vits/ZoomWin"
 NeoBundle "briandoll/change-inside-surroundings.vim"
@@ -221,6 +220,7 @@ let g:AutoPairsShortcutJump = '<C-a>'
 "let g:AutoPairsShortcutToggle = ''
 let g:AutoPairsShortcutBackInsert = '<C-b>'
 let g:AutoPairsShortcutFastWrap = '<C-e>'
+
 NeoBundle "justinmk/vim-sneak"
 NeoBundle 'godlygeek/tabular'
 nmap <Leader>a== :Tabularize /=<CR>
@@ -229,6 +229,7 @@ nmap <Leader>a> :Tabularize /=><CR>
 vmap <Leader>a> :Tabularize /=><CR>
 nmap <Leader>a: :Tabularize /:\zs<CR>
 vmap <Leader>a: :Tabularize /:\zs<CR>
+
 NeoBundle 'gorkunov/smartpairs.vim', {
       \ 'autoload': {
       \  'commands': [ 'SmartPairs', 'SmartPairsI', 'SmartPairsA' ],
@@ -245,15 +246,16 @@ NeoBundle "rafi/vim-tinycomment.git", {
 augroup tinycomment
     autocmd FileType i3 setlocal commentstring=#%s
 augroup END
-NeoBundle 'nelstrom/vim-markdown-folding'
-" }}}
 
-" Syntax {{{
+NeoBundle 'nelstrom/vim-markdown-folding'
+
+" Syntax  {{{2
 NeoBundleLazy 'klen/python-mode', {'autoload': {'filetypes': ['python']}}
 " Neocomplete handles autocompletion
 let g:pymode_rope_completion = 0
 let g:pymode_lint_on_fly = 1
 nmap <leader>la :PymodeLintAuto<CR>
+
 NeoBundle  "davidhalter/jedi-vim", {
       \ 'build': {
       \     'unix': 'git submodule update --init',
@@ -266,12 +268,12 @@ let g:jedi#popup_select_first = 0
 let g:jedi#completions_enabled = 0
 let g:jedi#completions_command = ""
 let g:jedi#show_call_signatures = "1"
-
 let g:jedi#goto_assignments_command = "<leader>pa"
 let g:jedi#goto_definitions_command = "<leader>pd"
 let g:jedi#documentation_command = "<leader>pk"
 let g:jedi#usages_command = "<leader>pu"
 let g:jedi#rename_command = "<leader>pr"
+
 NeoBundle "jez/vim-c0"
 NeoBundle "jez/vim-ispc"
 NeoBundle "PotatoesMaster/i3-vim-syntax"
@@ -284,14 +286,14 @@ NeoBundle 'kchmck/vim-coffee-script',{'autoload' : {
       \ }}
 NeoBundle "vim-ruby/vim-ruby"
 NeoBundle "rodjek/vim-puppet"
-" }}}
 
-" Misc {{{
+" Misc  {{{2
 NeoBundle 'mhinz/vim-startify'
 let g:startify_change_to_vcs_root = 1
 let g:startify_session_dir = 'directory/sessions'
 let g:startify_show_sessions = 1
 autocmd User Startified setlocal buftype=
+
 NeoBundle "jez/vim-superman"
 NeoBundle "christoomey/vim-tmux-navigator"
 NeoBundle "edkolev/tmuxline.vim"
@@ -304,11 +306,8 @@ NeoBundle 'Shougo/vimproc.vim', {
       \     'unix' : 'gmake',
       \    },
       \ }
-" }}}
 
-" }}}
-
-" General settings {{{
+" General settings  {{{1
 set foldlevel=99
 set foldlevelstart=0
 
@@ -318,7 +317,7 @@ set cursorline!
 autocmd WinLeave * setlocal nocursorline
 autocmd WinEnter * setlocal cursorline
 set backspace=2 " Makes backspace work like it should!
-" Indentation {{{
+" Indentation
 set autoindent
 set smartindent
 set smarttab
@@ -326,23 +325,23 @@ set shiftwidth=4
 set softtabstop=4
 set tabstop=4
 set expandtab
-set nojoinspaces "}}}
+set nojoinspaces
 
-" Reading/Writing {{{
+" Reading/Writing
 set noautowrite             " Never write a file unless I request it.
 set noautowriteall          " NEVER.
 set autoread                " (Don't) automatically re-read changed files.
 set modeline                " Allow vim options to be embedded in files;
 set modelines=5             " they must be within the first or last 5 lines.
 set ffs=unix,dos,mac        " Try recognizing dos, unix, and mac line endings.
-set encoding=utf-8 "}}}
+set encoding=utf-8
 
-" Searching {{{
+" Searching
 set incsearch
 set showmatch
 set hlsearch
 set smartcase
-set ignorecase "}}}
+set ignorecase
 
 """" History
 set history=1000
@@ -378,7 +377,7 @@ if has('patch-7.3.541')
     set formatoptions+=j " Remove comment leader when joining lines
 endif
 
-" Remove triling white space before saving
+" Remove trailing white space before saving. Does this work?
 autocmd BufFilePre * :%s/\s\+$//e
 
 """" Make it beautiful - colors and fonts
@@ -440,7 +439,7 @@ augroup END
 nnoremap 0 ^
 nnoremap ^ 0
 
-" Move between Vim and Tmux windows {{{
+" Move between Vim and Tmux windows
 if exists('$TMUX')
   function! TmuxOrSplitSwitch(wincmd, tmuxdir)
     let previous_winnr = winnr()
@@ -465,7 +464,6 @@ else
   map <C-k> <C-w>k
   map <C-l> <C-w>l
 endif
-" }}}
 
 " Some usefull options
 inoremap jk <esc>
@@ -473,7 +471,7 @@ vnoremap jk <esc>
 
 "" Some toggles
 nmap <silent> <unique> <Leader>tn :call ToggleRelativeAbsoluteNumber()<CR>
-function! ToggleRelativeAbsoluteNumber() "{{{
+function! ToggleRelativeAbsoluteNumber()
   if !&number && !&relativenumber
       set number
       set norelativenumber
@@ -487,10 +485,10 @@ function! ToggleRelativeAbsoluteNumber() "{{{
       set nonumber
       set norelativenumber
   endif
-endfunction "}}}
+endfunction
 
 map <Leader>pp :call  TogglePaste()<CR>
-function!  TogglePaste() "{{{
+function!  TogglePaste()
     if  !&paste
         set invpaste
         :PrettyGuidesDisable
@@ -502,16 +500,16 @@ function!  TogglePaste() "{{{
         set number
         set relativenumber
     endif
-endfunction "}}}
+endfunction
 
-function! Preserve(command) "{{{
+function! Preserve(command)
   let _s=@/
   let l = line(".")
   let c = col(".")
   execute a:command
   let @/=_s
   call cursor(l,c)
-endfunction "}}}
+endfunction
 
 "Go to last edit location with <Leader>.
 nnoremap <Leader>. '.
@@ -552,13 +550,13 @@ nmap <silent> // :nohlsearch<CR>
 noremap <Leader>hl :set hlsearch! hlsearch?<CR>
 
 " Abbreviations
-iabbrev @@ ingar.smedstad@adm.uib.no
-iabbrev ccopy Copyright 2014 Ingar Smedstad.
+iabbrev @@ ingar.smedstad@uib.no
+iabbrev ccopy Copyright 2015 Ingar Smedstad.
 
 " w!! to write a file as sudo
 cmap w!! w !sudo tee % >/dev/null
 
-" Execution permissions by default to shebang (#!) files {{{
+" Execution permissions by default to shebang (#!) files
 augroup shebang_chmod
   autocmd!
   autocmd BufNewFile  * let b:brand_new_file = 1
@@ -574,5 +572,5 @@ augroup shebang_chmod
         \   silent! execute '!chmod '.b:chmod_post.' "<afile>"' |
         \   unlet b:chmod_post |
         \ endif
-augroup END "}}}
-" }}}
+augroup END
+"
