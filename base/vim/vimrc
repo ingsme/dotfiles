@@ -555,6 +555,7 @@ iabbrev ccopy Copyright 2015 Ingar Smedstad.
 
 " w!! to write a file as sudo
 cmap w!! w !sudo tee % >/dev/null
+cmap W!! w !sudo tee % >/dev/null
 
 " Execution permissions by default to shebang (#!) files
 augroup shebang_chmod
@@ -573,4 +574,3 @@ augroup shebang_chmod
         \   unlet b:chmod_post |
         \ endif
 augroup END
-"
