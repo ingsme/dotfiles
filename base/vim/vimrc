@@ -1,6 +1,7 @@
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
+set nomore
 
 " ========= XDG ====================
 if empty($XDG_CACHE_HOME)
@@ -11,8 +12,8 @@ if empty($XDG_CONFIG_HOME)
 endif
 let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
 set directory=$XDG_CACHE_HOME/vim
-set backupdir=$XDG_CACHE_HOME/vim
-set undodir=$XDG_CACHE_HOME/vim
+set backupdir=$XDG_CACHE_HOME/vim/backup
+set undodir=$XDG_CACHE_HOME/vim/undo
 set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
 set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$XDG_CONFIG_HOME/vim/bundle/neobundle
 

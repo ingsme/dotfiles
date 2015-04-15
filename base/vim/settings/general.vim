@@ -1,10 +1,4 @@
 " ============== General Config =======================
-" " Enable code folding, type za to open and close
-"set foldmethod=indent
-set foldlevel=99
-set foldlevelstart=0
-
-"set mouse=a " Enable mouse usage (all modes)
 set number
 set relativenumber
 set cursorline!
@@ -71,9 +65,6 @@ if has('patch-7.3.541')
     set formatoptions+=j " Remove comment leader when joining lines
 endif
 
-" Remove triling white space before saving
-autocmd BufFilePre * :%s/\s\+$//e
-
 """" Make it beautiful - colors and fonts
 "colorscheme solarized
 "colorscheme hybrid
@@ -117,18 +108,18 @@ inoremap <C-l> <right>
 
 " ================ Completion =======================
 
-" set wildmode=list:longest
-" set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
-" set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
-" set wildignore+=*vim/backups*
-" set wildignore+=*sass-cache*
-" set wildignore+=*DS_Store*
-" set wildignore+=vendor/rails/**
-" set wildignore+=vendor/cache/**
-" set wildignore+=*.gem
-" set wildignore+=log/**
-" set wildignore+=tmp/**
-" set wildignore+=*.png,*.jpg,*.gif
+ set wildmode=list:longest
+ set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
+ set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
+ set wildignore+=*vim/backups*
+ set wildignore+=*sass-cache*
+ set wildignore+=*DS_Store*
+ set wildignore+=vendor/rails/**
+ set wildignore+=vendor/cache/**
+ set wildignore+=*.gem
+ set wildignore+=log/**
+ set wildignore+=tmp/**
+ set wildignore+=*.png,*.jpg,*.gif
 
 " ------------
 augroup my_auto_commands
@@ -143,6 +134,7 @@ augroup my_auto_commands
     " Instead of reverting the cursor to the last position in the buffer, we
     " set it to the first line when editing a git commit message
     autocmd FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+    autocmd FileType c,cpp,java,php,vim,i3,python,ruby,yaml autocmd BufWritePre <buffer> :%s/\s\+$//e
 augroup END
 
 " ========================================
