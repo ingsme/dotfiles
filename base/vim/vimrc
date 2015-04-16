@@ -1,21 +1,34 @@
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
+" Initialisation {{{1
 set nocompatible
+set nomore
 
-" ========= XDG ==================== {{{1
+augroup MyAuGroup
+  autocmd!
+augroup END
+
+" ========= XDG ==================== {{{2
 if empty($XDG_CACHE_HOME)
-        let $XDG_CACHE_HOME="$HOME/.cache"
+  let $XDG_CACHE_HOME="$HOME/.cache"
 endif
 if empty($XDG_CONFIG_HOME)
-        let $XDG_CONFIG_HOME="$HOME/.config"
+  let $XDG_CONFIG_HOME="$HOME/.config"
 endif
 let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
-set directory=$XDG_CACHE_HOME/vim,~/,/tmp
-set backupdir=$XDG_CACHE_HOME/vim,~/,/tmp
+set directory=$XDG_CACHE_HOME/vim
+set backupdir=$XDG_CACHE_HOME/vim/backup
+set undodir=$XDG_CACHE_HOME/vim/undo
 set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
 "set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNTIME
 set runtimepath=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM/vimfiles,$VIMRUNTIME,$VIM/vimfiles/after,$XDG_CONFIG_HOME/vim/bundle/neobundle
 
+function! EnsureExists(path)
+  if !isdirectory(expand(a:path))
+    call mkdir(expand(a:path))
+  endif
+endfunction
+call EnsureExists(&directory)
+call EnsureExists(&backupdir)
+call EnsureExists(&undodir)
 
 " The mapleader has to be set before we load plugins
 let mapleader="\<space>"
@@ -69,7 +82,7 @@ NeoBundle "adonis0147/prettyGuides"
 " IDE settings  {{{2
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'jistr/vim-nerdtree-tabs'
-nmap <silent> <leader>f <Plug>NERDTreeTabsToggle<CR>
+nmap <silent> <leader>f <Plug>NERDTreeMirrorToggle<CR>
 let g:nerdtree_tabs_open_on_console_startup = 0
 let NERDTreeShowHidden=1
 let NERDTreeShowLineNumbers=1
@@ -93,8 +106,6 @@ let g:syntastic_auto_loc_list=2
 NeoBundle "xolox/vim-misc"
 NeoBundle "majutsushi/tagbar" "{{{3
 nmap <silent> <leader>tb :TagbarToggle<CR>
-" Uncomment to open tagbar automatically whenever possible
-"autocmd BufEnter * nested :call tagbar#autoopen(0)
 autocmd FileType python,puppet nested :TagbarOpen
 let g:tagbar_type_css = {
       \ 'ctagstype' : 'Css',
@@ -155,20 +166,111 @@ let g:tagbar_type_tex = {
       \ 'sort' : 0,
       \ } "}}}3
 
-NeoBundle "kien/ctrlp.vim"
-map <leader>pb :CtrlPBuffer<CR>
-set wildignore+=*/tmp/*,*.so,*.swp
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+"NeoBundle "kien/ctrlp.vim"
+"map <leader>pb :CtrlPBuffer<CR>
+"set wildignore+=*/tmp/*,*.so,*.swp
+"let g:ctrlp_working_path_mode = 'ra'
+"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
-NeoBundle "vim-scripts/a.vim"
-NeoBundle "Valloric/YouCompleteMe", {
-      \ 'build': {
-      \ 'unix': './install.sh',
-      \ 'mac': './install.sh'
-      \ },
+NeoBundle 'Shougo/neocomplete.vim', {
+      \ 'depends': 'Shougo/context_filetype.vim',
+      \ 'disabled': ! has('lua'),
+      \ 'insert': 1
       \ }
+nnoremap <Leader>x :NeoCompleteToggle<CR> "{{{
+let g:acp_enableAtStartup = 0
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 1
+let g:neocomplete#enable_camel_case = 1
+let g:neocomplete#enable_underbar_case = 1
+let g:neocomplete#enable_auto_delimiter = 1
+let g:neocomplete#force_overwrite_completefunc = 1
 
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+  let g:neocomplete#keyword_patterns = {}
+endif
+"let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" <TAB>: completion.
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+autocmd FileType txt NeoCompleteLock
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+if !exists('g:neocomplete#force_omni_input_patterns')
+  let g:neocomplete#force_omni_input_patterns = {}
+endif "}}}
+
+"NeoBundle "vim-scripts/a.vim"
+"NeoBundle "Valloric/YouCompleteMe", {
+"      \ 'build': {
+"      \ 'unix': './install.sh',
+"      \ 'mac': './install.sh'
+"      \ },
+"      \ }
+" Unite  {{{2
+NeoBundle 'Shougo/unite.vim', {
+      \ 'depends': 'Shougo/tabpagebuffer.vim',
+      \ 'commands': [
+      \   { 'name': 'Unite', 'complete': 'customlist,unite#complete_source' }
+      \ ]}
+if executable('ag')
+  let g:unite_source_grep_command='ag'
+  let g:unite_source_grep_default_opts='--nocolor --line-numbers --nogroup -S -C4'
+  let g:unite_source_grep_recursive_opt=''
+elseif executable('ack')
+  let g:unite_source_grep_command='ack'
+  let g:unite_source_grep_default_opts='--no-heading --no-color -C4'
+  let g:unite_source_grep_recursive_opt=''
+endif
+function! s:unite_settings()
+  nmap <buffer> Q <plug>(unite_exit)
+  nmap <buffer> <esc> <plug>(unite_exit)
+  "  imap <buffer> <esc> <plug>(unite_exit)
+endfunction
+autocmd FileType unite call s:unite_settings()
+nmap f [unite]
+nnoremap [unite] <nop>
+nnoremap <silent> [unite]<space> :<C-u>Unite -toggle -auto-resize -start-insert -buffer-name=mixed file_rec/async:! buffer file_mru bookmark<cr><c-u>
+nnoremap <silent> [unite]f :<C-u>Unite -toggle -auto-resize -buffer-name=files file_rec/async:!<cr><c-u>
+nnoremap <silent> [unite]e :<C-u>Unite -buffer-name=recent file_mru<cr>
+nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
+nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
+nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
+nnoremap <silent> [unite]/ :<C-u>Unite -no-quit -buffer-name=search grep:.<cr>
+nnoremap <silent> [unite]m :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
+nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
+NeoBundleLazy 'Shougo/neomru.vim', {'autoload':{'unite_sources':'file_mru'}}
+NeoBundleLazy 'osyo-manga/unite-airline_themes', {'autoload':{'unite_sources':'airline_themes'}} "{{{
+nnoremap <silent> [unite]a :<C-u>Unite -winheight=10 -auto-preview -buffer-name=airline_themes airline_themes<cr>
+"}}}
+NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload':{'unite_sources':'colorscheme'}} "{{{
+nnoremap <silent> [unite]c :<C-u>Unite -winheight=10 -auto-preview -buffer-name=colorschemes colorscheme<cr>
+"}}}
+NeoBundleLazy 'tsukkee/unite-tag', {'autoload':{'unite_sources':['tag','tag/file', 'tag/include']}} "{{{
+nnoremap <silent> [unite]t :<C-u>Unite -auto-resize -buffer-name=tag tag tag/file<cr>
+"}}}
+NeoBundleLazy 'Shougo/unite-outline', {'autoload':{'unite_sources':'outline'}} "{{{
+nnoremap <silent> [unite]o :<C-u>Unite -auto-resize -buffer-name=outline outline<cr>
+"}}}
+NeoBundleLazy 'Shougo/unite-help', {'autoload':{'unite_sources':'help'}} "{{{
+nnoremap <silent> [unite]h :<C-u>Unite -auto-resize -buffer-name=help help<cr>
+"}}}
+NeoBundleLazy 'Shougo/junkfile.vim', {'autoload':{'commands':'JunkfileOpen','unite_sources':['junkfile','junkfile/new']}} "{{{
+nnoremap <silent> [unite]j :<C-u>Unite -auto-resize -buffer-name=junk junkfile junkfile/new<cr>
+"}}}
 " GIT  {{{2
 NeoBundle "airblade/vim-gitgutter"
 let g:gitgutter_max_signs = 1000
@@ -202,8 +304,13 @@ let g:gundo_preview_bottom=1
 
 NeoBundle 'tpope/vim-characterize'
 NeoBundle "vits/ZoomWin"
+" Zoom in and out of current window with <Leader>gz
+map <silent> <Leader>gz call Zoomwin()
+
 NeoBundle "briandoll/change-inside-surroundings.vim"
-NeoBundle "jiangmiao/auto-pairs"
+NeoBundle "tpope/vim-surround"
+NeoBundle "Raimondi/delimitMate"
+"NeoBundle "jiangmiao/auto-pairs"
 "System Shortcuts:
 "    <CR>  : Insert new indented line after return if cursor in blank brackets or quotes.
 "    <BS>  : Delete brackets in pair
@@ -215,11 +322,11 @@ NeoBundle "jiangmiao/auto-pairs"
 "If <M-p> <M-e> or <M-n> conflict with another keys or want to bind to another keys, add
 "
 "    let g:AutoPairsShortcutToggle = '<another key>'
-let g:AutoPairsFlyMode = 1
-let g:AutoPairsShortcutJump = '<C-a>'
+"let g:AutoPairsFlyMode = 1
+"let g:AutoPairsShortcutJump = '<C-a>'
 "let g:AutoPairsShortcutToggle = ''
-let g:AutoPairsShortcutBackInsert = '<C-b>'
-let g:AutoPairsShortcutFastWrap = '<C-e>'
+"let g:AutoPairsShortcutBackInsert = '<C-b>'
+"let g:AutoPairsShortcutFastWrap = '<C-e>'
 
 NeoBundle "justinmk/vim-sneak"
 NeoBundle 'godlygeek/tabular'
@@ -244,7 +351,7 @@ NeoBundle "rafi/vim-tinycomment.git", {
       \ ]}
 " Adding comments for i3 filetype
 augroup tinycomment
-    autocmd FileType i3 setlocal commentstring=#%s
+  autocmd FileType i3 setlocal commentstring=#%s
 augroup END
 
 NeoBundle 'nelstrom/vim-markdown-folding'
@@ -295,6 +402,7 @@ let g:startify_show_sessions = 1
 autocmd User Startified setlocal buftype=
 
 NeoBundle "jez/vim-superman"
+NeoBundle "ingsme/create_start_fold_marker.vim"
 NeoBundle "christoomey/vim-tmux-navigator"
 NeoBundle "edkolev/tmuxline.vim"
 NeoBundle 'Shougo/vimproc.vim', {
@@ -307,16 +415,25 @@ NeoBundle 'Shougo/vimproc.vim', {
       \    },
       \ }
 
-" General settings  {{{1
-set foldlevel=99
-set foldlevelstart=0
+if GotTheNeo == 0
+  echo "Installing Bundles, please ignore key map error messages"
+  echo ""
+  :NeoBundleInstall
+endif
+call neobundle#end()
 
+filetype plugin indent on
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+
+" General settings  {{{1
 set number
 set relativenumber
 set cursorline!
 autocmd WinLeave * setlocal nocursorline
 autocmd WinEnter * setlocal cursorline
-set backspace=2 " Makes backspace work like it should!
 " Indentation
 set autoindent
 set smartindent
@@ -335,6 +452,13 @@ set modeline                " Allow vim options to be embedded in files;
 set modelines=5             " they must be within the first or last 5 lines.
 set ffs=unix,dos,mac        " Try recognizing dos, unix, and mac line endings.
 set encoding=utf-8
+set backspace=2             " Makes backspace work like it should!
+set scrolloff=3             " Keep 3 lines above and below cursor
+set hidden
+set spelllang=en,nb,nn
+nnoremap <F7> :setlocal spell!<CR>
+imap <c-f> <c-g>u<Esc>[s1z=``]a<c-g>u
+nmap <c-f> [s1z=<c-o>
 
 " Searching
 set incsearch
@@ -343,44 +467,33 @@ set hlsearch
 set smartcase
 set ignorecase
 
-"""" History
+" History
 set history=1000
 set undofile
 set undoreload=1000
 set noswapfile
 
-"""" Split
+" Split
 set splitbelow
 set splitright
-
-" " This makes vim act like all other editors, buffers can
-" " exist in the background without being in a window.
-" " http://items.sjbach.com/319/configuring-vim-right
-set hidden
-
-"""" Keep 3 lines above and below cursor
-set scrolloff=3
 
 if has("syntax")
   syntax on
 endif
 
 if has('clipboard')
-    if has('unnamedplus')
-        set clipboard=unnamed,unnamedplus
-    else
-        set clipboard=unnamed
-    endif
+  if has('unnamedplus')
+    set clipboard=unnamed,unnamedplus
+  else
+    set clipboard=unnamed
+  endif
 endif
 
 if has('patch-7.3.541')
-    set formatoptions+=j " Remove comment leader when joining lines
+  set formatoptions+=j " Remove comment leader when joining lines
 endif
 
-" Remove trailing white space before saving. Does this work?
-autocmd BufFilePre * :%s/\s\+$//e
-
-"""" Make it beautiful - colors and fonts
+" Colors and fonts
 "colorscheme solarized
 "colorscheme hybrid
 colorscheme gruvbox
@@ -390,48 +503,48 @@ set background=dark
 " Display tabs and trailing spaces visually
 set list listchars=tab:\ \ ,trail:·,extends:↷,precedes:↶
 
-" Use h,j,k,l to move around in vim! Don't cheat!
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+" Arrows resize windows
+noremap <Up> <c-w>+
+noremap <Down> <c-w>-
+noremap <Right> <c-w><
+noremap <Left> <c-w>>
 " change cursor position in insert mode
 inoremap <C-h> <left>
 inoremap <C-l> <right>
+" +/-: Increment number
+nnoremap + <c-a>
+nnoremap - <c-x>
 
 " ================ Completion =======================
 
-" set wildmode=list:longest
-" set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
-" set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
-" set wildignore+=*vim/backups*
-" set wildignore+=*sass-cache*
-" set wildignore+=*DS_Store*
-" set wildignore+=vendor/rails/**
-" set wildignore+=vendor/cache/**
-" set wildignore+=*.gem
-" set wildignore+=log/**
-" set wildignore+=tmp/**
-" set wildignore+=*.png,*.jpg,*.gif
+set wildmode=list:longest
+set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
+set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
+set wildignore+=*vim/backups*
+set wildignore+=*sass-cache*
+set wildignore+=*DS_Store*
+set wildignore+=vendor/rails/**
+set wildignore+=vendor/cache/**
+set wildignore+=*.gem
+set wildignore+=log/**
+set wildignore+=tmp/**
+set wildignore+=*.png,*.jpg,*.gif
 
 " ------------
-augroup my_auto_commands
-    autocmd!
-    autocmd BufNewFile,BufRead *.neobundle set filetype=vim
-    autocmd BufNewFile,BufRead *.vundle set filetype=vim
-    autocmd BufNewFile,BufRead *.tex set filetype=latex
-    autocmd FileType gitcommit setlocal spell
-    autocmd FileType vim setlocal fdm=marker ts=2 sts=2 sw=2 fdl=99
-    autocmd FileType ruby,yaml,erb,sass set ai sw=2 sts=2 ts=2 et fdl=99
-    autocmd FileType python set colorcolumn=79
-    " Instead of reverting the cursor to the last position in the buffer, we
-    " set it to the first line when editing a git commit message
-    autocmd FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+augroup MyAuGroup
+  autocmd BufNewFile,BufRead *.neobundle set filetype=vim
+  autocmd BufNewFile,BufRead *.vundle set filetype=vim
+  autocmd BufNewFile,BufRead *.tex set filetype=latex
+  autocmd FileType gitcommit setlocal spell
+  autocmd FileType vim setlocal fdm=marker ts=2 sts=2 sw=2 fdl=99
+  autocmd FileType ruby,yaml,erb,sass set ai sw=2 sts=2 ts=2 et fdl=99
+  autocmd FileType python set colorcolumn=79
+  " Instead of reverting the cursor to the last position in the buffer, we
+  " set it to the first line when editing a git commit message
+  autocmd FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+  autocmd FileType c,cpp,java,php,vim,i3,python,ruby,yaml autocmd BufWritePre <buffer> :%s/\s\+$//e
 augroup END
 
-" ========================================
-" General vim sanity improvements
-" ========================================
 " Make 0 go to the first character rather than the beginning
 " of the line. When we're programming, we're almost always
 " interested in working with text rather than empty space. If
@@ -473,33 +586,33 @@ vnoremap jk <esc>
 nmap <silent> <unique> <Leader>tn :call ToggleRelativeAbsoluteNumber()<CR>
 function! ToggleRelativeAbsoluteNumber()
   if !&number && !&relativenumber
-      set number
-      set norelativenumber
+    set number
+    set norelativenumber
   elseif &number && !&relativenumber
-      set nonumber
-      set relativenumber
+    set nonumber
+    set relativenumber
   elseif !&number && &relativenumber
-      set number
-      set relativenumber
+    set number
+    set relativenumber
   elseif &number && &relativenumber
-      set nonumber
-      set norelativenumber
+    set nonumber
+    set norelativenumber
   endif
 endfunction
 
 map <Leader>pp :call  TogglePaste()<CR>
 function!  TogglePaste()
-    if  !&paste
-        set invpaste
-        :PrettyGuidesDisable
-        set nonumber
-        set norelativenumber
-    elseif  &paste
-        set invpaste
-        :PrettyGuidesEnable
-        set number
-        set relativenumber
-    endif
+  if  !&paste
+    set invpaste
+    :PrettyGuidesDisable
+    set nonumber
+    set norelativenumber
+  elseif  &paste
+    set invpaste
+    :PrettyGuidesEnable
+    set number
+    set relativenumber
+  endif
 endfunction
 
 function! Preserve(command)
@@ -514,7 +627,7 @@ endfunction
 "Go to last edit location with <Leader>.
 nnoremap <Leader>. '.
 
-"" Use tab for indenting in normal/visual modes
+" Use tab for indenting in normal/visual modes
 nnoremap <Tab> >>_
 nnoremap <S-Tab> <<_
 vnoremap <Tab> >gv
@@ -523,17 +636,15 @@ vnoremap <S-Tab> <gv
 nmap <silent> <Leader>qc :cclose<CR>
 nmap <silent> <Leader>qo :copen<CR>
 
-" Zoom in and out of current window with <Leader>gz
-map <silent> <Leader>gz <C-w>o
-
 " choose buffer with <Leader>1..9
 for i in [1,2,3,4,5,6,7,8,9]
-    exec "map <Leader>" . i . " :buffer " . i . "<cr>"
+  exec "nmap <Leader>" . i . " :buffer " . i . "<cr>"
 endfor
+nmap <Leader><Tab> :bnext
 
 " Create window splits easier. The default
 " way is Ctrl-w,v and Ctrl-w,s. I remap
-    " this to vv and ss
+" this to vv and ss
 nnoremap <silent> vv <C-w>v
 nnoremap <silent> ss <C-w>s
 
@@ -555,6 +666,7 @@ iabbrev ccopy Copyright 2015 Ingar Smedstad.
 
 " w!! to write a file as sudo
 cmap w!! w !sudo tee % >/dev/null
+cmap W!! w !sudo tee % >/dev/null
 
 " Execution permissions by default to shebang (#!) files
 augroup shebang_chmod
@@ -573,4 +685,3 @@ augroup shebang_chmod
         \   unlet b:chmod_post |
         \ endif
 augroup END
-"
