@@ -434,7 +434,7 @@ set relativenumber
 set cursorline!
 autocmd WinLeave * setlocal nocursorline
 autocmd WinEnter * setlocal cursorline
-" Indentation
+" Indentation {{{2
 set autoindent
 set smartindent
 set smarttab
@@ -444,7 +444,7 @@ set tabstop=4
 set expandtab
 set nojoinspaces
 
-" Reading/Writing
+" Reading/Writing {{{2
 set noautowrite             " Never write a file unless I request it.
 set noautowriteall          " NEVER.
 set autoread                " (Don't) automatically re-read changed files.
@@ -460,22 +460,18 @@ nnoremap <F7> :setlocal spell!<CR>
 imap <c-f> <c-g>u<Esc>[s1z=``]a<c-g>u
 nmap <c-f> [s1z=<c-o>
 
-" Searching
+" Searching {{{2
 set incsearch
 set showmatch
 set hlsearch
 set smartcase
 set ignorecase
 
-" History
+" History {{{2
 set history=1000
 set undofile
 set undoreload=1000
 set noswapfile
-
-" Split
-set splitbelow
-set splitright
 
 if has("syntax")
   syntax on
@@ -493,7 +489,7 @@ if has('patch-7.3.541')
   set formatoptions+=j " Remove comment leader when joining lines
 endif
 
-" Colors and fonts
+" Colors and fonts {{{2
 "colorscheme solarized
 "colorscheme hybrid
 colorscheme gruvbox
@@ -503,7 +499,7 @@ set background=dark
 " Display tabs and trailing spaces visually
 set list listchars=tab:\ \ ,trail:·,extends:↷,precedes:↶
 
-" Arrows resize windows
+" Arrows resize windows {{{2
 noremap <Up> <c-w>+
 noremap <Down> <c-w>-
 noremap <Right> <c-w><
@@ -515,8 +511,7 @@ inoremap <C-l> <right>
 nnoremap + <c-a>
 nnoremap - <c-x>
 
-" ================ Completion =======================
-
+" ================ Completion ======================= {{{2
 set wildmode=list:longest
 set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
 set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
@@ -530,7 +525,7 @@ set wildignore+=log/**
 set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
 
-" ------------
+" Augroup {{{2
 augroup MyAuGroup
   autocmd BufNewFile,BufRead *.neobundle set filetype=vim
   autocmd BufNewFile,BufRead *.vundle set filetype=vim
@@ -552,7 +547,7 @@ augroup END
 nnoremap 0 ^
 nnoremap ^ 0
 
-" Move between Vim and Tmux windows
+" Move between Vim and Tmux windows {{{2
 if exists('$TMUX')
   function! TmuxOrSplitSwitch(wincmd, tmuxdir)
     let previous_winnr = winnr()
@@ -578,11 +573,11 @@ else
   map <C-l> <C-w>l
 endif
 
-" Some usefull options
+" Some usefull options {{{2
 inoremap jk <esc>
 vnoremap jk <esc>
 
-"" Some toggles
+"" Some toggles {{{2
 nmap <silent> <unique> <Leader>tn :call ToggleRelativeAbsoluteNumber()<CR>
 function! ToggleRelativeAbsoluteNumber()
   if !&number && !&relativenumber
@@ -627,7 +622,7 @@ endfunction
 "Go to last edit location with <Leader>.
 nnoremap <Leader>. '.
 
-" Use tab for indenting in normal/visual modes
+" Use tab for indenting in normal/visual modes {{{2
 nnoremap <Tab> >>_
 nnoremap <S-Tab> <<_
 vnoremap <Tab> >gv
@@ -636,25 +631,19 @@ vnoremap <S-Tab> <gv
 nmap <silent> <Leader>qc :cclose<CR>
 nmap <silent> <Leader>qo :copen<CR>
 
-" choose buffer with <Leader>1..9
+" choose buffer with <Leader>1..9 {{{2
 for i in [1,2,3,4,5,6,7,8,9]
   exec "nmap <Leader>" . i . " :buffer " . i . "<cr>"
 endfor
 nmap <Leader><Tab> :bnext
 
-" Create window splits easier. The default
+" Create window splits easier. The default {{{2
 " way is Ctrl-w,v and Ctrl-w,s. I remap
 " this to vv and ss
 nnoremap <silent> vv <C-w>v
 nnoremap <silent> ss <C-w>s
 
-" Resize windows with arrow keys
-nnoremap <D-Up> <C-w>+
-nnoremap <D-Down> <C-w>-
-nnoremap <D-Left> <C-w><
-nnoremap <D-Right>  <C-w>>
-
-"Clear current search highlight by double tapping //
+"Clear current search highlight by double tapping // {{{2
 nmap <silent> // :nohlsearch<CR>
 
 " Type <Leader>hl to toggle highlighting on/off, and show current value.
@@ -664,11 +653,11 @@ noremap <Leader>hl :set hlsearch! hlsearch?<CR>
 iabbrev @@ ingar.smedstad@uib.no
 iabbrev ccopy Copyright 2015 Ingar Smedstad.
 
-" w!! to write a file as sudo
+" w!! to write a file as sudo {{{2
 cmap w!! w !sudo tee % >/dev/null
 cmap W!! w !sudo tee % >/dev/null
 
-" Execution permissions by default to shebang (#!) files
+" Execution permissions by default to shebang (#!) files {{{2
 augroup shebang_chmod
   autocmd!
   autocmd BufNewFile  * let b:brand_new_file = 1
