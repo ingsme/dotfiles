@@ -81,8 +81,13 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 
 NeoBundle 'adonis0147/prettyGuides'
 " IDE settings  {{{2
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'jistr/vim-nerdtree-tabs'
+NeoBundleLazy 'scrooloose/nerdtree', {
+      \ 'autoload': {
+      \   'commands': [
+      \     'NERDTreeMirrorToggle', 'NERDTree', 'NERDTreeToggle', 'NERDTreeClose']}}
+NeoBundleLazy 'jistr/vim-nerdtree-tabs', {
+      \ 'autoload': {
+      \   'commands': ["NERDTreeToggle", "NERDTree", "NERDTreeClose"]}}
 nmap <silent> <leader>f <Plug>NERDTreeMirrorToggle<CR>
 let g:nerdtree_tabs_open_on_console_startup = 0
 let NERDTreeShowHidden=1
@@ -321,7 +326,7 @@ vmap <Leader>a> :Tabularize /=><CR>
 nmap <Leader>a: :Tabularize /:\zs<CR>
 vmap <Leader>a: :Tabularize /:\zs<CR>
 
-NeoBundle 'gorkunov/smartpairs.vim', {
+NeoBundleLazy 'gorkunov/smartpairs.vim', {
       \ 'autoload': {
       \  'commands': [ 'SmartPairs', 'SmartPairsI', 'SmartPairsA' ],
       \  'mappings': [[ 'n', 'viv' ], [ 'v', 'v' ]]}}
@@ -347,7 +352,8 @@ let g:pymode_rope_completion = 0
 let g:pymode_lint_on_fly = 1
 nmap <leader>la :PymodeLintAuto<CR>
 
-NeoBundle  'davidhalter/jedi-vim', {
+NeoBundleLazy 'davidhalter/jedi-vim', {
+      \ 'autoload': { 'filetypes' : 'python' },
       \ 'build': {
       \     'unix': 'git submodule update --init',
       \     'mac': 'git submodule update --init',
@@ -375,8 +381,14 @@ NeoBundle 'kchmck/vim-coffee-script',{'autoload' : {
       \ 'CoffeeRun', 'CoffeeWatch'],
       \ 'filetypes' : ['coffee']
       \ }}
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'rodjek/vim-puppet'
+NeoBundleLazy 'vim-ruby/vim-ruby', {
+      \ 'autoload': {
+      \   'filetypes': 'ruby',
+      \ }}
+NeoBundleLazy 'rodjek/vim-puppet', {
+      \ 'autoload' : {
+      \   'filetypes': 'puppet',
+      \}}
 
 " Misc  {{{2
 NeoBundle 'mhinz/vim-startify'
