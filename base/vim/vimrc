@@ -1,4 +1,4 @@
-" Initialisation {{{1
+  " Initialisation {{{1
 set nocompatible
 set nomore
 
@@ -55,30 +55,31 @@ call neobundle#begin(expand("$XDG_CONFIG_HOME/vim/bundle"))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " Look and Feel  {{{2
-NeoBundle "altercation/vim-colors-solarized"
+NeoBundle 'altercation/vim-colors-solarized'
 let g:solarized_termtrans=1
 let g:solarized_termcolors=256
 let g:solarized_contrast="high"
 let g:solarized_visibility="high"
+
 NeoBundle 'morhetz/gruvbox'
 let g:gruvbox_contrast_dark="hard"
-NeoBundle "w0ng/vim-hybrid"
-NeoBundle "zeis/vim-kolor"
-NeoBundle "tomasr/molokai"
-NeoBundle "bling/vim-airline"
-set laststatus=2
 
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'zeis/vim-kolor'
+NeoBundle 'tomasr/molokai'
+NeoBundle 'bling/vim-airline'
+set laststatus=2
 let g:airline_theme='raven'
 let g:airline#extensions#branch#enabled = 1
 let g:airline_powerline_fonts=1
 let g:airline#extensions#whitespace#enabled#show_message = 1
 let g:airline#extensions#hunks#non_zero_only = 1
-
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_min_count = 1
-NeoBundle "adonis0147/prettyGuides"
+let g:airline#extensions#tabline#buffer_nr_show = 1
 
+NeoBundle 'adonis0147/prettyGuides'
 " IDE settings  {{{2
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'jistr/vim-nerdtree-tabs'
@@ -87,7 +88,8 @@ let g:nerdtree_tabs_open_on_console_startup = 0
 let NERDTreeShowHidden=1
 let NERDTreeShowLineNumbers=1
 let NERDTreeIgnore=['\.git','\.hg','\.vagrant']
-NeoBundle "scrooloose/syntastic"
+
+NeoBundle 'scrooloose/syntastic'
 " map for syntastic errors window
 nnoremap <LEADER>e :SyntasticCheck<CR>:Errors<CR>
 " syntastic checking mode
@@ -103,8 +105,8 @@ let g:syntastic_check_on_open=1
 " autoclose syntastic's error windown when no errors
 let g:syntastic_auto_loc_list=2
 
-NeoBundle "xolox/vim-misc"
-NeoBundle "majutsushi/tagbar" "{{{3
+NeoBundle 'xolox/vim-misc'
+NeoBundle 'majutsushi/tagbar' "{{{3
 nmap <silent> <leader>tb :TagbarToggle<CR>
 autocmd FileType python,puppet nested :TagbarOpen
 let g:tagbar_type_css = {
@@ -166,12 +168,6 @@ let g:tagbar_type_tex = {
       \ 'sort' : 0,
       \ } "}}}3
 
-"NeoBundle "kien/ctrlp.vim"
-"map <leader>pb :CtrlPBuffer<CR>
-"set wildignore+=*/tmp/*,*.so,*.swp
-"let g:ctrlp_working_path_mode = 'ra'
-"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-
 NeoBundle 'Shougo/neocomplete.vim', {
       \ 'depends': 'Shougo/context_filetype.vim',
       \ 'disabled': ! has('lua'),
@@ -187,14 +183,20 @@ let g:neocomplete#enable_auto_delimiter = 1
 let g:neocomplete#force_overwrite_completefunc = 1
 
 " Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-  let g:neocomplete#keyword_patterns = {}
-endif
+"if !exists('g:neocomplete#keyword_patterns')
+"  let g:neocomplete#keyword_patterns = {}
+"endif
 "let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
-" <TAB>: completion.
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+inoremap <expr><Space> neocomplete#close_popup() . "\<Space>"
+inoremap <expr><BS> pumvisible() ? neocomplete#smart_close_popup() . "\<BS>" : delimitMate#BS()
+inoremap <silent><CR> <C-R>=<SID>my_rc_function()<CR>
+function! s:my_rc_function()
+  " Fore inserting <CR> ket.
+  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -213,13 +215,6 @@ if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
 endif "}}}
 
-"NeoBundle "vim-scripts/a.vim"
-"NeoBundle "Valloric/YouCompleteMe", {
-"      \ 'build': {
-"      \ 'unix': './install.sh',
-"      \ 'mac': './install.sh'
-"      \ },
-"      \ }
 " Unite  {{{2
 NeoBundle 'Shougo/unite.vim', {
       \ 'depends': 'Shougo/tabpagebuffer.vim',
@@ -252,6 +247,7 @@ nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<
 nnoremap <silent> [unite]/ :<C-u>Unite -no-quit -buffer-name=search grep:.<cr>
 nnoremap <silent> [unite]m :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
 nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
+
 NeoBundleLazy 'Shougo/neomru.vim', {'autoload':{'unite_sources':'file_mru'}}
 NeoBundleLazy 'osyo-manga/unite-airline_themes', {'autoload':{'unite_sources':'airline_themes'}} "{{{
 nnoremap <silent> [unite]a :<C-u>Unite -winheight=10 -auto-preview -buffer-name=airline_themes airline_themes<cr>
@@ -272,10 +268,10 @@ NeoBundleLazy 'Shougo/junkfile.vim', {'autoload':{'commands':'JunkfileOpen','uni
 nnoremap <silent> [unite]j :<C-u>Unite -auto-resize -buffer-name=junk junkfile junkfile/new<cr>
 "}}}
 " GIT  {{{2
-NeoBundle "airblade/vim-gitgutter"
+NeoBundle 'airblade/vim-gitgutter'
 let g:gitgutter_max_signs = 1000
 
-NeoBundle "tpope/vim-fugitive"
+NeoBundle 'tpope/vim-fugitive'
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gd :Gdiff<CR>
 nnoremap <silent> <leader>gc :Gcommit<CR>
@@ -286,10 +282,10 @@ nnoremap <silent> <leader>gw :Gwrite<CR>
 nnoremap <silent> <leader>gr :Gremove<CR>
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
-NeoBundle "gitignore"
+NeoBundle 'gitignore'
 
 " Text editing features  "{{{2
-NeoBundle  "SirVer/ultisnips"
+NeoBundle  'SirVer/ultisnips'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<leader>u"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
@@ -297,7 +293,7 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
-NeoBundle  "honza/vim-snippets"
+NeoBundle  'honza/vim-snippets'
 NeoBundleLazy 'sjl/gundo.vim', { 'autoload' : {'commands': 'GundoToggle'}}
 nnoremap <Leader>u :GundoToggle<CR>
 let g:gundo_preview_bottom=1
@@ -307,28 +303,16 @@ NeoBundle "vits/ZoomWin"
 " Zoom in and out of current window with <Leader>gz
 map <silent> <Leader>gz call Zoomwin()
 
-NeoBundle "briandoll/change-inside-surroundings.vim"
-NeoBundle "tpope/vim-surround"
-NeoBundle "Raimondi/delimitMate"
-"NeoBundle "jiangmiao/auto-pairs"
-"System Shortcuts:
-"    <CR>  : Insert new indented line after return if cursor in blank brackets or quotes.
-"    <BS>  : Delete brackets in pair
-"    <M-p> : Toggle Autopairs (g:AutoPairsShortcutToggle)
-"    <M-e> : Fast Wrap (g:AutoPairsShortcutFastWrap)
-"    <M-n> : Jump to next closed pair (g:AutoPairsShortcutJump)
-"    <M-b> : BackInsert (g:AutoPairsShortcutBackInsert)
-"
-"If <M-p> <M-e> or <M-n> conflict with another keys or want to bind to another keys, add
-"
-"    let g:AutoPairsShortcutToggle = '<another key>'
-"let g:AutoPairsFlyMode = 1
-"let g:AutoPairsShortcutJump = '<C-a>'
-"let g:AutoPairsShortcutToggle = ''
-"let g:AutoPairsShortcutBackInsert = '<C-b>'
-"let g:AutoPairsShortcutFastWrap = '<C-e>'
+NeoBundle 'briandoll/change-inside-surroundings.vim'
+NeoBundle 'tpope/vim-surround'
+nmap <Leader>" ysiw"
+nmap <Leader>' ysiw'
 
-NeoBundle "justinmk/vim-sneak"
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'tpope/vim-capslock'
+NeoBundle 'justinmk/vim-sneak'
 NeoBundle 'godlygeek/tabular'
 nmap <Leader>a== :Tabularize /=<CR>
 vmap <Leader>a== :Tabularize /=<CR>
@@ -341,7 +325,7 @@ NeoBundle 'gorkunov/smartpairs.vim', {
       \ 'autoload': {
       \  'commands': [ 'SmartPairs', 'SmartPairsI', 'SmartPairsA' ],
       \  'mappings': [[ 'n', 'viv' ], [ 'v', 'v' ]]}}
-NeoBundle "rafi/vim-tinycomment.git", {
+NeoBundle 'rafi/vim-tinycomment.git', {
       \ 'directory': 'tinycomment',
       \ 'augroup': 'tinycomment',
       \ 'commands': [ 'TinyCommentLines', 'TinyCommentBlock' ],
@@ -363,7 +347,7 @@ let g:pymode_rope_completion = 0
 let g:pymode_lint_on_fly = 1
 nmap <leader>la :PymodeLintAuto<CR>
 
-NeoBundle  "davidhalter/jedi-vim", {
+NeoBundle  'davidhalter/jedi-vim', {
       \ 'build': {
       \     'unix': 'git submodule update --init',
       \     'mac': 'git submodule update --init',
@@ -381,18 +365,18 @@ let g:jedi#documentation_command = "<leader>pk"
 let g:jedi#usages_command = "<leader>pu"
 let g:jedi#rename_command = "<leader>pr"
 
-NeoBundle "jez/vim-c0"
-NeoBundle "jez/vim-ispc"
-NeoBundle "PotatoesMaster/i3-vim-syntax"
-NeoBundle "lilydjwg/colorizer"
+NeoBundle 'jez/vim-c0'
+NeoBundle 'jez/vim-ispc'
+NeoBundle 'PotatoesMaster/i3-vim-syntax'
+NeoBundle 'lilydjwg/colorizer'
 NeoBundle 'kchmck/vim-coffee-script',{'autoload' : {
       \ 'commands' : [
       \ 'CoffeeCompile', 'CoffeeLint', 'CoffeeMake',
       \ 'CoffeeRun', 'CoffeeWatch'],
       \ 'filetypes' : ['coffee']
       \ }}
-NeoBundle "vim-ruby/vim-ruby"
-NeoBundle "rodjek/vim-puppet"
+NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'rodjek/vim-puppet'
 
 " Misc  {{{2
 NeoBundle 'mhinz/vim-startify'
@@ -401,10 +385,10 @@ let g:startify_session_dir = 'directory/sessions'
 let g:startify_show_sessions = 1
 autocmd User Startified setlocal buftype=
 
-NeoBundle "jez/vim-superman"
-NeoBundle "ingsme/create_start_fold_marker.vim"
-NeoBundle "christoomey/vim-tmux-navigator"
-NeoBundle "edkolev/tmuxline.vim"
+NeoBundle 'jez/vim-superman'
+NeoBundle 'ingsme/create_start_fold_marker.vim'
+NeoBundle 'christoomey/vim-tmux-navigator'
+NeoBundle 'edkolev/tmuxline.vim'
 NeoBundle 'Shougo/vimproc.vim', {
       \ 'build' : {
       \     'windows' : 'tools\\update-dll-mingw',
@@ -434,6 +418,7 @@ set relativenumber
 set cursorline!
 autocmd WinLeave * setlocal nocursorline
 autocmd WinEnter * setlocal cursorline
+
 " Indentation {{{2
 set autoindent
 set smartindent
@@ -467,6 +452,11 @@ set hlsearch
 set smartcase
 set ignorecase
 
+" Folds {{{2
+"set foldminlines=50
+"set foldcolumn=4
+set fillchars=
+
 " History {{{2
 set history=1000
 set undofile
@@ -497,7 +487,11 @@ colorscheme gruvbox
 set background=dark
 
 " Display tabs and trailing spaces visually
-set list listchars=tab:\ \ ,trail:·,extends:↷,precedes:↶
+if (&termencoding ==# 'utf-8' || &encoding ==# 'utf-8') && version >= 700
+  set list listchars="tab:\u21e5\u00b7,trail:\u2423,extends:↷,precedes:↶"
+else
+  set listchars=tab:\ \,trail:-,extends:>,precedes:<
+endif
 
 " Arrows resize windows {{{2
 noremap <Up> <c-w>+
@@ -512,8 +506,8 @@ nnoremap + <c-a>
 nnoremap - <c-x>
 
 " ================ Completion ======================= {{{2
-set wildmode=list:longest
 set wildmenu                "enable ctrl-n and ctrl-p to scroll thru matches
+set wildmode=list:longest,full
 set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
 set wildignore+=*vim/backups*
 set wildignore+=*sass-cache*
