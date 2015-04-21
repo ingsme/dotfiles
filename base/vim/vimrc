@@ -81,11 +81,11 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 
 NeoBundle 'adonis0147/prettyGuides'
 " IDE settings  {{{2
-NeoBundleLazy 'scrooloose/nerdtree', {
+NeoBundle 'scrooloose/nerdtree', {
       \ 'autoload': {
       \   'commands': [
       \     'NERDTreeMirrorToggle', 'NERDTree', 'NERDTreeToggle', 'NERDTreeClose']}}
-NeoBundleLazy 'jistr/vim-nerdtree-tabs', {
+NeoBundle 'jistr/vim-nerdtree-tabs', {
       \ 'autoload': {
       \   'commands': ["NERDTreeToggle", "NERDTree", "NERDTreeClose"]}}
 nmap <silent> <leader>f <Plug>NERDTreeMirrorToggle<CR>
