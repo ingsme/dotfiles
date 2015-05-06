@@ -536,6 +536,7 @@ augroup MyAuGroup
   autocmd BufNewFile,BufRead *.neobundle set filetype=vim
   autocmd BufNewFile,BufRead *.vundle set filetype=vim
   autocmd BufNewFile,BufRead *.tex set filetype=latex
+  autocmd BufNewFile,BufRead *.pp set filetype=puppet
   autocmd FileType gitcommit setlocal spell
   autocmd FileType vim setlocal fdm=marker ts=2 sts=2 sw=2 fdl=99
   autocmd FileType ruby,yaml,erb,sass set ai sw=2 sts=2 ts=2 et fdl=99
@@ -627,6 +628,24 @@ endfunction
 
 "Go to last edit location with <Leader>.
 nnoremap <Leader>. '.
+
+" Option toggles borrowed from tpope  {{{2
+function! s:toggle(op)
+  return eval('&'.a:op) ? 'no'.a:op : a:op
+endfunction
+
+function! s:option_map(letter, option)
+  exe 'nnoremap [o'.a:letter.' :set '.a:option.'<CR>'
+  exe 'nnoremap ]o'.a:letter.' :set no'.a:option.'<CR>'
+  exe 'nnoremap co'.a:letter.' :set <C-R>=<SID>toggle("'.a:option'")<CR><CR>'
+endfunction
+
+call s:option_map('l', 'list')
+call s:option_map('n', 'number')
+call s:option_map('r', 'relativenumber')
+call s:option_map('s', 'spell')
+call s:option_map('w', 'wrap')
+call s:option_map('p', 'paste')
 
 " Use tab for indenting in normal/visual modes {{{2
 nnoremap <Tab> >>_
