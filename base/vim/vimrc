@@ -317,6 +317,7 @@ NeoBundle 'tpope/vim-repeat'
 NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'tpope/vim-capslock'
+NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'justinmk/vim-sneak'
 NeoBundle 'godlygeek/tabular'
 nmap <Leader>a== :Tabularize /=<CR>
@@ -511,8 +512,8 @@ noremap <Down> <c-w>-
 noremap <Right> <c-w><
 noremap <Left> <c-w>>
 " change cursor position in insert mode
-inoremap <C-h> <left>
-inoremap <C-l> <right>
+"inoremap <C-h> <left>
+"inoremap <C-l> <right>
 " +/-: Increment number
 nnoremap + <c-a>
 nnoremap - <c-x>
@@ -629,23 +630,33 @@ endfunction
 "Go to last edit location with <Leader>.
 nnoremap <Leader>. '.
 
+" text bubbling {{{2
+" Bubble single lines
+nmap <C-Up> [e
+nmap <C-Down> ]e
+" Bubble multiple lines
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
+" Visually select the text that was last edited/pasted
+nmap gV `[v`]
+
 " Option toggles borrowed from tpope  {{{2
-function! s:toggle(op)
-  return eval('&'.a:op) ? 'no'.a:op : a:op
-endfunction
-
-function! s:option_map(letter, option)
-  exe 'nnoremap [o'.a:letter.' :set '.a:option.'<CR>'
-  exe 'nnoremap ]o'.a:letter.' :set no'.a:option.'<CR>'
-  exe 'nnoremap co'.a:letter.' :set <C-R>=<SID>toggle("'.a:option'")<CR><CR>'
-endfunction
-
-call s:option_map('l', 'list')
-call s:option_map('n', 'number')
-call s:option_map('r', 'relativenumber')
-call s:option_map('s', 'spell')
-call s:option_map('w', 'wrap')
-call s:option_map('p', 'paste')
+"function! s:toggle(op)
+"  return eval('&'.a:op) ? 'no'.a:op : a:op
+"endfunction
+"
+"function! s:option_map(letter, option)
+"  exe 'nnoremap [o'.a:letter.' :set '.a:option.'<CR>'
+"  exe 'nnoremap ]o'.a:letter.' :set no'.a:option.'<CR>'
+"  exe 'nnoremap co'.a:letter.' :set <C-R>=<SID>toggle("'.a:option'")<CR><CR>'
+"endfunction
+"
+"call s:option_map('l', 'list')
+"call s:option_map('n', 'number')
+"call s:option_map('r', 'relativenumber')
+"call s:option_map('s', 'spell')
+"call s:option_map('w', 'wrap')
+"call s:option_map('p', 'paste')
 
 " Use tab for indenting in normal/visual modes {{{2
 nnoremap <Tab> >>_
