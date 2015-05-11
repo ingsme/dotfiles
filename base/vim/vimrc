@@ -500,10 +500,10 @@ colorscheme gruvbox
 set background=dark
 
 " Display tabs and trailing spaces visually
-if (&termencoding ==# 'utf-8' || &encoding ==# 'utf-8') && version >= 700
-  set list listchars="tab:\u21e5\u00b7,trail:\u2423,extends:↷,precedes:↶"
+if (&termencoding ==# 'utf-8' || &encoding ==# 'utf-8')
+  set list listchars=tab:▸\ ,trail:␣,extends:↷,precedes:↶
 else
-  set listchars=tab:\ \,trail:-,extends:>,precedes:<
+  set list listchars=tab:\ \ ,trail:-,extends:>,precedes:<
 endif
 
 " Arrows resize windows {{{2
