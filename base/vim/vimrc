@@ -173,52 +173,59 @@ let g:tagbar_type_tex = {
       \ 'sort' : 0,
       \ } "}}}3
 
-NeoBundle 'Shougo/neocomplete.vim', {
-      \ 'depends': 'Shougo/context_filetype.vim',
-      \ 'disabled': ! has('lua'),
-      \ 'insert': 1
+NeoBundle 'Valloric/YouCompleteMe', {
+      \   'build' : {
+      \     'mac' : './install.sh',
+      \     'unix': './install.sh'
+      \   }
       \ }
-nnoremap <Leader>x :NeoCompleteToggle<CR> "{{{
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#enable_camel_case = 1
-let g:neocomplete#enable_underbar_case = 1
-let g:neocomplete#enable_auto_delimiter = 1
-let g:neocomplete#force_overwrite_completefunc = 1
 
-" Define keyword.
-"if !exists('g:neocomplete#keyword_patterns')
-"  let g:neocomplete#keyword_patterns = {}
+"NeoBundle 'Shougo/neocomplete.vim', {
+"      \ 'depends': 'Shougo/context_filetype.vim',
+"      \ 'disabled': ! has('lua'),
+"      \ 'insert': 1
+"      \ }
+"nnoremap <Leader>x :NeoCompleteToggle<CR> "{{{
+"let g:acp_enableAtStartup = 0
+"let g:neocomplete#enable_at_startup = 1
+"let g:neocomplete#enable_smart_case = 1
+"let g:neocomplete#enable_camel_case = 1
+"let g:neocomplete#enable_underbar_case = 1
+"let g:neocomplete#enable_auto_delimiter = 1
+"let g:neocomplete#force_overwrite_completefunc = 1
+"
+"" Define keyword.
+""if !exists('g:neocomplete#keyword_patterns')
+""  let g:neocomplete#keyword_patterns = {}
+""endif
+""let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+"
+"inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+"inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+"inoremap <expr><Space> neocomplete#close_popup() . "\<Space>"
+"inoremap <expr><BS> pumvisible() ? neocomplete#smart_close_popup() . "\<BS>" : delimitMate#BS()
+"inoremap <silent><CR> <C-R>=<SID>my_rc_function()<CR>
+"function! s:my_rc_function()
+"  " Fore inserting <CR> ket.
+"  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+"endfunction
+"
+"" Enable omni completion.
+"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+"autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+"autocmd FileType txt NeoCompleteLock
+"
+"" Enable heavy omni completion.
+"if !exists('g:neocomplete#sources#omni#input_patterns')
+"  let g:neocomplete#sources#omni#input_patterns = {}
 "endif
-"let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
-inoremap <expr><Space> neocomplete#close_popup() . "\<Space>"
-inoremap <expr><BS> pumvisible() ? neocomplete#smart_close_popup() . "\<BS>" : delimitMate#BS()
-inoremap <silent><CR> <C-R>=<SID>my_rc_function()<CR>
-function! s:my_rc_function()
-  " Fore inserting <CR> ket.
-  return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-autocmd FileType txt NeoCompleteLock
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-  let g:neocomplete#sources#omni#input_patterns = {}
-endif
-if !exists('g:neocomplete#force_omni_input_patterns')
-  let g:neocomplete#force_omni_input_patterns = {}
-endif "}}}
+"if !exists('g:neocomplete#force_omni_input_patterns')
+"  let g:neocomplete#force_omni_input_patterns = {}
+"endif "}}}
 
 " Unite  {{{2
 NeoBundle 'Shougo/unite.vim', {
@@ -312,6 +319,16 @@ NeoBundle 'briandoll/change-inside-surroundings.vim'
 NeoBundle 'tpope/vim-surround'
 nmap <Leader>" ysiw"
 nmap <Leader>' ysiw'
+nmap <Leader>( ysiw(
+nmap <Leader>) ysiw)
+nmap <Leader>{ ysiw{
+nmap <Leader>} ysiw}
+nmap <Leader>[ ysiw[
+nmap <Leader>] ysiw]
+
+NeoBundle 'terryma/vim-expand-region'
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
 
 NeoBundle 'tpope/vim-repeat'
 NeoBundle 'Raimondi/delimitMate'
@@ -480,15 +497,15 @@ if has("syntax")
   syntax on
 endif
 
-if has('clipboard')
-  if has('unnamedplus')
-    set clipboard=unnamed,unnamedplus
-  else
-    set clipboard=unnamed
-  endif
-endif
+"if has('clipboard')
+"  if has('unnamedplus')
+"    set clipboard=unnamed,unnamedplus
+"  else
+"    set clipboard=unnamed
+"  endif
+"endif
 
-if has('patch-7.3.541')
+if has('patch-6.3.541')
   set formatoptions+=j " Remove comment leader when joining lines
 endif
 
@@ -580,6 +597,13 @@ else
   map <C-k> <C-w>k
   map <C-l> <C-w>l
 endif
+
+" copy
+ vmap <C-c> :w! ~/.vimbuf<CR>
+ nmap <C-c> :.w! ~/.vimbuf<CR>
+
+ " paste
+ map <C-p> :r ~/.vimbuf<CR>
 
 " Some usefull options {{{2
 inoremap jk <esc>
@@ -676,8 +700,8 @@ nmap <Leader><Tab> :bnext
 " Create window splits easier. The default {{{2
 " way is Ctrl-w,v and Ctrl-w,s. I remap
 " this to vv and ss
-nnoremap <silent> vv <C-w>v
-nnoremap <silent> ss <C-w>s
+"nnoremap <silent> vv <C-w>v
+"nnoremap <silent> ss <C-w>s
 
 "Clear current search highlight by double tapping // {{{2
 nmap <silent> // :nohlsearch<CR>
