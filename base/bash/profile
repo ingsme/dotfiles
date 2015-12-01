@@ -25,3 +25,5 @@ fi
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
+
+CDPATH=:/disk2/puppet:/disk2/packages:/scratch
