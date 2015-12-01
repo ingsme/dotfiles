@@ -238,6 +238,7 @@ for_window [class="(?i)thunderbird"] floating enable
 #for_window [class="(?i)firefox"] floating enable
 #for_window [class="(?i)smuxi-frontend-gnome"] floating enable
 for_window [class="(?i)nautilus"] floating enable
+for_window [class="(?i)vidyodesktop"] floating enable
 for_window [class="(?i)gedit"] floating enable
 for_window [class="(?i)rdesktop"] floating enable
 for_window [class="VirtualBox"] floating enable
@@ -266,8 +267,9 @@ for_window [class="(?i)zathura"] border pixel 2
 exec --no-startup-id echo "$0: DESKTOP_AUTOSTART_ID $DESKTOP_AUTOSTART_ID, registering with org.gnome.SessionManager"
 exec --no-startup-id dbus-send --session --print-reply=literal --dest=org.gnome.SessionManager "/org/gnome/SessionManager" org.gnome.SessionManager.RegisterClient "string:i3" "string:$DESKTOP_AUTOSTART_ID"
 exec --no-startup-id dex -a -e GNOME
+exec --no-startup-id /usr/lib/gnome-settings-daemon/gnome-settings-daemon
 exec unity-settings-daemon
-exec gnome-keyring-daemon
+#exec gnome-keyring-daemon
 exec gnome-screensaver
 #exec volumicon
 #exec geppetto
