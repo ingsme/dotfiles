@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ln -sf $XDG_CONFIG_HOME/i3/i3exit ~/.local/bin/i3exit
