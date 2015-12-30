@@ -7,7 +7,9 @@
 # the default umask is set in /etc/profile; for setting the umask
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
-#XDG_CACHE_HOME=$HOME/.cache
+if [ -z "$XDG_CACHE_HOME" ]; then
+    XDG_CACHE_HOME=$HOME/.cache
+fi
 XDG_CONFIG_HOME=$HOME/.config
 XDG_DATA_HOME=$HOME/.local/share
 
@@ -26,4 +28,4 @@ if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
 
-CDPATH=:/disk2/puppet:/disk2/packages:/scratch
+CDPATH=:/disk2/puppet:/disk2/packages:/scratch:/disk2:$HOME

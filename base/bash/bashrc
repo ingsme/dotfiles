@@ -73,8 +73,8 @@ fi
 #esac
 
 #source git prompt and completion
-source $XDG_CONFIG_HOME/git/git-completion.bash
-source $XDG_CONFIG_HOME/git/git-prompt.sh
+source "$XDG_CONFIG_HOME"/git/git-completion.bash
+source "$XDG_CONFIG_HOME"/git/git-prompt.sh
 #PROMPT_COMMAND='__git_ps1'
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWSTASHSTATE=true
@@ -106,3 +106,12 @@ fi
 if [ -f "$HOME/.local/lib/dots/contrib/bash_completion" ]; then
     . "$HOME/.local/lib/dots/contrib/bash_completion"
 fi
+
+# Get the SSH agent
+#export $( dex /etc/xdg/autostart/gnome-keyring-ssh.desktop )
+
+# Use keychain if it exists
+#KEYCHAIN=$(which keychain)
+#if [ ! -z "$KEYCHAIN" ]; then
+#    eval $(keychain --eval id_rsa DD293300)
+#fi

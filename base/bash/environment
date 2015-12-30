@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.cabal/bin:$PATH"
 
 # XDG directories
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -14,7 +14,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export INPUTRC="$XDG_CONFIG_HOME/bash/inputrc"
 
 # Set the session ssh-agent socket path (If it's not set)
-[ -z "$SSH_AUTH_SOCK" ] && export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent"
+#[ -z "$SSH_AUTH_SOCK" ] && export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent"
 
 # Specify vimrc path
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
