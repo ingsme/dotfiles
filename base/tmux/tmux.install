@@ -1,3 +1,9 @@
 #!/bin/bash
 
 ln -sf $XDG_CONFIG_HOME/tmux/tmux $HOME/.tmux.conf
+
+
+#if [ ! -e $XDG_CONFIG_HOME/tmux/plugins/tpm/.git ]; then
+#  echo -e "\033[0;32m==>\033[0m Installing Tmux Plugin Manager..."
+#  git clone --quiet https://github.com/tmux-plugins/tpm plugins/tpm
+#fi
