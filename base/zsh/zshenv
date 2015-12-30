@@ -6,7 +6,12 @@ export EDITOR="vim"
 export LESS="-R"
 
 export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_CACHE_HOME="$HOME/.cache"
+if [ -z $XDG_CACHE_HOME ]; then 
+    export XDG_CACHE_HOME="$HOME/.cache"
+fi
 export XDG_DATA_HOME="$HOME/.local/share"
 
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+
+bindkey '^[OA' history-search-backward
+bindkey '^[OB' history-search-forward
