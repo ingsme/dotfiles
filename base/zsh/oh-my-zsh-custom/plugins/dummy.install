@@ -1,9 +1,0 @@
-#!/bin/bash
-
-# Clone zsh-syntax-highlighting plugin
-if [[ ! -e zsh-syntax-highlighting/.git ]]
-then
-  echo -e "\033[0;32m==>\033[0m Installing zsh-syntax-highlighting..."
-	git clone --quiet https://github.com/zsh-users/zsh-syntax-highlighting
-  rm -f dummy
-fi
