@@ -30,6 +30,7 @@ source $XDG_CONFIG_HOME/zplug/zplug
 
 zplug "b4b4r07/zplug"
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
+zplug "zsh-users/zsh-history-substring-search", nice:11
 zplug "zsh-users/zsh-completions"
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "plugins/colorize", from:oh-my-zsh
@@ -144,7 +145,7 @@ export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='3;33'
 
 # Completion
-autoload -U compinit && compinit                                                                                       
+autoload -U compinit && compinit
 zmodload -i zsh/complist
 
 # man zshcontrib
@@ -154,7 +155,7 @@ zstyle ':vcs_info:*' enable git #svn cvs
 
 # Enable completion caching, use rehash to clear
 zstyle ':completion::complete:*' use-cache on
-zstyle ':completion::complete:*' cache-path ~/.zsh/cache/$HOST
+zstyle ':completion::complete:*' cache-path $XDG_CACHE_HOME/zsh//$HOST
 
 # Fallback to built in ls colors
 zstyle ':completion:*' list-colors ''
@@ -200,20 +201,23 @@ zstyle '*' single-ignored show
 
 #Bindkeys
 #Historysearch
-autoload -Uz up-line-or-beginning-search
-autoload -Uz down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey '\eOA' up-line-or-beginning-search
-bindkey '\e[A' up-line-or-beginning-search
-bindkey '\eOB' down-line-or-beginning-search
-bindkey '\e[B' down-line-or-beginning-search
+# autoload -Uz up-line-or-beginning-search
+# autoload -Uz down-line-or-beginning-search
+# zle -N up-line-or-beginning-search
+# zle -N down-line-or-beginning-search
+# bindkey '\eOA' up-line-or-beginning-search
+# bindkey '\e[A' up-line-or-beginning-search
+# bindkey '\eOB' down-line-or-beginning-search
+# bindkey '\e[B' down-line-or-beginning-search
 # autoload -U history-search-end
 # zle -N history-beginning-search-backward-end history-search-end
 # zle -N history-beginning-search-forward-end history-search-end
 # bindkey "\e[A" history-beginning-search-backward-end
 # bindkey "\e[B" history-beginning-search-forward-end
 
+zmodload zsh/terminfo
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
 bindkey "^K"      kill-whole-line                      # ctrl-k
 bindkey "^R"      history-incremental-search-backward  # ctrl-r
 bindkey "^A"      beginning-of-line                    # ctrl-a  
