@@ -1,5 +1,3 @@
-# source ~/.zsh/antigen-hs/init.zsh
-
 # Checks
 # checks (stolen from zshuery)
 if [[ $(uname) = 'Linux' ]]; then
@@ -21,6 +19,46 @@ fi
 if [[ -x `which yum` ]]; then
     HAS_YUM=1
 fi
+
+# Install zplug
+! [[ -d $XDG_CONFIG_HOME/zplug ]] \
+    && git clone https://github.com/b4b4r07/zplug $XDG_CONFIG_HOME/zplug
+
+# Zplug
+export ZPLUG_HOME=$XDG_CONFIG_HOME/zplug
+source $XDG_CONFIG_HOME/zplug/zplug
+
+zplug "b4b4r07/zplug"
+zplug "zsh-users/zsh-syntax-highlighting", nice:10
+zplug "zsh-users/zsh-completions"
+zplug "plugins/colored-man-pages", from:oh-my-zsh
+zplug "plugins/colorize", from:oh-my-zsh
+zplug "plugins/vagrant", from:oh-my-zsh
+zplug "plugins/sudo", from:oh-my-zsh
+zplug "plugins/command-not-found", from:oh-my-zsh
+zplug "themes/clean", from:oh-my-zsh
+if [[ $IS_LINUX -eq 1 ]]; then
+    zplug "olivierverdier/zsh-git-prompt"
+    source $XDG_CONFIG_HOME/zplug/repos/olivierverdier/zsh-git-prompt/zshrc.sh
+    GIT_PROMPT_EXECUTABLE="haskell"
+    ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[red]%}%{● %G%}"
+    ZSH_THEME_GIT_PROMPT_CONFLICTS="%{$fg[red]%}%{✖ %G%}"
+    ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[cyan]%}%{✚ %G%}"
+    ZSH_THEME_GIT_PROMPT_BEHIND="%{↓%G%}"
+    ZSH_THEME_GIT_PROMPT_AHEAD="%{↑%G%}"
+fi
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load --verbose
+
 
 # Colors
 autoload colors; colors
@@ -273,38 +311,6 @@ function precmd {
 #   set_running_app
 # }
 
-# Zplug
-source ~/.zplug/zplug
-
-zplug "zsh-users/zsh-syntax-highlighting", nice:10
-zplug "zsh-users/zsh-completions"
-zplug "plugins/colored-man-pages", from:oh-my-zsh
-zplug "plugins/colorize", from:oh-my-zsh
-zplug "plugins/vagrant", from:oh-my-zsh
-zplug "plugins/sudo", from:oh-my-zsh
-zplug "plugins/command-not-found", from:oh-my-zsh
-zplug "themes/clean", from:oh-my-zsh
-if [[ $IS_LINUX -eq 1 ]]; then
-    zplug "olivierverdier/zsh-git-prompt"
-    source $HOME/.zplug/repos/olivierverdier/zsh-git-prompt/zshrc.sh
-    GIT_PROMPT_EXECUTABLE="haskell"
-    ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[red]%}%{● %G%}"
-    ZSH_THEME_GIT_PROMPT_CONFLICTS="%{$fg[red]%}%{✖ %G%}"
-    ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[cyan]%}%{✚ %G%}"
-    ZSH_THEME_GIT_PROMPT_BEHIND="%{↓%G%}"
-    ZSH_THEME_GIT_PROMPT_AHEAD="%{↑%G%}"
-fi
-
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-
-# Then, source plugins and add commands to $PATH
-zplug load --verbose
 
 # Misc
 # Use keychain, if it is available.
@@ -337,3 +343,4 @@ if [[ $IS_LINUX -eq 1 ]]; then
     ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}%{✔%G%}"
     PROMPT='%{$fg[$NCOLOR]%}%B%n%b%{$reset_color%}:%{$fg[blue]%}%B%c/%b%{$reset_color%} $(git_super_status)%(!.#.$) '
 fi
+
