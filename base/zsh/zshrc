@@ -336,7 +336,10 @@ function precmd {
 #     source $HOME/.keychain/$HOSTNAME-sh
 
 #Aliases
-alias ls='ls --group-directories-first --color=auto -h'
+[[ $IS_LINUX -eq 1 ]] && \
+    alias ls='ls --group-directories-first --color=auto -h'
+[[ $IS_MAC -eq 1 ]] && \
+    alias ls='ls -Gh'
 
 alias pwdb="cd && keepassx -cfg $HOME/.pwdb.ini &"
 alias hjemmekontor="rdesktop -g 1024x768 -a 16 -k no -d UiB hjemmekontor.uib.no &"
@@ -353,7 +356,8 @@ alias dut="du -hx * | sort -rh | head -10"
 alias dfu="df -hT -x devtmpfs -x tmpfs"
 alias sz='source $HOME/.zshrc'
 
-# export LS_COLORS=exfxcxdxbxegedabagacad
+[[ $IS_MAC -eq 1 ]] && \
+    export LSCOLORS=exfxcxdxbxegedabagacad
 if [[ $IS_LINUX -eq 1 ]]; then
     ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}%{✔%G%}"
     PROMPT='%{$fg[$NCOLOR]%}%B%n%b%{$reset_color%}:%{$fg[blue]%}%B%c/%b%{$reset_color%} $(git_super_status)%(!.#.$) '
