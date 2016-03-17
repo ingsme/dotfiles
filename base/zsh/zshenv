@@ -13,5 +13,5 @@ export XDG_DATA_HOME="$HOME/.local/share"
 
 export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
 
-bindkey '^[OA' history-search-backward
-bindkey '^[OB' history-search-forward
+# bindkey '^[OA' history-search-backward
+# bindkey '^[OB' history-search-forward

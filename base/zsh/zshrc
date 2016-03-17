@@ -115,7 +115,7 @@ setopt hist_verify # don't execute, just expand history
 setopt share_history # imports new commands and appends typed commands to history
 
 # ===== Completion 
-setopt always_to_end # When completing from the middle of a word, move the cursor to the end of the word    
+setopt always_to_end # When completing from the middle of a word, move the cursor to the end of the word
 setopt auto_menu # show completion menu on successive tab press. needs unsetop menu_complete to work
 setopt auto_name_dirs # any parameter that is set to the absolute name of a directory immediately becomes a name for that directory
 setopt complete_in_word # Allow completion from within a word/phrase
@@ -199,12 +199,27 @@ zstyle ':completion:*:ssh:*' group-order hosts-domain hosts-host users hosts-ipa
 zstyle '*' single-ignored show
 
 #Bindkeys
+#Historysearch
+autoload -Uz up-line-or-beginning-search
+autoload -Uz down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '\eOA' up-line-or-beginning-search
+bindkey '\e[A' up-line-or-beginning-search
+bindkey '\eOB' down-line-or-beginning-search
+bindkey '\e[B' down-line-or-beginning-search
+# autoload -U history-search-end
+# zle -N history-beginning-search-backward-end history-search-end
+# zle -N history-beginning-search-forward-end history-search-end
+# bindkey "\e[A" history-beginning-search-backward-end
+# bindkey "\e[B" history-beginning-search-forward-end
+
 bindkey "^K"      kill-whole-line                      # ctrl-k
 bindkey "^R"      history-incremental-search-backward  # ctrl-r
 bindkey "^A"      beginning-of-line                    # ctrl-a  
 bindkey "^E"      end-of-line                          # ctrl-e
-bindkey "[B"      history-search-forward               # down arrow
-bindkey "[A"      history-search-backward              # up arrow
+# bindkey "^[0A"    history-search-backward              # up arrow
+# bindkey "^[0B"    history-search-forward               # down arrow
 bindkey "^D"      delete-char                          # ctrl-d
 bindkey "^F"      forward-char                         # ctrl-f
 bindkey "^B"      backward-char                        # ctrl-b
@@ -336,7 +351,7 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias dut="du -hx * | sort -rh | head -10"
 alias dfu="df -hT -x devtmpfs -x tmpfs"
-alias reload='source $HOME/.zshrc'
+alias sz='source $HOME/.zshrc'
 
 # export LS_COLORS=exfxcxdxbxegedabagacad
 if [[ $IS_LINUX -eq 1 ]]; then
