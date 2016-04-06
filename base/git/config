@@ -1,6 +1,6 @@
 [user]
 	name = Ingar Smedstad
-	email = ingar.smedstad@adm.uib.no
+	email = ingar.smedstad@uib.no
 [alias]
 	unstage = reset HEAD --
 	last = log -1 HEAD --no-pager
