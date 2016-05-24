@@ -67,9 +67,11 @@ let g:gruvbox_contrast_dark="hard"
 NeoBundle 'w0ng/vim-hybrid'
 NeoBundle 'zeis/vim-kolor'
 NeoBundle 'tomasr/molokai'
-NeoBundle 'bling/vim-airline'
+NeoBundle 'vim-airline/vim-airline'
+NeoBundle 'vim-airline/vim-airline-themes'
 set laststatus=2
-let g:airline_theme='raven'
+"let g:airline_theme='raven'
+let g:airline_theme='luna'
 let g:airline#extensions#branch#enabled = 1
 let g:airline_powerline_fonts=1
 let g:airline#extensions#whitespace#enabled#show_message = 1
@@ -418,7 +420,7 @@ autocmd User Startified setlocal buftype=
 NeoBundle 'jez/vim-superman'
 NeoBundle 'ingsme/create_start_fold_marker.vim'
 NeoBundle 'christoomey/vim-tmux-navigator'
-NeoBundle 'edkolev/tmuxline.vim'
+"NeoBundle 'edkolev/tmuxline.vim'
 NeoBundle 'Shougo/vimproc.vim', {
       \ 'build' : {
       \     'windows' : 'tools\\update-dll-mingw',
