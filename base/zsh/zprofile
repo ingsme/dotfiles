@@ -1,3 +1,2 @@
 # Make Caps Lock a second Ctrl
-[[ $IS_LINUX -eq 1 ]] && \
-    /usr/bin/setxkbmap -layout "$(setxkbmap -print | awk -F + '/xkb_symbols/ {print $2}')" -option ctrl:nocaps
+/usr/bin/setxkbmap -layout "$(setxkbmap -print | awk -F + '/xkb_symbols/ {print $2}')" -option ctrl:nocaps

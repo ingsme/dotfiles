@@ -28,6 +28,8 @@ fi
 export ZPLUG_HOME=$XDG_CONFIG_HOME/zplug
 source $XDG_CONFIG_HOME/zplug/zplug
 
+fpath=($fpath $XDG_CONFIG_HOME/zsh/completions)
+
 zplug "b4b4r07/zplug"
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
 zplug "zsh-users/zsh-history-substring-search", nice:11
@@ -35,8 +37,8 @@ zplug "zsh-users/zsh-completions"
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "plugins/colorize", from:oh-my-zsh
 zplug "plugins/vagrant", from:oh-my-zsh
-zplug "plugins/sudo", from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
+zplug "plugins/sudo", from:oh-my-zsh
 zplug "themes/clean", from:oh-my-zsh
 if [[ $IS_LINUX -eq 1 ]]; then
     zplug "olivierverdier/zsh-git-prompt"
@@ -77,7 +79,7 @@ zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
 # eval RESET='$reset_color'
 # export PR_RED PR_GREEN PR_YELLOW PR_BLUE PR_WHITE PR_BLACK
-# export PR_BOLD_RED PR_BOLD_GREEN PR_BOLD_YELLOW PR_BOLD_BLUE 
+# export PR_BOLD_RED PR_BOLD_GREEN PR_BOLD_YELLOW PR_BOLD_BLUE
 # export PR_BOLD_WHITE PR_BOLD_BLACK
 
 # Clear LSCOLORS
@@ -115,7 +117,7 @@ setopt hist_reduce_blanks # Remove extra blanks from each command line being add
 setopt hist_verify # don't execute, just expand history
 setopt share_history # imports new commands and appends typed commands to history
 
-# ===== Completion 
+# ===== Completion
 setopt always_to_end # When completing from the middle of a word, move the cursor to the end of the word
 setopt auto_menu # show completion menu on successive tab press. needs unsetop menu_complete to work
 setopt auto_name_dirs # any parameter that is set to the absolute name of a directory immediately becomes a name for that directory
@@ -152,7 +154,7 @@ zmodload -i zsh/complist
 # man zshcontrib
 zstyle ':vcs_info:*' actionformats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{3}|%F{1}%a%F{5}]%f '
 zstyle ':vcs_info:*' formats '%F{5}(%f%s%F{5})%F{3}-%F{5}[%F{2}%b%F{5}]%f '
-zstyle ':vcs_info:*' enable git #svn cvs 
+zstyle ':vcs_info:*' enable git #svn cvs
 
 # Enable completion caching, use rehash to clear
 zstyle ':completion::complete:*' use-cache on
@@ -177,10 +179,10 @@ zstyle ':completion:*' menu select=1 _complete _ignored _approximate
 
 # insert all expansions for expand completer
 # zstyle ':completion:*:expand:*' tag-order all-expansions
- 
+
 # match uppercase from lowercase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
- 
+
 # offer indexes before parameters in subscripts
 zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 
@@ -191,7 +193,7 @@ zstyle ':completion:*:messages' format '%d'
 zstyle ':completion:*:warnings' format 'No matches for: %d'
 zstyle ':completion:*:corrections' format '%B%d (errors: %e)%b'
 zstyle ':completion:*' group-name ''
- 
+
 # ignore completion functions (until the _ignored completer)
 zstyle ':completion:*:functions' ignored-patterns '_*'
 zstyle ':completion:*:scp:*' tag-order files users 'hosts:-host hosts:-domain:domain hosts:-ipaddr"IP\ Address *'
@@ -208,17 +210,18 @@ bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 bindkey "^K"      kill-whole-line                      # ctrl-k
 bindkey "^R"      history-incremental-search-backward  # ctrl-r
-bindkey "^A"      beginning-of-line                    # ctrl-a  
+bindkey "^A"      beginning-of-line                    # ctrl-a
 bindkey "^E"      end-of-line                          # ctrl-e
 # bindkey "^[0A"    history-search-backward              # up arrow
 # bindkey "^[0B"    history-search-forward               # down arrow
 bindkey "^D"      delete-char                          # ctrl-d
 bindkey "^F"      forward-char                         # ctrl-f
 bindkey "^B"      backward-char                        # ctrl-b
+bindkey "\e\e"    sudo-command-line
 
 # Functions
 # -------------------------------------------------------------------
-# compressed file expander 
+# compressed file expander
 # (from https://github.com/myfreeweb/zshuery/blob/master/zshuery.sh)
 # -------------------------------------------------------------------
 ex() {
@@ -282,7 +285,7 @@ if [[ $IS_MAC -eq 1 ]]; then
     pman() { ps=`mktemp -t manpageXXXX`.ps ; man -t $@ > "$ps" ; open "$ps" ; }
 
     # function to show interface IP assignments
-    ips() { foo=`/Users/mark/bin/getip.py; /Users/mark/bin/getip.py en0; /Users/mark/bin/getip.py en1`; echo $foo; } 
+    ips() { foo=`/Users/mark/bin/getip.py; /Users/mark/bin/getip.py en0; /Users/mark/bin/getip.py en1`; echo $foo; }
 
     # notify function - http://hints.macworld.com/article.php?story=20120831112030251
     notify() { automator -D title=$1 -D subtitle=$2 -D message=$3 ~/Library/Workflows/DisplayNotification.wflow }
@@ -333,7 +336,8 @@ function precmd {
     alias ls='ls -Gh'
 
 alias pwdb="cd && keepassx -cfg $HOME/.pwdb.ini &"
-alias hjemmekontor="rdesktop -g 1024x768 -a 16 -k no -d UiB hjemmekontor.uib.no &"
+alias hjemmekontor="rdesktop -g 1280x960 -a 16 -k no -d UiB hjemmekontor.uib.no &"
+alias midgard="rdesktop -g 1280x960 -a 16 -k no -d UiB midgard.uib.no &"
 alias aps='aptitude search'
 alias apss='aptitude show'
 alias ll='ls -al'
@@ -353,4 +357,4 @@ if [[ $IS_LINUX -eq 1 ]]; then
     ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}%{✔%G%}"
     PROMPT='%{$fg[$NCOLOR]%}%B%n%b%{$reset_color%}:%{$fg[blue]%}%B%c/%b%{$reset_color%} $(git_super_status)%(!.#.$) '
 fi
-
+unset RPROMPT
