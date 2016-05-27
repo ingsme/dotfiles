@@ -115,7 +115,7 @@ let g:syntastic_auto_loc_list=2
 NeoBundle 'xolox/vim-misc'
 NeoBundle 'majutsushi/tagbar' "{{{3
 nmap <silent> <leader>tb :TagbarToggle<CR>
-autocmd FileType python,puppet nested :TagbarOpen
+"autocmd FileType python,puppet nested :TagbarOpen
 let g:tagbar_type_css = {
       \ 'ctagstype' : 'Css',
       \ 'kinds'     : [
