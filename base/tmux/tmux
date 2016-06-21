@@ -18,7 +18,8 @@ set -g mode-keys vi
 set -g status-keys vi
 
 # Make sure we use zsh and a usable terminal
-set -g default-terminal "screen-256color"
+set -g default-terminal "xterm-256color"
+set -ga terminal-overrides ",xterm-256color:Tc"
 # set-option -g default-shell /bin/zsh
 
 set-option -g allow-rename off
@@ -62,11 +63,11 @@ bind Space copy-mode
 bind C-Space last-window
 
 # Mouse
+set-option -g mode-mouse on
 set-option -g mouse-select-pane on
 set-option -g mouse-select-window on
 set-option -g mouse-resize-pane on
 set-option -g mouse-utf8 on
-set-window-option -g mode-mouse on
 
 # Toggle mouse on with ^a m
 # bind m \

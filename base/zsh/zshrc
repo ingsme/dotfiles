@@ -221,6 +221,21 @@ bindkey "\e\e"    sudo-command-line
 
 # Functions
 # -------------------------------------------------------------------
+# ssh name change
+# (from https://gist.github.com/florianbeer/ee02c149a7e25f643491)
+# -------------------------------------------------------------------
+ssh() {
+    if [ "$(ps -p $(ps -p $$ -o ppid=) -o comm=)" = "tmux" ]; then
+            tmux rename-window "$(echo $* | cut -d @ -f 2 | cut -d . -f 1)"
+            command ssh "$@"
+            tmux set-window-option automatic-rename "on" 1>/dev/null
+            exit
+            tmux rename-window "zsh"
+    else
+            command ssh "$@"
+    fi
+}
+# -------------------------------------------------------------------
 # compressed file expander
 # (from https://github.com/myfreeweb/zshuery/blob/master/zshuery.sh)
 # -------------------------------------------------------------------
@@ -350,6 +365,7 @@ alias egrep='egrep --color=auto'
 alias dut="du -hx * | sort -rh | head -10"
 alias dfu="df -hT -x devtmpfs -x tmpfs"
 alias sz='source $HOME/.zshrc'
+alias nvim='VIMINIT= nvim'
 
 [[ $IS_MAC -eq 1 ]] && \
     export LSCOLORS=exfxcxdxbxegedabagacad
