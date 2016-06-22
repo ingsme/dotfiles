@@ -60,6 +60,10 @@ nmap <Leader>[ ysiw[
 nmap <Leader>] ysiw]
 
 nmap <Leader>f :NERDTreeToggle<cr>
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 
 "colorscheme solarized
 colorscheme gruvbox
@@ -76,6 +80,9 @@ set termguicolors
 set laststatus=2
 set number
 set relativenumber
+set hidden
+set ignorecase
+set smartcase
 set cursorline!
 autocmd WinLeave * setlocal nocursorline
 autocmd WinEnter * setlocal cursorline
@@ -102,6 +109,9 @@ nnoremap ^ 0
 " Some usefull options {{{2
 inoremap jk <esc>
 vnoremap jk <esc>
+
+" Visually select the text that was last edited/pasted
+nmap gV `[v`]
 
 " choose buffer with <Leader>1..9 {{{2
 for i in [1,2,3,4,5,6,7,8,9]
