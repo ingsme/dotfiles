@@ -10,6 +10,7 @@ let mapleader="\<space>"
 call plug#begin('~/.config/nvim/plugged')
 Plug 'adonis0147/prettyGuides'
 Plug 'benekastah/neomake'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'freeo/vim-kalisi'
 Plug 'godlygeek/tabular'
@@ -61,7 +62,6 @@ nmap <Leader>] ysiw]
 
 nmap <Leader>f :NERDTreeToggle<cr>
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
@@ -124,30 +124,30 @@ cmap w!! w !sudo tee % >/dev/null
 cmap W!! w !sudo tee % >/dev/null
 
 " Move between Vim and Tmux windows {{{2
-if exists('$TMUX')
-  function! TmuxOrSplitSwitch(wincmd, tmuxdir)
-    let previous_winnr = winnr()
-    execute "wincmd " . a:wincmd
-    if previous_winnr == winnr()
-      " The sleep and & gives time to get back to vim so tmux's focus tracking
-      " can kick in and send us our ^[[O
-      execute "silent !sh -c 'sleep 0.01; tmux select-pane -" . a:tmuxdir . "' &"
-      redraw!
-    endif
-  endfunction
-  let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
-  let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
-  let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
-  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<CR>
-  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<CR>
-  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<CR>
-  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<CR>
-else
-  map <C-h> <C-w>h
-  map <C-j> <C-w>j
-  map <C-k> <C-w>k
-  map <C-l> <C-w>l
-endif
+"if exists('$TMUX')
+"  function! TmuxOrSplitSwitch(wincmd, tmuxdir)
+"    let previous_winnr = winnr()
+"    execute "wincmd " . a:wincmd
+"    if previous_winnr == winnr()
+"      " The sleep and & gives time to get back to vim so tmux's focus tracking
+"      " can kick in and send us our ^[[O
+"      execute "silent !sh -c 'sleep 0.01; tmux select-pane -" . a:tmuxdir . "' &"
+"      redraw!
+"    endif
+"  endfunction
+"  let previous_title = substitute(system("tmux display-message -p '#{pane_title}'"), '\n', '', '')
+"  let &t_ti = "\<Esc>]2;vim\<Esc>\\" . &t_ti
+"  let &t_te = "\<Esc>]2;". previous_title . "\<Esc>\\" . &t_te
+"  nnoremap <silent> <C-h> :call TmuxOrSplitSwitch('h', 'L')<CR>
+"  nnoremap <silent> <C-j> :call TmuxOrSplitSwitch('j', 'D')<CR>
+"  nnoremap <silent> <C-k> :call TmuxOrSplitSwitch('k', 'U')<CR>
+"  nnoremap <silent> <C-l> :call TmuxOrSplitSwitch('l', 'R')<CR>
+"else
+"  map <C-h> <C-w>h
+"  map <C-j> <C-w>j
+"  map <C-k> <C-w>k
+"  map <C-l> <C-w>l
+"endif
 
 
 if has('nvim')
