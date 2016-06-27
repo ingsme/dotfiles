@@ -123,7 +123,7 @@ setopt auto_menu # show completion menu on successive tab press. needs unsetop m
 setopt auto_name_dirs # any parameter that is set to the absolute name of a directory immediately becomes a name for that directory
 setopt complete_in_word # Allow completion from within a word/phrase
 
-unsetopt menu_complete # do not autoselect the first completion entry
+setopt menu_complete # do not autoselect the first completion entry
 
 # ===== Correction
 # setopt correct # spelling correction for commands
@@ -229,8 +229,6 @@ ssh() {
             tmux rename-window "$(echo $* | cut -d @ -f 2 | cut -d . -f 1)"
             command ssh "$@"
             tmux set-window-option automatic-rename "on" 1>/dev/null
-            exit
-            tmux rename-window "zsh"
     else
             command ssh "$@"
     fi

@@ -1,5 +1,10 @@
 #compdef dots
 
+# local -a options
+# options=('install:install dotfiles' 'groups:set or list groups' 'help:get help' 'diff:list changes' 'files:see files')
+# _describe 'values' options
+
+compadd diff files help groups install
 
 # Local Variables:
 # mode: Shell-Script
