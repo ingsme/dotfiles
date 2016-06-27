@@ -69,8 +69,8 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 "colorscheme gruvbox
 "colorscheme kalisi
 "colorscheme OceanicNext
+colorscheme smyck
 set background=dark
-source $XDG_CONFIG_HOME/nvim/smyck.vim
 
 set expandtab
 set tabstop=4
