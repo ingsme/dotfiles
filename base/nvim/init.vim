@@ -88,6 +88,11 @@ set cursorline!
 autocmd WinLeave * setlocal nocursorline
 autocmd WinEnter * setlocal cursorline
 
+if exists('&inccommand')
+    set inccommand=nosplit
+  endif
+endif
+
 " Arrows resize windows {{{2
 noremap <Up> <c-w>+
 noremap <Down> <c-w>-
