@@ -90,7 +90,6 @@ autocmd WinEnter * setlocal cursorline
 
 if exists('&inccommand')
     set inccommand=nosplit
-  endif
 endif
 
 " Arrows resize windows {{{2
