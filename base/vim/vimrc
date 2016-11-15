@@ -177,8 +177,8 @@ let g:tagbar_type_tex = {
 
 NeoBundle 'Valloric/YouCompleteMe', {
       \   'build' : {
-      \     'mac' : './install.sh',
-      \     'unix': './install.sh'
+      \     'mac' : './install.py',
+      \     'unix': './install.py'
       \   }
       \ }
 
@@ -301,11 +301,13 @@ NeoBundle 'gitignore'
 " Text editing features  "{{{2
 NeoBundle  'SirVer/ultisnips'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<leader>u"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger="<leader>s"
+let g:UltiSnipsListSnippets="<leader>l"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
+let g:UltiSnipsSnippetsDir="$XDG_CONFIG_HOME/snippets"
 
 NeoBundle  'honza/vim-snippets'
 NeoBundleLazy 'sjl/gundo.vim', { 'autoload' : {'commands': 'GundoToggle'}}

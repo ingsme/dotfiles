@@ -1,10 +1,57 @@
 #compdef dots
 
-# local -a options
-# options=('install:install dotfiles' 'groups:set or list groups' 'help:get help' 'diff:list changes' 'files:see files')
-# _describe 'values' options
+local -a _1st_args
+_1st_args=(
+  'install:Compile and install one or more configuration files into a location.'
+  'groups:Manage available configuration groups'
+  'help:Show help message'
+  'diff:Get the difference between the source files, and currently installed configuration files.'
+  'files:List out all of the currently tracked configuration files.'
+)
 
-compadd diff files help groups install
+local -a _groups_args
+_groups_args=(
+  'known:List all configuration groups that are available to be specified for a configuration environment list'
+  'current:Get the current configuration environment groups'
+  'set:Specify a space separated list of valid configuration groups to enable for this environment'
+  'clear:Remove all current groups from the configuration file'
+)
+
+__groups() {
+  local curcontext="$curcontext" state line
+  local -A opt_args
+
+  _arguments -C \
+    ':command:->command' \
+    '*::options:->options'
+
+  case $state in
+    (command)
+      _describe -t commands "gem subcommand" _groups_args
+      return
+      ;;
+  esac
+}
+
+local curcontext="$curcontext" state line
+local -A opt_args
+
+_arguments -C \
+  ':command:->command' \
+  '*::options:->options'
+
+case $state in
+  (command)
+    _describe -t commands "gem subcommand" _1st_args
+    return
+    ;;
+  (optins)
+    case $line[1] in
+      (groups)
+        _describe 'values' _groups_args
+        ;;
+    esac
+esac
 
 # Local Variables:
 # mode: Shell-Script

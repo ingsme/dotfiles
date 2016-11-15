@@ -9,11 +9,13 @@ let mapleader="\<space>"
 
 call plug#begin('~/.config/nvim/plugged')
 Plug 'adonis0147/prettyGuides'
-Plug 'benekastah/neomake'
+Plug 'neomake/neomake'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'dojoteef/neomake-autolint'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'freeo/vim-kalisi'
 Plug 'godlygeek/tabular'
+Plug 'honza/vim-snippets'
 Plug 'lilydjwg/colorizer'
 Plug 'mhartington/oceanic-next'
 Plug 'morhetz/gruvbox'
@@ -21,13 +23,19 @@ Plug 'PotatoesMaster/i3-vim-syntax'
 Plug 'puppetlabs/puppet-syntax-vim'
 Plug 'rafi/vim-tinycomment'
 Plug 'Raimondi/delimitMate'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle'}
+Plug 'Shougo/context_filetype.vim'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/neoinclude.vim'
+"Plug 'Shougo/neosnippet.vim'
+"Plug 'Shougo/neosnippet-snippets'
+Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-capslock'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+"Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 call plug#end()
@@ -43,6 +51,55 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_min_count = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
+
+"" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+"autocmd FileType txt NeoCompleteLock
+
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+if !exists('g:deoplete#omni#input_patterns')
+  let g:deoplete#omni#input_patterns = {}
+endif
+
+" deoplete tab-complete
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<BS>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function() abort
+  return deoplete#close_popup() . "\<CR>"
+endfunction
+
+"let g:neosnippet#snippets_directory="$XDG_CONFIG_HOME/snippets"
+"imap <C-j>  <Plug>(neosnippet_expand_or_jump)
+"smap <C-j>  <Plug>(neosnippet_expand_or_jump)
+"xmap <C-j>  <Plug>(neosnippet_expand_target)
+"imap <leader>s <Plug>(neosnippet_expand)
+"smap <expr><TAB> neospnippet#expandable_or_jumpable() ?
+"      \ "<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+set cmdheight=2
+
+"  Ultisnips
+if has("python3")
+  let g:UltiSnipsUsePythonVersion = 3
+endif
+let g:UltiSnipsExpandTrigger="<C-j>"
+let g:UltiSnipsListSnippets="<C-l>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsSnippetsDir="$XDG_CONFIG_HOME/snippets"
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
 
 " Adding comments for i3 filetype
 augroup tinycomment
@@ -64,6 +121,69 @@ nmap <Leader>f :NERDTreeToggle<cr>
 autocmd StdinReadPre * let s:std_in=1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+
+" ============================================================================
+" Python setup
+" Skips if python is not installed in a pyenv virtualenv
+" ============================================================================
+
+" ----------------------------------------------------------------------------
+" Python 2
+" ----------------------------------------------------------------------------
+
+let s:pyenv_python2 = glob(expand('$PYENV_ROOT/versions/neovim2/bin/python'))
+if !empty(s:pyenv_python2)
+  " CheckHealth and docs are inconsistent
+  let g:python_host_prog  = s:pyenv_python2
+  let g:python2_host_prog = s:pyenv_python2
+else
+  let g:loaded_python_provider = 1
+endif
+
+" ----------------------------------------------------------------------------
+" Python 3
+" ----------------------------------------------------------------------------
+
+let s:pyenv_python3 = glob(expand('$PYENV_ROOT/versions/neovim3/bin/python'))
+if !empty(s:pyenv_python3)
+  let g:python3_host_prog = s:pyenv_python3
+else
+  let g:loaded_python3_provider = 1
+endif
+
+" ----------------------------------------------------------------------------
+" Wild and file globbing stuff in command mode
+" ----------------------------------------------------------------------------
+
+set browsedir=buffer                  " browse files in same dir as open file
+set wildmenu                          " Enhanced command line completion.
+set wildmode=list:longest,full        " Complete files using a menu AND list
+set wildignorecase
+set wildignore+=.git,.hg,.svn
+set wildignore+=.sass-cache
+set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*.gem
+set wildignore+=*.*~,*~
+set wildignore+=tags,tags.lock
+set wildignore+=*.aux,*.out,*.toc
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.jar,*.manifest,*.pyc,*.rbc,*.class
+set wildignore+=*.ai,*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png,*.psd,*.webp
+set wildignore+=*.avi,*.m4a,*.mp3,*.oga,*.ogg,*.wav,*.webm
+set wildignore+=*.eot,*.otf,*.ttf,*.woff
+set wildignore+=*.doc,*.pdf
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+set wildignore+=*.swp,.lock,.DS_Store,._*
+
+" ----------------------------------------------------------------------------
+" Completion --
+" ----------------------------------------------------------------------------
+
+" Don't consider = symbol as part filename. Helps for deoplete file source, too.
+set isfname-==
+
+set complete-=i                       " don't complete includes
+set complete-=t                       " don't complete tags
+set completeopt-=preview              " don't open scratch preview (e.g. echodoc)
+set completeopt+=menu,menuone         " show PUM, even for one thing
 
 "colorscheme solarized
 "colorscheme gruvbox
@@ -88,6 +208,14 @@ set cursorline!
 autocmd WinLeave * setlocal nocursorline
 autocmd WinEnter * setlocal cursorline
 
+set timeoutlen=1000
+set ttimeoutlen=0
+augroup FastEscape
+  autocmd!
+  au InsertEnter * set timeoutlen=0
+  au InsertLeave * set timeoutlen=1000
+augroup END
+
 if exists('&inccommand')
     set inccommand=nosplit
 endif
@@ -97,6 +225,15 @@ noremap <Up> <c-w>+
 noremap <Down> <c-w>-
 noremap <Right> <c-w><
 noremap <Left> <c-w>>
+
+" buffer keys
+nnoremap <Leader>bb :b#<CR>
+nnoremap <Leader>bn :bn<CR>
+nnoremap <Leader>bp :bp<CR>
+nnoremap <Leader>bf :bf<CR>
+nnoremap <Leader>bl :bl<CR>
+nnoremap <Leader>bw :w<CR>:bd<CR>
+nnoremap <Leader>bd :bd!<CR>
 
 "Clear current search highlight by double tapping // {{{2
 nmap <silent> // :nohlsearch<CR>
@@ -114,6 +251,13 @@ nnoremap ^ 0
 " Some usefull options {{{2
 inoremap jk <esc>
 vnoremap jk <esc>
+
+" Display tabs and trailing spaces visually
+if (&termencoding ==# 'utf-8' || &encoding ==# 'utf-8')
+  set list listchars=tab:▸\ ,trail:␣,extends:↷,precedes:↶
+else
+  set list listchars=tab:\ \ ,trail:-,extends:>,precedes:<
+endif
 
 " Visually select the text that was last edited/pasted
 nmap gV `[v`]
