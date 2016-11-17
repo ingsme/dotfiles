@@ -307,7 +307,7 @@ let g:UltiSnipsListSnippets="<leader>l"
 "let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetsDir="$XDG_CONFIG_HOME/snippets"
+let g:UltiSnipsSnippetsDir="$XDG_CONFIG_HOME/mysnippets"
 
 NeoBundle  'honza/vim-snippets'
 NeoBundleLazy 'sjl/gundo.vim', { 'autoload' : {'commands': 'GundoToggle'}}

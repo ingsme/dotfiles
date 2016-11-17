@@ -1,3 +1,8 @@
+" ========= XDG ==================== {{{2
+if empty($XDG_CONFIG_HOME)
+  let $XDG_CONFIG_HOME="~/.config"
+endif
+
 " Install vim-plug if not present.
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
@@ -16,11 +21,11 @@ Plug 'dojoteef/neomake-autolint'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'freeo/vim-kalisi'
 Plug 'godlygeek/tabular'
-Plug 'honza/vim-snippets'
+"Plug 'honza/vim-snippets'
 Plug 'lilydjwg/colorizer'
 Plug 'mhartington/oceanic-next'
 Plug 'morhetz/gruvbox'
-Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
 Plug 'puppetlabs/puppet-syntax-vim', { 'for': 'puppet' }
 Plug 'rafi/vim-tinycomment'
 Plug 'Raimondi/delimitMate'
@@ -62,6 +67,11 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 "autocmd FileType txt NeoCompleteLock
 
+" Adding comments for i3 filetype
+augroup tinycomment
+  autocmd FileType i3 setlocal commentstring=#%s
+augroup END
+
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 if !exists('g:deoplete#omni#input_patterns')
@@ -98,7 +108,7 @@ let g:UltiSnipsExpandTrigger="<C-j>"
 let g:UltiSnipsListSnippets="<C-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-let g:UltiSnipsSnippetsDir="$XDG_CONFIG_HOME/snippets"
+let g:UltiSnipsSnippetsDir=$XDG_CONFIG_HOME.'/mysnippets'
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
