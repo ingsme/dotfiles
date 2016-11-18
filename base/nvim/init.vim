@@ -1,8 +1,3 @@
-" ========= XDG ==================== {{{2
-if empty($XDG_CONFIG_HOME)
-  let $XDG_CONFIG_HOME="~/.config"
-endif
-
 " Install vim-plug if not present.
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
@@ -15,16 +10,17 @@ let mapleader="\<space>"
 call plug#begin('~/.config/nvim/plugged')
 Plug 'adonis0147/prettyGuides'
 Plug 'airblade/vim-gitgutter'
-Plug 'neomake/neomake'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'dojoteef/neomake-autolint'
+"Plug 'ervandew/supertab'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'freeo/vim-kalisi'
 Plug 'godlygeek/tabular'
-"Plug 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 Plug 'lilydjwg/colorizer'
 Plug 'mhartington/oceanic-next'
 Plug 'morhetz/gruvbox'
+Plug 'neomake/neomake'
 Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
 Plug 'puppetlabs/puppet-syntax-vim', { 'for': 'puppet' }
 Plug 'rafi/vim-tinycomment'
@@ -78,25 +74,64 @@ if !exists('g:deoplete#omni#input_patterns')
   let g:deoplete#omni#input_patterns = {}
 endif
 
-" deoplete tab-complete
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<BS>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function() abort
-  return deoplete#close_popup() . "\<CR>"
+ inoremap <TAB> {{{1
+" Next menu item, expand snippet, jump to next placeholder or insert literal tab
+let g:UltiSnipsJumpForwardTrigger="<NOP>"
+let g:ulti_expand_or_jump_res = 0
+function! ExpandSnippetOrJumpForwardOrReturnTab()
+    let snippet = UltiSnips#ExpandSnippetOrJump()
+    if g:ulti_expand_or_jump_res > 0
+        return snippet
+    else
+        return "\<TAB>"
+    endif
+endfunction
+inoremap <expr> <TAB>
+    \ pumvisible() ? "\<C-n>" :
+    \ "<C-R>=ExpandSnippetOrJumpForwardOrReturnTab()<CR>"
+" snoremap <TAB> {{{1
+" jump to next placeholder otherwise do nothing
+snoremap <buffer> <silent> <TAB>
+    \ <ESC>:call UltiSnips#JumpForwards()<CR>
+
+" inoremap <S-TAB> {{{1
+" previous menu item, jump to previous placeholder or do nothing
+let g:UltiSnipsJumpBackwordTrigger = "<NOP>"
+inoremap <expr> <S-TAB>
+    \ pumvisible() ? "\<C-p>" :
+    \ "<C-R>=UltiSnips#JumpBackwards()<CR>"
+
+" snoremap <S-TAB> {{{1
+" jump to previous placeholder otherwise do nothing
+snoremap <buffer> <silent> <S-TAB>
+    \ <ESC>:call UltiSnips#JumpBackwards()<CR>
+
+" inoremap <CR> {{{1
+" expand snippet, close menu or insert newline
+let g:UltiSnipsExpandTrigger = "<NOP>"
+let g:ulti_expand_or_jump_res = 0
+inoremap <silent> <CR> <C-r>=<SID>ExpandSnippetOrReturnEmptyString()<CR>
+function! s:ExpandSnippetOrReturnEmptyString()
+    if pumvisible()
+    let snippet = UltiSnips#ExpandSnippetOrJump()
+    if g:ulti_expand_or_jump_res > 0
+        return snippet
+    else
+        return "\<C-y>\<CR>"
+    endif
+    else
+        return "\<CR>"
 endfunction
 
-"let g:neosnippet#snippets_directory="$XDG_CONFIG_HOME/snippets"
-"imap <C-j>  <Plug>(neosnippet_expand_or_jump)
-"smap <C-j>  <Plug>(neosnippet_expand_or_jump)
-"xmap <C-j>  <Plug>(neosnippet_expand_target)
-"imap <leader>s <Plug>(neosnippet_expand)
-"smap <expr><TAB> neospnippet#expandable_or_jumpable() ?
-"      \ "<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+" inoremap <C-h> {{{1
+inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
+
+" inoremap <BS> {{{1
+inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
+
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
 
 set cmdheight=2
 
@@ -142,6 +177,7 @@ vmap <Leader>a: :Tabularize /:\zs<CR>
 
 " Move between Vim and Tmux windows {{{2
 if exists('$TMUX')
+
   function! TmuxOrSplitSwitch(wincmd, tmuxdir)
     let previous_winnr = winnr()
     execute "wincmd " . a:wincmd
@@ -175,25 +211,25 @@ endif
 " Python 2
 " ----------------------------------------------------------------------------
 
-let s:pyenv_python2 = glob(expand('$PYENV_ROOT/versions/neovim2/bin/python'))
-if !empty(s:pyenv_python2)
-  " CheckHealth and docs are inconsistent
-  let g:python_host_prog  = s:pyenv_python2
-  let g:python2_host_prog = s:pyenv_python2
-else
-  let g:loaded_python_provider = 1
-endif
+"let s:pyenv_python2 = glob(expand('$PYENV_ROOT/versions/neovim2/bin/python'))
+"if !empty(s:pyenv_python2)
+"  " CheckHealth and docs are inconsistent
+"  let g:python_host_prog  = s:pyenv_python2
+"  let g:python2_host_prog = s:pyenv_python2
+"else
+"  let g:loaded_python_provider = 1
+"endif
 
 " ----------------------------------------------------------------------------
 " Python 3
 " ----------------------------------------------------------------------------
 
-let s:pyenv_python3 = glob(expand('$PYENV_ROOT/versions/neovim3/bin/python'))
-if !empty(s:pyenv_python3)
-  let g:python3_host_prog = s:pyenv_python3
-else
-  let g:loaded_python3_provider = 1
-endif
+"let s:pyenv_python3 = glob(expand('$PYENV_ROOT/versions/neovim3/bin/python'))
+"if !empty(s:pyenv_python3)
+"  let g:python3_host_prog = s:pyenv_python3
+"else
+"  let g:loaded_python3_provider = 1
+"endif
 
 " ----------------------------------------------------------------------------
 " Wild and file globbing stuff in command mode
