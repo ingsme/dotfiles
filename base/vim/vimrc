@@ -1,4 +1,4 @@
-  " Initialisation {{{1
+" Initialisation {{{1
 set nocompatible
 set nomore
 
@@ -37,38 +37,48 @@ let mapleader="\<space>"
 " Initialization  {{{2
 filetype off
 
-let GotTheNeo=1
-let neobundle_readme=expand('$XDG_CONFIG_HOME/vim/bundle/neobundle.vim/README.md')
-if !filereadable(neobundle_readme)
-  echo ""
-  silent !mkdir -p $XDG_CONFIG_HOME/vim/bundle
-  silent !git clone https://github.com/Shougo/neobundle.vim $XDG_CONFIG_HOME/vim/bundle/neobundle.vim
-  let GotTheNeo=0
+"let GotTheNeo=1
+"let neobundle_readme=expand('$XDG_CONFIG_HOME/vim/bundle/neobundle.vim/README.md')
+"if !filereadable(neobundle_readme)
+"  echo ""
+"  silent !mkdir -p $XDG_CONFIG_HOME/vim/bundle
+"  silent !git clone https://github.com/Shougo/neobundle.vim $XDG_CONFIG_HOME/vim/bundle/neobundle.vim
+"  let GotTheNeo=0
+"endif
+
+" Install vim-plug if not present.
+let GotPlugged=1
+if empty(glob('~/.config/vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/vim/autoload/plug.vim --create-dirs
+   \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
+  let GotPlugged=0
 endif
 
-set rtp+=$XDG_CONFIG_HOME/vim/bundle/neobundle.vim
+"set rtp+=$XDG_CONFIG_HOME/vim/bundle/neobundle.vim
 "set rtp+=$XDG_CONFIG_HOME/vim/neobundles
-call neobundle#begin(expand("$XDG_CONFIG_HOME/vim/bundle"))
+"call neobundle#begin(expand("$XDG_CONFIG_HOME/vim/bundle"))
 
 " Let NeoBundle manage NeoBundle
 " Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
+"NeoBundleFetch 'Shougo/neobundle.vim'
 
+call plug#begin('~/.config/nvim/plugged')
 " Look and Feel  {{{2
-NeoBundle 'altercation/vim-colors-solarized'
+Plug 'altercation/vim-colors-solarized'
 let g:solarized_termtrans=1
 let g:solarized_termcolors=256
 let g:solarized_contrast="high"
 let g:solarized_visibility="high"
 
-NeoBundle 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 let g:gruvbox_contrast_dark="hard"
 
-NeoBundle 'w0ng/vim-hybrid'
-NeoBundle 'zeis/vim-kolor'
-NeoBundle 'tomasr/molokai'
-NeoBundle 'vim-airline/vim-airline'
-NeoBundle 'vim-airline/vim-airline-themes'
+Plug 'w0ng/vim-hybrid'
+Plug 'zeis/vim-kolor'
+Plug 'tomasr/molokai'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 set laststatus=2
 "let g:airline_theme='raven'
 let g:airline_theme='luna'
@@ -81,23 +91,12 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_min_count = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 
-NeoBundle 'adonis0147/prettyGuides'
+Plug 'adonis0147/prettyGuides'
 " IDE settings  {{{2
-NeoBundle 'scrooloose/nerdtree', {
-      \ 'autoload': {
-      \   'commands': [
-      \     'NERDTreeMirrorToggle', 'NERDTree', 'NERDTreeToggle', 'NERDTreeClose']}}
-nmap <silent> <leader>f <Plug>NERDTreeToggle<CR>
-"NeoBundle 'jistr/vim-nerdtree-tabs', {
-"      \ 'autoload': {
-"      \   'commands': ["NERDTreeToggle", "NERDTree", "NERDTreeClose"]}}
-"nmap <silent> <leader>f <Plug>NERDTreeMirrorToggle<CR>
-"let g:nerdtree_tabs_open_on_console_startup = 0
-"let NERDTreeShowHidden=1
-"let NERDTreeShowLineNumbers=1
-"let NERDTreeIgnore=['\.git','\.hg','\.vagrant']
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+nmap <silent> <leader>f :NERDTreeToggle<CR>
 
-NeoBundle 'scrooloose/syntastic'
+Plug 'scrooloose/syntastic'
 " map for syntastic errors window
 nnoremap <LEADER>e :SyntasticCheck<CR>:Errors<CR>
 " syntastic checking mode
@@ -113,8 +112,8 @@ let g:syntastic_check_on_open=1
 " autoclose syntastic's error windown when no errors
 let g:syntastic_auto_loc_list=2
 
-NeoBundle 'xolox/vim-misc'
-NeoBundle 'majutsushi/tagbar' "{{{3
+Plug 'xolox/vim-misc'
+Plug 'majutsushi/tagbar' "{{{3
 nmap <silent> <leader>tb :TagbarToggle<CR>
 "autocmd FileType python,puppet nested :TagbarOpen
 let g:tagbar_type_css = {
@@ -176,18 +175,25 @@ let g:tagbar_type_tex = {
       \ 'sort' : 0,
       \ } "}}}3
 
-"NeoBundle 'Valloric/YouCompleteMe', {
-"      \   'build' : {
-"      \     'mac' : './install.py',
-"      \     'unix': './install.py'
-"      \   }
-"      \ }
+" GIT  {{{2
+Plug 'airblade/vim-gitgutter'
+let g:gitgutter_max_signs = 1000
 
-NeoBundle 'Shougo/neocomplete.vim', {
-      \ 'depends': 'Shougo/context_filetype.vim',
-      \ 'disabled': ! has('lua'),
-      \ 'insert': 1
-      \ }
+Plug 'tpope/vim-fugitive'
+nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gd :Gdiff<CR>
+nnoremap <silent> <leader>gc :Gcommit<CR>
+nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>gl :Glog<CR>
+nnoremap <silent> <leader>gp :Git push<CR>
+nnoremap <silent> <leader>gw :Gwrite<CR>
+nnoremap <silent> <leader>gr :Gremove<CR>
+autocmd BufReadPost fugitive://* set bufhidden=delete
+
+Plug 'gitignore'
+
+" Completion {{{2
+Plug 'Shougo/neocomplete.vim'
 nnoremap <Leader>x :NeoCompleteToggle<CR> "{{{
 let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
@@ -230,78 +236,10 @@ autocmd FileType txt NeoCompleteLock
 "  let g:neocomplete#force_omni_input_patterns = {}
 "endif "}}}
 
-" Unite  {{{2
-"NeoBundle 'Shougo/unite.vim', {
-"      \ 'depends': 'Shougo/tabpagebuffer.vim',
-"      \ 'commands': [
-"      \   { 'name': 'Unite', 'complete': 'customlist,unite#complete_source' }
-"      \ ]}
-"if executable('ag')
-"  let g:unite_source_grep_command='ag'
-"  let g:unite_source_grep_default_opts='--nocolor --line-numbers --nogroup -S -C4'
-"  let g:unite_source_grep_recursive_opt=''
-"elseif executable('ack')
-"  let g:unite_source_grep_command='ack'
-"  let g:unite_source_grep_default_opts='--no-heading --no-color -C4'
-"  let g:unite_source_grep_recursive_opt=''
-"endif
-"function! s:unite_settings()
-"  nmap <buffer> Q <plug>(unite_exit)
-"  nmap <buffer> <esc> <plug>(unite_exit)
-  "  imap <buffer> <esc> <plug>(unite_exit)
-"endfunction
-"autocmd FileType unite call s:unite_settings()
-"nmap f [unite]
-"nnoremap [unite] <nop>
-"nnoremap <silent> [unite]<space> :<C-u>Unite -toggle -auto-resize -start-insert -buffer-name=mixed file_rec/async:! buffer file_mru bookmark<cr><c-u>
-"nnoremap <silent> [unite]f :<C-u>Unite -toggle -auto-resize -buffer-name=files file_rec/async:!<cr><c-u>
-"nnoremap <silent> [unite]e :<C-u>Unite -buffer-name=recent file_mru<cr>
-"nnoremap <silent> [unite]y :<C-u>Unite -buffer-name=yanks history/yank<cr>
-"nnoremap <silent> [unite]l :<C-u>Unite -auto-resize -buffer-name=line line<cr>
-"nnoremap <silent> [unite]b :<C-u>Unite -auto-resize -buffer-name=buffers buffer<cr>
-"nnoremap <silent> [unite]/ :<C-u>Unite -no-quit -buffer-name=search grep:.<cr>
-"nnoremap <silent> [unite]m :<C-u>Unite -auto-resize -buffer-name=mappings mapping<cr>
-"nnoremap <silent> [unite]s :<C-u>Unite -quick-match buffer<cr>
-"
-"NeoBundleLazy 'Shougo/neomru.vim', {'autoload':{'unite_sources':'file_mru'}}
-"NeoBundleLazy 'osyo-manga/unite-airline_themes', {'autoload':{'unite_sources':'airline_themes'}} "{{{
-"nnoremap <silent> [unite]a :<C-u>Unite -winheight=10 -auto-preview -buffer-name=airline_themes airline_themes<cr>
-"}}}
-"NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload':{'unite_sources':'colorscheme'}} "{{{
-"nnoremap <silent> [unite]c :<C-u>Unite -winheight=10 -auto-preview -buffer-name=colorschemes colorscheme<cr>
-"}}}
-"NeoBundleLazy 'tsukkee/unite-tag', {'autoload':{'unite_sources':['tag','tag/file', 'tag/include']}} "{{{
-"nnoremap <silent> [unite]t :<C-u>Unite -auto-resize -buffer-name=tag tag tag/file<cr>
-"}}}
-"NeoBundleLazy 'Shougo/unite-outline', {'autoload':{'unite_sources':'outline'}} "{{{
-"nnoremap <silent> [unite]o :<C-u>Unite -auto-resize -buffer-name=outline outline<cr>
-"}}}
-"NeoBundleLazy 'Shougo/unite-help', {'autoload':{'unite_sources':'help'}} "{{{
-"nnoremap <silent> [unite]h :<C-u>Unite -auto-resize -buffer-name=help help<cr>
-"}}}
-"NeoBundleLazy 'Shougo/junkfile.vim', {'autoload':{'commands':'JunkfileOpen','unite_sources':['junkfile','junkfile/new']}} "{{{
-"nnoremap <silent> [unite]j :<C-u>Unite -auto-resize -buffer-name=junk junkfile junkfile/new<cr>
-"}}}
-" GIT  {{{2
-NeoBundle 'airblade/vim-gitgutter'
-let g:gitgutter_max_signs = 1000
 
-NeoBundle 'tpope/vim-fugitive'
-nnoremap <silent> <leader>gs :Gstatus<CR>
-nnoremap <silent> <leader>gd :Gdiff<CR>
-nnoremap <silent> <leader>gc :Gcommit<CR>
-nnoremap <silent> <leader>gb :Gblame<CR>
-nnoremap <silent> <leader>gl :Glog<CR>
-nnoremap <silent> <leader>gp :Git push<CR>
-nnoremap <silent> <leader>gw :Gwrite<CR>
-nnoremap <silent> <leader>gr :Gremove<CR>
-autocmd BufReadPost fugitive://* set bufhidden=delete
-
-NeoBundle 'gitignore'
-
-NeoBundle 'Konfekt/FastFold'
 " Text editing features  "{{{2
-NeoBundle  'SirVer/ultisnips'
+Plug 'Konfekt/FastFold'
+Plug  'SirVer/ultisnips'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 "let g:UltiSnipsExpandTrigger="<leader>s"
 "let g:UltiSnipsListSnippets="<leader>l"
@@ -366,18 +304,18 @@ inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 " inoremap <BS> {{{1
 inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
 
-"NeoBundle  'honza/vim-snippets'
-NeoBundleLazy 'sjl/gundo.vim', { 'autoload' : {'commands': 'GundoToggle'}}
+"Plug  'honza/vim-snippets'
+Plug 'sjl/gundo.vim', { 'on': 'GundoToggle'}
 nmap <Leader>u :GundoToggle<CR>
 let g:gundo_preview_bottom=1
 
-NeoBundle 'tpope/vim-characterize'
-"NeoBundle "vits/ZoomWin"
+Plug 'tpope/vim-characterize'
+"Plug "vits/ZoomWin"
 " Zoom in and out of current window with <Leader>gz
 "map <silent> <Leader>gz call Zoomwin()
 
-NeoBundle 'briandoll/change-inside-surroundings.vim'
-NeoBundle 'tpope/vim-surround'
+Plug 'briandoll/change-inside-surroundings.vim'
+Plug 'tpope/vim-surround'
 nmap <Leader>" ysiw"
 nmap <Leader>' ysiw'
 nmap <Leader>( ysiw(
@@ -387,17 +325,17 @@ nmap <Leader>} ysiw}
 nmap <Leader>[ ysiw[
 nmap <Leader>] ysiw]
 
-NeoBundle 'terryma/vim-expand-region'
+Plug 'terryma/vim-expand-region'
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'Raimondi/delimitMate'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tpope/vim-capslock'
-NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'justinmk/vim-sneak'
-"NeoBundle 'godlygeek/tabular'
+Plug 'tpope/vim-repeat'
+Plug 'Raimondi/delimitMate'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-capslock'
+Plug 'tpope/vim-unimpaired'
+Plug 'justinmk/vim-sneak'
+"Plug 'godlygeek/tabular'
 "nmap <Leader>a== :Tabularize /=<CR>
 "vmap <Leader>a== :Tabularize /=<CR>
 "nmap <Leader>a> :Tabularize /=><CR>
@@ -405,39 +343,35 @@ NeoBundle 'justinmk/vim-sneak'
 "nmap <Leader>a: :Tabularize /:\zs<CR>
 "vmap <Leader>a: :Tabularize /:\zs<CR>
 
-NeoBundleLazy 'gorkunov/smartpairs.vim', {
-      \ 'autoload': {
-      \  'commands': [ 'SmartPairs', 'SmartPairsI', 'SmartPairsA' ],
-      \  'mappings': [[ 'n', 'viv' ], [ 'v', 'v' ]]}}
-NeoBundle 'rafi/vim-tinycomment.git', {
-      \ 'directory': 'tinycomment',
-      \ 'augroup': 'tinycomment',
-      \ 'commands': [ 'TinyCommentLines', 'TinyCommentBlock' ],
-      \ 'mappings': [
-      \ [ 'n', '<leader>v' ], [ 'v', '<leader>v' ],
-      \ [ 'v', '<leader>V' ]
-      \ ]}
+Plug 'gorkunov/smartpairs.vim'
+let g:smartpairs_start_from_word = 1
+
+Plug 'rafi/vim-tinycomment'
+nmap <Leader>v :TinyCommentLines<CR>
+vmap <Leader>v :TinyCommentLines<CR>
+vmap <Leader>V :TinyCommentBlock<CR>
+"      \ 'directory': 'tinycomment',
+"      \ 'augroup': 'tinycomment',
+"      \ 'commands': [ 'TinyCommentLines', 'TinyCommentBlock' ],
+"      \ 'mappings': [
+"      \ [ 'n', '<leader>v' ], [ 'v', '<leader>v' ],
+"      \ [ 'v', '<leader>V' ]
+"      \ ]}
 " Adding comments for i3 filetype
 augroup tinycomment
   autocmd FileType i3 setlocal commentstring=#%s
 augroup END
 
-"NeoBundle 'nelstrom/vim-markdown-folding'
+"Plug 'nelstrom/vim-markdown-folding'
 
 " Syntax  {{{2
-NeoBundleLazy 'klen/python-mode', {'autoload': {'filetypes': ['python']}}
+Plug 'klen/python-mode', { 'for': 'python'}
 " Neocomplete handles autocompletion
 let g:pymode_rope_completion = 0
 let g:pymode_lint_on_fly = 1
 nmap <leader>la :PymodeLintAuto<CR>
 
-NeoBundleLazy 'davidhalter/jedi-vim', {
-      \ 'autoload': { 'filetypes' : 'python' },
-      \ 'build': {
-      \     'unix': 'git submodule update --init',
-      \     'mac': 'git submodule update --init',
-      \   },
-      \ }
+Plug 'davidhalter/jedi-vim', { 'for': 'python', 'do': 'git submodule update --init' }
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#popup_on_dot = 0
 let g:jedi#popup_select_first = 0
@@ -450,58 +384,45 @@ let g:jedi#documentation_command = "<leader>pk"
 let g:jedi#usages_command = "<leader>pu"
 let g:jedi#rename_command = "<leader>pr"
 
-NeoBundle 'jez/vim-c0'
-NeoBundle 'jez/vim-ispc'
-NeoBundle 'PotatoesMaster/i3-vim-syntax'
-NeoBundle 'lilydjwg/colorizer'
-NeoBundle 'kchmck/vim-coffee-script',{'autoload' : {
-      \ 'commands' : [
-      \ 'CoffeeCompile', 'CoffeeLint', 'CoffeeMake',
-      \ 'CoffeeRun', 'CoffeeWatch'],
-      \ 'filetypes' : ['coffee']
-      \ }}
-NeoBundleLazy 'vim-ruby/vim-ruby', {
-      \ 'autoload': {
-      \   'filetypes': 'ruby',
-      \ }}
-NeoBundleLazy 'rodjek/vim-puppet', {
-      \ 'autoload' : {
-      \   'filetypes': 'puppet',
-      \}}
+Plug 'jez/vim-c0'
+Plug 'jez/vim-ispc'
+Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'lilydjwg/colorizer'
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
 
 " Misc  {{{2
-NeoBundle 'mhinz/vim-startify'
+Plug 'mhinz/vim-startify'
 let g:startify_change_to_vcs_root = 1
 let g:startify_session_dir = 'directory/sessions'
 let g:startify_show_sessions = 1
 autocmd User Startified setlocal buftype=
 
-NeoBundle 'jez/vim-superman'
-NeoBundle 'ingsme/create_start_fold_marker.vim'
-NeoBundle 'christoomey/vim-tmux-navigator'
-"NeoBundle 'edkolev/tmuxline.vim'
-NeoBundle 'Shougo/vimproc.vim', {
-      \ 'build' : {
-      \     'windows' : 'tools\\update-dll-mingw',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'linux' : 'make',
-      \     'unix' : 'gmake',
-      \    },
-      \ }
+Plug 'jez/vim-superman'
+Plug 'ingsme/create_start_fold_marker.vim'
+Plug 'christoomey/vim-tmux-navigator'
+"Plug 'edkolev/tmuxline.vim'
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
-if GotTheNeo == 0
-  echo "Installing Bundles, please ignore key map error messages"
+"if GotTheNeo == 0
+"  echo "Installing Bundles, please ignore key map error messages"
+"  echo ""
+"  :NeoBundleInstall
+"endif
+"call neobundle#end()
+if GotPlugged == 0
+  echo "Installing plugins"
   echo ""
-  :NeoBundleInstall
+  :PlugInstall
 endif
-call neobundle#end()
+call plug#end()
 
 filetype plugin indent on
 
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
-NeoBundleCheck
+":PlugCheck
 
 " General settings  {{{1
 set number
