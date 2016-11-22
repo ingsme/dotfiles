@@ -30,7 +30,7 @@ source $XDG_CONFIG_HOME/zplug/init.zsh
 
 fpath=($fpath $XDG_CONFIG_HOME/zsh/completions)
 
-zplug "b4b4r07/zplug"
+zplug "zplug/zplug"
 zplug "zsh-users/zsh-syntax-highlighting", nice:10
 zplug "zsh-users/zsh-history-substring-search", nice:11
 zplug "zsh-users/zsh-completions"
@@ -162,6 +162,9 @@ zstyle ':completion::complete:*' cache-path $XDG_CACHE_HOME/zsh//$HOST
 
 # Fallback to built in ls colors
 zstyle ':completion:*' list-colors ''
+
+# Make cd ../ tab completion work
+zstyle ':completion:*' special-dirs true
 
 # Make the list prompt friendly
 zstyle ':completion:*' list-prompt '%SAt %p: Hit TAB for more, or the character to insert%s'
@@ -349,22 +352,67 @@ function precmd {
 [[ $IS_MAC -eq 1 ]] && \
     alias ls='ls -Gh'
 
-alias pwdb="cd && keepassx -cfg $HOME/.pwdb.ini &"
-alias hjemmekontor="rdesktop -g 1280x960 -a 16 -k no -d UiB hjemmekontor.uib.no &"
-alias midgard="rdesktop -g 1280x960 -a 16 -k no -d UiB midgard.uib.no &"
+alias -- -='cd -'
+alias ...=../..
+alias ....=../../..
+alias .....=../../../..
+alias ......=../../../../..
+alias 1='cd -'
+alias 2='cd -2'
+alias 3='cd -3'
+alias 4='cd -4'
+alias 5='cd -5'
+alias 6='cd -6'
+alias 7='cd -7'
+alias 8='cd -8'
+alias 9='cd -9'
+alias _=sudo
+alias afind='ack-grep -il'
 alias aps='aptitude search'
 alias apss='aptitude show'
-alias ll='ls -al'
-alias la='ls -A'
-alias l='ls -l'
-alias mkdir='mkdir -pv'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
+alias colorize=colorize_via_pygmentize
+alias d='dirs -v | head -10'
+alias dfu='df -hT -x devtmpfs -x tmpfs'
+alias dut='du -hx * | sort -rh | head -10'
 alias egrep='egrep --color=auto'
-alias dut="du -hx * | sort -rh | head -10"
-alias dfu="df -hT -x devtmpfs -x tmpfs"
-alias sz='source $HOME/.zshrc'
+alias fgrep='fgrep --color=auto'
+alias globurl='noglob urlglobber '
+alias grep='grep --color=auto'
+alias history='fc -l 1'
+alias hjemmekontor='rdesktop -g 1280x960 -a 16 -k no -d UiB hjemmekontor.uib.no &'
+alias l='ls -l'
+alias la='ls -A'
+alias ll='ls -al'
+alias ls='ls --group-directories-first --color=auto -h'
+alias lsa='ls -lah'
+alias md='mkdir -p'
+alias midgard='rdesktop -g 1280x960 -a 16 -k no -d UiB midgard.uib.no &'
+alias mkdir='mkdir -pv'
 alias nvim='VIMINIT= nvim'
+alias please=sudo
+alias po=popd
+alias pu=pushd
+alias pwdb='cd && keepassx -cfg /home/ism089/.pwdb.ini &'
+alias rd=rmdir
+alias sz='source $HOME/.zshrc'
+alias which-command=whence
+
+# alias pwdb="cd && keepassx -cfg $HOME/.pwdb.ini &"
+# alias hjemmekontor="rdesktop -g 1280x960 -a 16 -k no -d UiB hjemmekontor.uib.no &"
+# alias midgard="rdesktop -g 1280x960 -a 16 -k no -d UiB midgard.uib.no &"
+# alias aps='aptitude search'
+# alias apss='aptitude show'
+# alias ll='ls -al'
+# alias la='ls -A'
+# alias l='ls -l'
+# alias mkdir='mkdir -pv'
+# alias grep='grep --color=auto'
+# alias fgrep='fgrep --color=auto'
+# alias egrep='egrep --color=auto'
+# alias dut="du -hx * | sort -rh | head -10"
+# alias dfu="df -hT -x devtmpfs -x tmpfs"
+# alias sz='source $HOME/.zshrc'
+# alias nvim='VIMINIT= nvim'
 
 [[ $IS_MAC -eq 1 ]] && \
     export LSCOLORS=exfxcxdxbxegedabagacad
