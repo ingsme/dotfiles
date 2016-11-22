@@ -111,7 +111,7 @@ fi
 #export $( dex /etc/xdg/autostart/gnome-keyring-ssh.desktop )
 
 # Use keychain if it exists
-#KEYCHAIN=$(which keychain)
-#if [ ! -z "$KEYCHAIN" ]; then
-#    eval $(keychain --eval id_rsa DD293300)
-#fi
+KEYCHAIN=$(which keychain)
+if [ ! -z "$KEYCHAIN" ]; then
+    eval $(keychain --eval --agents ssh id_rsa)
+fi

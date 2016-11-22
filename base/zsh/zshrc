@@ -26,7 +26,7 @@ fi
 
 # Zplug
 export ZPLUG_HOME=$XDG_CONFIG_HOME/zplug
-source $XDG_CONFIG_HOME/zplug/zplug
+source $XDG_CONFIG_HOME/zplug/init.zsh
 
 fpath=($fpath $XDG_CONFIG_HOME/zsh/completions)
 
