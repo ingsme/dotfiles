@@ -63,8 +63,9 @@ endif
 " Required:
 "NeoBundleFetch 'Shougo/neobundle.vim'
 
-call plug#begin('~/.config/nvim/plugged')
+call plug#begin('~/.config/vim/plugged')
 " Look and Feel  {{{2
+Plug 'brendonrapp/smyck-vim'
 Plug 'altercation/vim-colors-solarized'
 let g:solarized_termtrans=1
 let g:solarized_termcolors=256
@@ -495,8 +496,8 @@ endif
 " Colors and fonts {{{2
 "colorscheme solarized
 "colorscheme hybrid
-colorscheme gruvbox
-"colorscheme kolor
+"colorscheme gruvbox
+colorscheme smyck
 set background=dark
 
 " Display tabs and trailing spaces visually
