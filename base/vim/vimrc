@@ -72,6 +72,9 @@ let g:solarized_termcolors=256
 let g:solarized_contrast="high"
 let g:solarized_visibility="high"
 
+" support for the pterosaur firefox plugin
+Plug 'ardagnir/vimbed'
+
 Plug 'morhetz/gruvbox'
 let g:gruvbox_contrast_dark="hard"
 
@@ -196,7 +199,7 @@ Plug 'gitignore'
 " Completion {{{2
 Plug 'Shougo/neocomplete.vim'
 nnoremap <Leader>x :NeoCompleteToggle<CR> "{{{
-let g:acp_enableAtStartup = 0
+"let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 let g:neocomplete#enable_camel_case = 1
@@ -243,12 +246,12 @@ Plug 'Konfekt/FastFold'
 Plug  'SirVer/ultisnips'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 "let g:UltiSnipsExpandTrigger="<leader>s"
-"let g:UltiSnipsListSnippets="<leader>l"
+let g:UltiSnipsListSnippets="<C-ø>"
 "let g:UltiSnipsJumpForwardTrigger="<c-b>"
 "let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetsDir="$XDG_CONFIG_HOME/mysnippets"
+let g:UltiSnipsSnippetsDir=expand("$XDG_CONFIG_HOME/mysnippets")
 
 " inoremap <TAB> {{{1
 " Next menu item, expand snippet, jump to next placeholder or insert literal tab
@@ -336,13 +339,13 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-capslock'
 Plug 'tpope/vim-unimpaired'
 Plug 'justinmk/vim-sneak'
-"Plug 'godlygeek/tabular'
-"nmap <Leader>a== :Tabularize /=<CR>
-"vmap <Leader>a== :Tabularize /=<CR>
-"nmap <Leader>a> :Tabularize /=><CR>
-"vmap <Leader>a> :Tabularize /=><CR>
-"nmap <Leader>a: :Tabularize /:\zs<CR>
-"vmap <Leader>a: :Tabularize /:\zs<CR>
+Plug 'godlygeek/tabular'
+nmap <Leader>a== :Tabularize /=<CR>
+vmap <Leader>a== :Tabularize /=<CR>
+nmap <Leader>a> :Tabularize /=><CR>
+vmap <Leader>a> :Tabularize /=><CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
 
 Plug 'gorkunov/smartpairs.vim'
 let g:smartpairs_start_from_word = 1

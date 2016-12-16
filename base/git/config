@@ -24,7 +24,8 @@
 [column]
     ui = auto
 [merge]
-	tool = kdiff3
+	tool = vimdiff
+    guitool = meld
 [github]
 	user = ingsme
 [push]
