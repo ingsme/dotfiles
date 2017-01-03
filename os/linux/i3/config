@@ -172,6 +172,12 @@ bar {
 
 #exec --no-startup-id feh --bg-scale ~/Pictures/vim-shortcuts.png
 
+# Switch to commonly used programs
+bindsym $mod+b [class="(?i)firefox"] focus
+bindsym $mod+i [class="(?i)hexchat"] focus
+bindsym $mod+t [class="(?i)polly"] focus
+bindsym $mod+m [class="(?i)thunderbird"] focus
+
 ######################################
 # WORKSPACE KEYBINDINGS AND SETTINGS #
 ######################################

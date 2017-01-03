@@ -73,7 +73,9 @@ let g:solarized_contrast="high"
 let g:solarized_visibility="high"
 
 " support for the pterosaur firefox plugin
-Plug 'ardagnir/vimbed'
+"Plug 'ardagnir/vimbed'
+
+Plug 'vimperator/vimperator.vim'
 
 Plug 'morhetz/gruvbox'
 let g:gruvbox_contrast_dark="hard"
