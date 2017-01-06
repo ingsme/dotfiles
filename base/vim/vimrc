@@ -96,6 +96,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_min_count = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
+"let g:airline#extensions#tabline#buffer_nr_format = '%s'
+let g:airline#extensions#tmuxline#enabled = 1
 
 Plug 'adonis0147/prettyGuides'
 " IDE settings  {{{2
@@ -247,13 +249,13 @@ autocmd FileType txt NeoCompleteLock
 Plug 'Konfekt/FastFold'
 Plug  'SirVer/ultisnips'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-"let g:UltiSnipsExpandTrigger="<leader>s"
+let g:UltiSnipsExpandTrigger="<leader>s"
 let g:UltiSnipsListSnippets="<C-ø>"
 "let g:UltiSnipsJumpForwardTrigger="<c-b>"
 "let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetsDir=expand("$XDG_CONFIG_HOME/mysnippets")
+let g:UltiSnipsSnippetDirectories=[$XDG_CONFIG_HOME.'/mysnippets']
 
 " inoremap <TAB> {{{1
 " Next menu item, expand snippet, jump to next placeholder or insert literal tab
@@ -310,10 +312,11 @@ inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
 " inoremap <BS> {{{1
 inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
 
-"Plug  'honza/vim-snippets'
-Plug 'sjl/gundo.vim', { 'on': 'GundoToggle'}
-nmap <Leader>u :GundoToggle<CR>
-let g:gundo_preview_bottom=1
+Plug  'honza/vim-snippets'
+Plug 'simnalamburt/vim-mundo', { 'on': 'MundoToggle'}
+nmap <Leader>u :MundoToggle<CR>
+let g:mundo_preview_bottom=1
+let g:mundo_prefer_python3=1
 
 Plug 'tpope/vim-characterize'
 "Plug "vits/ZoomWin"
@@ -348,6 +351,16 @@ nmap <Leader>a> :Tabularize /=><CR>
 vmap <Leader>a> :Tabularize /=><CR>
 nmap <Leader>a: :Tabularize /:\zs<CR>
 vmap <Leader>a: :Tabularize /:\zs<CR>
+
+Plug 'junegunn/rainbow_parentheses.vim', { 'on': 'RainbowParentheses' }
+let g:rainbow#max_level = 16
+let g:rainbow#pairs = [['(', ')'], ['[', ']']]
+let g:rainbow#blacklist = [233, 234]
+augroup rainbow_parentheses
+  autocmd!
+  autocmd FileType java,puppet,ruby,python,vim RainbowParentheses
+augroup END
+
 
 Plug 'gorkunov/smartpairs.vim'
 let g:smartpairs_start_from_word = 1
