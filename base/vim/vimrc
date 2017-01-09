@@ -78,8 +78,18 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 "let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_min_count = 1
+let g:airline#extensions#tabline#fnametruncate = 0
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 "let g:airline#extensions#tabline#buffer_nr_format = '%s'
 let g:airline#extensions#tmuxline#enabled = 1
+" choose buffer with <Leader>1..9 {{{2
+for i in [1,2,3,4,5,6,7,8,9]
+"  exec "nmap <Leader>" . i . " :buffer " . i . "<cr>"
+  exec "nmap <Leader>" . i . " <Plug>AirlineSelectTab" . i
+endfor
+nmap <Leader><Tab> <Plug>AirlineSelectNextTab
+nmap <leader>0 :bfirst <CR>
+
 
 Plug 'adonis0147/prettyGuides'
 " IDE settings  {{{2
@@ -238,8 +248,11 @@ Plug  'SirVer/ultisnips'
 "let g:UltiSnipsJumpForwardTrigger="<c-b>"
 "let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
+let g:snips_author="Ingar Smedstad"
+let g:snips_email="ingar.smedstad@uib.no"
 let g:UltiSnipsEditSplit="horizontal"
-let g:UltiSnipsSnippetsDir=$XDG_CONFIG_HOME.'/mysnippets'
+let g:UltiSnipsSnippetsDir=$XDG_CONFIG_HOME.'/vim/mysnippets'
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
 
 " inoremap <TAB> {{{1
 " Next menu item, expand snippet, jump to next placeholder or insert literal tab
@@ -644,13 +657,6 @@ vnoremap <S-Tab> <gv
 
 nmap <silent> <Leader>qc :cclose<CR>
 nmap <silent> <Leader>qo :copen<CR>
-
-" choose buffer with <Leader>1..9 {{{2
-for i in [1,2,3,4,5,6,7,8,9]
-"  exec "nmap <Leader>" . i . " :buffer " . i . "<cr>"
-  exec "nmap <Leader>" . i . " <Plug>AirlineSelectTab" . i
-endfor
-nmap <Leader><Tab> :bnext
 
 " Create window splits easier. The default {{{2
 " way is Ctrl-w,v and Ctrl-w,s. I remap
