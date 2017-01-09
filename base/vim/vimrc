@@ -70,12 +70,14 @@ set laststatus=2
 let g:airline_theme='luna'
 let g:airline#extensions#branch#enabled = 1
 let g:airline_powerline_fonts=1
+let g:airline_skip_empty_sections = 1
 let g:airline#extensions#whitespace#enabled#show_message = 1
 let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+"let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_min_count = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
 "let g:airline#extensions#tabline#buffer_nr_format = '%s'
 let g:airline#extensions#tmuxline#enabled = 1
 
@@ -101,7 +103,7 @@ let g:syntastic_check_on_open=1
 let g:syntastic_auto_loc_list=2
 
 Plug 'xolox/vim-misc'
-Plug 'majutsushi/tagbar' {'on': 'TagbarToggle'}
+Plug 'majutsushi/tagbar'
 nmap <silent> <leader>tb :TagbarToggle<CR>
 "autocmd FileType python,puppet nested :TagbarOpen
 let g:tagbar_type_css = {
@@ -361,7 +363,7 @@ let g:jedi#rename_command = "<leader>pr"
 
 Plug 'jez/vim-c0'
 Plug 'jez/vim-ispc'
-Plug 'PotatoesMaster/i3-vim-syntax' { 'for': 'i3' }
+Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
 Plug 'lilydjwg/colorizer'
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
@@ -645,7 +647,8 @@ nmap <silent> <Leader>qo :copen<CR>
 
 " choose buffer with <Leader>1..9 {{{2
 for i in [1,2,3,4,5,6,7,8,9]
-  exec "nmap <Leader>" . i . " :buffer " . i . "<cr>"
+"  exec "nmap <Leader>" . i . " :buffer " . i . "<cr>"
+  exec "nmap <Leader>" . i . " <Plug>AirlineSelectTab" . i
 endfor
 nmap <Leader><Tab> :bnext
 
