@@ -101,7 +101,7 @@ let g:syntastic_check_on_open=1
 let g:syntastic_auto_loc_list=2
 
 Plug 'xolox/vim-misc'
-Plug 'majutsushi/tagbar' "{{{3
+Plug 'majutsushi/tagbar' {'on': 'TagbarToggle'}
 nmap <silent> <leader>tb :TagbarToggle<CR>
 "autocmd FileType python,puppet nested :TagbarOpen
 let g:tagbar_type_css = {
@@ -183,6 +183,8 @@ Plug 'gitignore'
 " Completion {{{2
 Plug 'Shougo/neocomplete.vim'
 nnoremap <Leader>x :NeoCompleteToggle<CR> "{{{
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
 "let g:acp_enableAtStartup = 0
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
@@ -229,13 +231,13 @@ autocmd FileType txt NeoCompleteLock
 Plug 'Konfekt/FastFold'
 Plug  'SirVer/ultisnips'
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<leader>s"
-let g:UltiSnipsListSnippets="<C-ø>"
+"let g:UltiSnipsExpandTrigger="<leader>s"
+"let g:UltiSnipsListSnippets="<C-ø>"
 "let g:UltiSnipsJumpForwardTrigger="<c-b>"
 "let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-let g:UltiSnipsSnippetDirectories=[$XDG_CONFIG_HOME.'/mysnippets']
+let g:UltiSnipsEditSplit="horizontal"
+let g:UltiSnipsSnippetsDir=$XDG_CONFIG_HOME.'/mysnippets'
 
 " inoremap <TAB> {{{1
 " Next menu item, expand snippet, jump to next placeholder or insert literal tab
@@ -252,24 +254,17 @@ endfunction
 inoremap <expr> <TAB>
     \ pumvisible() ? "\<C-n>" :
     \ "<C-R>=ExpandSnippetOrJumpForwardOrReturnTab()<CR>"
-" snoremap <TAB> {{{1
 " jump to next placeholder otherwise do nothing
 snoremap <buffer> <silent> <TAB>
     \ <ESC>:call UltiSnips#JumpForwards()<CR>
-
-" inoremap <S-TAB> {{{1
 " previous menu item, jump to previous placeholder or do nothing
 let g:UltiSnipsJumpBackwordTrigger = "<NOP>"
 inoremap <expr> <S-TAB>
     \ pumvisible() ? "\<C-p>" :
     \ "<C-R>=UltiSnips#JumpBackwards()<CR>"
-
-" snoremap <S-TAB> {{{1
 " jump to previous placeholder otherwise do nothing
 snoremap <buffer> <silent> <S-TAB>
     \ <ESC>:call UltiSnips#JumpBackwards()<CR>
-
-" inoremap <CR> {{{1
 " expand snippet, close menu or insert newline
 let g:UltiSnipsExpandTrigger = "<NOP>"
 let g:ulti_expand_or_jump_res = 0
@@ -286,12 +281,6 @@ function! s:ExpandSnippetOrReturnEmptyString()
         return "\<CR>"
 endfunction
 
-" inoremap <C-h> {{{1
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-
-" inoremap <BS> {{{1
-inoremap <expr><BS>  neocomplete#smart_close_popup()."\<C-h>"
-
 Plug  'honza/vim-snippets'
 Plug 'simnalamburt/vim-mundo', { 'on': 'MundoToggle'}
 nmap <Leader>u :MundoToggle<CR>
@@ -299,10 +288,6 @@ let g:mundo_preview_bottom=1
 let g:mundo_prefer_python3=1
 
 Plug 'tpope/vim-characterize'
-"Plug "vits/ZoomWin"
-" Zoom in and out of current window with <Leader>gz
-"map <silent> <Leader>gz call Zoomwin()
-
 Plug 'briandoll/change-inside-surroundings.vim'
 Plug 'tpope/vim-surround'
 nmap <Leader>" ysiw"
@@ -338,7 +323,7 @@ let g:rainbow#pairs = [['(', ')'], ['[', ']']]
 let g:rainbow#blacklist = [233, 234]
 augroup rainbow_parentheses
   autocmd!
-  autocmd FileType java,puppet,ruby,python,vim RainbowParentheses
+  autocmd FileType java,puppet,ruby,python,vim,lisp,clojure,scheme RainbowParentheses
 augroup END
 
 
@@ -376,7 +361,7 @@ let g:jedi#rename_command = "<leader>pr"
 
 Plug 'jez/vim-c0'
 Plug 'jez/vim-ispc'
-Plug 'PotatoesMaster/i3-vim-syntax'
+Plug 'PotatoesMaster/i3-vim-syntax' { 'for': 'i3' }
 Plug 'lilydjwg/colorizer'
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
