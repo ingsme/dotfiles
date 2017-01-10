@@ -253,6 +253,9 @@ let g:snips_email="ingar.smedstad@uib.no"
 let g:UltiSnipsEditSplit="horizontal"
 let g:UltiSnipsSnippetsDir=$XDG_CONFIG_HOME.'/vim/mysnippets'
 let g:UltiSnipsSnippetDirectories=["UltiSnips", "mysnippets"]
+if has("python3")
+  let g:UltiSnipsUsePythonVersion = 3
+endif
 
 " inoremap <TAB> {{{1
 " Next menu item, expand snippet, jump to next placeholder or insert literal tab
@@ -300,7 +303,9 @@ Plug  'honza/vim-snippets'
 Plug 'simnalamburt/vim-mundo', { 'on': 'MundoToggle'}
 nmap <Leader>u :MundoToggle<CR>
 let g:mundo_preview_bottom=1
-let g:mundo_prefer_python3=1
+if has("python3")
+  let g:mundo_prefer_python3=1
+endif
 
 Plug 'tpope/vim-characterize'
 Plug 'briandoll/change-inside-surroundings.vim'
@@ -403,6 +408,8 @@ endif
 call plug#end()
 
 filetype plugin indent on
+
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) PlugInstall --sync | q endif
 
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
