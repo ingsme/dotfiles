@@ -30,9 +30,8 @@ source $XDG_CONFIG_HOME/zplug/init.zsh
 
 fpath=($fpath $XDG_CONFIG_HOME/zsh/completions)
 
-zplug "zplug/zplug"
-zplug "zsh-users/zsh-syntax-highlighting", nice:10
-zplug "zsh-users/zsh-history-substring-search", nice:11
+zplug "zsh-users/zsh-syntax-highlighting"
+zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-completions"
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "plugins/colorize", from:oh-my-zsh
@@ -383,7 +382,6 @@ alias hjemmekontor='rdesktop -g 1280x960 -a 16 -k no -d UiB hjemmekontor.uib.no 
 alias l='ls -l'
 alias la='ls -A'
 alias ll='ls -al'
-alias ls='ls --group-directories-first --color=auto -h'
 alias lsa='ls -lah'
 alias md='mkdir -p'
 alias midgard='rdesktop -g 1280x960 -a 16 -k no -d UiB midgard.uib.no &'
@@ -421,3 +419,4 @@ if [[ $IS_LINUX -eq 1 ]]; then
     PROMPT='%{$fg[$NCOLOR]%}%B%n%b%{$reset_color%}:%{$fg[blue]%}%B%c/%b%{$reset_color%} $(git_super_status)%(!.#.$) '
 fi
 unset RPROMPT
+export PATH="/usr/local/bin:$PATH"
