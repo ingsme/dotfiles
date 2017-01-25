@@ -39,16 +39,16 @@ zplug "plugins/vagrant", from:oh-my-zsh
 zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/sudo", from:oh-my-zsh
 zplug "themes/clean", from:oh-my-zsh
+zplug "olivierverdier/zsh-git-prompt"
+source $XDG_CONFIG_HOME/zplug/repos/olivierverdier/zsh-git-prompt/zshrc.sh
 if [[ $IS_LINUX -eq 1 ]]; then
-    zplug "olivierverdier/zsh-git-prompt"
-    source $XDG_CONFIG_HOME/zplug/repos/olivierverdier/zsh-git-prompt/zshrc.sh
     GIT_PROMPT_EXECUTABLE="haskell"
-    ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[red]%}%{● %G%}"
-    ZSH_THEME_GIT_PROMPT_CONFLICTS="%{$fg[red]%}%{✖ %G%}"
-    ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[cyan]%}%{✚ %G%}"
-    ZSH_THEME_GIT_PROMPT_BEHIND="%{↓%G%}"
-    ZSH_THEME_GIT_PROMPT_AHEAD="%{↑%G%}"
 fi
+ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[red]%}%{● %G%}"
+ZSH_THEME_GIT_PROMPT_CONFLICTS="%{$fg[red]%}%{✖ %G%}"
+ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[cyan]%}%{✚ %G%}"
+ZSH_THEME_GIT_PROMPT_BEHIND="%{↓%G%}"
+ZSH_THEME_GIT_PROMPT_AHEAD="%{↑%G%}"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -229,11 +229,11 @@ bindkey "\e\e"    sudo-command-line
 # -------------------------------------------------------------------
 ssh() {
     if [ "$(ps -p $(ps -p $$ -o ppid=) -o comm=)" = "tmux" ]; then
-            tmux rename-window "$(echo $* | cut -d @ -f 2 | cut -d . -f 1)"
-            command ssh "$@"
-            tmux set-window-option automatic-rename "on" 1>/dev/null
+        tmux rename-window "$(echo $* | cut -d @ -f 2 | cut -d . -f 1)"
+        command ssh "$@"
+        tmux set-window-option automatic-rename "on" 1>/dev/null
     else
-            command ssh "$@"
+        command ssh "$@"
     fi
 }
 # -------------------------------------------------------------------
@@ -243,22 +243,22 @@ ssh() {
 ex() {
     if [[ -f $1 ]]; then
         case $1 in
-          *.tar.bz2) tar xvjf $1;;
-          *.tar.gz) tar xvzf $1;;
-          *.tar.xz) tar xvJf $1;;
-          *.tar.lzma) tar --lzma xvf $1;;
-          *.bz2) bunzip $1;;
-          *.rar) unrar $1;;
-          *.gz) gunzip $1;;
-          *.tar) tar xvf $1;;
-          *.tbz2) tar xvjf $1;;
-          *.tgz) tar xvzf $1;;
-          *.zip) unzip $1;;
-          *.Z) uncompress $1;;
-          *.7z) 7z x $1;;
-          *.dmg) hdiutul mount $1;; # mount OS X disk images
-          *) echo "'$1' cannot be extracted via >ex<";;
-    esac
+            *.tar.bz2) tar xvjf $1;;
+            *.tar.gz) tar xvzf $1;;
+            *.tar.xz) tar xvJf $1;;
+            *.tar.lzma) tar --lzma xvf $1;;
+            *.bz2) bunzip $1;;
+            *.rar) unrar $1;;
+            *.gz) gunzip $1;;
+            *.tar) tar xvf $1;;
+            *.tbz2) tar xvjf $1;;
+            *.tgz) tar xvzf $1;;
+            *.zip) unzip $1;;
+            *.Z) uncompress $1;;
+            *.7z) 7z x $1;;
+            *.dmg) hdiutul mount $1;; # mount OS X disk images
+            *) echo "'$1' cannot be extracted via >ex<";;
+        esac
     else
         echo "'$1' is not a valid file"
     fi
@@ -283,13 +283,13 @@ any() {
 # display a neatly formatted path
 # -------------------------------------------------------------------
 path() {
-  echo $PATH | tr ":" "\n" | \
-    awk "{ sub(\"/usr\",   \"$fg_no_bold[green]/usr$reset_color\"); \
-           sub(\"/bin\",   \"$fg_no_bold[blue]/bin$reset_color\"); \
-           sub(\"/opt\",   \"$fg_no_bold[cyan]/opt$reset_color\"); \
-           sub(\"/sbin\",  \"$fg_no_bold[magenta]/sbin$reset_color\"); \
-           sub(\"/local\", \"$fg_no_bold[yellow]/local$reset_color\"); \
-           print }"
+    echo $PATH | tr ":" "\n" | \
+        awk "{ sub(\"/usr\",   \"$fg_no_bold[green]/usr$reset_color\"); \
+        sub(\"/bin\",   \"$fg_no_bold[blue]/bin$reset_color\"); \
+        sub(\"/opt\",   \"$fg_no_bold[cyan]/opt$reset_color\"); \
+        sub(\"/sbin\",  \"$fg_no_bold[magenta]/sbin$reset_color\"); \
+        sub(\"/local\", \"$fg_no_bold[yellow]/local$reset_color\"); \
+        print }"
 }
 
 # -------------------------------------------------------------------
@@ -316,12 +316,12 @@ HISTFILE=~/.zsh_history
 
 # Zsh_hooks
 function precmd {
-  # vcs_info
-  # Put the string "hostname::/full/directory/path" in the title bar:
-  echo -ne "\e]2;$PWD\a"
+    # vcs_info
+    # Put the string "hostname::/full/directory/path" in the title bar:
+    echo -ne "\e]2;$PWD\a"
 
-  # Put the parentdir/currentdir in the tab
-  echo -ne "\e]1;$PWD:h:t/$PWD:t\a"
+    # Put the parentdir/currentdir in the tab
+    echo -ne "\e]1;$PWD:h:t/$PWD:t\a"
 }
 
 # function set_running_app {
@@ -343,7 +343,7 @@ function precmd {
     eval $(keychain --eval --agents ssh id_rsa)
 
 # [[ -f $HOME/.keychain/$HOSTNAME-sh ]] && \
-#     source $HOME/.keychain/$HOSTNAME-sh
+    #     source $HOME/.keychain/$HOSTNAME-sh
 
 #Aliases
 [[ $IS_LINUX -eq 1 ]] && \
@@ -416,7 +416,7 @@ alias which-command=whence
     export LSCOLORS=exfxcxdxbxegedabagacad
 if [[ $IS_LINUX -eq 1 ]]; then
     ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}%{✔%G%}"
-    PROMPT='%{$fg[$NCOLOR]%}%B%n%b%{$reset_color%}:%{$fg[blue]%}%B%c/%b%{$reset_color%} $(git_super_status)%(!.#.$) '
 fi
+PROMPT='%{$fg[$NCOLOR]%}%B%n%b%{$reset_color%}:%{$fg[blue]%}%B%c/%b%{$reset_color%} $(git_super_status)%(!.#.$) '
 unset RPROMPT
 export PATH="/usr/local/bin:$PATH"
