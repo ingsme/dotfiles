@@ -385,7 +385,7 @@ Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
 Plug 'lilydjwg/colorizer'
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-Plug 'rodjek/vim-puppet', { 'for': 'puppet' }
+Plug 'voxpupuli/vim-puppet', { 'for': 'puppet' }
 
 " Misc  {{{2
 Plug 'mhinz/vim-startify'
@@ -671,8 +671,9 @@ nmap <silent> <Leader>qo :copen<CR>
 " Create window splits easier. The default {{{2
 " way is Ctrl-w,v and Ctrl-w,s. I remap
 " this to vv and ss
-"nnoremap <silent> vv <C-w>v
-"nnoremap <silent> ss <C-w>s
+nnoremap <silent><leader>vv <C-w>v
+nnoremap <silent><leader>ss <C-w>s
+nnoremap <silent><leader>sc <C-w>c
 
 "Clear current search highlight by double tapping // {{{2
 nmap <silent> // :nohlsearch<CR>
