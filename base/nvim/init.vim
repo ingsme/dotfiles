@@ -24,7 +24,9 @@ Plug 'neomake/neomake'
 Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
 Plug 'puppetlabs/puppet-syntax-vim', { 'for': 'puppet' }
 Plug 'rafi/vim-tinycomment'
-Plug 'Raimondi/delimitMate'
+"Plug 'Raimondi/delimitMate'
+"let g:delimitMate_expand_cr=2
+Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle'}
 Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -41,8 +43,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 call plug#end()
-
-let g:delimitMate_expand_cr=2
 
 let g:airline_theme='luna'
 let g:airline#extensions#branch#enabled = 1

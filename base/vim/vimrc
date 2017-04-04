@@ -111,7 +111,7 @@ let g:syntastic_style_warning_symbol  = '⚡'
 let g:syntastic_check_on_open=1
 " autoclose syntastic's error windown when no errors
 let g:syntastic_auto_loc_list=2
-let g:syntastic_puppet_puppetlint_args = '--no-80-chars-check --no-documentation-check'
+let g:syntastic_puppet_puppetlint_args = '--no-80chars-check --no-documentation-check'
 
 Plug 'xolox/vim-misc'
 Plug 'majutsushi/tagbar'
@@ -325,7 +325,8 @@ vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
 Plug 'tpope/vim-repeat'
-Plug 'Raimondi/delimitMate'
+"Plug 'Raimondi/delimitMate'
+Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-capslock'
 Plug 'tpope/vim-unimpaired'
