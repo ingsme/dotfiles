@@ -107,11 +107,13 @@ let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_style_error_symbol  = '⚡'
 let g:syntastic_style_warning_symbol  = '⚡'
+let g:syntastic_allways_populate_loc_list = 1
 " check syntax on file open
 let g:syntastic_check_on_open=1
 " autoclose syntastic's error windown when no errors
 let g:syntastic_auto_loc_list=2
 let g:syntastic_puppet_puppetlint_args = '--no-80chars-check --no-documentation-check'
+let g:syntastic_aggregate_errors = 1
 
 Plug 'xolox/vim-misc'
 Plug 'majutsushi/tagbar'
