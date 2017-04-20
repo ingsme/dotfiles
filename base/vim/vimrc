@@ -326,18 +326,49 @@ Plug 'terryma/vim-expand-region'
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
+Plug 'reedes/vim-lexical'
+let g:lexical#spellfile = ['~/.config/vim/spell/en.utf-8.add',]
+
+Plug 'reedes/vim-litecorrect'
+Plug 'reedes/vim-textobj-quote'
+Plug 'reedes/vim-textobj-sentence'
+Plug 'kana/vim-textobj-user'
 Plug 'reedes/vim-pencil'
 augroup pencil
   autocmd!
   autocmd FileType markdown,mkd call pencil#init()
-                            \ | call lexical#init()
-                            \ | call litecorrect#init()
-                            \ | call textobj#quote#init()
-                            \ | call textobj#sentence#init()
+\ | call lexical#init()
+\ | call litecorrect#init()
+\ | call textobj#quote#init()
+\ | call textobj#sentence#init()
   autocmd FileType text call pencil#init()
 augroup END
 
+Plug 'reedes/vim-colors-pencil'
+"Plug 'reedes/vim-thematic'
+"let g:thematic#themes = {
+"\ 'solarized' : {'colorscheme': 'solarized',
+"\                'background': 'dark',
+"\                'airline-theme': 'luna',
+"\               },
+"\ 'smyck' : {'colorscheme': 'smyck',
+"\            'background': 'dark',
+"\            'airline-theme': 'luna',
+"\           },
+"\ 'pencil_dark' : {'colorscheme': 'pencil',
+"\                  'background': 'dark',
+"\                  'airline-theme': 'pencil',
+"\                 },
+"\ 'pencil_light': {'colorscheme': 'pencil',
+"\                  'background': 'light',
+"\                  'airline-theme': 'pencil',
+"\                 },
+"\}
+
 Plug 'tpope/vim-markdown'
+let g:markdown_fenced_languages = ['python', 'ruby']
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+
 Plug 'tpope/vim-repeat'
 "Plug 'Raimondi/delimitMate'
 Plug 'jiangmiao/auto-pairs'
