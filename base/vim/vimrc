@@ -326,6 +326,18 @@ Plug 'terryma/vim-expand-region'
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 
+Plug 'reedes/vim-pencil'
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+                            \ | call lexical#init()
+                            \ | call litecorrect#init()
+                            \ | call textobj#quote#init()
+                            \ | call textobj#sentence#init()
+  autocmd FileType text call pencil#init()
+augroup END
+
+Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-repeat'
 "Plug 'Raimondi/delimitMate'
 Plug 'jiangmiao/auto-pairs'
