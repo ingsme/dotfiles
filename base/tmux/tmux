@@ -60,6 +60,10 @@ bind-key i set-option status
 bind Space copy-mode
 bind C-Space last-window
 bind -n S-Pageup copy-mode -u
+bind P paste-buffer
+bind-key -t vi-copy 'v' begin-selection
+bind-key -t vi-copy 'y' copy-selection
+bind-key -t vi-copy 'r' rectangle-toggle
 
 # Mouse
 set-option -g mouse on
