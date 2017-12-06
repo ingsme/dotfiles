@@ -9,9 +9,18 @@ let mapleader="\<space>"
 
 call plug#begin('~/.config/nvim/plugged')
 Plug 'adonis0147/prettyGuides'
-Plug 'airblade/vim-gitgutter'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'dojoteef/neomake-autolint'
+
+if executable("tmux")
+  Plug 'christoomey/vim-tmux-navigator'
+  Plug 'wellle/tmux-complete.vim'
+  Plug 'tpope/vim-tbone'
+endif
+
+Plug 'tpope/vim-fugitive'
+Plug 'shumphrey/fugitive-gitlab.vim'
+let g:fugitive_gitlab_domains = ['https://gitlab.uib.no']
+
+"Plug 'dojoteef/neomake-autolint'
 "Plug 'ervandew/supertab'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'freeo/vim-kalisi'
@@ -20,30 +29,44 @@ Plug 'honza/vim-snippets'
 Plug 'lilydjwg/colorizer'
 Plug 'mhartington/oceanic-next'
 Plug 'morhetz/gruvbox'
-Plug 'neomake/neomake'
+"Plug 'neomake/neomake'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
 Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
 Plug 'puppetlabs/puppet-syntax-vim', { 'for': 'puppet' }
 Plug 'rafi/vim-tinycomment'
+" Adding comments for i3 filetype
+augroup tinycomment
+  autocmd FileType i3 setlocal commentstring=#%s
+augroup END
+
 "Plug 'Raimondi/delimitMate'
 "let g:delimitMate_expand_cr=2
 Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle'}
-Plug 'Shougo/context_filetype.vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'Shougo/neoinclude.vim'
-"Plug 'Shougo/neosnippet.vim'
-"Plug 'Shougo/neosnippet-snippets'
-Plug 'SirVer/ultisnips'
+Plug 'sotte/presenting.vim'
+"Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-capslock'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-"Plug 'Valloric/YouCompleteMe', { 'do': './install.py' }
+Plug 'tpope/vim-fugitive'
+nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gd :Gdiff<CR>
+nnoremap <silent> <leader>gc :Gcommit<CR>
+nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>gl :Glog<CR>
+nnoremap <silent> <leader>gp :Git push<CR>
+nnoremap <silent> <leader>gw :Gwrite<CR>
+nnoremap <silent> <leader>gr :Gremove<CR>
+autocmd BufReadPost fugitive://* set bufhidden=delete
+
+
+Plug 'w0rp/ale'
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-call plug#end()
-
 let g:airline_theme='luna'
 let g:airline#extensions#branch#enabled = 1
 let g:airline_powerline_fonts=1
@@ -53,6 +76,9 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_min_count = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#ale#enabled = 1
+
+call plug#end()
 
 "" Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -63,96 +89,12 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 "autocmd FileType txt NeoCompleteLock
 
-" Adding comments for i3 filetype
-augroup tinycomment
-  autocmd FileType i3 setlocal commentstring=#%s
-augroup END
-
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
-if !exists('g:deoplete#omni#input_patterns')
-  let g:deoplete#omni#input_patterns = {}
-endif
-
- inoremap <TAB> {{{1
-" Next menu item, expand snippet, jump to next placeholder or insert literal tab
-let g:UltiSnipsJumpForwardTrigger="<NOP>"
-let g:ulti_expand_or_jump_res = 0
-function! ExpandSnippetOrJumpForwardOrReturnTab()
-    let snippet = UltiSnips#ExpandSnippetOrJump()
-    if g:ulti_expand_or_jump_res > 0
-        return snippet
-    else
-        return "\<TAB>"
-    endif
-endfunction
-inoremap <expr> <TAB>
-    \ pumvisible() ? "\<C-n>" :
-    \ "<C-R>=ExpandSnippetOrJumpForwardOrReturnTab()<CR>"
-" snoremap <TAB> {{{1
-" jump to next placeholder otherwise do nothing
-snoremap <buffer> <silent> <TAB>
-    \ <ESC>:call UltiSnips#JumpForwards()<CR>
-
-" inoremap <S-TAB> {{{1
-" previous menu item, jump to previous placeholder or do nothing
-let g:UltiSnipsJumpBackwordTrigger = "<NOP>"
-inoremap <expr> <S-TAB>
-    \ pumvisible() ? "\<C-p>" :
-    \ "<C-R>=UltiSnips#JumpBackwards()<CR>"
-
-" snoremap <S-TAB> {{{1
-" jump to previous placeholder otherwise do nothing
-snoremap <buffer> <silent> <S-TAB>
-    \ <ESC>:call UltiSnips#JumpBackwards()<CR>
-
-" inoremap <CR> {{{1
-" expand snippet, close menu or insert newline
-let g:UltiSnipsExpandTrigger = "<NOP>"
-let g:ulti_expand_or_jump_res = 0
-inoremap <silent> <CR> <C-r>=<SID>ExpandSnippetOrReturnEmptyString()<CR>
-function! s:ExpandSnippetOrReturnEmptyString()
-    if pumvisible()
-    let snippet = UltiSnips#ExpandSnippetOrJump()
-    if g:ulti_expand_or_jump_res > 0
-        return snippet
-    else
-        return "\<C-y>\<CR>"
-    endif
-    else
-        return "\<CR>"
-endfunction
-
-" inoremap <C-h> {{{1
-inoremap <expr><C-h> deoplete#smart_close_popup()."\<C-h>"
-
-" inoremap <BS> {{{1
-inoremap <expr><BS>  deoplete#smart_close_popup()."\<C-h>"
-
 if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
 set cmdheight=2
-
-"  Ultisnips
-if has("python3")
-  let g:UltiSnipsUsePythonVersion = 3
-endif
-let g:UltiSnipsExpandTrigger="<C-j>"
-let g:UltiSnipsListSnippets="<C-l>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-let g:UltiSnipsSnippetsDir=$XDG_CONFIG_HOME.'/mysnippets'
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-" Adding comments for i3 filetype
-augroup tinycomment
-  autocmd FileType i3 setlocal commentstring=#%s
-augroup END
-
-autocmd! BufWritePost,BufEnter * Neomake
+set guicursor=
 
 nmap <Leader>" ysiw"
 nmap <Leader>' ysiw'
@@ -297,7 +239,7 @@ augroup FastEscape
 augroup END
 
 if exists('&inccommand')
-    set inccommand=nosplit
+    set inccommand=split
 endif
 
 " Arrows resize windows {{{2
@@ -420,7 +362,6 @@ augroup MyAuGroup
   autocmd FileType c,cpp,java,php,vim,i3,python,ruby,yaml autocmd BufWritePre <buffer> :%s/\s\+$//e
 augroup END
 
-" Make 0 go to the first character rather than the beginning
 " Execution permissions by default to shebang (#!) files {{{2
 augroup shebang_chmod
   autocmd!

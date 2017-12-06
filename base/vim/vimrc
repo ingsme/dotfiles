@@ -96,8 +96,22 @@ nmap <leader>0 :bfirst <CR>
 
 Plug 'adonis0147/prettyGuides'
 " IDE settings  {{{2
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree'
 nmap <silent> <leader>f :NERDTreeToggle<CR>
+
+Plug 'Xuyuanp/nerdtree-git-plugin'
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
 
 Plug 'scrooloose/syntastic'
 " map for syntastic errors window
@@ -196,7 +210,7 @@ nnoremap <silent> <leader>gw :Gwrite<CR>
 nnoremap <silent> <leader>gr :Gremove<CR>
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
-Plug 'gitignore'
+Plug 'vim-scripts/gitignore'
 
 " Completion {{{2
 Plug 'Shougo/neocomplete.vim'
@@ -332,22 +346,22 @@ vmap <C-v> <Plug>(expand_region_shrink)
 Plug 'reedes/vim-lexical'
 let g:lexical#spellfile = ['~/.config/vim/spell/en.utf-8.add',]
 
-Plug 'reedes/vim-litecorrect'
-Plug 'reedes/vim-textobj-quote'
-Plug 'reedes/vim-textobj-sentence'
-Plug 'kana/vim-textobj-user'
-Plug 'reedes/vim-pencil'
-augroup pencil
-  autocmd!
-  autocmd FileType markdown,mkd call pencil#init()
-\ | call lexical#init()
-\ | call litecorrect#init()
-\ | call textobj#quote#init()
-\ | call textobj#sentence#init()
-  autocmd FileType text call pencil#init()
-augroup END
+"Plug 'reedes/vim-litecorrect'
+"Plug 'reedes/vim-textobj-quote'
+"Plug 'reedes/vim-textobj-sentence'
+"Plug 'kana/vim-textobj-user'
+"Plug 'reedes/vim-pencil'
+"augroup pencil
+"  autocmd!
+"  autocmd FileType markdown,mkd call pencil#init()
+"\ | call lexical#init()
+"\ | call litecorrect#init()
+"\ | call textobj#quote#init()
+"\ | call textobj#sentence#init()
+"  autocmd FileType text call pencil#init()
+"augroup END
 
-Plug 'reedes/vim-colors-pencil'
+"Plug 'reedes/vim-colors-pencil'
 "Plug 'reedes/vim-thematic'
 "let g:thematic#themes = {
 "\ 'solarized' : {'colorscheme': 'solarized',
@@ -368,9 +382,9 @@ Plug 'reedes/vim-colors-pencil'
 "\                 },
 "\}
 
-Plug 'tpope/vim-markdown'
-let g:markdown_fenced_languages = ['python', 'ruby']
-autocmd BufNewFile,BufReadPost *.md set filetype=markdown
+"Plug 'tpope/vim-markdown'
+"let g:markdown_fenced_languages = ['python', 'ruby']
+"autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 Plug 'tpope/vim-repeat'
 "Plug 'Raimondi/delimitMate'
