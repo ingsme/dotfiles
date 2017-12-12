@@ -8,10 +8,10 @@ augroup END
 
 " ========= XDG ==================== {{{2
 if empty($XDG_CACHE_HOME)
-  let $XDG_CACHE_HOME="$HOME/.cache"
+  let $XDG_CACHE_HOME=expand("$HOME/.cache")
 endif
 if empty($XDG_CONFIG_HOME)
-  let $XDG_CONFIG_HOME="$HOME/.config"
+  let $XDG_CONFIG_HOME=expand("$HOME/.config")
 endif
 let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
 set directory=$XDG_CACHE_HOME/vim
