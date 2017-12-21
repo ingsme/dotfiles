@@ -29,10 +29,10 @@ call EnsureExists(&undodir)
 let mapleader="\<space>"
 
 "" UPDATE VIM ON THE FLY WITH CHANGES TO VIMRC
-if has("autocmd")
-  autocmd!
-  autocmd bufwritepost init.vim :source $MYVIMRC
-endif
+"if has("autocmd")
+"  autocmd!
+"  autocmd bufwritepost init.vim :source $MYVIMRC
+"endif
 
 call plug#begin('~/.config/nvim/plugged')
 if executable("tmux")
@@ -45,9 +45,11 @@ Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'jacoborus/tender.vim'
 Plug 'rakr/vim-one'
 
+Plug 'airblade/vim-gitgutter'
 Plug 'godlygeek/tabular'
 Plug 'jiangmiao/auto-pairs'
 Plug 'lilydjwg/colorizer'
+Plug 'mhinz/vim-sayonara'
 Plug 'mhinz/vim-startify'
 Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
 Plug 'puppetlabs/puppet-syntax-vim', { 'for': 'puppet' }
@@ -134,6 +136,8 @@ let g:startify_session_dir = 'directory/sessions'
 let g:startify_show_sessions = 1
 autocmd User Startified setlocal buftype=
 
+"let g:cm_refresh_length = 3
+
 " Tabular settings
 nmap <Leader>a== :Tabularize /=<CR>
 vmap <Leader>a== :Tabularize /=<CR>
@@ -156,6 +160,23 @@ for i in [1,2,3,4,5,6,7,8,9]
 endfor
 nmap <Leader><Tab> :bnext<CR>
 nmap <leader>0 :bfirst <CR>
+
+nmap <Leader>bd :Sayonara!<CR>
+
+nmap <Leader>bv :vsplit<CR>
+nmap <Leader>bs :split<CR>
+nmap <Leader>bc :close<CR>
+nmap <Leader>bo :only<CR>
+
+" Arrows resize windows {{{2
+noremap <Up> <c-w>+
+noremap <Down> <c-w>-
+noremap <Right> <c-w><
+noremap <Left> <c-w>>
+
+set splitbelow
+set splitright
+set hidden
 
 if has('conceal')
   set conceallevel=2 concealcursor=niv
