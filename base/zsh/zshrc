@@ -419,4 +419,4 @@ if [[ $IS_LINUX -eq 1 ]]; then
 fi
 PROMPT='%{$fg[$NCOLOR]%}%B%n%b%{$reset_color%}:%{$fg[blue]%}%B%c/%b%{$reset_color%} $(git_super_status)%(!.#.$) '
 unset RPROMPT
-export PATH="/usr/local/bin:$PATH"
+export PATH="$PATH:/usr/local/bin"
