@@ -40,6 +40,9 @@ if executable("tmux")
   Plug 'wellle/tmux-complete.vim'
   Plug 'tpope/vim-tbone'
 endif
+Plug 'airblade/vim-gitgutter'
+let g:gitgutter_max_signs = 1000
+
 Plug 'brendonrapp/smyck-vim'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'jacoborus/tender.vim'
@@ -57,9 +60,8 @@ Plug 'rafi/vim-tinycomment'
 Plug 'roxma/nvim-completion-manager'
 Plug 'roxma/ncm-rct-complete'
 Plug 'davidhalter/jedi'
+Plug 'BurningEther/iron.nvim'
 Plug 'Shougo/neco-vim'
-"Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle'}
-"Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle'}
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'shumphrey/fugitive-gitlab.vim'

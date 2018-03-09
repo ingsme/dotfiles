@@ -251,6 +251,7 @@ for_window [class="(?i)thunderbird"] floating enable
 #for_window [class="(?i)smuxi-frontend-gnome"] floating enable
 for_window [class="(?i)nautilus"] floating enable
 for_window [class="(?i)nemo"] floating enable
+for_window [class="(?i)sky"] floating enable
 for_window [class="(?i)vidyodesktop"] floating enable
 for_window [class="(?i)gedit"] floating enable
 for_window [class="(?i)rdesktop"] floating enable
