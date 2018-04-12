@@ -54,13 +54,16 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'lilydjwg/colorizer'
 Plug 'mhinz/vim-sayonara'
 Plug 'mhinz/vim-startify'
-Plug 'PotatoesMaster/i3-vim-syntax', { 'for': 'i3' }
-Plug 'puppetlabs/puppet-syntax-vim', { 'for': 'puppet' }
+Plug 'PotatoesMaster/i3-vim-syntax', {'for': 'i3'}
+Plug 'puppetlabs/puppet-syntax-vim', {'for': 'puppet'}
+Plug 'vim-python/python-syntax', {'for': ['python', 'python3']}
+Plug 'hynek/vim-python-pep8-indent', {'for': ['python', 'python3']}
+Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'rafi/vim-tinycomment'
 Plug 'roxma/nvim-completion-manager'
 Plug 'roxma/ncm-rct-complete'
 Plug 'davidhalter/jedi'
-Plug 'BurningEther/iron.nvim'
+Plug 'BurningEther/iron.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'Shougo/neco-vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -70,6 +73,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
+Plug 'junegunn/vim-easy-align', {'on': 'EasyAlign'}
 "Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
 call plug#end()
@@ -90,6 +94,14 @@ let g:airline#extensions#ale#enabled = 1
 augroup tinycomment
   autocmd FileType i3 setlocal commentstring=#%s
 augroup END
+
+" Ale key-bindings
+nmap <Leader>ap <Plug>(ale_previous_wrap)
+nmap <Leader>an <Plug>(ale_next_wrap)
+
+" EasyAlign key mappings
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 " vim-surround key bindings
 nmap <Leader>" ysiw"
