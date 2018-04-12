@@ -97,3 +97,5 @@ source $XDG_CONFIG_HOME/tmux/tmux.lightline
 #
 # # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run $XDG_CONFIG_HOME/tmux/plugins/tpm/tpm
+
+# vim: set ft=tmux:
