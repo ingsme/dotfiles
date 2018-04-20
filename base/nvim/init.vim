@@ -1,7 +1,7 @@
 " Install vim-plug if not present.
 if empty(glob('~/.config/nvim/autoload/plug.vim'))
   silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
-   \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall
 endif
 
@@ -47,7 +47,8 @@ Plug 'brendonrapp/smyck-vim'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'jacoborus/tender.vim'
 Plug 'rakr/vim-one'
-
+"Plug 'prabirshrestha/async.vim'
+"Plug 'prabirshrestha/vim-lsp'
 Plug 'airblade/vim-gitgutter'
 Plug 'godlygeek/tabular'
 Plug 'jiangmiao/auto-pairs'
@@ -74,9 +75,23 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'junegunn/vim-easy-align', {'on': 'EasyAlign'}
+Plug 'junegunn/fzf'
+Plug 'ntpeters/vim-better-whitespace'
 "Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
+"Plug 'autozimu/LanguageClient-neovim', {
+"    \ 'branch': 'next',
+"    \ 'do': 'bash install.sh',
+"    \ }
 call plug#end()
+
+"let g:LanguageClient_serverCommands = {
+"    \ 'python': ['pyls'],
+"    \ }
+"
+"nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+"nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+"nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
 " vim -ariline settings
 let g:airline_theme='tender'
@@ -95,13 +110,28 @@ augroup tinycomment
   autocmd FileType i3 setlocal commentstring=#%s
 augroup END
 
-" Ale key-bindings
-nmap <Leader>ap <Plug>(ale_previous_wrap)
-nmap <Leader>an <Plug>(ale_next_wrap)
+let g:lsp_signs_enabled = 1         " enable signs
+let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+
+" Ale settings
+nmap <Leader>k <Plug>(ale_previous_wrap)
+nmap <Leader>j <Plug>(ale_next_wrap)
+nmap <leader>af <Plug>(ale_fix)
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_fixers = {
+      \ 'python': ['yapf'],
+      \}
 
 " EasyAlign key mappings
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+" Better Whitespace
+nmap <Leader>wt :ToggleWhitespace<CR>
+nmap <Leader>ws :StripWhitespace<CR>
+let g:strip_whitespace_on_save = 1
 
 " vim-surround key bindings
 nmap <Leader>" ysiw"
@@ -120,17 +150,17 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
 let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "✹",
-    \ "Staged"    : "✚",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ 'Ignored'   : '☒',
-    \ "Unknown"   : "?"
-    \ }
+      \ "Modified"  : "✹",
+      \ "Staged"    : "✚",
+      \ "Untracked" : "✭",
+      \ "Renamed"   : "➜",
+      \ "Unmerged"  : "═",
+      \ "Deleted"   : "✖",
+      \ "Dirty"     : "✗",
+      \ "Clean"     : "✔︎",
+      \ 'Ignored'   : '☒',
+      \ "Unknown"   : "?"
+      \ }
 " vim-fugitive key bindings
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gd :Gdiff<CR>
@@ -170,7 +200,7 @@ nmap <silent> // :nohlsearch<CR>
 " choose buffer with <Leader>1..9 {{{2
 for i in [1,2,3,4,5,6,7,8,9]
   exec "nmap <Leader>" . i . " :buffer " . i . "<cr>"
-"	exec "nmap <Leader>" . i . " <Plug>AirlineSelectTab" . i
+  "	exec "nmap <Leader>" . i . " <Plug>AirlineSelectTab" . i
 endfor
 nmap <Leader><Tab> :bnext<CR>
 nmap <leader>0 :bfirst <CR>
@@ -188,6 +218,8 @@ noremap <Down> <c-w>-
 noremap <Right> <c-w><
 noremap <Left> <c-w>>
 
+inoremap jk <esc>
+
 set splitbelow
 set splitright
 set hidden
@@ -200,15 +232,29 @@ set guicursor=
 set termguicolors
 set relativenumber
 
+set smarttab
+set shiftwidth=4
+set softtabstop=4
+set tabstop=4
+set expandtab
+set nojoinspaces
+
 set complete=.,w,b,u,t,i,kspell
 set path+=**
+
+" Display tabs and trailing spaces visually
+if (&termencoding ==# 'utf-8' || &encoding ==# 'utf-8')
+  set list listchars=tab:▸\ ,trail:␣,extends:↷,precedes:↶
+else
+  set list listchars=tab:\ \ ,trail:-,extends:>,precedes:<
+endif
 
 "set cursorline!
 "autocmd WinLeave * setlocal nocursorline
 "autocmd WinEnter * setlocal cursorline
 
 if exists('&inccommand')
-    set inccommand=split
+  set inccommand=split
 endif
 
 "colorscheme one
@@ -221,6 +267,15 @@ set background=dark
 " Autocommands
 autocmd BufNewFile,BufRead *.pp set filetype=puppet
 autocmd FileType vim setlocal ts=2 sts=2 sw=2
+
+" Python lsp
+"if executable('pyls')
+"  au User lsp_setup call lsp#register_server({
+"        \ 'name': 'pyls',
+"        \ 'cmd': {server_info->['pyls']},
+"        \ 'whitelist': ['python'],
+"        \ })
+"endif
 
 " Execution permissions by default to shebang (#!) files
 augroup shebang_chmod
