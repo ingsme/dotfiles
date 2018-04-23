@@ -16,6 +16,7 @@ set directory=$XDG_CACHE_HOME/nvim
 set backupdir=$XDG_CACHE_HOME/nvim/backup
 set undodir=$XDG_CACHE_HOME/nvim/undo
 set viminfo+=n$XDG_CACHE_HOME/nvim/viminfo
+set undofile
 function! EnsureExists(path)
   if !isdirectory(expand(a:path))
     call mkdir(expand(a:path))
@@ -42,19 +43,19 @@ if executable("tmux")
 endif
 Plug 'airblade/vim-gitgutter'
 let g:gitgutter_max_signs = 1000
-
+Plug 'majutsushi/tagbar'
 Plug 'brendonrapp/smyck-vim'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'jacoborus/tender.vim'
 Plug 'rakr/vim-one'
 "Plug 'prabirshrestha/async.vim'
 "Plug 'prabirshrestha/vim-lsp'
-Plug 'airblade/vim-gitgutter'
 Plug 'godlygeek/tabular'
 Plug 'jiangmiao/auto-pairs'
 Plug 'lilydjwg/colorizer'
 Plug 'mhinz/vim-sayonara'
 Plug 'mhinz/vim-startify'
+Plug 'simnalamburt/vim-mundo'
 Plug 'PotatoesMaster/i3-vim-syntax', {'for': 'i3'}
 Plug 'puppetlabs/puppet-syntax-vim', {'for': 'puppet'}
 Plug 'vim-python/python-syntax', {'for': ['python', 'python3']}
@@ -88,10 +89,32 @@ call plug#end()
 "let g:LanguageClient_serverCommands = {
 "    \ 'python': ['pyls'],
 "    \ }
-"
+
 "nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 "nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 "nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+"nnoremap <silent> <Leader>lf :call LanguageClient_textDocument_documentSymbol()<CR>
+"   ~always keep the signcolumn open!!
+"set signcolumn=yes
+"augroup LanguageClient_config
+"  autocmd!
+"  autocmd User LanguageClientStarted setlocal signcolumn=yes
+"  autocmd User LanguageClientStopped setlocal signcolumn=yes
+"augroup END
+
+let g:python_highlight_all = 1
+
+" Tagbar nad tags
+nmap <silent> <leader>tb :TagbarToggle<CR>
+let g:tagbar_type_puppet = {
+      \ 'ctagstype': 'puppet',
+      \ 'kinds': [
+        \'c:class',
+        \'s:site',
+        \'n:node',
+        \'d:definition'
+      \]
+      \}
 
 " vim -ariline settings
 let g:airline_theme='tender'
@@ -105,6 +128,9 @@ let g:airline#extensions#tabline#buffer_min_count = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#ale#enabled = 1
 
+nmap <Leader>u :MundoToggle<CR>
+let g:mundo_preview_bottom = 1
+
 " Adding comments for i3 filetype
 augroup tinycomment
   autocmd FileType i3 setlocal commentstring=#%s
@@ -116,10 +142,16 @@ let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal 
 " Ale settings
 nmap <Leader>k <Plug>(ale_previous_wrap)
 nmap <Leader>j <Plug>(ale_next_wrap)
+nnoremap <silent> gd <Plug>(ale_go_to_definition)
 nmap <leader>af <Plug>(ale_fix)
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_open_list = "on_save"
+let g:ale_sign_error = ''
+let g:ale_sign_warning = ''
+"highlight ALEErrorSign ctermbg=NONE ctermfg=red
+"highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 let g:ale_fixers = {
       \ 'python': ['yapf'],
       \}
@@ -219,6 +251,9 @@ noremap <Right> <c-w><
 noremap <Left> <c-w>>
 
 inoremap jk <esc>
+
+" open help in a new tab
+cabbrev help tab help
 
 set splitbelow
 set splitright
