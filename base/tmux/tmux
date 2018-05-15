@@ -18,7 +18,7 @@ set-option -g status-keys vi
 
 # Make sure we use zsh and a usable terminal
 set-option -g default-terminal "tmux-256color"
-set-option -ga terminal-overrides ",xterm-256color:Tc"
+set-option -ga terminal-overrides ",tmux-256color:Tc"
 # set-option -g default-shell /bin/zsh
 
 
