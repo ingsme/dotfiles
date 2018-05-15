@@ -49,11 +49,13 @@ Plug 'frankier/neovim-colors-solarized-truecolor-only'
 Plug 'KeitaNakamura/neodark.vim'
 Plug 'crusoexia/vim-monokai'
 Plug 'Lokaltog/vim-distinguished'
+Plug 'iCyMind/NeoSolarized'
 Plug 'jacoborus/tender.vim'
 Plug 'rakr/vim-one'
 "Plug 'prabirshrestha/async.vim'
 "Plug 'prabirshrestha/vim-lsp'
 Plug 'godlygeek/tabular'
+Plug 'myusuf3/numbers.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'lilydjwg/colorizer'
 Plug 'mhinz/vim-sayonara'
@@ -61,9 +63,11 @@ Plug 'mhinz/vim-startify'
 Plug 'simnalamburt/vim-mundo'
 Plug 'PotatoesMaster/i3-vim-syntax', {'for': 'i3'}
 Plug 'puppetlabs/puppet-syntax-vim', {'for': 'puppet'}
+Plug 'rodjek/vim-puppet', {'for': 'puppet'}
 Plug 'vim-python/python-syntax', {'for': ['python', 'python3']}
 Plug 'hynek/vim-python-pep8-indent', {'for': ['python', 'python3']}
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
+Plug 'sheerun/vim-polyglot'
 Plug 'rafi/vim-tinycomment'
 Plug 'roxma/nvim-completion-manager'
 Plug 'roxma/ncm-rct-complete'
@@ -276,7 +280,8 @@ endif
 
 set guicursor=
 set termguicolors
-set relativenumber
+"set relativenumber
+nnoremap <Leader>pp :NumbersToggle<CR>
 
 set smarttab
 set shiftwidth=4
@@ -308,6 +313,7 @@ endif
 "colorscheme smyck
 "colorscheme neodark
 colorscheme distinguished
+"colorscheme NeoSolarized
 "colorscheme solarized
 "colorscheme monokai
 "colorscheme xoria
