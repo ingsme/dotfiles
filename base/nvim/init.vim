@@ -46,6 +46,9 @@ let g:gitgutter_max_signs = 1000
 Plug 'majutsushi/tagbar'
 Plug 'brendonrapp/smyck-vim'
 Plug 'frankier/neovim-colors-solarized-truecolor-only'
+Plug 'KeitaNakamura/neodark.vim'
+Plug 'crusoexia/vim-monokai'
+Plug 'Lokaltog/vim-distinguished'
 Plug 'jacoborus/tender.vim'
 Plug 'rakr/vim-one'
 "Plug 'prabirshrestha/async.vim'
@@ -67,6 +70,7 @@ Plug 'roxma/ncm-rct-complete'
 Plug 'davidhalter/jedi'
 Plug 'BurningEther/iron.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'Shougo/neco-vim'
+Plug 'Yggdroot/indentLine'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'shumphrey/fugitive-gitlab.vim'
@@ -118,6 +122,7 @@ let g:tagbar_type_puppet = {
 
 " vim -ariline settings
 let g:airline_theme='tender'
+"let g:airline_theme='neodark'
 let g:airline#extensions#branch#enabled = 1
 let g:airline_powerline_fonts=1
 let g:airline#extensions#whitespace#enabled#show_message = 1
@@ -159,6 +164,12 @@ let g:ale_fixers = {
 " EasyAlign key mappings
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+" Indentline
+let g:indentLine_setColors = 0
+let g:indentLine_char = "┆"
+let g:indentLine_setConceal = 0
+let g:indentLine_enabled = 0
 
 " Better Whitespace
 nmap <Leader>wt :ToggleWhitespace<CR>
@@ -293,11 +304,15 @@ if exists('&inccommand')
 endif
 
 "colorscheme one
-colorscheme tender
+"colorscheme tender
 "colorscheme smyck
+"colorscheme neodark
+colorscheme distinguished
 "colorscheme solarized
+"colorscheme monokai
 "colorscheme xoria
 set background=dark
+let g:neodark#terminal_transparent = 1
 
 " Autocommands
 autocmd BufNewFile,BufRead *.pp set filetype=puppet
