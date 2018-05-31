@@ -143,7 +143,7 @@ export CLICOLOR=1
 # export LSCOLORS=Gxfxcxdxbxegedabagacad
 
 # Enable color in grep
-export GREP_OPTIONS='--color=auto'
+# export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='3;33'
 
 # Completion
@@ -416,7 +416,16 @@ alias which-command=whence
     export LSCOLORS=exfxcxdxbxegedabagacad
 if [[ $IS_LINUX -eq 1 ]]; then
     ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg_bold[green]%}%{✔%G%}"
+    export PYENV_ROOT="/scratch/pyenv"
 fi
 PROMPT='%{$fg[$NCOLOR]%}%B%n%b%{$reset_color%}:%{$fg[blue]%}%B%c/%b%{$reset_color%} $(git_super_status)%(!.#.$) '
 unset RPROMPT
-export PATH="$PATH:/usr/local/bin"
+
+# Set up pyenv
+export PATH="$PYENV_ROOT/bin:$PATH:/usr/local/bin"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+source "$PYENV_ROOT//completions/pyenv.zsh"
+export PATH=$(pyenv root):$PATH
+# export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+
