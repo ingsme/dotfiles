@@ -15,7 +15,7 @@ endif
 set directory=$XDG_CACHE_HOME/nvim
 set backupdir=$XDG_CACHE_HOME/nvim/backup
 set undodir=$XDG_CACHE_HOME/nvim/undo
-set viminfo+=n$XDG_CACHE_HOME/nvim/viminfo
+set shada+=n$XDG_CACHE_HOME/nvim/main.shada
 set undofile
 function! EnsureExists(path)
   if !isdirectory(expand(a:path))
