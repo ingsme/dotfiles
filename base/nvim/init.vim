@@ -75,9 +75,11 @@ Plug 'davidhalter/jedi'
 Plug 'BurningEther/iron.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'Shougo/neco-vim'
 Plug 'Yggdroot/indentLine'
+Plug 'liuchengxu/vim-which-key'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'shumphrey/fugitive-gitlab.vim'
+Plug 'whiteinge/diffconflicts'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
@@ -127,15 +129,29 @@ let g:tagbar_type_puppet = {
 " vim -ariline settings
 let g:airline_theme='tender'
 "let g:airline_theme='neodark'
+"let g:airline#extensions#branch#enabled = 1
+"let g:airline_powerline_fonts=1
+"let g:airline#extensions#whitespace#enabled#show_message = 1
+"let g:airline#extensions#hunks#non_zero_only = 1
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#fnamemod = ':t'
+"let g:airline#extensions#tabline#buffer_min_count = 1
+"let g:airline#extensions#tabline#buffer_nr_show = 1
+"let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline_powerline_fonts=1
+let g:airline_skip_empty_sections = 1
 let g:airline#extensions#whitespace#enabled#show_message = 1
 let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+"let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_min_count = 1
-let g:airline#extensions#tabline#buffer_nr_show = 1
-let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#tabline#fnametruncate = 0
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+"let g:airline#extensions#tabline#buffer_nr_format = '%s'
+let g:airline#extensions#tmuxline#enabled = 1
 
 nmap <Leader>u :MundoToggle<CR>
 let g:mundo_preview_bottom = 1
@@ -147,6 +163,9 @@ augroup END
 
 let g:lsp_signs_enabled = 1         " enable signs
 let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+
+" WhichKey
+nnoremap <silent><Leader> :<c-u>WhichKey '<Space>'<CR>
 
 " Ale settings
 nmap <Leader>k <Plug>(ale_previous_wrap)
@@ -246,8 +265,8 @@ nnoremap ,s :source $MYVIMRC<CR>
 nmap <silent> // :nohlsearch<CR>
 " choose buffer with <Leader>1..9 {{{2
 for i in [1,2,3,4,5,6,7,8,9]
-  exec "nmap <Leader>" . i . " :buffer " . i . "<cr>"
-  "	exec "nmap <Leader>" . i . " <Plug>AirlineSelectTab" . i
+"  exec "nmap <Leader>" . i . " :buffer " . i . "<cr>"
+  exec "nmap <Leader>" . i . " <Plug>AirlineSelectTab" . i
 endfor
 nmap <Leader><Tab> :bnext<CR>
 nmap <leader>0 :bfirst <CR>
@@ -310,9 +329,9 @@ endif
 
 "colorscheme one
 "colorscheme tender
-"colorscheme smyck
+colorscheme smyck
 "colorscheme neodark
-colorscheme distinguished
+"colorscheme distinguished
 "colorscheme NeoSolarized
 "colorscheme solarized
 "colorscheme monokai

@@ -1,24 +1,60 @@
 #!/bin/bash
 
-alias ll='ls -al'
-alias la='ls -A'
-alias l='ls -l'
-
-alias ..='cd ..'
-alias ...='cd ../..'
-
-alias mkdir='mkdir -pv'
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+[[ $IS_LINUX -eq 1 ]] && \
+    alias ls='ls --group-directories-first --color=auto -h'
+[[ $IS_MAC -eq 1 ]] && \
+    alias ls='ls -Gh'
 
 alias cal='cal -3'
-
-alias dut="du -hx * | sort -rh | head -10"
-alias dfu="df -hT -x devtmpfs -x tmpfs"
 
 alias volup="amixer set Master playback 3dB+"
 alias voldown="amixer set Master playback 3dB-"
 
+alias -- -='cd -'
+alias ..='cd ..'
+alias ...=../..
+alias ....=../../..
+alias .....=../../../..
+alias ......=../../../../..
+alias 1='cd -'
+alias 2='cd -2'
+alias 3='cd -3'
+alias 4='cd -4'
+alias 5='cd -5'
+alias 6='cd -6'
+alias 7='cd -7'
+alias 8='cd -8'
+alias 9='cd -9'
+alias pcat='pygmentize -f terminal -O style=native -g'
+alias _=sudo
+alias afind='ack-grep -il'
+alias aps='aptitude search'
+alias apss='aptitude show'
+alias colorize=colorize_via_pygmentize
+alias d='dirs -v | head -10'
+alias dfu='df -hT -x devtmpfs -x tmpfs'
+alias dut='du -hx * | sort -rh | head -10'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias globurl='noglob urlglobber '
+alias grep='grep --color=auto'
+alias history='fc -l 1'
+alias hjemmekontor='rdesktop -g 1280x960 -a 16 -k no -d UiB hjemmekontor.uib.no &'
+alias l='ls -l'
+alias la='ls -A'
+alias ll='ls -al'
+alias lsa='ls -lah'
+alias md='mkdir -p'
+alias midgard='rdesktop -g 1280x960 -a 16 -k no -d UiB midgard.uib.no &'
+alias mkdir='mkdir -pv'
+alias nvim='VIMINIT= nvim'
+alias please=sudo
+alias po=popd
+alias pu=pushd
+alias pwdb='cd && keepassx -cfg /home/ism089/.pwdb.ini &'
+alias rd=rmdir
+alias sz='source $HOME/.zshrc'
+alias which-command=whence
+alias ssh='TERM=xterm-256color ssh'
 
 #alias mux='tmuxinator'

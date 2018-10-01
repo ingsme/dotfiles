@@ -346,6 +346,8 @@ function precmd {
     #     source $HOME/.keychain/$HOSTNAME-sh
 
 #Aliases
+source "$XDG_CONFIG_HOME/alias/aliases"
+
 [[ $IS_LINUX -eq 1 ]] && \
     alias ls='ls --group-directories-first --color=auto -h'
 [[ $IS_MAC -eq 1 ]] && \
