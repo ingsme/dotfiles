@@ -103,10 +103,10 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 ## volume control
-bindsym XF86AudioLowerVolume exec amixer -q set Master 2- unmute
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 2+ unmute
-bindsym Mod4+XF86AudioLowerVolume exec amixer -q set PCM 2- unmute
-bindsym Mod4+XF86AudioRaiseVolume exec amixer -q set PCM 2+ unmute
+bindsym XF86AudioLowerVolume exec amixer -c 2 -q set Master 2- unmute
+bindsym XF86AudioRaiseVolume exec amixer -c 2 -q set Master 2+ unmute
+bindsym Mod4+XF86AudioLowerVolume exec amixer -c 2 -q set PCM 2- unmute
+bindsym Mod4+XF86AudioRaiseVolume exec amixer -c 2 -q set PCM 2+ unmute
 
 
 # reload the configuration file
