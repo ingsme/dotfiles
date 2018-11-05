@@ -103,10 +103,11 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 ## volume control
-bindsym XF86AudioLowerVolume exec amixer -c 2 -q set Master 2- unmute
-bindsym XF86AudioRaiseVolume exec amixer -c 2 -q set Master 2+ unmute
-bindsym Mod4+XF86AudioLowerVolume exec amixer -c 2 -q set PCM 2- unmute
-bindsym Mod4+XF86AudioRaiseVolume exec amixer -c 2 -q set PCM 2+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 2- unmute
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 2+ unmute
+bindsym Mod4+XF86AudioLowerVolume exec amixer -q set PCM 2- unmute
+bindsym Mod4+XF86AudioRaiseVolume exec amixer -q set PCM 2+ unmute
+bindsym XF86AudioMute exec amixer -q set Master toggle
 
 
 # reload the configuration file
@@ -163,18 +164,17 @@ bindsym $alt+Ctrl+l exec --no-startup-id gnome-screensaver-command -l
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command py3status -d -c ~/.config/i3status/config
-        tray_output primary
-#         font pango:DejaVu Sans Mono, Awesome 8
-# i3-theme-bar
-}
+ bar {
+     font pango:FontAwesome 9
+     status_command i3blocks
+     tray_output primary
+ }
 
 #exec --no-startup-id feh --bg-scale ~/Pictures/vim-shortcuts.png
 
 # Switch to commonly used programs
 bindsym $mod+b [class="(?i)firefox"] focus
-bindsym $mod+i [class="(?i)hexchat"] focus
+bindsym $mod+i [class="(?i)corebird"] focus
 bindsym $mod+t [class="(?i)polly"] focus
 bindsym $mod+m [class="(?i)thunderbird"] focus
 
@@ -191,6 +191,10 @@ set $ws7 7
 set $ws8 some
 set $ws9 9
 set $ws10 10
+set $wsF9 F9
+set $wsF10 F10
+set $wsF11 F11
+set $wsF12 F12
 
 
 # switch to workspace
@@ -204,6 +208,10 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
+bindsym $mod+F9 workspace $wsF9
+bindsym $mod+F10 workspace $wsF10
+bindsym $mod+F11 workspace $wsF11
+bindsym $mod+F12 workspace $wsF12
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -216,25 +224,40 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+F9 move container to workspace $wsF9
+bindsym $mod+Shift+F10 move container to workspace $wsF10
+bindsym $mod+Shift+F11 move container to workspace $wsF11
+bindsym $mod+Shift+F12 move container to workspace $wsF12
 
 assign [class="(?i)thunderbird"] $ws5
 assign [class="(?i)firefox"] $ws8
+assign [class="(?i)franz"] $ws8
 assign [class="(?i)smuxi-frontend-gnome"] $ws8
-assign [class="(?i)polly"] $ws8
-assign [class="(?i)birdie"] $ws8
+assign [class="(?i)corebird"] $ws8
+assign [class="(?i)slack"] $ws8
 assign [class="(?i)vmware"] $ws9
 assign [class="(?i)hexchat"] $ws8
+assign [class="(?i)spotify"] $ws6
+assign [class="(?i)sky"] $wsF9
 
-workspace "$ws1" output DVI-I-2
-workspace "$ws2" output DVI-I-2
-workspace "$ws3" output DVI-I-2
-workspace "$ws4" output DVI-I-2
-workspace "$ws5" output DVI-I-2
-workspace "$ws6" output DVI-I-2
-workspace "$ws7" output DVI-I-2
-workspace "$ws8" output DVI-I-3
-workspace "$ws9" output DVI-I-3
-workspace "$ws10" output DVI-I-3
+workspace "$ws1" output DP1
+workspace "$ws2" output DP1
+workspace "$ws3" output DP1
+workspace "$ws4" output DP1
+workspace "$ws5" output DP1
+workspace "$ws6" output DP1
+workspace "$ws7" output DP1
+workspace "$ws8" output DP2
+workspace "$ws9" output DP2
+workspace "$ws10" output DP2
+workspace "$wsF9" output HDMI1
+workspace "$wsF10" output HDMI1
+workspace "$wsF11" output HDMI1
+workspace "$wsF12" output HDMI1
+
+for_window [workspace="$ws6"] floating enable
+for_window [workspace="$ws5"] floating enable
+for_window [workspace="$ws10"] floating enable
 
 #########
 # RULES #
@@ -243,13 +266,13 @@ hide_edge_borders both
 ## obxprop | grep WM_CLASS
 
 # for_window [workspace=$ws5] floating enable
-for_window [workspace="$ws6"] floating enable
 #for_window [class="Gcolor2"] floating enable
 #for_window [instance="qjackctl"] floating enable
 for_window [class="(?i)thunderbird"] floating enable
 #for_window [class="(?i)firefox"] floating enable
 #for_window [class="(?i)smuxi-frontend-gnome"] floating enable
 for_window [class="(?i)nautilus"] floating enable
+for_window [class="(?i)zazu"] floating enable
 for_window [class="(?i)nemo"] floating enable
 for_window [class="(?i)sky"] floating enable
 for_window [class="(?i)vidyodesktop"] floating enable
@@ -279,6 +302,7 @@ for_window [class="(?i)zathura"] border pixel 2
 #exec tmux-weechat
 #exec gnome-settings-daemon
 # exec compton -CGb
+# exec --no-startup-id polybar top
 exec --no-startup-id echo "$0: DESKTOP_AUTOSTART_ID $DESKTOP_AUTOSTART_ID, registering with org.gnome.SessionManager"
 exec --no-startup-id dbus-send --session --print-reply=literal --dest=org.gnome.SessionManager "/org/gnome/SessionManager" org.gnome.SessionManager.RegisterClient "string:i3" "string:$DESKTOP_AUTOSTART_ID"
 exec --no-startup-id dex -a -e GNOME
@@ -288,11 +312,14 @@ exec unity-settings-daemon
 exec gnome-screensaver
 #exec volumicon
 #exec geppetto
-#exec thunderbird
+exec thunderbird
 exec firefox
+exec franz
 # exec smuxi-frontend-gnome
-exec polly
-exec hexchat
+#exec polly
+# exec flatpak run org.baedert.corebird
+# exec slack
+#exec hexchat
 exec --no-startup-id i3-msg 'workspace $ws1; exec i3-sensible-terminal'
 
 # Start the synergy server
