@@ -264,7 +264,8 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 nnoremap ,e :edit $MYVIMRC<CR>
 nnoremap ,s :source $MYVIMRC<CR>
-nmap <silent> // :nohlsearch<CR>
+nnoremap // :silent let @/ = ''<CR>
+"nmap <silent> // :nohlsearch<CR>
 " choose buffer with <Leader>1..9 {{{2
 for i in [1,2,3,4,5,6,7,8,9]
 "  exec "nmap <Leader>" . i . " :buffer " . i . "<cr>"
