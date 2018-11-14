@@ -64,6 +64,7 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'PotatoesMaster/i3-vim-syntax', {'for': 'i3'}
 Plug 'puppetlabs/puppet-syntax-vim', {'for': 'puppet'}
 Plug 'rodjek/vim-puppet', {'for': 'puppet'}
+Plug 'saltstack/salt-vim'
 Plug 'vim-python/python-syntax', {'for': ['python', 'python3']}
 Plug 'hynek/vim-python-pep8-indent', {'for': ['python', 'python3']}
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
@@ -80,6 +81,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'whiteinge/diffconflicts'
+Plug 'emilyst/match-count-statusline'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
