@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm -f $HOME/.Xresources
+rm -f "$HOME"/.Xresources
 
 if [[ ! -e base16-xresources/.git ]]; then
     echo  -e "\033[0;32m==>\033[0m Installing base16-xresources..."
