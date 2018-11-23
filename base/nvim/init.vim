@@ -201,6 +201,10 @@ nmap <Leader>wt :ToggleWhitespace<CR>
 nmap <Leader>ws :StripWhitespace<CR>
 let g:strip_whitespace_on_save = 1
 
+" w!! to write a file as sudo {{{2
+cmap w!! w !sudo tee % >/dev/null<CR>
+cmap W!! w !sudo tee % >/dev/null<CR>
+
 " vim-surround key bindings
 nmap <Leader>" ysiw"
 nmap <Leader>' ysiw'

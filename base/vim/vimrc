@@ -752,8 +752,8 @@ iabbrev @@ ingar.smedstad@uib.no
 iabbrev ccopy Copyright 2015 Ingar Smedstad.
 
 " w!! to write a file as sudo {{{2
-cmap w!! w !sudo tee % >/dev/null
-cmap W!! w !sudo tee % >/dev/null
+cmap w!! w !sudo tee % >/dev/null<CR>
+cmap W!! w !sudo tee % >/dev/null<CR>
 
 " Execution permissions by default to shebang (#!) files {{{2
 augroup shebang_chmod
