@@ -103,11 +103,11 @@ bindsym XF86AudioNext exec playerctl next
 bindsym XF86AudioPrev exec playerctl previous
 
 ## volume control
-bindsym XF86AudioLowerVolume exec amixer -q -D hw:2 set Master 2- unmute && killall -USR1 py3status
-bindsym XF86AudioRaiseVolume exec amixer -q -D hw:2 set Master 2+ unmute && killall -USR1 py3status
-bindsym Mod4+XF86AudioLowerVolume exec amixer -q -D hw:2 set PCM 2- unmute && killall -USR1 py3status
-bindsym Mod4+XF86AudioRaiseVolume exec amixer -q -D hw:2 set PCM 2+ unmute && killall -USR1 py3status
-bindsym XF86AudioMute exec amixer -q -D hw:2 set Master toggle && killall -USR1 py3status
+bindsym XF86AudioLowerVolume exec amixer -q set Master 2- unmute && killall -USR1 py3status
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 2+ unmute && killall -USR1 py3status
+bindsym Mod4+XF86AudioLowerVolume exec amixer -q set PCM 2- unmute && killall -USR1 py3status
+bindsym Mod4+XF86AudioRaiseVolume exec amixer -q set PCM 2+ unmute && killall -USR1 py3status
+bindsym XF86AudioMute exec amixer -q set Master toggle && killall -USR1 py3status
 
 
 # reload the configuration file

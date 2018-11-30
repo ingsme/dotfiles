@@ -57,14 +57,14 @@ cpu_usage {
 }
 
 spotify {
-    format = "{title} by {artist}"
+    format = "{artist}: {title}"
     format_down = ""
 }
 
 volume master {
     format = "♪: %volume"
     format_muted = "♪: muted (%volume)"
-    device = "hw:2"
+    device = hw:0
     mixer = "Master"
     mixer_idx = 0
 }
