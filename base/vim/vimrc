@@ -132,6 +132,7 @@ let g:syntastic_auto_loc_list=2
 let g:syntastic_puppet_puppetlint_args = '--no-80chars-check --no-documentation-check'
 let g:syntastic_aggregate_errors = 1
 
+Plug 'emilyst/match-count-statusline'
 Plug 'xolox/vim-misc'
 Plug 'majutsushi/tagbar'
 nmap <silent> <leader>tb :TagbarToggle<CR>
@@ -740,7 +741,8 @@ nnoremap <silent><leader>ss <C-w>s
 nnoremap <silent><leader>sc <C-w>c
 
 "Clear current search highlight by double tapping // {{{2
-nmap <silent> // :nohlsearch<CR>
+"nmap <silent> // :nohlsearch<CR>
+noremap // :silent let @/ = ''<CR>
 
 " Type <Leader>hl to toggle highlighting on/off, and show current value.
 noremap <Leader>hl :set hlsearch! hlsearch?<CR>
@@ -750,8 +752,8 @@ iabbrev @@ ingar.smedstad@uib.no
 iabbrev ccopy Copyright 2015 Ingar Smedstad.
 
 " w!! to write a file as sudo {{{2
-cmap w!! w !sudo tee % >/dev/null
-cmap W!! w !sudo tee % >/dev/null
+cmap w!! w !sudo tee % >/dev/null<CR>
+cmap W!! w !sudo tee % >/dev/null<CR>
 
 " Execution permissions by default to shebang (#!) files {{{2
 augroup shebang_chmod

@@ -64,6 +64,7 @@ Plug 'simnalamburt/vim-mundo'
 Plug 'PotatoesMaster/i3-vim-syntax', {'for': 'i3'}
 Plug 'puppetlabs/puppet-syntax-vim', {'for': 'puppet'}
 Plug 'rodjek/vim-puppet', {'for': 'puppet'}
+Plug 'saltstack/salt-vim'
 Plug 'vim-python/python-syntax', {'for': ['python', 'python3']}
 Plug 'hynek/vim-python-pep8-indent', {'for': ['python', 'python3']}
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
@@ -80,6 +81,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'whiteinge/diffconflicts'
+Plug 'emilyst/match-count-statusline'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
@@ -199,6 +201,10 @@ nmap <Leader>wt :ToggleWhitespace<CR>
 nmap <Leader>ws :StripWhitespace<CR>
 let g:strip_whitespace_on_save = 1
 
+" w!! to write a file as sudo {{{2
+cmap w!! w !sudo tee % >/dev/null<CR>
+cmap W!! w !sudo tee % >/dev/null<CR>
+
 " vim-surround key bindings
 nmap <Leader>" ysiw"
 nmap <Leader>' ysiw'
@@ -262,7 +268,8 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 nnoremap ,e :edit $MYVIMRC<CR>
 nnoremap ,s :source $MYVIMRC<CR>
-nmap <silent> // :nohlsearch<CR>
+nnoremap // :silent let @/ = ''<CR>
+"nmap <silent> // :nohlsearch<CR>
 " choose buffer with <Leader>1..9 {{{2
 for i in [1,2,3,4,5,6,7,8,9]
 "  exec "nmap <Leader>" . i . " :buffer " . i . "<cr>"
