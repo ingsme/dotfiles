@@ -432,3 +432,5 @@ source "$PYENV_ROOT//completions/pyenv.zsh"
 export PATH=$(pyenv root):$PATH
 # export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 
+export GPGKEY=135E1A043370A237
+
