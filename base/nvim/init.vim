@@ -52,11 +52,10 @@ Plug 'Lokaltog/vim-distinguished'
 Plug 'iCyMind/NeoSolarized'
 Plug 'jacoborus/tender.vim'
 Plug 'rakr/vim-one'
-"Plug 'prabirshrestha/async.vim'
-"Plug 'prabirshrestha/vim-lsp'
 Plug 'godlygeek/tabular'
 Plug 'myusuf3/numbers.vim'
-Plug 'jiangmiao/auto-pairs'
+"Plug 'jiangmiao/auto-pairs'
+Plug 'Raimondi/delimitMate'
 Plug 'lilydjwg/colorizer'
 Plug 'mhinz/vim-sayonara'
 Plug 'mhinz/vim-startify'
@@ -70,15 +69,29 @@ Plug 'hynek/vim-python-pep8-indent', {'for': ['python', 'python3']}
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'sheerun/vim-polyglot'
 Plug 'rafi/vim-tinycomment'
-Plug 'roxma/nvim-completion-manager'
-Plug 'roxma/ncm-rct-complete'
-Plug 'davidhalter/jedi'
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-tmux'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-jedi'
+Plug 'honza/vim-snippets'
+
+Plug 'ncm2/ncm2-ultisnips'
+Plug 'SirVer/ultisnips'
+
+"Plug 'davidhalter/jedi'
 Plug 'BurningEther/iron.nvim', {'do': ':UpdateRemotePlugins'}
 Plug 'Shougo/neco-vim'
 Plug 'Yggdroot/indentLine'
 Plug 'liuchengxu/vim-which-key'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+
+"Plug 'junegunn/fzf', { 'dir': '~/.local/fzf', 'do': './install --xdg --all --no-fish --no-update-rc --64'}
+"Plug '/home/ism089/.local/fzf/'
+"Plug 'junegunn/fzf.vim'
+
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'whiteinge/diffconflicts'
 Plug 'emilyst/match-count-statusline'
@@ -87,36 +100,16 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
-Plug 'junegunn/vim-easy-align', {'on': 'EasyAlign'}
+Plug 'junegunn/vim-easy-align'
 Plug 'junegunn/fzf'
 Plug 'ntpeters/vim-better-whitespace'
 "Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
-"Plug 'autozimu/LanguageClient-neovim', {
-"    \ 'branch': 'next',
-"    \ 'do': 'bash install.sh',
-"    \ }
 call plug#end()
-
-"let g:LanguageClient_serverCommands = {
-"    \ 'python': ['pyls'],
-"    \ }
-
-"nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-"nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-"nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
-"nnoremap <silent> <Leader>lf :call LanguageClient_textDocument_documentSymbol()<CR>
-"   ~always keep the signcolumn open!!
-"set signcolumn=yes
-"augroup LanguageClient_config
-"  autocmd!
-"  autocmd User LanguageClientStarted setlocal signcolumn=yes
-"  autocmd User LanguageClientStopped setlocal signcolumn=yes
-"augroup END
 
 let g:python_highlight_all = 1
 
-" Tagbar nad tags
+" Tagbar and tags
 nmap <silent> <leader>tb :TagbarToggle<CR>
 let g:tagbar_type_puppet = {
       \ 'ctagstype': 'puppet',
@@ -174,8 +167,8 @@ nmap <Leader>k <Plug>(ale_previous_wrap)
 nmap <Leader>j <Plug>(ale_next_wrap)
 nnoremap <silent> gd <Plug>(ale_go_to_definition)
 nmap <leader>af <Plug>(ale_fix)
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_error_str = '✘'
+let g:ale_echo_msg_warning_str = '⚠'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_open_list = "on_save"
 let g:ale_sign_error = ''
@@ -202,8 +195,8 @@ nmap <Leader>ws :StripWhitespace<CR>
 let g:strip_whitespace_on_save = 1
 
 " w!! to write a file as sudo {{{2
-cmap w!! w !sudo tee % >/dev/null<CR>
-cmap W!! w !sudo tee % >/dev/null<CR>
+cmap w!! execute 'silent write !sudo tee % >/dev/null' <bar> edit!
+cmap W!! execute 'silent write !sudo tee % >/dev/null' <bar> edit!
 
 " vim-surround key bindings
 nmap <Leader>" ysiw"
@@ -233,6 +226,18 @@ let g:NERDTreeIndicatorMapCustom = {
       \ 'Ignored'   : '☒',
       \ "Unknown"   : "?"
       \ }
+
+" FZF key bindings
+command! -bang -nargs=? -complete=dir Files
+	\ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)<Paste>
+map <leader>ff :Files<CR>
+map <leader>fm :Marks<CR>
+map <leader>fw :Windows<CR>
+map <leader>fb :Buffers<CR>
+map <leader>fh :History<CR>
+map <leader>fg :Tags<CR>
+map <leader>ft :BTags<CR>
+
 " vim-fugitive key bindings
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gd :Gdiff<CR>
@@ -244,15 +249,13 @@ nnoremap <silent> <leader>gw :Gwrite<CR>
 nnoremap <silent> <leader>gr :Gremove<CR>
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
-let g:fugitive_gitlab_domains = ['https://gitlab.uib.no']
+let g:fugitive_gitlab_domains = ['https://git.app.uib.no']
 
 " Startify settings
 let g:startify_change_to_vcs_root = 1
 let g:startify_session_dir = 'directory/sessions'
 let g:startify_show_sessions = 1
 autocmd User Startified setlocal buftype=
-
-"let g:cm_refresh_length = 3
 
 " Tabular settings
 nmap <Leader>a== :Tabularize /=<CR>
@@ -262,9 +265,26 @@ vmap <Leader>a> :Tabularize /=><CR>
 nmap <Leader>a: :Tabularize /:\zs<CR>
 vmap <Leader>a: :Tabularize /:\zs<CR>
 
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+set shortmess+=c
+
+" Press enter key to trigger snippet expansion
+" The parameters are the same as `:help feedkeys()`
+autocmd BufNewFile,BufRead * inoremap <silent> <buffer> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
+
+" c-j c-k for moving in snippet
+let g:UltiSnipsUsePythonVersion = 3
+let g:UltiSnipsExpandTrigger= "<Plug>(ultisnips_expand)"
+let g:UltiSnipsJumpForwardTrigger = "<c-j>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+let g:UltiSnipsRemoveSelectModeMappings = 0
+let g:UltiSnipsSnippetsDir = $HOME . "/.config/nvim/UltiSnips"
+
 " Use TAB to select popup menus
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 
 nnoremap ,e :edit $MYVIMRC<CR>
 nnoremap ,s :source $MYVIMRC<CR>
@@ -326,10 +346,6 @@ else
   set list listchars=tab:\ \ ,trail:-,extends:>,precedes:<
 endif
 
-"set cursorline!
-"autocmd WinLeave * setlocal nocursorline
-"autocmd WinEnter * setlocal cursorline
-
 if exists('&inccommand')
   set inccommand=split
 endif
@@ -349,15 +365,6 @@ let g:neodark#terminal_transparent = 1
 " Autocommands
 autocmd BufNewFile,BufRead *.pp set filetype=puppet
 autocmd FileType vim setlocal ts=2 sts=2 sw=2
-
-" Python lsp
-"if executable('pyls')
-"  au User lsp_setup call lsp#register_server({
-"        \ 'name': 'pyls',
-"        \ 'cmd': {server_info->['pyls']},
-"        \ 'whitelist': ['python'],
-"        \ })
-"endif
 
 " Execution permissions by default to shebang (#!) files
 augroup shebang_chmod

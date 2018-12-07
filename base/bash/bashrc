@@ -115,3 +115,5 @@ KEYCHAIN=$(which keychain)
 if [ ! -z "$KEYCHAIN" ]; then
     eval $(keychain --eval --agents ssh id_rsa)
 fi
+
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.bash

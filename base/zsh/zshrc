@@ -435,3 +435,4 @@ export PATH=$(pyenv root):$PATH
 
 export GPGKEY=135E1A043370A237
 
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh ] && source "${XDG_CONFIG_HOME:-$HOME/.config}"/fzf/fzf.zsh
