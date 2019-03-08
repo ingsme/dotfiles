@@ -1,0 +1,7 @@
+snippet sudoers "sudoers template" b
+	sudoers:
+		$1:
+			type:		$(2:user)
+			priority:	20
+			runas:		$(3:ALL)
+endsnippet

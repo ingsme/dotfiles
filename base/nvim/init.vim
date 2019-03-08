@@ -66,6 +66,7 @@ Plug 'rodjek/vim-puppet', {'for': 'puppet'}
 Plug 'saltstack/salt-vim'
 Plug 'vim-python/python-syntax', {'for': ['python', 'python3']}
 Plug 'hynek/vim-python-pep8-indent', {'for': ['python', 'python3']}
+"Plug 'python-mode/python-mode', {'for': ['python', 'python3']}
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
 Plug 'sheerun/vim-polyglot'
 Plug 'rafi/vim-tinycomment'
@@ -88,8 +89,7 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
-"Plug 'junegunn/fzf', { 'dir': '~/.local/fzf', 'do': './install --xdg --all --no-fish --no-update-rc --64'}
-"Plug '/home/ism089/.local/fzf/'
+"Plug 'junegunn/fzf', { 'do': './install --bin'}
 "Plug 'junegunn/fzf.vim'
 
 Plug 'shumphrey/fugitive-gitlab.vim'
@@ -108,6 +108,12 @@ Plug 'w0rp/ale'
 call plug#end()
 
 let g:python_highlight_all = 1
+if executable('/scratch/pyenv/versions/neovim2/bin/python')
+  let g:python_host_prog = '/scratch/pyenv/versions/neovim2/bin/python'
+endif
+if executable('/scratch/pyenv/versions/neovim3/bin/python')
+  let g:python3_host_prog = '/scratch/pyenv/versions/neovim3/bin/python'
+endif
 
 " Tagbar and tags
 nmap <silent> <leader>tb :TagbarToggle<CR>
@@ -163,8 +169,8 @@ let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal 
 nnoremap <silent><Leader> :<c-u>WhichKey '<Space>'<CR>
 
 " Ale settings
-nmap <Leader>k <Plug>(ale_previous_wrap)
-nmap <Leader>j <Plug>(ale_next_wrap)
+"nmap <Leader>k <Plug>(ale_previous_wrap)
+"nmap <Leader>j <Plug>(ale_next_wrap)
 nnoremap <silent> gd <Plug>(ale_go_to_definition)
 nmap <leader>af <Plug>(ale_fix)
 let g:ale_echo_msg_error_str = '✘'
@@ -228,15 +234,15 @@ let g:NERDTreeIndicatorMapCustom = {
       \ }
 
 " FZF key bindings
-command! -bang -nargs=? -complete=dir Files
-	\ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)<Paste>
-map <leader>ff :Files<CR>
-map <leader>fm :Marks<CR>
-map <leader>fw :Windows<CR>
-map <leader>fb :Buffers<CR>
-map <leader>fh :History<CR>
-map <leader>fg :Tags<CR>
-map <leader>ft :BTags<CR>
+"command! -bang -nargs=? -complete=dir Files
+"  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)<Paste>
+"map <leader>ff :Files<CR>
+"map <leader>fm :Marks<CR>
+"map <leader>fw :Windows<CR>
+"map <leader>fb :Buffers<CR>
+"map <leader>fh :History<CR>
+"map <leader>fg :Tags<CR>
+"map <leader>ft :BTags<CR>
 
 " vim-fugitive key bindings
 nnoremap <silent> <leader>gs :Gstatus<CR>
