@@ -26,6 +26,11 @@ call EnsureExists(&directory)
 call EnsureExists(&backupdir)
 call EnsureExists(&undodir)
 
+if has ("macunix")
+  let g:python_host_prog = '/Users/ism089/.pyenv/versions/neovim2/bin/python'
+  let g:python3_host_prog = '/Users/ism089/.pyenv/versions/neovim3/bin/python'
+endif
+
 
 let mapleader="\<space>"
 
@@ -65,6 +70,7 @@ Plug 'puppetlabs/puppet-syntax-vim', {'for': 'puppet'}
 Plug 'rodjek/vim-puppet', {'for': 'puppet'}
 Plug 'saltstack/salt-vim'
 Plug 'vim-python/python-syntax', {'for': ['python', 'python3']}
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 Plug 'hynek/vim-python-pep8-indent', {'for': ['python', 'python3']}
 "Plug 'python-mode/python-mode', {'for': ['python', 'python3']}
 Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
