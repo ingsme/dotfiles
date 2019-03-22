@@ -312,6 +312,7 @@ for_window [class="(?i)zathura"] border pixel 2
 # exec --no-startup-id dbus-send --session --print-reply=literal --dest=org.gnome.SessionManager "/org/gnome/SessionManager" org.gnome.SessionManager.RegisterClient "string:i3" "string:$DESKTOP_AUTOSTART_ID"
 # exec --no-startup-id dex -a -e GNOME
 exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id gnome-flashback
 # exec unity-settings-daemon
 #exec gnome-keyring-daemon
