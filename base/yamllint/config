@@ -1,0 +1,15 @@
+
+extends: default
+
+rules:
+  brackets:
+    level: warning
+    max-spaces-inside: 1
+  colons:
+    max-spaces-after: -1
+  indentation:
+    level: warning
+    spaces: consistent
+    indent-sequences: consistent
+    check-multi-line-strings: false
+
