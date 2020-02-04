@@ -9,4 +9,3 @@ else
       amixer set PCM unmute
       amixer set Speaker unmute
 fi
-
