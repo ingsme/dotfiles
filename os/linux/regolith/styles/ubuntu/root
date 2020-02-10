@@ -1,0 +1,16 @@
+! -- Styles - Colors
+#include "color"
+
+! -- Styles - Fonts
+#include "typeface"
+
+! -- Styles - Theme
+#include "theme"
+
+! -- Applications
+! These files map values defined above into specific app settings.
+#include "../st-term"
+#include "../i3-wm"
+#include "../i3xrocks"
+#include "../rofi"
+#include "../gnome"

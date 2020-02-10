@@ -1,0 +1,509 @@
+# i3 config file for the Regolith Desktop Environment
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+# This defines which key super maps to on your keyboard.
+# Alt key is Mod1, and Windows key is Mod4
+set $mod Mod4
+set $alt Mod1
+
+focus_follows_mouse yes
+
+# i3xrocks config file. Override this for custom status indicators on the bar.
+set $i3xrocks_config ~/.config/regolith/i3xrocks/config
+
+# path to terminal. Override this to specify a custom terminal.
+set $terminal_path /usr/bin/gnome-terminal
+
+# Color values are defined in ~/.Xresources-regolith
+# These are the labels which define each i3 workspace.
+# set_from_resource $ws1  i3-wm.workspace.01.name "1"
+# set_from_resource $ws2  i3-wm.workspace.02.name "2"
+# set_from_resource $ws3  i3-wm.workspace.03.name "3"
+# set_from_resource $ws4  i3-wm.workspace.04.name "4"
+# set_from_resource $ws5  i3-wm.workspace.05.name "5"
+# set_from_resource $ws6  i3-wm.workspace.06.name "6"
+# set_from_resource $ws7  i3-wm.workspace.07.name "7"
+# set_from_resource $ws8  i3-wm.workspace.08.name "8"
+# set_from_resource $ws9  i3-wm.workspace.09.name "9"
+# set_from_resource $ws10 i3-wm.workspace.10.name "10"
+# set_from_resource $ws11 i3-wm.workspace.11.name "11"
+# set_from_resource $ws12 i3-wm.workspace.12.name "12"
+# set_from_resource $ws13 i3-wm.workspace.13.name "13"
+# set_from_resource $ws14 i3-wm.workspace.14.name "14"
+# set_from_resource $ws15 i3-wm.workspace.15.name "15"
+# set_from_resource $ws16 i3-wm.workspace.16.name "16"
+# set_from_resource $ws17 i3-wm.workspace.17.name "17"
+# set_from_resource $ws18 i3-wm.workspace.18.name "18"
+# set_from_resource $ws19 i3-wm.workspace.19.name "19"
+
+set $ws1   "1"
+set $ws2   "2"
+set $ws3   "3"
+set $ws4   "4"
+set $ws5   "5"
+set $ws6   "6"
+set $ws7   "7"
+set $ws8   "8"
+set $ws9   "9"
+set $ws10  "10"
+set $ws11  "11"
+set $ws12  "12"
+set $ws13  "13"
+set $ws14  "14"
+set $ws15  "15"
+set $ws16  "16"
+set $ws17  "17"
+set $ws18  "18"
+set $ws19  "19"
+set $wsF9 "F9"
+set $wsF10 "F10"
+set $wsF11 "F11"
+set $wsF12 "F12"
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+hide_edge_borders smart
+
+# start a terminal
+bindsym $mod+Return exec $terminal_path
+
+# start a web browser
+bindsym $mod+Shift+Return exec /usr/bin/sensible-browser
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+set_from_resource $rofiTheme rofi.theme "regolith-theme"
+
+# rofi app and window launchers
+bindsym $mod+d exec rofi -show drun -theme $rofiTheme
+bindsym $mod+Shift+d exec rofi -show run -theme $rofiTheme
+bindsym $mod+Ctrl+d exec rofi -show window -theme $rofiTheme
+
+# change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# move windows in workspaces
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# move workspaces to outputs
+bindsym $mod+Ctrl+Shift+Left move workspace to output left
+bindsym $mod+Ctrl+Shift+Down move workspace to output down
+bindsym $mod+Ctrl+Shift+Up move workspace to output up
+bindsym $mod+Ctrl+Shift+Right move workspace to output right
+
+# toggle split orientation
+bindsym $mod+BackSpace split toggle
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# show/hide keybindings
+bindsym $mod+Shift+question exec --no-startup-id /usr/bin/remontoire-toggle
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+Ctrl+m move to scratchpad
+bindsym $mod+Ctrl+a scratchpad show
+
+# change focus between tiling / floating windows
+bindsym $mod+Shift+t focus mode_toggle
+
+# toggle tabbed mode
+bindsym $mod+t layout toggle tabbed splith splitv
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+bindsym $mod+Ctrl+1 workspace $ws11
+bindsym $mod+Ctrl+2 workspace $ws12
+bindsym $mod+Ctrl+3 workspace $ws13
+bindsym $mod+Ctrl+4 workspace $ws14
+bindsym $mod+Ctrl+5 workspace $ws15
+bindsym $mod+Ctrl+6 workspace $ws16
+bindsym $mod+Ctrl+7 workspace $ws17
+bindsym $mod+Ctrl+8 workspace $ws18
+bindsym $mod+Ctrl+9 workspace $ws19
+bindsym $mod+F9 workspace $wsF9
+bindsym $mod+F10 workspace $wsF10
+bindsym $mod+F11 workspace $wsF11
+bindsym $mod+F12 workspace $wsF12
+
+# cycle across workspaces
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+bindsym $mod+Shift+Ctrl+1 move container to workspace $ws11
+bindsym $mod+Shift+Ctrl+2 move container to workspace $ws12
+bindsym $mod+Shift+Ctrl+3 move container to workspace $ws13
+bindsym $mod+Shift+Ctrl+4 move container to workspace $ws14
+bindsym $mod+Shift+Ctrl+5 move container to workspace $ws15
+bindsym $mod+Shift+Ctrl+6 move container to workspace $ws16
+bindsym $mod+Shift+Ctrl+7 move container to workspace $ws17
+bindsym $mod+Shift+Ctrl+8 move container to workspace $ws18
+bindsym $mod+Shift+Ctrl+9 move container to workspace $ws19
+bindsym $mod+Shift+F9 move container to workspace $wsF9
+bindsym $mod+Shift+F10 move container to workspace $wsF10
+bindsym $mod+Shift+F11 move container to workspace $wsF11
+bindsym $mod+Shift+F12 move container to workspace $wsF12
+
+# move focused container to workspace, move to workspace
+bindsym $mod+$alt+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+$alt+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+$alt+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+$alt+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+$alt+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+$alt+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+$alt+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+$alt+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+$alt+9 move container to workspace $ws9; workspace $ws9
+bindsym $mod+$alt+0 move container to workspace $ws10; workspace $ws10
+bindsym $mod+$alt+Ctrl+1 move container to workspace $ws11; workspace $ws11
+bindsym $mod+$alt+Ctrl+2 move container to workspace $ws12; workspace $ws12
+bindsym $mod+$alt+Ctrl+3 move container to workspace $ws13; workspace $ws13
+bindsym $mod+$alt+Ctrl+4 move container to workspace $ws14; workspace $ws14
+bindsym $mod+$alt+Ctrl+5 move container to workspace $ws15; workspace $ws15
+bindsym $mod+$alt+Ctrl+6 move container to workspace $ws16; workspace $ws16
+bindsym $mod+$alt+Ctrl+7 move container to workspace $ws17; workspace $ws17
+bindsym $mod+$alt+Ctrl+8 move container to workspace $ws18; workspace $ws18
+bindsym $mod+$alt+Ctrl+9 move container to workspace $ws19; workspace $ws19
+bindsym $mod+$alt+F9 move container to workspace $wsF9; workspace $wsF9
+bindsym $mod+$alt+F10 move container to workspace $wsF10; workspace $wsF10
+bindsym $mod+$alt+F11 move container to workspace $wsF11; workspace $wsF11
+bindsym $mod+$alt+F12 move container to workspace $wsF12; workspace $wsF12
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec gnome-screensaver-command --lock
+    bindsym e exec /usr/bin/gnome-session-quit --logout
+    bindsym s exec systemctl suspend
+    bindsym r exec /usr/bin/gnome-session-quit --reboot
+    bindsym Shift+s exec /usr/bin/gnome-session-quit --power-off
+}
+bindsym $mod+Pause mode "$mode_system"
+
+# Logout of session
+# bindsym $mod+Shift+e exec /usr/bin/gnome-session-quit --logout
+
+# Reboot computer
+# bindsym $mod+Shift+b exec /usr/bin/gnome-session-quit --reboot
+
+# Power off computer
+# bindsym $mod+Shift+p exec /usr/bin/gnome-session-quit --power-off
+
+# lock the screen
+bindsym $Alt+Ctrl+l exec gnome-screensaver-command --lock
+
+# put the system to sleep
+# bindsym $mod+Shift+s exec systemctl suspend
+
+# shortcuts for common system configuration tasks
+bindsym $mod+c exec gnome-control-center
+# bindsym $mod+d exec gnome-control-center display
+# bindsym $mod+w exec gnome-control-center wifi
+bindsym $mod+e exec nautilus
+bindsym $mod+n exec /usr/share/rofication/rofication-gui.py
+
+# i3-snapshot for load/save current layout
+bindsym $mod+comma  exec /usr/bin/i3-snapshot -o > /tmp/i3-snapshot
+bindsym $mod+period exec /usr/bin/i3-snapshot -c < /tmp/i3-snapshot
+
+# Toggle bar visibility
+bindsym $mod+i bar mode toggle
+
+# Media player
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+## volume control
+bindsym XF86AudioLowerVolume exec amixer -c 0 -q set Master 2- unmute && killall -USR1 py3status
+bindsym XF86AudioRaiseVolume exec amixer -c 0 -q set Master 2+ unmute && killall -USR1 py3status
+bindsym Mod4+XF86AudioLowerVolume exec amixer -c 0 -q set PCM 2- unmute && killall -USR1 py3status
+bindsym Mod4+XF86AudioRaiseVolume exec amixer -c 0 -q set PCM 2+ unmute && killall -USR1 py3status
+bindsym XF86AudioMute exec amixer -q set -c 0 Master toggle && killall -USR1 py3status
+
+# Cause Settings app to float above tiled windows
+floating_maximum_size -1 x -1
+for_window [class="Gnome-control-center"] floating enable
+
+# resize window (you can also use the mouse for that)
+mode "Resize Mode" {
+        # These bindings trigger as soon as you enter the resize mode
+        bindsym Left resize shrink width 6 px or 6 ppt
+        bindsym Down resize grow height 6 px or 6 ppt
+        bindsym Up resize shrink height 6 px or 6 ppt
+        bindsym Right resize grow width 6 px or 6 ppt
+
+        bindsym Shift+Left resize shrink width 12 px or 12 ppt
+        bindsym Shift+Down resize grow height 12 px or 12 ppt
+        bindsym Shift+Up resize shrink height 12 px or 12 ppt
+        bindsym Shift+Right resize grow width 12 px or 12 ppt
+
+        bindsym h resize shrink width 6 px or 6 ppt
+        bindsym k resize grow height 6 px or 6 ppt
+        bindsym j resize shrink height 6 px or 6 ppt
+        bindsym l resize grow width 6 px or 6 ppt
+
+        bindsym Shift+h resize shrink width 12 px or 12 ppt
+        bindsym Shift+k resize grow height 12 px or 12 ppt
+        bindsym Shift+j resize shrink height 12 px or 12 ppt
+        bindsym Shift+l resize grow width 12 px or 12 ppt
+
+        # change gaps interactively
+#         bindsym minus gaps inner current minus 6
+#         bindsym plus gaps inner current plus 6
+#         bindsym Shift+minus gaps inner current minus 12
+#         bindsym Shift+plus gaps inner current plus 12
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "Resize Mode"
+
+# Disable titlebar
+# new_window pixel 1
+# new_float pixel 1
+
+# Specify the distance between windows in pixels. (i3-gaps)
+# gaps inner 2
+# gaps outer 0
+
+# Only enable gaps on a workspace when there is at least one container
+# smart_gaps on
+
+# Create variables from Xresources for i3's look.
+set_from_resource $focused.color.border i3-wm.client.focused.color.border "#002b36"
+set_from_resource $focused.color.background i3-wm.client.focused.color.background "#586e75"
+set_from_resource $focused.color.text i3-wm.client.focused.color.text "#fdf6e3"
+set_from_resource $focused.color.indicator i3-wm.client.focused.color.indicator "#268bd2"
+set_from_resource $focused.color.child_border i3-wm.client.focused.color.child_border
+
+set_from_resource $focused_inactive.color.border i3-wm.client.focused_inactive.color.border "#002b36"
+set_from_resource $focused_inactive.color.background i3-wm.client.focused_inactive.color.background "#073642"
+set_from_resource $focused_inactive.color.text i3-wm.client.focused_inactive.color.text "#839496"
+set_from_resource $focused_inactive.color.indicator i3-wm.client.focused_inactive.color.indicator "#073642"
+set_from_resource $focused_inactive.color.child_border i3-wm.client.focused_inactive.color.child_border
+
+set_from_resource $unfocused.color.border i3-wm.client.unfocused.color.border "#002b36"
+set_from_resource $unfocused.color.background i3-wm.client.unfocused.color.background "#073642"
+set_from_resource $unfocused.color.text i3-wm.client.unfocused.color.text "#839496"
+set_from_resource $unfocused.color.indicator i3-wm.client.unfocused.color.indicator "#073642"
+set_from_resource $unfocused.color.child_border i3-wm.client.unfocused.color.child_border
+
+set_from_resource $urgent.color.border i3-wm.client.urgent.color.border "#002b36"
+set_from_resource $urgent.color.background i3-wm.client.urgent.color.background "#dc322f"
+set_from_resource $urgent.color.text i3-wm.client.urgent.color.text "#fdf6e3"
+set_from_resource $urgent.color.indicator i3-wm.client.urgent.color.indicator "#002b36"
+set_from_resource $urgent.color.child_border i3-wm.client.urgent.color.child_border
+
+
+# Window Border color
+# class                 border                             background                         text                               indicator                          child_border
+client.focused          $focused.color.border              $focused.color.background          $focused.color.text                $focused.color.indicator           $focused.color.child_border
+client.focused_inactive $focused_inactive.color.border     $focused_inactive.color.background $focused_inactive.color.text       $focused_inactive.color.indicator  $focused_inactive.color.child_border
+client.unfocused        $unfocused.color.border            $unfocused.color.background        $unfocused.color.text              $unfocused.color.indicator         $unfocused.color.child_border
+client.urgent           $urgent.color.border               $urgent.color.background           $urgent.color.text                 $urgent.color.indicator            $urgent.color.child_border
+
+# Enable popup during fullscreen
+popup_during_fullscreen smart
+
+# window focus follows your mouse movements as the mouse crosses window borders
+# focus_follows_mouse no
+
+# Create variables from Xresources for i3bars's look.
+set_from_resource $i3-wm.bar.background.color i3-wm.bar.background.color "#002b36"
+set_from_resource $i3-wm.bar.statusline.color i3-wm.bar.statusline.color "#93a1a1"
+set_from_resource $i3-wm.bar.separator.color i3-wm.bar.separator.color "#268bd2"
+
+set_from_resource $i3-wm.bar.workspace.focused.border.color i3-wm.bar.workspace.focused.border.color "#073642"
+set_from_resource $i3-wm.bar.workspace.focused.background.color i3-wm.bar.workspace.focused.background.color "#073642"
+set_from_resource $i3-wm.bar.workspace.focused.text.color i3-wm.bar.workspace.focused.text.color "#eee8d5"
+
+set_from_resource $i3-wm.bar.workspace.active.border.color i3-wm.bar.workspace.active.border.color "#073642"
+set_from_resource $i3-wm.bar.workspace.active.background.color i3-wm.bar.workspace.active.background.color "#073642"
+set_from_resource $i3-wm.bar.workspace.active.text.color i3-wm.bar.workspace.active.text.color "#586e75"
+
+set_from_resource $i3-wm.bar.workspace.inactive.border.color i3-wm.bar.workspace.inactive.border.color "#002b36"
+set_from_resource $i3-wm.bar.workspace.inactive.background.color i3-wm.bar.workspace.inactive.background.color "#002b36"
+set_from_resource $i3-wm.bar.workspace.inactive.text.color i3-wm.bar.workspace.inactive.text.color "#586e75"
+
+set_from_resource $i3-wm.bar.workspace.urgent.border.color i3-wm.bar.workspace.urgent.border.color "#dc322f"
+set_from_resource $i3-wm.bar.workspace.urgent.background.color i3-wm.bar.workspace.urgent.background.color "#dc322f"
+set_from_resource $i3-wm.bar.workspace.urgent.text.color i3-wm.bar.workspace.urgent.text.color "#fdf6e3"
+
+set_from_resource $i3-wm.bar.font i3-wm.bar.font "pango:Source Code Pro Medium 13, FontAwesome 13"
+font $i3-wm.bar.font
+
+# The bar configuration
+bar {
+  font $i3-wm.bar.font
+  separator_symbol " "
+  status_command i3xrocks -c $i3xrocks_config
+  tray_output primary
+#   strip_workspace_numbers yes
+
+  colors {
+      background $i3-wm.bar.background.color
+      statusline $i3-wm.bar.statusline.color
+      separator  $i3-wm.bar.separator.color
+
+#                        BORDER  BACKGROUND TEXT
+      focused_workspace  $i3-wm.bar.workspace.focused.border.color      $i3-wm.bar.workspace.focused.background.color   $i3-wm.bar.workspace.focused.text.color
+      active_workspace   $i3-wm.bar.workspace.active.border.color       $i3-wm.bar.workspace.active.background.color    $i3-wm.bar.workspace.active.text.color
+      inactive_workspace $i3-wm.bar.workspace.inactive.border.color     $i3-wm.bar.workspace.inactive.background.color  $i3-wm.bar.workspace.inactive.text.color
+      urgent_workspace   $i3-wm.bar.workspace.urgent.border.color       $i3-wm.bar.workspace.urgent.background.color    $i3-wm.bar.workspace.urgent.text.color
+  }
+}
+
+# Switch to commonly used programs
+bindsym $mod+b [class="(?i)firefox"] focus
+bindsym $mod+m [class="(?i)thunderbird"] focus
+
+assign [class="(?i)thunderbird"] workspace $ws5
+assign [class="(?i)firefox"] workspace $ws8
+assign [class="(?i)franz"] workspace $ws8
+assign [class="(?i)smuxi-frontend-gnome"] workspace $ws8
+assign [class="(?i)microsoft (?i)teams - (?i)preview"] workspace $ws8
+assign [class="(?i)slack"] workspace $ws8
+assign [class="(?i)vmware"] workspace $ws9
+assign [class="(?i)hexchat"] workspace $ws8
+assign [class="(?i)spotify"] workspace $wsF9
+assign [class="(?i)sky"] workspace $wsF9
+
+workspace $ws1 output DP-1
+workspace $ws2 output DP-1
+workspace $ws3 output DP-1
+workspace $ws4 output DP-1
+workspace $ws5 output DP-1
+workspace $ws6 output DP-1
+workspace $ws7 output DP-1
+workspace $ws8 output DP-2
+workspace $ws9 output DP-2
+workspace $ws10 output DP-2
+workspace $wsF9 output HDMI-1
+workspace $wsF10 output HDMI-1
+workspace $wsF11 output HDMI-1
+workspace $wsF12 output HDMI-1
+
+for_window [workspace=$ws6] floating enable
+for_window [workspace=$ws5] floating enable
+for_window [workspace=$ws10] floating enable
+for_window [workspace=$ws11] floating enable
+for_window [workspace=$ws12] floating enable
+for_window [workspace=$ws13] floating enable
+
+# for_window [workspace=$ws5] floating enable
+#for_window [class="Gcolor2"] floating enable
+#for_window [instance="qjackctl"] floating enable
+for_window [class="(?i)thunderbird"] floating enable
+#for_window [class="(?i)firefox"] floating enable
+#for_window [class="(?i)smuxi-frontend-gnome"] floating enable
+for_window [class="(?i)nautilus"] floating enable
+for_window [class="(?i)zazu"] floating enable
+for_window [class="(?i)yad"] floating enable
+for_window [class="(?i)nemo"] floating enable
+for_window [class="(?i)sky"] floating enable
+for_window [class="(?i)vidyodesktop"] floating enable
+for_window [class="(?i)gedit"] floating enable
+for_window [class="(?i)rdesktop"] floating enable
+for_window [class="(?i)spotify"] floating enable
+for_window [class="VirtualBox"] floating enable
+for_window [class="(?i)gnome-calculator"] floating enable
+for_window [instance="libreoffice"] floating enable
+#for_window [name="idrac"] floating enable
+#for_window [class="sun-awt-X11-XFramePeer"] floating enable
+for_window [class="com-sun-javaws-Main"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [title="Preferences$"] floating enable
+for_window [title="^Microsoft Teams Notification$"] floating enable
+for_window [window_type="notification"] floating enable
+for_window [class="(?i)gnome-terminal"] border 1pixel
+for_window [class="(?i)urxvt"] border 1pixel
+for_window [class="(?i)polly"] border pixel 2
+for_window [class="(?i)hexchat"] border pixel 2
+for_window [class="(?i)zathura"] border pixel 2
+
+# The following exec calls run programs in the background when i3 starts.
+
+# Start the installed regolith-compositor
+exec --no-startup-id /usr/share/regolith-compositor/init
+
+# Start Rofication for notifications
+exec --no-startup-id /usr/share/rofication/rofication-daemon.py
+
+# Launch first time user experience script
+exec --no-startup-id /usr/bin/regolith-ftue
+
+# Hide the mouse pointer if unused for a duration
+exec --no-startup-id /usr/bin/unclutter -b
+
+# exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
+# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# exec --no-startup-id gnome-flashback
+# exec unity-settings-daemon
+#exec gnome-keyring-daemon
+exec gnome-screensaver
+#exec volumicon
+#exec geppetto
+exec thunderbird
+exec firefox
+exec spotify
+exec sky
+# exec smuxi-frontend-gnome
+#exec polly
+# exec flatpak run org.baedert.corebird
+# exec slack
+#exec hexchat
+exec --no-startup-id i3-msg 'workspace $ws1; exec gnome-terminal'
+
+# Start the synergy server
+# exec synergys --config /etc/synergy.conf
+
+# vim:filetype=i3

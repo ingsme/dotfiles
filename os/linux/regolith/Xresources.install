@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo '#include ".Xresources.d/ubuntu/root"' > ~/.Xresources-regolith
+ln -sf styles ~/.Xresources.d

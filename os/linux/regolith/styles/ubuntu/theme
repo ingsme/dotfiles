@@ -1,0 +1,4 @@
+#define gtk_theme           Ambiance
+#define icon_theme          Adwaita
+#define desktop_wallpaper   /usr/share/backgrounds/ubuntu-default-greyscale-wallpaper.png
+#define rofi_theme          .Xresources.d/ubuntu/rofi.rasi

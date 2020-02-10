@@ -1,0 +1,2 @@
+! -- This points to the root Xresource file.
+#include ".Xresource.d/ubuntu/root"
