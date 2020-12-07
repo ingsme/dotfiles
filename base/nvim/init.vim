@@ -15,7 +15,7 @@ endif
 set directory=$XDG_CACHE_HOME/nvim
 set backupdir=$XDG_CACHE_HOME/nvim/backup
 set undodir=$XDG_CACHE_HOME/nvim/undo
-set shada+=n$XDG_CACHE_HOME/nvim/main.shada
+set shada='50,<1000,s100,:0,n$XDG_CACHE_HOME/nvim/main.shada
 set undofile
 function! EnsureExists(path)
   if !isdirectory(expand(a:path))
@@ -95,8 +95,8 @@ Plug 'liuchengxu/vim-which-key'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
-"Plug 'junegunn/fzf', { 'do': './install --bin'}
-"Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': './install --bin'}
+Plug 'junegunn/fzf.vim'
 
 Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'whiteinge/diffconflicts'
@@ -107,7 +107,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'junegunn/vim-easy-align'
-Plug 'junegunn/fzf'
+"Plug 'junegunn/fzf'
 Plug 'ntpeters/vim-better-whitespace'
 "Plug 'vim-airline/vim-airline-themes'
 Plug 'w0rp/ale'
@@ -226,7 +226,7 @@ autocmd StdinReadPre * let s:std_in=1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
       \ "Modified"  : "✹",
       \ "Staged"    : "✚",
       \ "Untracked" : "✭",
@@ -240,15 +240,15 @@ let g:NERDTreeIndicatorMapCustom = {
       \ }
 
 " FZF key bindings
-"command! -bang -nargs=? -complete=dir Files
-"  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)<Paste>
-"map <leader>ff :Files<CR>
-"map <leader>fm :Marks<CR>
-"map <leader>fw :Windows<CR>
-"map <leader>fb :Buffers<CR>
-"map <leader>fh :History<CR>
-"map <leader>fg :Tags<CR>
-"map <leader>ft :BTags<CR>
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)<Paste>
+map <leader>ff :Files<CR>
+map <leader>fm :Marks<CR>
+map <leader>fw :Windows<CR>
+map <leader>fb :Buffers<CR>
+map <leader>fh :History<CR>
+map <leader>fg :Tags<CR>
+map <leader>ft :BTags<CR>
 
 " vim-fugitive key bindings
 nnoremap <silent> <leader>gs :Gstatus<CR>
@@ -337,7 +337,11 @@ if has('conceal')
 endif
 
 set guicursor=
-set termguicolors
+if exists('+termguicolors')
+  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b="\<Esc>[38;2;%lu;%lu;%lum"
+  set termguicolors
+endif
 "set relativenumber
 nnoremap <Leader>pp :NumbersToggle<CR>
 
