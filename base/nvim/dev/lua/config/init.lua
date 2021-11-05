@@ -1,0 +1,22 @@
+-- require('config.colors')
+-- require('config.which-key-rc')
+require("config.bufferline-rc")
+require("config.lualine-rc")
+-- require("config.feline-rc")
+require('config.ultisnips-rc')
+require('config.treesitter-rc')
+require("config.indentline-rc")
+require('config.gitsigns-rc')
+require("config.nvim-tree-rc")
+require("config.cmp-rc")
+-- require("config.luasnip-rc")
+require("config.autopairs-rc")
+require("config.lsp")
+require("config.telescope-rc")
+require('config.trouble-rc')
+
+require('colorizer').setup()
+require('lsp-colors').setup()
+require('Comment').setup({
+  ignore = '^$'
+})
