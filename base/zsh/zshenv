@@ -1,12 +1,12 @@
 # Base
 typeset -U path
-path=(~/bin ~/.local/bin $path)
+path=(~/bin ~/.local/bin ~/.cargo/bin $path)
 
 export EDITOR="vim"
 export LESS="-R"
 
 export XDG_CONFIG_HOME="$HOME/.config"
-if [ -z $XDG_CACHE_HOME ]; then 
+if [ -z $XDG_CACHE_HOME ]; then
     export XDG_CACHE_HOME="$HOME/.cache"
 fi
 export XDG_DATA_HOME="$HOME/.local/share"

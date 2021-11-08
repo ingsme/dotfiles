@@ -4,6 +4,7 @@ set-window-option -g allow-rename on
 set-window-option -g automatic-rename on
 set-option -g visual-activity on
 set-option -ga update-environment "SSH_AUTH_SOCK SSH_AGENT_PID SSH_CONNECTION"
+set-option -g focus-events on
 
 # Use C-Space as prefix
 unbind C-b

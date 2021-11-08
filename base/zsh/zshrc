@@ -340,7 +340,7 @@ function precmd {
 # Misc
 # Use keychain, if it is available.
 [[ -f $(which keychain 2> /dev/null) ]] && \
-    eval $(keychain --eval --agents ssh id_rsa)
+    eval $(keychain --eval --agents ssh id_ed25519 id_rsa)
 
 # [[ -f $HOME/.keychain/$HOSTNAME-sh ]] && \
     #     source $HOME/.keychain/$HOSTNAME-sh
