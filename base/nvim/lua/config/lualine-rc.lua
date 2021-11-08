@@ -31,7 +31,7 @@ end
 --]]
 
 require('lualine').setup({
-  options = {icons_enabled = true, theme = 'nightfly'},
+  options = {icons_enabled = true, theme = 'nvim-smyck'},
   extensions = {'nvim-tree', 'quickfix'},
   sections = {
     -- lualine_a = { { 'filename', path = 1 } },
