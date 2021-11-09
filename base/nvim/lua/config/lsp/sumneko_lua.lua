@@ -45,6 +45,7 @@ M.setup = function(on_attach, capabilities)
             'use',
             'describe',
             'it',
+            'bufnr',
           },
         },
       },

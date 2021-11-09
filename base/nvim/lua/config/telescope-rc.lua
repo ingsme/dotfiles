@@ -33,10 +33,12 @@ require("telescope").setup({
 
 require("telescope").load_extension("emoji")
 require("telescope").load_extension("fzf")
+require('telescope').load_extension('notify')
 
 map({ "n", "<Leader>ff", "<Cmd>Telescope find_files<CR>" })
 map({ "n", "<Leader>fb", "<Cmd>Telescope buffers<CR>" })
 map({ "n", "<Leader>fg", "<Cmd>Telescope live_grep<CR>" })
 map({ "n", "<Leader>fh", "<Cmd>Telescope help_tags<CR>" })
 map({ "n", "<Leader>fe", "<Cmd>Telescope emoji<CR>" })
+map({ "n", "<Leader>fn", "<Cmd>Telescope notify<CR>" })
 --map({ "n", "<Leader>fq", "<Cmd>Telescope quickfix<CR>" })

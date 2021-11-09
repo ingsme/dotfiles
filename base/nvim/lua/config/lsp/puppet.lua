@@ -12,6 +12,15 @@ local M = {}
 M.setup = function(on_attach, capabilities)
   lspconfig.puppet.setup({
     cmd = {puppetls_binary, '--stdio'},
+    settings = {
+      puppet = {
+        editorService = {
+          formatOnType = {
+            enable = true,
+          },
+        }
+      },
+    },
     on_attach = on_attach,
     capabilities = capabilities,
   })

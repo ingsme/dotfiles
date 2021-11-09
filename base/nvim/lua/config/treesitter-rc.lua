@@ -6,8 +6,18 @@
 --- https://github.com/nvim-treesitter/nvim-treesitter
 require('nvim-treesitter.configs').setup {
   ensure_installed = 'maintained',
-  highlight = { enable = true },
-  indent = { enable = true },
+  highlight = {
+    enable = true,
+    disable = { 'yaml' },
+  },
+  indent = {
+    enable = true,
+    disable = {},
+  },
+  folding = {
+    enable = true,
+    disable = {},
+  },
   incremental_selection = {
     enable = true,
     keymaps = {

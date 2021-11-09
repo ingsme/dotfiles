@@ -24,6 +24,7 @@ vim.call("plug#begin", plugpath)
 Plug('nvim-lualine/lualine.nvim')
 Plug('arkav/lualine-lsp-progress')
 Plug("akinsho/bufferline.nvim")
+Plug('famiu/feline.nvim')
 
 -- Misc
 Plug("christoomey/vim-tmux-navigator")
@@ -38,6 +39,8 @@ Plug("rafi/vim-tinycomment")
 Plug('numToStr/Comment.nvim')
 Plug('norcalli/nvim-colorizer.lua')
 Plug('tpope/vim-repeat')
+Plug('rcarriga/nvim-notify')
+Plug('gelguy/wilder.nvim', { ['do'] = ':UpdateRemotePlugins' } )
 
 -- File Explorer
 Plug("kyazdani42/nvim-tree.lua")
@@ -61,6 +64,7 @@ Plug('onsails/lspkind-nvim')
 Plug('nvim-lua/lsp-status.nvim')
 Plug('folke/lsp-colors.nvim')
 Plug('folke/trouble.nvim')
+Plug('jose-elias-alvarez/null-ls.nvim')
 Plug("williamboman/nvim-lsp-installer")
 
 -- Completion
