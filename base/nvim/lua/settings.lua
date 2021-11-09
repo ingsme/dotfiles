@@ -25,7 +25,11 @@ opt.swapfile = false -- don't use swapfile
 -- Providers
 g.loaded_python_provider = 0
 g.loaded_perl_provider = 0
-g.python3_host_prog = '/scratch/pyenv/versions/neovim3/bin/python'
+if vim.fn.has("mac") == 1 then
+  g.python3_host_prog = '~/.pyenv/versions/neovim3/bin/python'
+elseif vim.fn.has("unix") == 1 then
+  g.python3_host_prog = '/scratch/pyenv/versions/neovim3/bin/python'
+end
 
 -----------------------------------------------------------
 -- Neovim UI
