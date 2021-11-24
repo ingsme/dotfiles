@@ -13,12 +13,18 @@ map {'n', '<Right>', '<c-w>>'}
 
 map {'i', 'jk', '<Esc>'}
 
+map {'n', 'n', 'nzz'}
+map {'n', 'N', 'Nzz'}
+
 -- Break undo chain on punctuation so we can
 -- use 'u' to undo sections of an edit
 for _, c in ipairs({',', '.', '!', '?', ';'}) do
    --map('i', c, c .. "<C-g>u")
    vim.api.nvim_set_keymap('i', c, c..'<C-g>u', {noremap = true})
 end
+
+-- Don't send changes to default register
+map {'n', 'c', '"0c', {noremap = true}}
 
 function _G.toggle_numbers()
   vim.wo.number = not vim.wo.number
