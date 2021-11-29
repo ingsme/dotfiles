@@ -18,15 +18,19 @@ cmp.setup({
     expand = function(args) vim.fn["UltiSnips#Anon"](args.body) end
   },
   formatting = {
-    format = lspkind.cmp_format({with_text = true, menu = ({
-      buffer = '[Buffer]',
-      nvim_lsp = '[LSP]',
-      ultisnips = '[UltiSnips]',
-      path = '[Path]',
-      emoji = '[Emoji]',
-      treesitter = '[Treesitter]',
-      nvim_Lua = '[Lua]',
-    })}),
+    format = lspkind.cmp_format({
+      with_text = true,
+      menu = ({
+        buffer = '[Buffer]',
+        nvim_lsp = '[LSP]',
+        ultisnips = '[UltiSnips]',
+        path = '[Path]',
+        emoji = '[Emoji]',
+        treesitter = '[Treesitter]',
+        nvim_Lua = '[Lua]',
+        latex_symbols = '[Latex]',
+      }),
+    }),
   },
 
   -- key mapping
@@ -91,11 +95,11 @@ cmp.setup({
       end,
       i = function(fallback)
         if cmp.visible() then
-         if vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
-           vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_forward)"), 'm', true)
-         else
-           cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
-         end
+          if vim.fn["UltiSnips#CanJumpForwards"]() == 1 then
+            vim.api.nvim_feedkeys(t("<Plug>(ultisnips_jump_forward)"), 'm', true)
+          else
+            cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
+          end
         else
           fallback()
         end
@@ -145,7 +149,7 @@ cmp.setup({
     { name = "path" },
     {
       name = "buffer",
-      opts = {
+      options = {
         get_bufnrs = function()
           return vim.api.nvim_list_bufs()
         end,
