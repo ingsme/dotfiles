@@ -138,9 +138,9 @@ cmp.setup({
       end
     }),
   },
-  experimental = {
-    native_menu = true,
-  },
+  -- experimental = {
+  --   native_menu = true,
+  -- },
 
   -- load sources, see: https://github.com/topics/nvim-cmp
   sources = {
