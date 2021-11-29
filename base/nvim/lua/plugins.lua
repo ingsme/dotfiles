@@ -86,8 +86,8 @@ Plug("puppetlabs/puppet-syntax-vim", { ["for"] = "puppet" })
 -- Colorscheme
 Plug("brendonrapp/smyck-vim")
 Plug('ingsme/nvim-smyck')
-Plug('maaslalani/nordbuddy')
+Plug('andersevenrud/nordic.nvim')
 vim.call("plug#end")
 
--- vim.cmd("colorscheme nordbuddy")
 vim.cmd("colorscheme nvim-smyck")
+-- vim.cmd('colorscheme nordic')
