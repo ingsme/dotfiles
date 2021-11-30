@@ -7,7 +7,7 @@
 
 
 local t = function(str)
-    return vim.api.nvim_replace_termcodes(str, true, true, true)
+  return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
 
 local lspkind = require('lspkind')
@@ -158,4 +158,22 @@ cmp.setup({
     { name = "emoji" },
     { name = "treesitter" },
   },
+  -- Use buffer source for `/`.
+  cmp.setup.cmdline('/', {
+    completion = { autocomplete = false },
+    sources = {
+      -- { name = 'buffer' }
+      { name = 'buffer', options = { keyword_pattern = [=[[^[:blank:]].*]=] } }
+    }
+  }),
+-- Use cmdline & path source for ':'.
+  cmp.setup.cmdline(':', {
+    completion = { autocomplete = false },
+    sources = cmp.config.sources({
+      { name = 'path' }
+    }, {
+        { name = 'cmdline' }
+      })
+  }),
+
 })
