@@ -1,94 +1,117 @@
-------------------------------------------------------
--- Plugins
-------------------------------------------------------
-
--- Install Plug if it is not installed
-local install_path = vim.fn.stdpath("config") .. "/autoload/plug.vim"
-local execute = vim.api.nvim_command
 local fn = vim.fn
 
+-- Automatically install packer
+local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-	execute(
-		"!curl -fLo "
-			.. install_path
-			.. " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-	)
+  PACKER_BOOTSTRAP = fn.system {
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
+    install_path,
+  }
+  print "Installing packer close and reopen Neovim..."
+  vim.cmd [[packadd packer.nvim]]
 end
 
-local Plug = fn["plug#"]
-local plugpath = fn.stdpath("config") .. "/plugged"
+-- Autocommand that reloads neovim whenever you save the plugins.lua file
+vim.cmd [[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
+]]
 
-vim.call("plug#begin", plugpath)
+-- Use a protected call so we don't error out on first use
+local status_ok, packer = pcall(require, "packer")
+if not status_ok then
+  return
+end
 
---Status- and bufferline
-Plug('nvim-lualine/lualine.nvim')
-Plug('arkav/lualine-lsp-progress')
-Plug("akinsho/bufferline.nvim")
-Plug('famiu/feline.nvim')
+-- Have packer use a popup window
+packer.init {
+  display = {
+    open_fn = function()
+      return require("packer.util").float { border = "rounded" }
+    end,
+  },
+}
 
--- Misc
-Plug("christoomey/vim-tmux-navigator")
-Plug('wellle/targets.vim')
-Plug("nvim-lua/plenary.nvim")
-Plug("kyazdani42/nvim-web-devicons")
-Plug('tpope/vim-fugitive')
-Plug("lewis6991/gitsigns.nvim")
-Plug("Yggdroot/indentLine")
-Plug("windwp/nvim-autopairs")
-Plug("rafi/vim-tinycomment")
-Plug('numToStr/Comment.nvim')
-Plug('norcalli/nvim-colorizer.lua')
-Plug('tpope/vim-repeat')
-Plug('rcarriga/nvim-notify')
--- Plug('gelguy/wilder.nvim', {['do'] = ':UpdateRemotePlugins'})
+-- Install your plugins here
+return packer.startup(function(use)
+  -- My plugins here
+  use "wbthomason/packer.nvim" -- Have packer manage itself
+  use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
+  use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
+  use "windwp/nvim-autopairs" -- Autopairs, integrates with both cmp and treesitter
+  use "numToStr/Comment.nvim" -- Easily comment stuff
+  use "christoomey/vim-tmux-navigator"
+  use "kyazdani42/nvim-web-devicons"
+  use "kyazdani42/nvim-tree.lua"
+  use "akinsho/bufferline.nvim"
+  use "moll/vim-bbye"
+  -- use "nvim-lualine/lualine.nvim"
+  use "NTBBloodbath/galaxyline.nvim"
+  use "akinsho/toggleterm.nvim"
+  use "ahmedkhalf/project.nvim"
+  use "lewis6991/impatient.nvim"
+  use "lukas-reineke/indent-blankline.nvim"
+  use "goolord/alpha-nvim"
+  use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
+  use "folke/which-key.nvim"
 
--- File Explorer
-Plug("kyazdani42/nvim-tree.lua")
+  -- Colorschemes
+  -- use "lunarvim/colorschemes" -- A bunch of colorschemes you can try out
+  use "lunarvim/darkplus.nvim"
+  use "ingsme/nvim-smyck"
 
--- Treesitter
-Plug("nvim-treesitter/nvim-treesitter", {['run'] = ':TSUpdate'})
-Plug('nvim-treesitter/nvim-treesitter-refactor')
-Plug('nvim-treesitter/nvim-treesitter-textobjects')
-Plug('nvim-treesitter/playground')
-Plug('JoosepAlviste/nvim-ts-context-commentstring')
-Plug('p00f/nvim-ts-rainbow')
+  -- cmp plugins
+  use "hrsh7th/nvim-cmp" -- The completion plugin
+  use "hrsh7th/cmp-buffer" -- buffer completions
+  use "hrsh7th/cmp-path" -- path completions
+  use "hrsh7th/cmp-cmdline" -- cmdline completions
+  use "saadparwaiz1/cmp_luasnip" -- snippet completions
+  use "hrsh7th/cmp-nvim-lsp"
 
--- Telescope
-Plug("nvim-telescope/telescope.nvim")
-Plug("nvim-telescope/telescope-fzf-native.nvim", { ["do"] = "make" })
-Plug("xiyaowong/telescope-emoji.nvim")
+  -- snippets
+  use "L3MON4D3/LuaSnip" --snippet engine
+  use "honza/vim-snippets"
+  -- use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
--- LSP
-Plug("neovim/nvim-lspconfig")
-Plug('onsails/lspkind-nvim')
-Plug('nvim-lua/lsp-status.nvim')
-Plug('folke/lsp-colors.nvim')
-Plug('folke/trouble.nvim')
-Plug('jose-elias-alvarez/null-ls.nvim')
-Plug("williamboman/nvim-lsp-installer")
+  -- LSP
+  use "neovim/nvim-lspconfig" -- enable LSP
+  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+  use "tamago324/nlsp-settings.nvim" -- language server settings defined in json for
+  use "b0o/SchemaStore.nvim"
+  use "jose-elias-alvarez/null-ls.nvim" -- for formatters and linters
+  use {
+    "SmiteshP/nvim-gps",
+    requires = 'nvim-treesitter'
+  }
 
--- Completion
-Plug("hrsh7th/nvim-cmp")
-Plug("hrsh7th/cmp-nvim-lsp")
-Plug("hrsh7th/cmp-path")
-Plug("hrsh7th/cmp-buffer")
-Plug("hrsh7th/cmp-emoji")
-Plug('hrsh7th/cmp-cmdline')
-Plug("ray-x/cmp-treesitter")
-Plug('SirVer/ultisnips')
-Plug('quangnguyen30192/cmp-nvim-ultisnips')
-Plug('honza/vim-snippets')
+  -- Telescope
+  use "nvim-telescope/telescope.nvim"
 
--- Other languages
-Plug("PotatoesMaster/i3-vim-syntax", { ["for"] = "i3" })
-Plug("puppetlabs/puppet-syntax-vim", { ["for"] = "puppet" })
--- Plug("rodjek/vim-puppet", { ["for"] = "puppet" })
+  -- Treesitter
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+  }
+  use "JoosepAlviste/nvim-ts-context-commentstring"
 
--- Colorscheme
-Plug("brendonrapp/smyck-vim")
-Plug('ingsme/nvim-smyck')
-Plug('andersevenrud/nordic.nvim')
-vim.call("plug#end")
+  -- Puppet highlighting
+  use "puppetlabs/puppet-syntax-vim"
 
-vim.cmd("colorscheme nvim-smyck")
--- vim.cmd('colorscheme nordic')
+  -- Git
+  use "lewis6991/gitsigns.nvim"
+
+  -- Misc
+  use "luizribeiro/vim-cooklang"
+
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if PACKER_BOOTSTRAP then
+    require("packer").sync()
+  end
+end)

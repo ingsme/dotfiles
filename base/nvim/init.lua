@@ -1,7 +1,22 @@
---
---
-
-require("settings")
-require("plugins")
-require("keymaps")
-require("config")
+require "config.impatient"
+require "options"
+require "keymaps"
+require "plugins"
+require "config.colorscheme"
+require "config.cmp"
+require "config.lsp"
+require "config.telescope"
+require "config.treesitter"
+require "config.gps"
+require "config.autopairs"
+require "config.comment"
+require "config.gitsigns"
+require "config.nvim-tree"
+require "config.bufferline"
+require "config.galaxyline"
+require "config.toggleterm"
+require "config.project"
+require "config.indentline"
+require "config.alpha"
+require "config.whichkey"
+require "config.autocommands"
