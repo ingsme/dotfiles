@@ -1,0 +1,4 @@
+#!/bin/bash
+
+ln -sf "$HOME"/.config/zsh/p10k.zsh "$HOME"/.p10k.zsh
+
