@@ -1,3 +1,10 @@
+# Use keychain, if it is available.
+[[ -f $(which keychain 2> /dev/null) ]] && \
+    eval $(keychain --eval --agents ssh id_ed25519 id_rsa)
+
+# [[ -f $HOME/.keychain/$HOSTNAME-sh ]] && \
+    #     source $HOME/.keychain/$HOSTNAME-sh
+
 # Checks
 # checks (stolen from zshuery)
 if [[ $(uname) = 'Linux' ]]; then
@@ -33,6 +40,7 @@ fpath=($fpath $XDG_CONFIG_HOME/zsh/completions)
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-completions"
+zplug "romkatv/powerlevel10k", as:theme, depth:1
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "plugins/colorize", from:oh-my-zsh
 zplug "plugins/vagrant", from:oh-my-zsh
@@ -40,15 +48,15 @@ zplug "plugins/command-not-found", from:oh-my-zsh
 zplug "plugins/sudo", from:oh-my-zsh
 zplug "themes/clean", from:oh-my-zsh
 zplug "olivierverdier/zsh-git-prompt"
-source $XDG_CONFIG_HOME/zplug/repos/olivierverdier/zsh-git-prompt/zshrc.sh
-if [[ $IS_LINUX -eq 1 ]]; then
-    GIT_PROMPT_EXECUTABLE="haskell"
-fi
-ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[red]%}%{● %G%}"
-ZSH_THEME_GIT_PROMPT_CONFLICTS="%{$fg[red]%}%{✖ %G%}"
-ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[cyan]%}%{✚ %G%}"
-ZSH_THEME_GIT_PROMPT_BEHIND="%{↓%G%}"
-ZSH_THEME_GIT_PROMPT_AHEAD="%{↑%G%}"
+# source $XDG_CONFIG_HOME/zplug/repos/olivierverdier/zsh-git-prompt/zshrc.sh
+# if [[ $IS_LINUX -eq 1 ]]; then
+#     GIT_PROMPT_EXECUTABLE="haskell"
+# fi
+# ZSH_THEME_GIT_PROMPT_STAGED="%{$fg[red]%}%{● %G%}"
+# ZSH_THEME_GIT_PROMPT_CONFLICTS="%{$fg[red]%}%{✖ %G%}"
+# ZSH_THEME_GIT_PROMPT_CHANGED="%{$fg[cyan]%}%{✚ %G%}"
+# ZSH_THEME_GIT_PROMPT_BEHIND="%{↓%G%}"
+# ZSH_THEME_GIT_PROMPT_AHEAD="%{↑%G%}"
 
 # Install plugins if there are plugins that have not been installed
 if ! zplug check --verbose; then
@@ -60,6 +68,13 @@ fi
 
 # Then, source plugins and add commands to $PATH
 zplug load --verbose
+
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 
 # Colors
@@ -338,13 +353,6 @@ function precmd {
 
 
 # Misc
-# Use keychain, if it is available.
-[[ -f $(which keychain 2> /dev/null) ]] && \
-    eval $(keychain --eval --agents ssh id_ed25519 id_rsa)
-
-# [[ -f $HOME/.keychain/$HOSTNAME-sh ]] && \
-    #     source $HOME/.keychain/$HOSTNAME-sh
-
 #Aliases
 source "$XDG_CONFIG_HOME/alias/aliases"
 
@@ -431,7 +439,15 @@ unset RPROMPT
 # Set up pyenv
 export PATH="$PYENV_ROOT/bin:$PATH:/usr/local/bin"
 eval "$(pyenv init -)"
+eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
 # source "$PYENV_ROOT//completions/pyenv.zsh"
 # export PATH=$(pyenv root):$PATH
 # export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
