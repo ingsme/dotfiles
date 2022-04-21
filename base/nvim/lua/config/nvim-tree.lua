@@ -1,7 +1,6 @@
 -- following options are the default
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
 local g = vim.g
-g.nvim_tree_indent_markers = 1
 g.nvim_tree_git_hl = 1
 g.nvim_tree_highlight_opened_files = 1
 g.nvim_tree_width_allow_resize = 1
@@ -50,6 +49,7 @@ local tree_cb = nvim_tree_config.nvim_tree_callback
 nvim_tree.setup {
   disable_netrw = true,
   hijack_netrw = true,
+  indent_makers = true,
   open_on_setup = false,
   ignore_ft_on_setup = {
     "startify",

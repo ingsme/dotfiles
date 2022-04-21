@@ -104,29 +104,66 @@ cmp.setup {
       vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
       -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
       vim_item.menu = ({
-        nvim_lsp = "[LSP]",
         luasnip = "[Snippet]",
+        nvim_lsp = "[LSP]",
         buffer = "[Buffer]",
+        nvim_lua = "[Lua]",
+        vsnip = "[vSnip]",
+        treesitter = "[treesitter]",
+        look = "[Look]",
         path = "[Path]",
+        spell = "[Spell]",
+        calc = "[Calc]",
+        emoji = "[Emoji]",
+        neorg = "[Neorg]",
+        -- cmp_openai_codex = "[Codex]",
+        -- cmp_tabnine = "[TabNine]",
       })[entry.source.name]
       return vim_item
     end,
   },
   sources = {
-    { name = "nvim_lsp" },
-    { name = "luasnip" },
-    { name = "buffer" },
+    { name = "nvim_lsp", max_item_count = 10 },
+    { name = "nvim_lua", max_item_count = 5 },
+    { name = "ultisnips", max_item_count = 5 },
+    -- { name = "vsnip", max_item_count = 5 },
+    { name = "buffer", keyword_length = 5, max_item_count = 5 },
     { name = "path" },
+    { name = "treesitter", max_item_count = 10 },
+    { name = "crates" },
+    -- { name = "cmp_openai_codex" },
+    { name = "emoji" },
+    -- { name = "neorg" },
+    -- { name = "look" },
+    { name = "calc" },
+    -- { name = "spell" },
+    -- { name = "cmp_tabnine" },
+    { name = "luasnip" },
   },
   confirm_opts = {
     behavior = cmp.ConfirmBehavior.Replace,
     select = false,
-  },
-  documentation = {
-    border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
   },
   experimental = {
     ghost_text = false,
     native_menu = false,
   },
 }
+
+-- Use cmdline & path source for ':'.
+cmp.setup.cmdline(":", {
+  sources = cmp.config.sources({
+    { name = "path", max_item_count = 5 },
+  }, {
+      { name = "cmdline", max_item_count = 15 },
+    }),
+})
+
+-- lsp_document_symbols
+cmp.setup.cmdline("/", {
+  sources = cmp.config.sources({
+    { name = "nvim_lsp_document_symbol", max_item_count = 8, keyword_length = 3 },
+  }, {
+      { name = "buffer", max_item_count = 5, keyword_length = 5 },
+    }),
+})
