@@ -52,6 +52,7 @@ return packer.startup(function(use)
   use { "tpope/vim-vinegar" }
   use { "tpope/vim-sleuth" }
 
+  use { "kevinhwang91/nvim-bqf", event = "BufWinEnter" }
   use { "nvim-lua/popup.nvim" }-- An implementation of the Popup API from vim in Neovim
   use { "nvim-lua/plenary.nvim" }-- Useful lua functions used ny lots of plugins
   use { "windwp/nvim-autopairs",-- Autopairs, integrates with both cmp and treesitter
@@ -124,6 +125,16 @@ return packer.startup(function(use)
     end,
   }
   use { "ingsme/nvim-smyck" }
+
+    -- Legendary
+    use {
+      "mrjones2014/legendary.nvim",
+      keys = { [[<C-p>]] },
+      config = function()
+        require("config.legendary").setup()
+      end,
+      requires = { "stevearc/dressing.nvim" },
+    }
 
   -- cmp plugins
   use { "hrsh7th/nvim-cmp", -- The completion plugin

@@ -89,11 +89,11 @@ local mappings = {
   -- ["q"] = { "<cmd>q!<CR>", "Quit" },
   ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
-  ["f"] = {
-    "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
-    "Find files",
-  },
-  ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
+  -- ["f"] = {
+  --   "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
+  --   "Find files",
+  -- },
+  -- ["F"] = { "<cmd>Telescope live_grep theme=ivy<cr>", "Find Text" },
   ["P"] = { "<cmd>lua require('telescope').extensions.projects.projects()<cr>", "Projects" },
 
   p = {
@@ -105,6 +105,39 @@ local mappings = {
     u = { "<cmd>PackerUpdate<cr>", "Update" },
   },
 
+  -- Quick fix
+  c = {
+    name = "Quickfix",
+    o = { "<Cmd>copen<Cr>", "Open quickfix" },
+    c = { "<Cmd>cclose<Cr>", "Close quickfix" },
+    n = { "<Cmd>cnext<Cr>", "Next quickfix" },
+    p = { "<Cmd>cprev<Cr>", "Previous quickfix" },
+    x = { "<Cmd>cex []<Cr>", "Clear quickfix" },
+    t = { "<Cmd>BqfAutoToggle<Cr>", "Toggle preview" },
+  },
+
+  -- File
+  f = {
+    name = "File",
+    b = { "<Cmd>Telescope buffers<Cr>", "Search buffers" },
+    c = { "<Cmd>Telescope current_buffer_fuzzy_find<Cr>", "Search current buffer" },
+    f = { "<Cmd>Telescope git_files<Cr>", "Git files" },
+    g = { "<Cmd>Telescope live_grep<Cr>", "Live grep" },
+    h = { "<Cmd>Telescope help_tags<Cr>", "Help" },
+    p = { "<Cmd>Telescope file_browser<Cr>", "Pop-up file browser" },
+    o = { "<Cmd>Telescope oldfiles<Cr>", "Old files" },
+    m = { "<Cmd>Telescope marks<Cr>", "Mark" },
+    n = { "<Cmd>ene <BAR> startinsert <Cr>", "New file" },
+    r = { "<Cmd>Telescope frecency<Cr>", "Recent file" },
+    s = { "<Cmd>Telescope symbols<Cr>", "Symbols" },
+    a = { "<Cmd>xa<Cr>", "Save all & quit" },
+    e = { "<Cmd>NvimTreeToggle<CR>", "Explorer" },
+    v = { "<Cmd>Telescope media_files<CR>", "View media files" },
+    t = { "<Cmd>Telescope<CR>", "Telescope" },
+    l = { "<Cmd>e!<CR>", "Reload file" },
+    j = { "<Cmd>Telescope zoxide list<CR>", "Jump to folder" },
+  },
+  
   g = {
     name = "Git",
     g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },
