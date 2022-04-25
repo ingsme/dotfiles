@@ -126,15 +126,15 @@ return packer.startup(function(use)
   }
   use { "ingsme/nvim-smyck" }
 
-    -- Legendary
-    use {
-      "mrjones2014/legendary.nvim",
-      keys = { [[<C-p>]] },
-      config = function()
-        require("config.legendary").setup()
-      end,
-      requires = { "stevearc/dressing.nvim" },
-    }
+  -- Legendary
+  use {
+    "mrjones2014/legendary.nvim",
+    keys = { [[<C-p>]] },
+    config = function()
+      require("config.legendary").setup()
+    end,
+    requires = { "stevearc/dressing.nvim" },
+  }
 
   -- cmp plugins
   use { "hrsh7th/nvim-cmp", -- The completion plugin
