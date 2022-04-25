@@ -84,16 +84,16 @@ return packer.startup(function(use)
     end,
   }
   use { "moll/vim-bbye" }
-  -- use { "nvim-lualine/lualine.nvim",
-  --   config = function ()
-  --     require("config.lualine").setup()
-  --   end
-  -- }
-  use { "NTBBloodbath/galaxyline.nvim",
-    config = function()
-      require("config.galaxyline")
-    end,
+  use { "nvim-lualine/lualine.nvim",
+    config = function ()
+      require("config.lualine").setup()
+    end
   }
+  -- use { "NTBBloodbath/galaxyline.nvim",
+  --   config = function()
+  --     require("config.galaxyline")
+  --   end,
+  -- }
   use { "akinsho/toggleterm.nvim",
     config = function ()
       require("config.toggleterm")
