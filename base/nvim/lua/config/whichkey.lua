@@ -87,7 +87,7 @@ local mappings = {
   -- ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
   -- ["w"] = { "<cmd>w!<CR>", "Save" },
   -- ["q"] = { "<cmd>q!<CR>", "Quit" },
-  ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
+  -- ["c"] = { "<cmd>Bdelete!<CR>", "Close Buffer" },
   ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
   -- ["f"] = {
   --   "<cmd>lua require('telescope.builtin').find_files(require('telescope.themes').get_dropdown{previewer = false})<cr>",
@@ -121,7 +121,7 @@ local mappings = {
     name = "File",
     b = { "<Cmd>Telescope buffers<Cr>", "Search buffers" },
     c = { "<Cmd>Telescope current_buffer_fuzzy_find<Cr>", "Search current buffer" },
-    f = { "<Cmd>Telescope git_files<Cr>", "Git files" },
+    f = { "<Cmd>Telescope find_files<Cr>", "Find files" },
     g = { "<Cmd>Telescope live_grep<Cr>", "Live grep" },
     h = { "<Cmd>Telescope help_tags<Cr>", "Help" },
     p = { "<Cmd>Telescope file_browser<Cr>", "Pop-up file browser" },
@@ -131,13 +131,14 @@ local mappings = {
     r = { "<Cmd>Telescope frecency<Cr>", "Recent file" },
     s = { "<Cmd>Telescope symbols<Cr>", "Symbols" },
     a = { "<Cmd>xa<Cr>", "Save all & quit" },
-    e = { "<Cmd>NvimTreeToggle<CR>", "Explorer" },
+    -- e = { "<Cmd>NvimTreeToggle<CR>", "Explorer" },
+    e = { "<Cmd>Neotree toggle<CR>", "File Explorer"},
     v = { "<Cmd>Telescope media_files<CR>", "View media files" },
     t = { "<Cmd>Telescope<CR>", "Telescope" },
     l = { "<Cmd>e!<CR>", "Reload file" },
     j = { "<Cmd>Telescope zoxide list<CR>", "Jump to folder" },
   },
-  
+
   g = {
     name = "Git",
     g = { "<cmd>lua _LAZYGIT_TOGGLE()<CR>", "Lazygit" },

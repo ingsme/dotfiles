@@ -62,6 +62,7 @@ return packer.startup(function(use)
   }
   use { "max397574/better-escape.nvim",
     event = "VimEnter",
+    mapping = {'jk'},
     config = function()
       require("better_escape").setup()
     end,
@@ -73,9 +74,20 @@ return packer.startup(function(use)
   }
   use { "christoomey/vim-tmux-navigator" }
   use { "kyazdani42/nvim-web-devicons" }
-  use { "kyazdani42/nvim-tree.lua",
+  -- use { "kyazdani42/nvim-tree.lua",
+  --   config = function ()
+  --     require("config.nvim-tree")
+  --   end,
+  -- }
+  use { "nvim-neo-tree/neo-tree.nvim",
+    branch = "v2.x",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "kyazdani42/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
+    },
     config = function ()
-      require("config.nvim-tree")
+      require('config.neo-tree')
     end,
   }
   use { "akinsho/bufferline.nvim",
@@ -142,8 +154,8 @@ return packer.startup(function(use)
 
   -- cmp plugins
   use { "hrsh7th/nvim-cmp", -- The completion plugin
-    --event = "InsertEnter",
-    --opt = true,
+    -- event = "InsertEnter",
+    -- opt = true,
     requires = {
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-nvim-lsp",
@@ -254,7 +266,7 @@ return packer.startup(function(use)
   }
 
   -- Puppet highlighting
-  use { "puppetlabs/puppet-syntax-vim" }
+  use { "puppetlabs/puppet-syntax-vim", ft = {'puppet'}, }
 
   -- Git
   use { "lewis6991/gitsigns.nvim",
