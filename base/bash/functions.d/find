@@ -4,7 +4,7 @@
 ff() { find . -type f -iname '*'$*'*' -ls ; }
 
 # find a directory with a pattern in name:
-fd() { find . -type d -iname '*'$*'*' -ls ; }
+# fd() { find . -type d -iname '*'$*'*' -ls ; }
 
 # find a file with pattern $1 in name and Execute $2 on it:
 fe() { find . -type f -iname '*'${1:-}'*' -exec ${2:-file} {} \; ; }
