@@ -253,7 +253,7 @@ return packer.startup(function(use)
       },
       { "romgrk/nvim-treesitter-context",
         config = function()
-          require("treesitter-context.config").setup { enable = true }
+          require("treesitter-context").setup { enable = true }
         end,
       },
       { "mfussenegger/nvim-ts-hint-textobject",
