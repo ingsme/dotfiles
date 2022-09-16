@@ -9,7 +9,7 @@ uke() {
         if [ $# -eq 2 ]; then
             local year=$2
         else
-            year=2018
+            year=$(date "+%Y")
         fi
         local week_num_of_Jan_1 week_day_of_Jan_1
         local first_Mon
