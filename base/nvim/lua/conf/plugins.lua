@@ -40,13 +40,14 @@ return require('packer').startup(function(use)
   -- Tpope
   use { "tpope/vim-fugitive", event = "BufRead" }
   -- use { "tpope/vim-surround", event = "BufRead" }
-  use { "tpope/vim-dispatch", opt = true, cmd = { "Dispatch", "Make", "Focus", "Start" } }
-  use { "tpope/vim-rhubarb" }
+  -- use { "tpope/vim-dispatch", opt = true, cmd = { "Dispatch", "Make", "Focus", "Start" } }
+  -- use { "tpope/vim-rhubarb" }
   -- use { "tpope/vim-unimpaired" }
-  use { "tpope/vim-vinegar" }
-  use { "tpope/vim-sleuth" }
+  -- use { "tpope/vim-vinegar" }
+  -- use { "tpope/vim-sleuth" }
   use 'lewis6991/gitsigns.nvim'
   use 'mbbill/undotree'
+  use 'windwp/nvim-autopairs'
 
   --Whichkey
   -- use 'folke/which-key.nvim'
@@ -121,7 +122,7 @@ return require('packer').startup(function(use)
   -- use 'sindrets/diffview.nvim'
 
   -- comments
-  -- use 'numToStr/Comment.nvim'
+  use 'numToStr/Comment.nvim'
   use 'folke/todo-comments.nvim'
 
   --devicons
