@@ -7,11 +7,11 @@ elseif vim.fn.has("unix") == 1 then
 end
 
 local globals = {
-  glow_binary_path = vim.env.HOME .. "/bin",
-  glow_use_pager = true,
-  glow_border = "shadow",
+    glow_binary_path = vim.env.HOME .. "/bin",
+    glow_use_pager = true,
+    glow_border = "shadow",
 }
 
 for k, v in pairs(globals) do
-  vim.g[k] = v
+	vim.g[k] = v
 end

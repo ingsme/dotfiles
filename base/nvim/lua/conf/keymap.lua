@@ -3,7 +3,7 @@ local opts = { noremap = true, silent = true }
 local term_opts = { silent = true }
 
 -- Shorten function name
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
@@ -44,7 +44,7 @@ keymap('n', '//', '<Cmd>nohlsearch<CR>', opts)
 
 -- Insert --
 -- Press jk fast to enter
--- keymap("i", "jk", "<ESC>", opts)
+keymap("i", "jk", "<ESC>", opts)
 
 -- Visual --
 -- Stay in indent mode

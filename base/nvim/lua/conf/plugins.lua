@@ -32,6 +32,10 @@ end
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use {'catppuccin/nvim', as = 'catppuccin'}
+  use 'bluz71/vim-moonfly-colors'
+  use 'bluz71/vim-nightfly-colors'
+  use 'Mofiqul/vscode.nvim'
+  use 'rose-pine/neovim'
 
   -- Tpope
   use { "tpope/vim-fugitive", event = "BufRead" }
@@ -41,13 +45,11 @@ return require('packer').startup(function(use)
   -- use { "tpope/vim-unimpaired" }
   use { "tpope/vim-vinegar" }
   use { "tpope/vim-sleuth" }
+  use 'lewis6991/gitsigns.nvim'
+  use 'mbbill/undotree'
 
   --Whichkey
-  use { 'folke/which-key.nvim',
-    config = function ()
-      require('which-key').setup {}
-    end
-  }
+  -- use 'folke/which-key.nvim'
 
   --Treesitter
   use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
@@ -61,7 +63,7 @@ return require('packer').startup(function(use)
     })
 
   --Language packs
-  use 'sheerun/vim-polyglot'
+  -- use 'sheerun/vim-polyglot'
 
   --Nvim motions
   use {
@@ -96,16 +98,12 @@ return require('packer').startup(function(use)
   --Buffer navigation
   use 'nvim-lualine/lualine.nvim'
 
-  --Haskell
-  --[[ use 'neovimhaskell/haskell-vim' ]]
-  --[[ use 'alx741/vim-hindent' ]]
-
   --debugging
-  use 'mfussenegger/nvim-dap'
-  use 'leoluz/nvim-dap-go'
-  use 'rcarriga/nvim-dap-ui'
-  use 'theHamsta/nvim-dap-virtual-text'
-  use 'nvim-telescope/telescope-dap.nvim'
+  -- use 'mfussenegger/nvim-dap'
+  -- use 'leoluz/nvim-dap-go'
+  -- use 'rcarriga/nvim-dap-ui'
+  -- use 'theHamsta/nvim-dap-virtual-text'
+  -- use 'nvim-telescope/telescope-dap.nvim'
 
   --Grammar checking because I can't english
   use 'rhysd/vim-grammarous'
@@ -113,19 +111,14 @@ return require('packer').startup(function(use)
   --Telescope Requirements
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
-  use 'nvim-telescope/telescope.nvim'
 
   --Telescope
+  use 'nvim-telescope/telescope.nvim'
   use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
-
-  --File browsing
   use 'nvim-telescope/telescope-file-browser.nvim'
 
   --git diff
-  use 'sindrets/diffview.nvim'
-
-  --magit
-  --use 'TimUntersberger/neogit'
+  -- use 'sindrets/diffview.nvim'
 
   -- comments
   -- use 'numToStr/Comment.nvim'
