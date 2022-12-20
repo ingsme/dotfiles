@@ -39,6 +39,7 @@ return require('packer').startup(function(use)
 
   -- Tpope
   use { "tpope/vim-fugitive", event = "BufRead" }
+  use { 'tpope/vim-commentary' }
   -- use { "tpope/vim-surround", event = "BufRead" }
   -- use { "tpope/vim-dispatch", opt = true, cmd = { "Dispatch", "Make", "Focus", "Start" } }
   -- use { "tpope/vim-rhubarb" }
@@ -48,12 +49,23 @@ return require('packer').startup(function(use)
   use 'lewis6991/gitsigns.nvim'
   use 'mbbill/undotree'
   use 'windwp/nvim-autopairs'
+  use { "kazhala/close-buffers.nvim", cmd = { "BDelete", "BWipeout" } }
 
   --Whichkey
-  -- use 'folke/which-key.nvim'
+  use 'folke/which-key.nvim'
 
   --Treesitter
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+  use {'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+    requires = {
+      { 'nvim-treesitter/nvim-treesitter-textobjects', event = 'BufReadPre' },
+      { 'JoosepAlviste/nvim-ts-context-commentstring', event = 'BufReadPre' },
+      { 'p00f/nvim-ts-rainbow', event = 'BufReadPre' },
+      { 'windwp/nvim-ts-autotag', event = 'InsertEnter' },
+      { 'nvim-treesitter/playground', cmd = { 'TSPlaygroundToggle' }},
+    },
+  }
+
   --Markdown preview
   use 'ellisonleao/glow.nvim'
   use 'simrat39/symbols-outline.nvim'
@@ -98,6 +110,7 @@ return require('packer').startup(function(use)
   }
   --Buffer navigation
   use 'nvim-lualine/lualine.nvim'
+  use {'akinsho/bufferline.nvim'}
 
   --debugging
   -- use 'mfussenegger/nvim-dap'
@@ -122,7 +135,9 @@ return require('packer').startup(function(use)
   -- use 'sindrets/diffview.nvim'
 
   -- comments
-  use 'numToStr/Comment.nvim'
+  -- use 'numToStr/Comment.nvim'
+  -- use 'b3nj5m1n/kommentary'
+  -- use 'terrortylor/nvim-comment'
   use 'folke/todo-comments.nvim'
 
   --devicons
