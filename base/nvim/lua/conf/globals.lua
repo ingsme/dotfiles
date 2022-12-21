@@ -10,6 +10,8 @@ local globals = {
     glow_binary_path = vim.env.HOME .. "/bin",
     glow_use_pager = true,
     glow_border = "shadow",
+    Hexokinase_highlighters = {'foregroundfull'},
+    Hexokinase_optInPatterns = {'full_hex,rgb,rgba,hsl,hsla'},
 }
 
 for k, v in pairs(globals) do

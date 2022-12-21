@@ -46,7 +46,7 @@ lsp.configure( 'yamlls', {
 })
 
 lsp.configure( 'puppet', {
-        ettings = {
+        settings = {
             puppet = {
                 editorService = {
                     formatOnType = {

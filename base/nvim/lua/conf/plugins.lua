@@ -29,30 +29,52 @@ if not status_ok then
   return
 end
 
-return require('packer').startup(function(use)
+return packer.startup(function(use)
   use 'wbthomason/packer.nvim'
+
   use {'catppuccin/nvim', as = 'catppuccin'}
   use 'bluz71/vim-moonfly-colors'
   use 'bluz71/vim-nightfly-colors'
   use 'Mofiqul/vscode.nvim'
   use 'rose-pine/neovim'
+  use 'luinnar/vim-neo-spider'
+  use 'ThemerCorp/themer.lua'
+
+  -- Colorizer
+  -- use {'RRethy/vim-hexokinase', run = 'make hexokinase'}
+  use {'NvChad/nvim-colorizer.lua'}
+
+  -- Greeter
+  use {'goolord/alpha-nvim'}
+  use {'kyazdani42/nvim-tree.lua',
+    cmd = {
+      "NvimTreeToggle",
+      "NvimTreeOpen",
+      "NvimTreeFindFile",
+      "NvimTreeFindFileToggle",
+      "NvimTreeRefresh",
+    },
+  }
 
   -- Tpope
   use { "tpope/vim-fugitive", event = "BufRead" }
-  use { 'tpope/vim-commentary' }
+  use { 'tpope/vim-commentary', event = 'BufRead' }
   -- use { "tpope/vim-surround", event = "BufRead" }
   -- use { "tpope/vim-dispatch", opt = true, cmd = { "Dispatch", "Make", "Focus", "Start" } }
   -- use { "tpope/vim-rhubarb" }
   -- use { "tpope/vim-unimpaired" }
   -- use { "tpope/vim-vinegar" }
   -- use { "tpope/vim-sleuth" }
-  use 'lewis6991/gitsigns.nvim'
-  use 'mbbill/undotree'
-  use 'windwp/nvim-autopairs'
+  use {'lewis6991/gitsigns.nvim', event = 'BufRead'}
+  use {'mbbill/undotree', event = 'BufReadPre'}
+  use {'windwp/nvim-autopairs'}
   use { "kazhala/close-buffers.nvim", cmd = { "BDelete", "BWipeout" } }
 
+  use {'folke/trouble.nvim'}
+  use {'kylechui/nvim-surround'}
+
   --Whichkey
-  use 'folke/which-key.nvim'
+  use {'folke/which-key.nvim',}
 
   --Treesitter
   use {'nvim-treesitter/nvim-treesitter',
@@ -62,9 +84,11 @@ return require('packer').startup(function(use)
       { 'JoosepAlviste/nvim-ts-context-commentstring', event = 'BufReadPre' },
       { 'p00f/nvim-ts-rainbow', event = 'BufReadPre' },
       { 'windwp/nvim-ts-autotag', event = 'InsertEnter' },
+      { 'nvim-treesitter/nvim-treesitter-context'},
       { 'nvim-treesitter/playground', cmd = { 'TSPlaygroundToggle' }},
     },
   }
+  use {'lukas-reineke/indent-blankline.nvim', event = 'BufReadPre'}
 
   --Markdown preview
   use 'ellisonleao/glow.nvim'
@@ -109,7 +133,7 @@ return require('packer').startup(function(use)
     },
   }
   --Buffer navigation
-  use 'nvim-lualine/lualine.nvim'
+  use {'nvim-lualine/lualine.nvim'}
   use {'akinsho/bufferline.nvim'}
 
   --debugging
@@ -145,9 +169,9 @@ return require('packer').startup(function(use)
 
   --fullstack dev
   use { "puppetlabs/puppet-syntax-vim", ft = {'puppet'}, } -- Puppet syntax
-  use 'pangloss/vim-javascript' --JS support
-  use 'leafgarland/typescript-vim' --TS support
-  use 'maxmellon/vim-jsx-pretty' --JS and JSX syntax
-  use 'jparise/vim-graphql' --GraphQL syntax
+  -- use 'pangloss/vim-javascript' --JS support
+  -- use 'leafgarland/typescript-vim' --TS support
+  -- use 'maxmellon/vim-jsx-pretty' --JS and JSX syntax
+  -- use 'jparise/vim-graphql' --GraphQL syntax
   use 'mattn/emmet-vim'
 end)
