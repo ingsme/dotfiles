@@ -85,18 +85,25 @@ set-option -g mouse on
 #   set -g mouse-select-window off \;\
 #   display 'Mouse: OFF'
 
-source $XDG_CONFIG_HOME/tmux/tmux.lightline
+#source $XDG_CONFIG_HOME/tmux/tmux.lightline
 
 # List of plugins
-# set-option -g @plugin 'tmux-plugins/tpm'
-# set-option -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'jaclu/tmux-menus'
+# set -g @plugin 'dracula/tmux'
+set -g @plugin 'wfxr/tmux-power'
+set -s default-terminal 'tmux-256color'
 
-# Other examples:
-# # set -g @plugin 'github_username/plugin_name'
-# # set -g @plugin 'git@github.com/user/plugin'
-# # set -g @plugin 'git@bitbucket.com/user/plugin'
+set -g @tmux_power_theme 'sky'
+set -g @tmux_power_date_format '%x'
+# dracula customizations
+# set -g @dracula-plugins "battery weather time"
+# set -g @dracula-show-powerline true
+# set -g @dracula-show-fahrenheit false
+# set -g @dracula-military-time true
 #
 # # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run $XDG_CONFIG_HOME/tmux/plugins/tpm/tpm
+run '~/.tmux/plugins/tpm/tpm'
 
 # vim: set ft=tmux:
