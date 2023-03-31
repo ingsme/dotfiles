@@ -19,5 +19,5 @@ fi
 
 # Setup the environment for the new dots repository
 DOTS_CLONE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-source "$HOME/.local/lib/dots/contrib/initialize"
+source "$HOME/.local/lib/dots/scripts/bootstrap"
 
