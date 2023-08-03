@@ -20,7 +20,7 @@ fi
 DOTS_CLONE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # Do we have go installed
 if command -v go; then
-	git --git-dir "$HOME/.local/lib/dots/.git" --work-tree "$HOME/.local/lib/dots" checkout releases/2.x
+	# git --git-dir "$HOME/.local/lib/dots/.git" --work-tree "$HOME/.local/lib/dots" checkout releases/2.x
 	source "$HOME/.local/lib/dots/scripts/bootstrap"
 else
 	git --git-dir "$HOME/.local/lib/dots/.git" --work-tree "$HOME/.local/lib/dots" checkout releases/1.x
