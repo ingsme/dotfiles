@@ -1,0 +1,21 @@
+# Set floating programs
+for_window [class="(?i)thunderbird"] floating enable
+for_window [class="(?i)nautilus"] floating enable
+for_window [class="(?i)zazu"] floating enable
+for_window [class="(?i)yad"] floating enable
+for_window [class="(?i)nemo"] floating enable
+for_window [class="(?i)sky"] floating enable
+for_window [class="(?i)vidyodesktop"] floating enable
+for_window [class="(?i)gedit"] floating enable
+for_window [class="(?i)rdesktop"] floating enable
+for_window [class="(?i)spotify"] floating enable
+for_window [class="VirtualBox"] floating enable
+for_window [class="(?i)gnome-calculator"] floating enable
+for_window [instance="libreoffice"] floating enable
+for_window [class="com-sun-javaws-Main"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [title="Preferences$"] floating enable
+for_window [title="^Microsoft Teams Notification$"] floating enable
+for_window [window_type="notification"] floating enable
+
