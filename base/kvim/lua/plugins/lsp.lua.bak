@@ -1,0 +1,112 @@
+return {
+	{
+		"williamboman/mason.nvim",
+		cmd = "Mason",
+		-- build = ":MasonUpdate",
+		opts = {
+			ensure_installed = {
+				"luacheck",
+				"puppet-editor-services",
+				"selene",
+				"shellcheck",
+				"shfmt",
+				"stylua",
+				"yaml-language-server",
+			},
+		},
+	},
+
+	{
+		"neovim/nvim-lspconfig",
+		lazy = true,
+		dependencies = {
+			{ "folke/neodev.nvim", opts = {} },
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+		},
+		opts = {
+			inlay_hints = { enabled = true },
+			capabilities = {
+				workspace = {
+					didChangeWatchedFiles = {
+						dynamicRegistration = false,
+					},
+				},
+			},
+			servers = {
+				ansiblels = {},
+				bashls = {},
+				dockerls = {},
+				marksman = {},
+				yamlls = {
+					settings = {
+						yaml = {
+							keyOrdering = false,
+						},
+					},
+				},
+				lua_ls = {
+					single_file_support = true,
+					settings = {
+						Lua = {
+							workspace = {
+								checkThirdParty = false,
+							},
+							completion = {
+								workspaceWord = true,
+								callSnippet = "Both",
+							},
+							hover = { expandAlias = false },
+							hint = {
+								enable = true,
+								setType = false,
+								paramType = true,
+								paramName = "Disable",
+								semicolon = "Disable",
+								arrayIndex = "Disable",
+							},
+							doc = {
+								privateName = { "^_" },
+							},
+							type = {
+								castNumberToInteger = true,
+							},
+							diagnostics = {
+								disable = { "incomplete-signature-doc", "trailing-space" },
+								groupSeverity = {
+									strong = "Warning",
+									strict = "Warning",
+								},
+								groupFileStatus = {
+									["ambiguity"] = "Opened",
+									["await"] = "Opened",
+									["codestyle"] = "None",
+									["duplicate"] = "Opened",
+									["global"] = "Opened",
+									["luadoc"] = "Opened",
+									["redefined"] = "Opened",
+									["strict"] = "Opened",
+									["strong"] = "Opened",
+									["type-check"] = "Opened",
+									["unbalanced"] = "Opened",
+									["unused"] = "Opened",
+								},
+								unusedLocalExclude = { "_*" },
+							},
+							format = {
+								enable = true,
+								defaultConfig = {
+									indent_style = "space",
+									indent_size = "2",
+									continuation_indent_size = "2",
+								},
+							},
+						},
+					},
+				},
+				vimls = {},
+			},
+			setup = {},
+		},
+	},
+}
