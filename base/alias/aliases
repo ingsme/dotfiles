@@ -1,9 +1,9 @@
 #!/bin/bash
 
-[[ $IS_LINUX -eq 1 ]] && \
-    alias ls='ls --group-directories-first --color=auto -h'
-[[ $IS_MAC -eq 1 ]] && \
-    alias ls='ls -Gh'
+[[ $IS_LINUX -eq 1 ]] &&
+	alias ls='ls --group-directories-first --color=auto -h'
+[[ $IS_MAC -eq 1 ]] &&
+	alias ls='ls -Gh'
 
 alias cal='cal -3'
 
@@ -40,6 +40,7 @@ alias globurl='noglob urlglobber '
 alias grep='grep --color=auto'
 alias history='fc -l 1'
 alias hjemmekontor='rdesktop -g 1280x960 -a 16 -k no -d UiB hjemmekontor.uib.no &'
+alias kvim='NVIM_APPNAME="kvim" nvim'
 alias l='ls -l'
 alias la='ls -A'
 alias ll='ls -al'
