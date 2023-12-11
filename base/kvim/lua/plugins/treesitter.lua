@@ -1,15 +1,19 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	event = "VeryLazy",
 	build = ":TSUpdate",
 	init = function(plugin)
 		require("lazy.core.loader").add_to_rtp(plugin)
 		require("nvim-treesitter.query_predicates")
 	end,
-	dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
+	dependencies = {
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		"JoosepAlviste/nvim-ts-context-commentstring",
+	},
 	cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
 	opts = {
 		highlight = { enable = true },
+		autopairs = { enable = true },
+		autotag = { enable = true },
 		indent = { enable = true },
 		ensure_installed = {
 			"bash",
