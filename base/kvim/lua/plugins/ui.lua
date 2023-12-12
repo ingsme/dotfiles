@@ -13,6 +13,14 @@ return {
 				indicator = {
 					style = "icon",
 				},
+				offsets = {
+					{
+						filetype = "CHADTree",
+						text = "CHADTree",
+						text_align = "center",
+						separator = true,
+					},
+				},
 			},
 		},
 	},

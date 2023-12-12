@@ -14,10 +14,18 @@ return {
 				end,
 			},
 		},
+		opts = {
+			pickers = {
+				find_files = {
+					theme = "dropdown",
+				},
+			},
+		},
 		keys = {
-			{ "<leader>/", "<Cmd>Telescoper live_grep<Cr>", desc = "Grep (root dir)" },
-			{ "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-			{ "<leader><space>", "<Cmd>Telescope find_files<CR>", desc = "Find Files (root dir)" },
+			{ "<leader>fg", "<Cmd>Telescope live_grep<Cr>", desc = "Grep (root dir)" },
+			{ "<leader>fc", "<cmd>Telescope command_history<cr>", desc = "Command History" },
+			{ "<leader>ff", "<Cmd>Telescope find_files<CR>", desc = "Find Files (root dir)" },
+			{ "<leader>fb", "<Cmd>Telescope buffers<CR>", desc = "Find Buffers" },
 			-- git
 			{ "<leader>gc", "<cmd>Telescope git_commits<CR>", desc = "commits" },
 			{ "<leader>gs", "<cmd>Telescope git_status<CR>", desc = "status" },

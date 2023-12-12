@@ -6,7 +6,7 @@ return {
 		-- opts = { style = "moon" },
 		config = function()
 			require("tokyonight").setup()
-			vim.cmd.colorscheme("tokyonight")
+			vim.cmd.colorscheme("tokyonight-moon")
 		end,
 	},
 }

@@ -3,7 +3,7 @@
 return {
 	"tpope/vim-fugitive",
 	"tpope/vim-rhubarb",
-	"tpope/vim-surround",
+	-- "tpope/vim-surround",
 	"tpope/vim-repeat",
 	"tpope/vim-sleuth",
 }
