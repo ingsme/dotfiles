@@ -3,7 +3,6 @@ return {
   opts = {
     ensure_installed = {
       "bash",
-      "c",
       "cmake",
       "cooklang",
       "diff",
@@ -14,8 +13,6 @@ return {
       "gitcommit",
       "gitignore",
       "go",
-      "html",
-      "http",
       "ini",
       "javascript",
       "jq",
