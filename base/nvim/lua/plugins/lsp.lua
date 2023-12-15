@@ -10,7 +10,10 @@ return {
         dockerls = {},
         eslint = {},
         gopls = {},
-        ltex = {},
+        ltex = {
+          enabled = false,
+          disabledRules = { "en", "en_US" },
+        },
         puppet = {},
         pyright = {},
         -- ruby_ls = {},

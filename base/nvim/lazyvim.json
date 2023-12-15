@@ -1,0 +1,14 @@
+{
+  "extras": [
+    "lazyvim.plugins.extras.coding.codeium",
+    "lazyvim.plugins.extras.editor.leap",
+    "lazyvim.plugins.extras.editor.symbols-outline",
+    "lazyvim.plugins.extras.lang.markdown",
+    "lazyvim.plugins.extras.lang.tex",
+    "lazyvim.plugins.extras.lsp.none-ls"
+  ],
+  "news": {
+    "NEWS.md": "2123"
+  },
+  "version": 2
+}

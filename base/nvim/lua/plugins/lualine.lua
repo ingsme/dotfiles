@@ -1,0 +1,15 @@
+return {}
+--   {
+--     "nvim-lualine/lualine.nvim",
+--     depependencies = {
+--       "arkav/lualine-lsp-progress",
+--     },
+--     opts = {
+--       extensions = { "mason", "quickfix" },
+--     },
+--   },
+--   {
+--     "arkav/lualine-lsp-progress",
+--     lazy = true,
+--   },
+-- }
