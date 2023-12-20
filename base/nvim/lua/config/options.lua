@@ -4,5 +4,6 @@
 vim.g.vimtex_compiler_clean_paths = { "_minted*" }
 
 local opt = vim.opt
-opt.spelllang = { "en", "nb" }
+opt.spelllang = { "nb", "en" }
+opt.spell = true
 opt.wrap = true
