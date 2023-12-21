@@ -5,10 +5,17 @@ return {
       "honza/vim-snippets",
       config = function()
         require("luasnip.loaders.from_snipmate").lazy_load()
+        require("luasnip.loaders.from_lua").lazy_load({ paths = { "~/.config/nvim/LuaSnip/" } })
       end,
     },
+    opts = {
+      enable_autosnippets = true,
+    },
     keys = function()
-      return {}
+      return {
+        { "<leader>se", '<Cmd>lua require("luasnip.loaders").edit_snippet_files()<CR>', desc = "Edit snippet files" },
+        { "<leader>sl", '<Cmd>lua require("luasnip.extras.snippet_list").open()<CR>', desc = "Open snippet list" },
+      }
     end,
   },
   {

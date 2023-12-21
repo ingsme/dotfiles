@@ -3,6 +3,8 @@
 -- Add any additional options here
 vim.g.vimtex_compiler_clean_paths = { "_minted*" }
 
+vim.opt_local.spell = true
+
 local opt = vim.opt
 opt.spelllang = { "nb", "en" }
 opt.spell = true
