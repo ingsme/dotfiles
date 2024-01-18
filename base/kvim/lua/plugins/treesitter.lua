@@ -1,98 +1,68 @@
 return {
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-		event = "VeryLazy",
-		init = function(plugin)
-			require("lazy.core.loader").add_to_rtp(plugin)
-			require("nvim-treesitter.query_predicates")
-		end,
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter-textobjects",
-			"JoosepAlviste/nvim-ts-context-commentstring",
-		},
-		cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-		opts = {
-			highlight = { enable = true },
-			autopairs = { enable = true },
-			autotag = { enable = true },
-			indent = { enable = true },
-			ensure_installed = {
-				"bash",
-				"c",
-				"cmake",
-				"cooklang",
-				"diff",
-				"dockerfile",
-				"git_config",
-				"git_rebase",
-				"gitcommit",
-				"gitignore",
-				"go",
-				"html",
-				"http",
-				"ini",
-				"javascript",
-				"jq",
-				"jsdoc",
-				"json",
-				"json5",
-				"jsonc",
-				"latex",
-				"lua",
-				"luadoc",
-				"luap",
-				"make",
-				"markdown",
-				"markdown_inline",
-				"matlab",
-				"ninja",
-				"puppet",
-				"python",
-				"query",
-				"r",
-				"regex",
-				"ruby",
-				"rust",
-				"rst",
-				"sql",
-				"terraform",
-				"toml",
-				"tsx",
-				"typescript",
-				"vim",
-				"vimdoc",
-				"yaml",
-			},
-		},
-		config = function(_, opts)
-			if type(opts.ensure_installed) == "table" then
-				local added = {}
-				opts.ensure_installed = vim.tbl_filter(function(lang)
-					if added[lang] then
-						return false
-					end
-					added[lang] = true
-					return true
-				end, opts.ensure_installed)
-			end
-			require("nvim-treesitter.configs").setup(opts)
-		end,
-	},
-	{
-		"nvim-treesitter/nvim-treesitter-context",
-		-- event = "LazyFile",
-		enabled = true,
-		opts = { mode = "cursor", max_lines = 3 },
-		keys = {
-			{
-				"<leader>ut",
-				function()
-					local tsc = require("treesitter-context")
-					tsc.toggle()
-				end,
-				desc = "Toggle Treesitter Context",
-			},
-		},
-	},
+  {
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+    },
+    opts = {
+      ensure_installed = {
+        'cmake',
+        'diff',
+        'git_config',
+        'git_rebase',
+        'gitattributes',
+        'gitcommit',
+        'gitignore',
+        'go',
+        'jq',
+        'json5',
+        'latex',
+        'lua',
+        'puppet',
+        'query',
+        'r',
+        'regex',
+        'ruby',
+        'rust',
+        'sql',
+        'swift',
+        'vim',
+        'vimdoc',
+      },
+      auto_install = true,
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<leader>ss",
+          node_incremental = "<leader>si",
+          scope_incremental = "<leader>sc",
+          node_decremental = "<leader>sd",
+        },
+      },
+      highlight = { enable = true,},
+      textobjects = {
+        select = {
+          enable = true,
+          lookahead = true,
+          keymaps = {
+            ["af"] = "@function.outer",
+            ["if"] = "@function.inner",
+            ["ac"] = "@class.outer",
+            -- You can optionally set descriptions to the mappings (used in the desc parameter of
+            -- nvim_buf_set_keymap) which plugins like which-key display
+            ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+            -- You can also use captures from other query groups like `locals.scm`
+            ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
+          },
+          selection_modes = {
+            ['@parameter.outer'] = 'v', -- charwise
+            ['@function.outer'] = 'V', -- linewise
+            ['@class.outer'] = '<c-v>', -- blockwise
+          },
+          include_surrounding_whitespace = true,
+        },
+      },
+    },
+  },
 }
