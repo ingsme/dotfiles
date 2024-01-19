@@ -19,6 +19,7 @@ return {
         'json5',
         'latex',
         'lua',
+        'norg',
         'puppet',
         'query',
         'r',
