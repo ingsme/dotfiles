@@ -20,4 +20,6 @@ opt.inccommand = 'split'
 opt.ignorecase = true
 opt.termguicolors = true
 
+opt.foldlevel = 999
+
 vim.o.conceallevel = 1

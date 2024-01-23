@@ -1,26 +1,32 @@
 return {
   {
-    "nvim-neorg/neorg",
-    build = ":Neorg sync-parsers",
+    'nvim-neorg/neorg',
+    build = ':Neorg sync-parsers',
     -- tag = "*",
     cmd = 'Neorg',
     dependencies = {
-      "nvim-lua/plenary.nvim"
+      'nvim-lua/plenary.nvim',
     },
     config = function()
-      require("neorg").setup {
+      require('neorg').setup({
         load = {
-          ["core.defaults"] = {}, -- Loads default behaviour
-          ["core.concealer"] = {}, -- Adds pretty icons to your documents
-          ["core.dirman"] = { -- Manages Neorg workspaces
+          ['core.defaults'] = {},
+          ['core.concealer'] = {
+            config = {
+              icon_preset = 'diamond',
+              folds = false,
+            },
+          },
+          ['core.dirman'] = {
             config = {
               workspaces = {
-                notes = "~/notes",
+                notes = '~/notes',
               },
+              default_workspace = 'notes',
             },
           },
         },
-      }
+      })
     end,
   },
 }

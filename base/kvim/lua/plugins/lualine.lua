@@ -1,13 +1,12 @@
 return {
   {
-    "nvim-lualine/lualine.nvim",
-    event = 'VeryLazy',
+    'nvim-lualine/lualine.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
     depependencies = {
-      "arkav/lualine-lsp-progress",
+      'arkav/lualine-lsp-progress',
     },
     opts = {
-      extensions = { "mason", "quickfix" },
+      extensions = { 'mason', 'quickfix' },
     },
   },
 }
-
