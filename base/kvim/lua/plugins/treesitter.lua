@@ -2,7 +2,8 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    event = { 'BufReadPre', 'BufNewFile' },
+    event = 'VeryLazy',
+    -- event = { 'BufReadPre', 'BufNewFile' },
     init = function(plugin)
       -- PERF: add nvim-treesitter queries to the rtp and it's custom query predicates early
       -- This is needed because a bunch of plugins no longer `require("nvim-treesitter")`, which
@@ -15,9 +16,18 @@ return {
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
       'nvim-treesitter/nvim-treesitter-refactor',
-      'RRethy/nvim-treesitter-endwise',
+      'JoosepAlviste/nvim-ts-context-commentstring',
       'RRethy/nvim-treesitter-textsubjects',
       'windwp/nvim-ts-autotag',
+      {
+        'RRethy/nvim-treesitter-endwise',
+        event = { 'BufReadPre', 'BufNewFile' },
+        config = function()
+          require('nvim-treesitter.configs').setup({
+            endwise = { enable = true },
+          })
+        end,
+      },
     },
     cmd = { 'TSUpdateSync', 'TSUpdate', 'TSInstall' },
     opts = {
@@ -97,5 +107,13 @@ return {
       end
       require('nvim-treesitter.configs').setup(opts)
     end,
+  },
+  {
+    'nvim-ts-context-commentstring',
+    opts = {
+      languages = {
+        puppet = '# %s',
+      },
+    },
   },
 }
