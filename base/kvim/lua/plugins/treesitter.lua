@@ -110,6 +110,7 @@ return {
   },
   {
     'nvim-ts-context-commentstring',
+    lazy = true,
     opts = {
       languages = {
         puppet = '# %s',

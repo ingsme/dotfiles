@@ -11,7 +11,7 @@ return {
   },
   {
     'akinsho/bufferline.nvim',
-    event = 'VeryLazy',
+    event = { 'BufReadPre', 'BufNewFile' },
     keys = {
       { '<leader>bp', '<Cmd>BufferLineTogglePin<CR>', desc = 'Toggle pin' },
       { '<leader>bP', '<Cmd>BufferLineGroupClose ungrouped<CR>', desc = 'Delete non-pinned buffers' },
@@ -40,7 +40,7 @@ return {
   },
   {
     'lukas-reineke/indent-blankline.nvim',
-    event = 'VeryLazy',
+    event = { 'BufReadPre', 'BufNewFile' },
     opts = {
       indent = {
         char = '│',
