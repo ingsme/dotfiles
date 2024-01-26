@@ -12,6 +12,7 @@ return {
         mode = { 'n', 'v' },
         ['<leader>b'] = { name = '+buffer' },
         ['<leader>f'] = { name = '+find' },
+        ['<leader>g'] = { name = '+Git' },
       },
     },
     config = function(_, opts)

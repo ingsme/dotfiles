@@ -18,4 +18,37 @@ return {
       { '<leader>fml', '<Cmd>CellularAutomaton make_it_rain<CR>', desc = 'Make it rain!' },
     },
   },
+  {
+    'numToStr/Comment.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    opts = {},
+  },
+  {
+    'nat-418/boole.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
+    opts = {
+      mappings = {
+        increment = '<C-a>',
+        decrement = '<C-x>',
+      },
+      additions = {
+        { 'man', 'tir', 'ons', 'tor', 'fre', 'lør', 'søn' },
+        { 'jan', 'feb', 'mar', 'apr', 'mai', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'des' },
+        {
+          'januar',
+          'februar',
+          'mars',
+          'april',
+          'mai',
+          'juni',
+          'juli',
+          'august',
+          'september',
+          'oktober',
+          'november',
+          'desember',
+        },
+      },
+    },
+  },
 }

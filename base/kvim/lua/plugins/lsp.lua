@@ -14,6 +14,7 @@ return {
         'lua_ls',
         'puppet',
         'texlab',
+        'yamlls',
       },
     },
   },
@@ -31,6 +32,7 @@ return {
           null_ls.builtins.formatting.puppet_lint,
           null_ls.builtins.diagnostics.puppet_lint,
           null_ls.builtins.diagnostics.shellcheck,
+          null_ls.builtins.diagnostics.yamllint,
         },
       })
     end,
@@ -55,7 +57,12 @@ return {
         vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', { desc = 'References' })
         vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', { desc = 'Signature Help' })
         vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', { desc = 'Rename' })
-        vim.keymap.set({'n', 'x'}, '<leader>F', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', { desc = 'Format' })
+        vim.keymap.set(
+          { 'n', 'x' },
+          '<leader>F',
+          '<cmd>lua vim.lsp.buf.format({async = true})<cr>',
+          { desc = 'Format' }
+        )
         vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', { desc = 'Code Action' })
       end
       local lspconfig = require('lspconfig')
@@ -75,10 +82,13 @@ return {
         capabilities = capabilities,
         on_attach = on_attach,
       })
+      lspconfig.yamlls.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+      })
     end,
   },
   -- Formatting
-  --[[
   {
     'stevearc/conform.nvim', -- Formatting plugin
     opts = {
@@ -94,9 +104,9 @@ return {
         lua = { 'stylua' },
         php = { 'php-cs-fixer' },
         python = { 'isort', 'black' },
-        ruby = { 'rubocop' },
+        yaml = { 'prettier' },
+        -- ruby = { 'rubocop' },
       },
     },
   },
-  --]]
 }

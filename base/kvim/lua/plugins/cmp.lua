@@ -39,11 +39,13 @@ return {
           ['<C-j>'] = cmp.mapping.select_next_item(),
           ['<C-u>'] = cmp.mapping.scroll_docs(-4),
           ['<C-d>'] = cmp.mapping.scroll_docs(4),
-          -- ['<C-f>'] = cmp.mapping.luasnip_jump_forward(),
-          -- ['<C-b>'] = cmp.mapping.luasnip_jump_backward(),
+          -- ['<C-f>'] = luasnip.jump(1),
+          -- ['<C-b>'] = luasnip.jump(-1),
           ['<CR>'] = cmp.mapping.confirm({ select = true }),
           ['<Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
+            if luasnip.locally_jumpable(1) then
+              luasnip.jump(1)
+            elseif cmp.visible() then
               cmp.select_next_item()
             elseif luasnip.expandable() then
               luasnip.expand()
