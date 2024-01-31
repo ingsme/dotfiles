@@ -15,6 +15,7 @@ return {
         'puppet',
         'texlab',
         'yamlls',
+        'cmake',
       },
     },
   },
@@ -43,6 +44,7 @@ return {
     cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
     event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
+      { 'folke/neodev.nvim', opts = {} },
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'williamboman/mason-lspconfig.nvim' },
     },
@@ -86,10 +88,15 @@ return {
         capabilities = capabilities,
         on_attach = on_attach,
       })
+      lspconfig.cmake.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+      })
     end,
   },
   -- Formatting
   {
+    event = { 'BufReadPre', 'BufNewFile' },
     'stevearc/conform.nvim', -- Formatting plugin
     opts = {
       format_on_save = {

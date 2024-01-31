@@ -1,5 +1,10 @@
 return {
   {
+    'NvChad/nvim-colorizer.lua',
+    event = { 'BufReadPre', 'BufNewFile' },
+    opts = {},
+  },
+  {
     'altermo/ultimate-autopair.nvim',
     event = { 'InsertEnter', 'CmdlineEnter' },
     branch = 'v0.6',
@@ -49,6 +54,13 @@ return {
           'desember',
         },
       },
+    },
+  },
+  {
+    'mbbill/undotree',
+    cmd = 'UndotreeToggle',
+    keys = {
+      { '<Leader>u', '<cmd>UndotreeToggle<CR>', desc = 'Undo Tree' },
     },
   },
 }

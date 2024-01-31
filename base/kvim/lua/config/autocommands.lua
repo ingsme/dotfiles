@@ -3,6 +3,7 @@ local function augroup(name)
   return vim.api.nvim_create_augroup('my_group_' .. name, { clear = true })
 end
 
+-- spell check in text filetypes
 autocmd('FileType', {
   group = augroup('spell'),
   pattern = { 'markdown', 'text', 'gitcommit', 'latex' },

@@ -13,6 +13,8 @@ return {
         ['<leader>b'] = { name = '+buffer' },
         ['<leader>f'] = { name = '+find' },
         ['<leader>g'] = { name = '+Git' },
+        ['<leader>s'] = { name = '+Snippet' },
+        ['<leader>x'] = { name = '+Trouble' },
       },
     },
     config = function(_, opts)

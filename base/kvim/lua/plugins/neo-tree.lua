@@ -1,11 +1,11 @@
 return {
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",
-      "MunifTanjim/nui.nvim",
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+      'MunifTanjim/nui.nvim',
     },
     keys = {
       { '<leader>e', '<cmd>Neotree toggle<cr>', desc = 'Neotree' },
@@ -16,7 +16,7 @@ return {
         event = 'file_opened',
         handler = function(file_path)
           require('neo-tree.command').execute({ action = 'close' })
-        end
+        end,
       },
     },
   },

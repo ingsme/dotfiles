@@ -30,8 +30,9 @@ return {
       cmp.setup({
         sources = {
           { name = 'luasnip' },
-          { name = 'nvim_lsp' },
+          { name = 'nvim-lsp' },
           { name = 'buffer' },
+          { name = 'path' },
           { name = 'emoji' },
         },
         mapping = cmp.mapping.preset.insert({
@@ -103,7 +104,7 @@ return {
     keys = function()
       return {
         { '<leader>se', '<Cmd>lua require("luasnip.loaders").edit_snippet_files()<CR>', desc = 'Edit snippet files' },
-        { '<leader>sl', '<Cmd>lua require("luasnip.extras.snippet_list").open()<CR>',   desc = 'Open snippet list' },
+        { '<leader>sl', '<Cmd>lua require("luasnip.extras.snippet_list").open()<CR>', desc = 'Open snippet list' },
       }
     end,
   },

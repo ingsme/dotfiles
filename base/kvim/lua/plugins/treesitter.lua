@@ -44,6 +44,7 @@ return {
         'json5',
         'latex',
         'lua',
+        'make',
         'norg',
         'puppet',
         'query',
