@@ -13,13 +13,14 @@ return {
       vim.cmd.colorscheme('hybrid')
     end,
   },
-  --[[ {
-    'rebelot/kanagawa.nvim',
-    lazy = false,
-    priority = 1000,
-    opts = {},
-    config = function()
-      vim.cmd.colorscheme('kanagawa-wave')
-    end,
-  }, ]]
+  -- {
+  --   'rebelot/kanagawa.nvim',
+  --   enable = false,
+  --   lazy = false,
+  --   priority = 1000,
+  --   opts = {},
+  --   config = function()
+  --     vim.cmd.colorscheme('kanagawa-wave')
+  --   end,
+  -- },
 }

@@ -47,6 +47,7 @@ return {
         'make',
         'norg',
         'puppet',
+        'python',
         'query',
         'r',
         'regex',
