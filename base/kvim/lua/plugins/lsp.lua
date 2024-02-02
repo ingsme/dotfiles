@@ -11,11 +11,12 @@ return {
     opts = {
       ensure_installed = {
         'bashls',
+        'cmake',
+        'jsonls',
         'lua_ls',
         'puppet',
         'texlab',
         'yamlls',
-        'cmake',
       },
     },
   },
@@ -47,6 +48,7 @@ return {
       { 'folke/neodev.nvim', opts = {} },
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'williamboman/mason-lspconfig.nvim' },
+      { 'b0o/schemastore.nvim' },
     },
     config = function()
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -87,6 +89,23 @@ return {
       lspconfig.yamlls.setup({
         capabilities = capabilities,
         on_attach = on_attach,
+        settings = {
+          yaml = {
+            scemaStore = {
+              enable = false,
+              url = '',
+            },
+            schemas = require('schemastore').yaml.schemas(),
+          },
+        },
+      })
+      lspconfig.jsonls.setup({
+        settings = {
+          json = {
+            schemas = require('schemastore').json.schemas(),
+            validate = { enable = true },
+          },
+        },
       })
       lspconfig.cmake.setup({
         capabilities = capabilities,

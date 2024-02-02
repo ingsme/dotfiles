@@ -63,4 +63,9 @@ return {
       { '<Leader>u', '<cmd>UndotreeToggle<CR>', desc = 'Undo Tree' },
     },
   },
+  {
+    'LunarVim/bigfile.nvim',
+    event = { 'BufReadPre' },
+    opts = {},
+  },
 }
