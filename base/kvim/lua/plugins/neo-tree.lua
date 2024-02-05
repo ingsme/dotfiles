@@ -8,19 +8,17 @@ return {
       'MunifTanjim/nui.nvim',
     },
     keys = {
-      { '<leader>e', '<cmd>Neotree toggle<cr>', desc = 'Neotree' },
+      { '<leader>e', '<cmd>Neotree reveal_force_cwd toggle<cr>', desc = 'Neotree' },
       { '<leader>gs', '<cmd>Neotree float git_status<cr>', desc = 'Neotree Git status' },
     },
     opts = {
-      -- enable_git_status = true,
-      -- enable_diagnostics = true,
-      -- event_handlers = {
-      --   event = 'file_opened',
-      --   handler = function()
-      --     require('neo-tree').close_all()
-      --   end,
-      -- },
+      close_if_last_window = true,
       filesystem = {
+        filtered_items = {
+          visible = true,
+          hide_dotfiles = false,
+          hide_gitignored = false,
+        },
         follow_current_file = {
           enabled = true,
         },

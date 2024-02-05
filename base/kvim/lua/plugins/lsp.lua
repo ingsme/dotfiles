@@ -1,6 +1,11 @@
 local servers = { 'bashls', 'cmake', 'jsonls', 'lua_ls', 'puppet', 'pyright', 'ruff_lsp', 'texlab', 'yamlls' }
+
+local function augroup(name)
+  return vim.api.nvim_create_augroup('my_group_' .. name, { clear = true })
+end
+
 vim.api.nvim_create_autocmd('LspAttach', {
-  group = lsp_cmds,
+  group = augroup('lsp_cmds'),
   desc = 'LSP actions',
   callback = function()
     vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', { desc = 'Hover' })
@@ -13,8 +18,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', { desc = 'Rename' })
     vim.keymap.set({ 'n', 'x' }, '<leader>F', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', { desc = 'Format' })
     vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', { desc = 'Code Action' })
+    vim.keymap.set('n', '<leader>cr', '<cmd>lua vim.lsp.buf.rename()<cr>', { desc = 'rename' })
   end,
 })
+
 return {
   {
     'williamboman/mason.nvim',
@@ -27,15 +34,6 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     opts = {
       ensure_installed = servers,
-      --[[ 'bashls',
-      'cmake',
-      'jsonls',
-      'lua_ls',
-      'puppet',
-      'pyright',
-      'texlab',
-      'yamlls',
-    }, ]]
     },
   },
   {

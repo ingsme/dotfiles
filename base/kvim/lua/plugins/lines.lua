@@ -7,6 +7,7 @@ return {
     },
     opts = {
       extensions = { 'mason', 'quickfix' },
+      theme = 'catppuccin',
     },
   },
   {

@@ -11,6 +11,7 @@ return {
       defaults = {
         mode = { 'n', 'v' },
         ['<leader>b'] = { name = '+buffer' },
+        ['<leader>c'] = { name = '+code' },
         ['<leader>f'] = { name = '+find' },
         ['<leader>g'] = { name = '+Git' },
         ['<leader>s'] = { name = '+Snippet' },
