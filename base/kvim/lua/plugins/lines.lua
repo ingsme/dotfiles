@@ -49,19 +49,6 @@ return {
     },
   },
   {
-    'echasnovski/mini.indentscope',
-    version = '*',
-    opts = {
-      draw = {
-        delay = 10,
-      },
-      options = {
-        try_as_border = true,
-      },
-      symbol = '╎',
-    },
-  },
-  {
     'lukas-reineke/indent-blankline.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
     opts = {
