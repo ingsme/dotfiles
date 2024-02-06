@@ -4,10 +4,19 @@ return {
     event = { 'BufReadPre', 'BufNewFile' },
     depependencies = {
       'arkav/lualine-lsp-progress',
+      'nvim-tree/nvim-web-devicons',
     },
     opts = {
-      extensions = { 'mason', 'quickfix' },
-      theme = 'catppuccin',
+      options = {
+        globalstatus = true,
+      },
+      sections = {
+        lualine_c = {
+          'filename',
+          'lsp_progress',
+        },
+      },
+      extensions = { 'lazy', 'mason', 'neo-tree', 'quickfix', 'trouble' },
     },
   },
   {
@@ -40,6 +49,19 @@ return {
     },
   },
   {
+    'echasnovski/mini.indentscope',
+    version = '*',
+    opts = {
+      draw = {
+        delay = 10,
+      },
+      options = {
+        try_as_border = true,
+      },
+      symbol = '╎',
+    },
+  },
+  {
     'lukas-reineke/indent-blankline.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
     opts = {
@@ -47,7 +69,7 @@ return {
         char = '│',
         tab_char = '│',
       },
-      scope = { enabled = false },
+      scope = { enabled = true },
       exclude = {
         filetypes = {
           'help',
