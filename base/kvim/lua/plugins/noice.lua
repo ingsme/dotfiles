@@ -1,6 +1,3 @@
-if true then
-  return {}
-end
 return {
   {
     'folke/noice.nvim',
@@ -10,6 +7,29 @@ return {
       'rcarriga/nvim-notify',
     },
     opts = {
+      cmdline = {
+        enabled = true, -- enables the Noice cmdline UI
+        -- view = "cmdline", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
+        opts = {}, -- global options for the cmdline. See section on views
+        -- format = {
+        --   cmdline = { pattern = '^:', icon = '', lang = 'vim' },
+        --   -- search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
+        --   -- search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
+        --   filter = { pattern = '^:%s*!', icon = '$', lang = 'bash' },
+        --   lua = { pattern = '^:%s*lua%s+', icon = '', lang = 'lua' },
+        --   help = { pattern = '^:%s*he?l?p?%s+', icon = '' },
+        --   input = {}, -- Used by input()
+        --   -- lua = false, -- to disable a format, set to `false`
+        -- },
+      },
+      messages = {
+        enabled = false, -- enables the Noice messages UI
+      },
+      popupmenu = {
+        enabled = true, -- enables the Noice popupmenu UI
+        backend = 'cmp', -- backend to use to show regular cmdline completions
+        kind_icons = {}, -- set to `false` to disable icons
+      },
       routes = {
         {
           filter = {

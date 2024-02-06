@@ -19,15 +19,7 @@ return {
       'JoosepAlviste/nvim-ts-context-commentstring',
       'RRethy/nvim-treesitter-textsubjects',
       'windwp/nvim-ts-autotag',
-      {
-        'RRethy/nvim-treesitter-endwise',
-        event = { 'BufReadPre', 'BufNewFile' },
-        config = function()
-          require('nvim-treesitter.configs').setup({
-            endwise = { enable = true },
-          })
-        end,
-      },
+      'RRethy/nvim-treesitter-endwise',
     },
     cmd = { 'TSUpdateSync', 'TSUpdate', 'TSInstall' },
     opts = {
