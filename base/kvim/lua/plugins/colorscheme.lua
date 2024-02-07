@@ -1,22 +1,20 @@
 return {
-  -- {
-  --   'catppuccin/nvim',
-  --   name = 'catppuccin',
-  --   priority = 1000,
-  --   lazy = false,
-  --   opts = {
-  --     flavour = 'frappe',
-  --     integrations = {
-  --       mason = true,
-  --       neotree = true,
-  --       lsp_trouble = true,
-  --       which_key = true,
-  --     },
-  --   },
-  --   config = function()
-  --     vim.cmd.colorscheme('catppuccin')
-  --   end,
-  -- },
+  {
+    'catppuccin/nvim',
+    name = 'catppuccin',
+    priority = 1000,
+    lazy = true,
+    opts = {
+      flavour = 'mocha',
+      integrations = {
+        cmp = true,
+        mason = true,
+        neotree = true,
+        lsp_trouble = true,
+        which_key = true,
+      },
+    },
+  },
   {
     'ellisonleao/gruvbox.nvim',
     lazy = true,
@@ -24,7 +22,6 @@ return {
   {
     -- 'HoNamDuong/hybrid.nvim',
     'ingsme/nvim-smyck.nvim',
-    enable = false,
     lazy = false,
     priority = 1000,
     opts = {},
@@ -32,14 +29,13 @@ return {
       vim.cmd.colorscheme('hybrid')
     end,
   },
-  -- {
-  --   'rebelot/kanagawa.nvim',
-  --   enable = false,
-  --   lazy = false,
-  --   priority = 1000,
-  --   opts = {},
-  --   config = function()
-  --     vim.cmd.colorscheme('kanagawa-wave')
-  --   end,
-  -- },
+  {
+    'rebelot/kanagawa.nvim',
+    lazy = true,
+    -- priority = 1000,
+    -- opts = {},
+    -- config = function()
+    --   vim.cmd.colorscheme('kanagawa-wave')
+    -- end,
+  },
 }
