@@ -1,5 +1,3 @@
-local servers = { 'bashls', 'cmake', 'jsonls', 'lua_ls', 'puppet', 'pyright', 'ruff_lsp', 'texlab', 'yamlls' }
-
 local function augroup(name)
   return vim.api.nvim_create_augroup('my_group_' .. name, { clear = true })
 end
@@ -30,33 +28,36 @@ return {
     opts = {},
   },
   {
-    'williamboman/mason-lspconfig.nvim',
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
     opts = {
-      ensure_installed = servers,
+      ensure_installed = {
+        'black',
+        'debugpy',
+        'flake8',
+        'isort',
+        'mypy',
+        'pylint',
+      },
     },
   },
   {
-    'nvimtools/none-ls.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim' },
+    'williamboman/mason-lspconfig.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
-    config = function()
-      local null_ls = require('null-ls')
-      null_ls.setup({
-        sources = {
-          null_ls.builtins.diagnostics.pylint,
-          null_ls.builtins.formatting.isort,
-          null_ls.builtins.formatting.black,
-          null_ls.builtins.formatting.stylua,
-          null_ls.builtins.formatting.prettier,
-          null_ls.builtins.formatting.shfmt,
-          null_ls.builtins.formatting.puppet_lint,
-          null_ls.builtins.diagnostics.puppet_lint,
-          null_ls.builtins.diagnostics.shellcheck,
-          null_ls.builtins.diagnostics.yamllint,
-        },
-      })
-    end,
+    opts = {
+      ensure_installed = {
+        'bashls',
+        'cmake',
+        'jsonls',
+        'lua_ls',
+        'puppet',
+        'pyright',
+        'ruff_lsp',
+        'taplo',
+        'texlab',
+        'yamlls',
+      },
+    },
   },
   -- LSP
   {
@@ -64,21 +65,29 @@ return {
     cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
     event = { 'BufReadPre', 'BufNewFile' },
     dependencies = {
-      { 'folke/neodev.nvim', opts = {} },
+      -- { 'folke/neodev.nvim', opts = {} },
+      -- { 'j-hui/fidget.nvim', opts = {} },
       { 'hrsh7th/cmp-nvim-lsp' },
       { 'williamboman/mason-lspconfig.nvim' },
+      { 'WhoIsSethDaniel/mason-tool-installer.nvim' },
       { 'b0o/schemastore.nvim' },
     },
     config = function()
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
       local lspconfig = require('lspconfig')
-      for _, s in ipairs(servers) do
-        lspconfig[s].setup({
-          capabilities = capabilities,
-        })
-      end
+      require('mason-lspconfig').setup_handlers({
+        function(server_name)
+          lspconfig[server_name].setup({
+            capabilities = capabilities,
+            handlers = {
+              -- Add borders to LSP popups
+              ['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = 'rounded' }),
+              ['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = 'rounded' }),
+            },
+          })
+        end,
+      })
       lspconfig.yamlls.setup({
-        capabilities = capabilities,
         settings = {
           yaml = {
             scemaStore = {
@@ -90,7 +99,6 @@ return {
         },
       })
       lspconfig.jsonls.setup({
-        capabilities = capabilities,
         settings = {
           json = {
             schemas = require('schemastore').json.schemas(),
@@ -99,30 +107,20 @@ return {
         },
       })
       lspconfig.ruff_lsp.setup({
-        capabilities = capabilities,
+        settings = {
+          organizeImports = false,
+        },
+      })
+      lspconfig.lua_ls.setup({
+        settings = {
+          Lua = {
+            diagnostics = {
+              -- Get the language server to recognize the `vim` global
+              globals = { 'vim' },
+            },
+          },
+        },
       })
     end,
-  },
-  -- Formatting
-  {
-    event = { 'BufReadPre', 'BufNewFile' },
-    'stevearc/conform.nvim', -- Formatting plugin
-    opts = {
-      format_on_save = {
-        timeout_ms = 500,
-        lsp_fallback = true,
-      },
-      formatters_by_ft = {
-        css = { 'prettier' },
-        html = { 'prettier' },
-        javascript = { 'prettier' },
-        json = { 'prettier' },
-        lua = { 'stylua' },
-        php = { 'php-cs-fixer' },
-        python = { 'isort', 'black' },
-        yaml = { 'prettier' },
-        -- ruby = { 'rubocop' },
-      },
-    },
   },
 }

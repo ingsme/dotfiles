@@ -4,7 +4,9 @@ return {
     event = 'VeryLazy',
     dependencies = {
       'MunifTanjim/nui.nvim',
-      'rcarriga/nvim-notify',
+      -- 'rcarriga/nvim-notify',
+      'ls-devs/nvim-notify',
+      'onsails/lspkind.nvim',
     },
     opts = {
       cmdline = {
@@ -21,6 +23,18 @@ return {
         --   input = {}, -- Used by input()
         --   -- lua = false, -- to disable a format, set to `false`
         -- },
+      },
+      views = {
+        cmdline_popup = {
+          size = {
+            height = 'auto',
+            width = 'auto',
+          },
+          position = {
+            row = '50%',
+            col = '50%',
+          },
+        },
       },
       messages = {
         enabled = false, -- enables the Noice messages UI

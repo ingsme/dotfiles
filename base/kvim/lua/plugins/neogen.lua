@@ -1,6 +1,3 @@
-if true then
-  return {}
-end
 return {
   {
     'danymat/neogen',
@@ -12,7 +9,7 @@ return {
         function()
           require('neogen').generate({})
         end,
-        desc = 'Neogen Comment',
+        desc = 'Neogen docstring',
       },
     },
     opts = { snippet_engine = 'luasnip' },

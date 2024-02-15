@@ -1,5 +1,10 @@
 return {
   { 'marklcrns/vim-smartq' },
+  -- better indentation behavior
+  -- by default, vim has some weird indentation behavior in some edge cases,
+  -- which this plugin fixes
+  { 'Vimjas/vim-python-pep8-indent' },
+
   {
     'NvChad/nvim-colorizer.lua',
     event = { 'BufReadPre', 'BufNewFile' },
@@ -27,7 +32,6 @@ return {
   -- },
   {
     'eandrju/cellular-automaton.nvim',
-    event = 'VeryLazy',
     keys = {
       { '<leader>fml', '<Cmd>CellularAutomaton make_it_rain<CR>', desc = 'Make it rain!' },
     },

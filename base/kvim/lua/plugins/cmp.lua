@@ -17,6 +17,7 @@ return {
         'micangl/cmp-vimtex',
         'onsails/lspkind.nvim',
         'saadparwaiz1/cmp_luasnip',
+        'ray-x/cmp-treesitter',
       },
     },
     config = function()
@@ -53,6 +54,7 @@ return {
           { name = 'buffer', max_item_count = 5, group_index = 2, keyword_length = 3 },
           { name = 'path', max_item_count = 5, group_index = 2 },
           { name = 'emoji', max_item_count = 9, group_index = 2 },
+          { name = 'treesitter' },
         },
         mapping = cmp.mapping.preset.insert({
           ['<C-k>'] = cmp.mapping.select_prev_item(),

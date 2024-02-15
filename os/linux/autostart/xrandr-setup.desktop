@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Fixmonitors
+Exec=$HOME/.config/xrandr_setup.sh
+
+

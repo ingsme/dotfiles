@@ -12,19 +12,6 @@ return {
           require('telescope').load_extension('emoji')
         end,
       },
-      {
-        'nvim-telescope/telescope-ui-select.nvim',
-        config = function()
-          require('telescope').setup({
-            extensions = {
-              ['ui-select'] = {
-                require('telescope.themes').get_dropdown({}),
-              },
-            },
-          })
-          require('telescope').load_extension('ui-select')
-        end,
-      },
     },
     -- stylua: ignore
     keys = {
@@ -34,8 +21,8 @@ return {
       { '<leader>fb', "<cmd>lua require('telescope.builtin').buffers()<cr>", desc = 'Buffers' },
       { '<leader>fh', "<cmd>lua require('telescope.builtin').help_tags()<cr>", desc = 'Help tags' },
       { '<leader>fk', "<cmd>lua require('telescope.builtin').keymaps()<cr>", desc = 'Find keymap' },
-      { "<leader>:", "<cmd>Telescope command_history<cr>", desc = "Command History" },
-      { '<leader>fe', "<cmd>Telescope emoji<cr>", desc = 'Find emojies' },
+      { '<leader>:', '<cmd>Telescope command_history<cr>', desc = 'Command History' },
+      { '<leader>fe', '<cmd>Telescope emoji<cr>', desc = 'Find emojies' },
     },
     opts = function()
       local actions = require('telescope.actions')
