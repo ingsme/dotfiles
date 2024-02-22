@@ -4,3 +4,7 @@ snippet su sudoers
 			type:     ${3:user}
 			priority: 20
 			runas:    ${4:ALL}
+	
+	ssh::server_options:
+		AllowUsers:
+		  - ${1:name}

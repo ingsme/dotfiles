@@ -5,7 +5,7 @@ return {
     dependencies = {
       'MunifTanjim/nui.nvim',
       -- 'rcarriga/nvim-notify',
-      'ls-devs/nvim-notify',
+      'rcarriga/nvim-notify',
       'onsails/lspkind.nvim',
     },
     opts = {
