@@ -1,27 +1,24 @@
--- stylua: ignore
-if true then return {} end
 return {
+  -- Formatting
   {
-    "stevearc/conform.nvim",
-    optional = true,
+    event = { 'BufReadPre', 'BufNewFile' },
+    'stevearc/conform.nvim', -- Formatting plugin
     opts = {
+      format_on_save = {
+        timeout_ms = 500,
+        lsp_fallback = true,
+      },
       formatters_by_ft = {
-        ["javascript"] = { "prettier" },
-        ["javascriptreact"] = { "prettier" },
-        ["typescript"] = { "prettier" },
-        ["typescriptreact"] = { "prettier" },
-        ["vue"] = { "prettier" },
-        ["css"] = { "prettier" },
-        ["scss"] = { "prettier" },
-        ["less"] = { "prettier" },
-        ["html"] = { "prettier" },
-        ["json"] = { "prettier" },
-        ["jsonc"] = { "prettier" },
-        ["yaml"] = {},
-        ["markdown"] = { "prettier" },
-        ["markdown.mdx"] = { "prettier" },
-        ["graphql"] = { "prettier" },
-        ["handlebars"] = { "prettier" },
+        css = { 'prettier' },
+        html = { 'prettier' },
+        javascript = { 'prettier' },
+        json = { 'prettier' },
+        lua = { 'stylua' },
+        makdown = { 'inject' },
+        php = { 'php-cs-fixer' },
+        python = { 'isort', 'black' },
+        yaml = { 'prettier' },
+        -- ruby = { 'rubocop' },
       },
     },
   },

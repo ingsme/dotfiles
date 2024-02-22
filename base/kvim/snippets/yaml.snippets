@@ -1,6 +1,8 @@
-snippet su sudoers 
+snippet su sudoers bA
 	sudoers:
 		${1:name}:${2:org}:
 			type:     ${3:user}
 			priority: 20
 			runas:    ${4:ALL}
+	
+	$0
