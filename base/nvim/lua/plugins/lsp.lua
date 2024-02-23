@@ -48,6 +48,7 @@ return {
     'williamboman/mason-lspconfig.nvim',
     event = { 'BufReadPre', 'BufNewFile' },
     opts = {
+      automatic_installation = true,
       ensure_installed = {
         'bashls',
         'cmake',
