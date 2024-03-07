@@ -1,5 +1,7 @@
 vim.g.mapleader = ' '
 vim.g.localleader = ' '
+vim.g.vim_markdown_frontmatter = 0
+vim.g.python3_host_prog = '/scratch/pyenv/versions/3.12.2/envs/neovim3/bin/python3'
 
 local opt = vim.opt
 
@@ -44,4 +46,4 @@ elseif vim.fn.executable('ag') then
   opt.grepprg = 'ag --vimgrep' .. (opt.smartcase and ' --smart-case' or '') .. ' --'
 end
 
-vim.o.conceallevel = 1
+opt.conceallevel = 2

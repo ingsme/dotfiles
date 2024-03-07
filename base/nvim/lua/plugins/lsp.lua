@@ -37,6 +37,7 @@ return {
         'flake8',
         'isort',
         'mypy',
+        'php-cs-fixer',
         'pylint',
         'prettier',
         'stylua',
@@ -78,6 +79,7 @@ return {
     },
     config = function()
       local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      capabilities.textDocument.completion.completionItem.snippetSupport = true
       local lspconfig = require('lspconfig')
       require('mason-lspconfig').setup_handlers({
         function(server_name)
@@ -114,6 +116,9 @@ return {
         settings = {
           organizeImports = false,
         },
+        on_attach = function(client)
+          client.server_capabilities.hoverProvider = false
+        end,
       })
       lspconfig.lua_ls.setup({
         settings = {

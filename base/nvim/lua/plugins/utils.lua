@@ -1,4 +1,5 @@
 return {
+  { 'robbles/logstash.vim' },
   { 'marklcrns/vim-smartq' },
   -- better indentation behavior
   -- by default, vim has some weird indentation behavior in some edge cases,

@@ -1,6 +1,3 @@
-if true then
-  return {}
-end
 return {
   {
     'wookayin/semshi', -- use a maintained fork
@@ -32,5 +29,24 @@ return {
         end,
       })
     end,
+  },
+  -- better indentation behavior
+  -- by default, vim has some weird indentation behavior in some edge cases,
+  -- which this plugin fixes
+  { 'Vimjas/vim-python-pep8-indent' },
+
+  -- select virtual environments
+  -- - makes pyright and debugpy aware of the selected virtual environment
+  -- - Select a virtual environment with `:VenvSelect`
+  {
+    'linux-cultist/venv-selector.nvim',
+    dependencies = {
+      'neovim/nvim-lspconfig',
+      'nvim-telescope/telescope.nvim',
+      'mfussenegger/nvim-dap-python',
+    },
+    opts = {
+      dap_enabled = true, -- makes the debugger work with venv
+    },
   },
 }

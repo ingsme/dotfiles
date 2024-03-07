@@ -47,13 +47,13 @@ return {
           mode = 'symbol_text',
         },
         sources = {
-          { name = 'nvim_lsp_signature_help', group_index = 1 },
           { name = 'luasnip', max_item_count = 5, group_index = 1 },
           { name = 'nvim-lsp', max_item_count = 5, group_index = 1 },
-          { name = 'codeium', max_item_count = 5, group_index = 1 },
+          { name = 'nvim_lsp_signature_help', group_index = 1 },
+          -- { name = 'codeium', max_item_count = 5, group_index = 1 },
           { name = 'buffer', max_item_count = 5, group_index = 2, keyword_length = 3 },
           { name = 'path', max_item_count = 5, group_index = 2 },
-          { name = 'emoji', max_item_count = 9, group_index = 2 },
+          -- { name = 'emoji', max_item_count = 9, group_index = 2 },
           { name = 'treesitter' },
         },
         mapping = cmp.mapping.preset.insert({
@@ -135,11 +135,11 @@ return {
       }
     end,
   },
-  {
-    'honza/vim-snippets',
-    lazy = true,
-    config = function()
-      require('luasnip.loaders.from_snipmate').lazy_load()
-    end,
-  },
+  -- {
+  --   'honza/vim-snippets',
+  --   lazy = true,
+  --   config = function()
+  --     require('luasnip.loaders.from_snipmate').lazy_load()
+  --   end,
+  -- },
 }
