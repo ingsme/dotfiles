@@ -88,7 +88,7 @@ CONFIG_DIR="$HOME/.config/dotfiles"
 VAULT_SECRET="$HOME/.ansible-vault/vault.secret"
 DOTFILES_DIR="$HOME/.local/etc"
 SSH_DIR="$HOME/.ssh"
-IS_FIRST_RUN="$XDG_DATA_HOME/.dotfiles_run"
+IS_FIRST_RUN="$HOME/.dotfiles_run"
 
 function ubuntu_setup() {
   if ! dpkg -s ansible >/dev/null 2>&1; then
