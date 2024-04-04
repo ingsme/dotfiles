@@ -103,7 +103,14 @@ function ubuntu_setup() {
   fi
   # Install Homebrew
   if ! brew --version |grep -q Homebrew; then
+    _task "Installing Homebrew"
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  fi
+  if ! nvim --version 2>&1>/dev/null; then
+    _task "Installing Neovim"
+    _cmd "sudo apt-add-repository -y ppa:neovim-ppa/unstable"
+    _cmd "sudo apt-get update"
+    _cmd "sudo apt-get install -y neovim"
   fi
 
   # TODO: install pyenv
