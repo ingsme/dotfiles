@@ -1,0 +1,8 @@
+ansible/
+archive/
+base/
+boxes/
+config.yml
+init
+os/
+README.md
