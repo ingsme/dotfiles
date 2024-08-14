@@ -1,0 +1,66 @@
+#!/bin/bash
+
+{{ if eq .chezmoi.os "darwin" }}
+alias ls='ls -Gh'
+{{ else if eq .chezmoi.os "linux" }}
+alias ls='ls --group-directories-first --color=auto -h'
+{{ end }}
+
+alias cal='cal -3'
+
+alias volup="amixer set Master playback 3dB+"
+alias voldown="amixer set Master playback 3dB-"
+
+alias -- -='cd -'
+alias ..='cd ..'
+alias ...=../..
+alias ....=../../..
+alias .....=../../../..
+alias ......=../../../../..
+alias 1='cd -'
+alias 2='cd -2'
+alias 3='cd -3'
+alias 4='cd -4'
+alias 5='cd -5'
+alias 6='cd -6'
+alias 7='cd -7'
+alias 8='cd -8'
+alias 9='cd -9'
+alias pcat='pygmentize -f terminal -O style=native -g'
+alias _=sudo
+alias afind='ack-grep -il'
+alias aps='aptitude search'
+alias apss='aptitude show'
+alias colorize=colorize_via_pygmentize
+alias d='dirs -v | head -10'
+alias dfu='df -hT -x devtmpfs -x tmpfs'
+alias dut='du -hx * | sort -rh | head -10'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias globurl='noglob urlglobber '
+alias grep='grep --color=auto'
+alias history='fc -l 1'
+alias kvim='NVIM_APPNAME="kvim" nvim'
+alias lvim='NVIM_APPNAME="lvim" nvim'
+alias l='ls -l'
+alias la='ls -A'
+alias ll='ls -al'
+alias lsa='ls -lah'
+alias md='mkdir -p'
+alias mkdir='mkdir -pv'
+# alias nvim='VIMINIT= nvim'
+alias po=popd
+alias pu=pushd
+alias rd=rmdir
+alias sz='source $HOME/.zshrc'
+alias which-command=whence
+alias ssh='TERM=xterm-256color ssh'
+
+#alias mux='tmuxinator'
+
+alias aps='aptitude search'
+alias apss='aptitude show'
+
+# Rhythmbox aliases
+alias play='rhythmbox-client --play-pause'
+alias next='rhythmbox-client --next'
