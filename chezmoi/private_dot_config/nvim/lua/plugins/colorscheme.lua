@@ -1,5 +1,13 @@
 return {
   {
+    'pappasam/papercolor-theme-slim',
+    lazy = false,
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme('PaperColorSlim')
+    end,
+  },
+  {
     'catppuccin/nvim',
     name = 'catppuccin',
     priority = 1000,
@@ -22,12 +30,12 @@ return {
   {
     -- 'HoNamDuong/hybrid.nvim',
     'ingsme/nvim-smyck.nvim',
-    lazy = false,
+    lazy = true,
     priority = 1000,
     opts = {},
-    config = function()
-      vim.cmd.colorscheme('hybrid')
-    end,
+    -- config = function()
+    --   vim.cmd.colorscheme('hybrid')
+    -- end,
   },
   {
     'rebelot/kanagawa.nvim',

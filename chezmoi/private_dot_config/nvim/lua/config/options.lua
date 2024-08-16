@@ -5,6 +5,8 @@ vim.g.python3_host_prog = '/scratch/pyenv/versions/3.12.2/envs/neovim3/bin/pytho
 
 local opt = vim.opt
 
+opt.background = 'dark'
+
 opt.spelllang = { 'nb', 'en' }
 opt.spell = false
 
