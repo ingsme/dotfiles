@@ -1,0 +1,36 @@
+[user]
+	name = Ingar Smedstad
+	email = ingar.smedstad@uib.no
+[alias]
+	unstage = reset HEAD --
+	last = log -1 HEAD --no-pager
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	loll = log --graph --decorate --pretty=oneline --abbrev-commit
+	pretty = log --pretty=format:"%C(yellow)%h\\ %ar%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	timeline = log --oneline --graph --decorate
+	timeline-all = log --oneline --all --graph --decorate
+[core]
+	pager = less -R
+[color]
+	ui = true
+	branch = auto
+	diff = auto
+	grep = auto
+	interactive = auto
+	status = auto
+[column]
+	ui = auto
+[merge]
+	tool = vimdiff
+	guitool = meld
+[github]
+	user = ingsme
+[push]
+	default = simple
+[branch]
+	autosetuprebase = always
+[pull]
+	rebase = false
