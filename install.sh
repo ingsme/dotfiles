@@ -1,12 +1,14 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # https://raw.githubusercontent.com/ingsme/dotfiles/master/install.sh
+
+set -euo pipefail
 
 if ! which curl; then
   echo "Missing curl, please install"
   exit 0
 fi
 
-if which -s brew; then
+if which brew; then
   echo "Homebrew already installed"
 else
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
