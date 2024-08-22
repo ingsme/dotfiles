@@ -1,6 +1,11 @@
 #!/bin/sh
 # https://raw.githubusercontent.com/ingsme/dotfiles/master/install.sh
 
+if ! which curl; then
+  echo "Missing curl, please install"
+  exit 0
+fi
+
 if which -s brew; then
   echo "Homebrew already installed"
 else
