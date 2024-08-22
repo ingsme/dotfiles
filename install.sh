@@ -1,4 +1,5 @@
 #!/bin/sh
+# https://raw.githubusercontent.com/ingsme/dotfiles/master/install.sh
 
 if which -s brew; then
   echo "Homebrew already installed"
