@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+set -eufo pipefail
+
+{{ $brews := list
+  'chezmoi'
+  'jq'
+  'yq'
+  'lazygit'
+  'fzf'
+  'bat' -}}
+{{ $casks := list -}}
+
+{{ $packages := list 
+  'keychain'
+  'tmux'
+}}
+
+{{ $snaps := list 
+  'discord'
+  'bw' -}}
+{{ $classicSnaps := list -}}
+
+{{ $sudo := 'sudo ' -}}
+{{ if eq .chezmoi.username 'root' -}}
+{{   $sudo = '' -}}
+{{ end -}}
+
+{{ $sudo }}apt-get update
+{{ $sudo }}apt-get install -y {{ $packages | join ' ' }}
+
+{{ if lookPath "snap" }}
+{{   range $snaps }}
+( snap info {{ . }} | grep -q ^installed: ) || {{ $sudo }}snap install {{ . }}
+{{   end }}
+{{   range $classicSnaps }}
+( snap info {{ . }} | grep -q ^installed: ) || {{ $sudo }}snap install --classic {{ . }}
+{{   end }}
+{{ end }}
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+{{ range ($brews | sortAlpha | uniq) -}}
+brew "{{ . }}"
+{{ end -}}
+{{ range ($casks | sortAlpha | uniq) -}}
+cask "{{ . }}"
+{{ end -}}
+EOF
+
