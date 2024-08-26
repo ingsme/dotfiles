@@ -5,6 +5,7 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 if [ ! -d "$ZINIT_HOME" ]; then
    mkdir -p "$(dirname $ZINIT_HOME)"
    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+   zcompile "$ZINIT_HOME/zinit.zsh"
 fi
 
 # Source/Load zinit
@@ -12,9 +13,28 @@ source "${ZINIT_HOME}/zinit.zsh"
 
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-history-substring-search
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
 zinit light Aloxaf/fzf-tab
+
+# Oh-My-Zsh plugins
+zinit ice silent wait:1; zinit snippet OMZP::git
+zinit ice silent wait:1; zinit snippet OMZP::sudo
+zinit ice silent wait:1; zinit snippet OMZP::command-not-found
+zinit ice silent wait:1; zinit snippet OMZP::colorize
+zinit ice silent wait:1; zinit snippet OMZP::colored-man-pages
+
+# Load zsh-completions
+autoload -Uz compinit && compinit
+
+zinit cdreplay -q
+
+# Keybindings
+bindkey -e
+bindkey '^p' history-search-backward
+bindkey '^n' history-search-forward
+bindkey '^[w' kill-region
 
 # Lines configured by zsh-newuser-install
 HISTSIZE=10000
