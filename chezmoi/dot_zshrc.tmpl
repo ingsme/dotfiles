@@ -74,6 +74,7 @@ fi
 
 # Shell integrations
 eval "$(fzf --zsh)"
+eval "$(oh-my-posh init zsh)"
 
 # Functions
 for f in $XDG_CONFIG_HOME/bash/functions.d/*; do source "$f"; done
