@@ -69,9 +69,7 @@ if [ -f "$HOME/.config/alias/aliases" ]; then
 fi
 
 # Shell integrations
-if $(which fzf); then
-  eval "$(fzf --zsh)"
-fi
+eval "$(fzf --zsh)"
 
 # Functions
 for f in $XDG_CONFIG_HOME/bash/functions.d/*; do source "$f"; done
