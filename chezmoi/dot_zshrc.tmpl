@@ -1,3 +1,7 @@
+# Use keychain, if it is available.
+[[ -f $(which keychain 2> /dev/null) ]] && \
+    eval $(keychain --quiet --eval --ignore-missing --agents ssh id_ed25519 id_laptop id_gitlab id_github)
+
 # Set the directory we want to store zinit and plugins
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 
