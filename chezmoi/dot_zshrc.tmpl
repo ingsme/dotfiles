@@ -13,7 +13,10 @@ if [ ! -d "$ZINIT_HOME" ]; then
 fi
 
 # Source/Load zinit
-source "${ZINIT_HOME}/zinit.zsh"
+source "${ZINIT_HOME}/zinit.zsh" \
+  && autoload -Uz _zinit \
+  && (( ${+_comps} )) \
+  && _comps[zinit]=_zinit
 
 # Add in zsh plugins
 zinit light zsh-users/zsh-syntax-highlighting
