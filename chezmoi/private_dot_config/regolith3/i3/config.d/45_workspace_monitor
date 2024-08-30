@@ -1,0 +1,86 @@
+# Set workspaces
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 10
+set $ws11 11
+set $ws12 12
+set $ws13 13
+set $monitor1 DP-1-8
+set $monitor2 DP-2
+set $monitor3 HDMI-1
+
+#assign [class="(?i)thunderbird"] workspace "$ws5"
+assign [class="(?i)firefox"] workspace "$ws8"
+assign [class="(?i)franz"] workspace "$ws8"
+assign [class="(?i)smuxi-frontend-gnome"] workspace "$ws8"
+assign [class="(?i)microsoft (?i)teams - (?i)preview"] workspace "$ws5"
+
+# Assign workspace to monitor
+workspace "$ws1" output "$monitor1"
+workspace "$ws2" output "$monitor1"
+workspace "$ws3" output "$monitor1"
+workspace "$ws4" output "$monitor1"
+workspace "$ws5" output "$monitor1"
+workspace "$ws6" output "$monitor1"
+workspace "$ws7" output "$monitor2"
+workspace "$ws8" output "$monitor2"
+workspace "$ws9" output "$monitor2"
+workspace "$ws10" output "$monitor2"
+workspace "$ws11" output "$monitor3"
+workspace "$ws12" output "$monitor3"
+workspace "$ws13" output "$monitor3"
+# workspace "$ws1" output DP-1
+# workspace "$ws2" output DP-1
+# workspace "$ws3" output DP-1
+# workspace "$ws4" output DP-1
+# workspace "$ws5" output DP-1
+# workspace "$ws6" output DP-1
+# workspace "$ws7" output DP-2-8
+# workspace "$ws8" output DP-2-8
+# workspace "$ws9" output DP-2-8
+# workspace "$ws10" output DP-2-8
+
+#for_window [workspace="$ws6"] floating enable
+#for_window [workspace="$ws10"] floating enable
+#for_window [workspace="$ws11"] floating enable
+#for_window [workspace="$ws12"] floating enable
+#for_window [workspace="$ws13"] floating enable
+
+# for_window [workspace="$ws5"] floating enable
+#for_window [class="Gcolor2"] floating enable
+#for_window [instance="qjackctl"] floating enable
+for_window [class="(?i)thunderbird"] floating enable
+#for_window [class="(?i)firefox"] floating enable
+#for_window [class="(?i)smuxi-frontend-gnome"] floating enable
+for_window [class="(?i)nautilus"] floating enable
+for_window [class="(?i)zazu"] floating enable
+for_window [class="(?i)yad"] floating enable
+for_window [class="(?i)nemo"] floating enable
+for_window [class="(?i)sky"] floating enable
+for_window [class="(?i)vidyodesktop"] floating enable
+for_window [class="(?i)gedit"] floating enable
+for_window [class="(?i)rdesktop"] floating enable
+for_window [class="(?i)spotify"] floating enable
+for_window [class="VirtualBox"] floating enable
+for_window [class="(?i)gnome-calculator"] floating enable
+for_window [instance="libreoffice"] floating enable
+#for_window [name="idrac"] floating enable
+#for_window [class="sun-awt-X11-XFramePeer"] floating enable
+for_window [class="com-sun-javaws-Main"] floating enable
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [title="Preferences$"] floating enable
+for_window [title="^Microsoft Teams Notification$"] floating enable
+for_window [window_type="notification"] floating enable
+for_window [class="(?i)gnome-terminal"] border 1pixel
+for_window [class="(?i)urxvt"] border 1pixel
+for_window [class="(?i)polly"] border pixel 2
+for_window [class="(?i)hexchat"] border pixel 2
+for_window [class="(?i)zathura"] border pixel 2
