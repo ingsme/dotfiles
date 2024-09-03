@@ -19,7 +19,6 @@ if [ -z $XDG_DATA_HOME ]; then
   export XDG_DATA_HOME="$HOME/.local/share"
 fi
 
-# export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source $MYVIMRC'
+skip_global_compinit=1
 
-# bindkey '^[OA' history-search-backward
-# bindkey '^[OB' history-search-forward
+# vim: ft=zsh
