@@ -3,7 +3,7 @@
 {{ if eq .chezmoi.os "darwin" }}
 alias ls='ls -Gh'
 {{ else if eq .chezmoi.os "linux" }}
-alias ls='ls --group-directories-first --color=auto -h'
+# alias ls='ls --group-directories-first --color=auto -h'
 {{ end }}
 
 alias cal='cal -3'
