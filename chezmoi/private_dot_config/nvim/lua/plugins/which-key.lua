@@ -2,26 +2,30 @@ return {
   {
     'folke/which-key.nvim',
     event = 'VeryLazy',
-    init = function()
-      vim.o.timeout = true
-      vim.o.timeoutlen = 300
-    end,
     opts = {
-      plugins = { spelling = true },
-      defaults = {
-        mode = { 'n', 'v' },
+      spec = {
         { '<leader>b', group = 'buffer' },
         { '<leader>c', group = 'code' },
+        { '<leader>d', group = 'DAP' },
         { '<leader>f', group = 'find' },
-        { '<leader>g', group = 'Git' },
-        { '<leader>s', group = 'Snippet' },
+        { '<leader>g', group = 'git' },
+        { '<leader>n', group = 'neogen' },
+        { '<leader>s', group = 'snippet' },
+        { '<leader>sn', group = 'Noice' },
         { '<leader>x', group = 'Trouble' },
       },
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
     },
-    config = function(_, opts)
-      local wk = require('which-key')
-      wk.setup(opts)
-      wk.register(opts.defaults)
-    end,
+    keys = {
+      {
+        '<leader>?',
+        function()
+          require('which-key').show({ global = false })
+        end,
+        desc = 'Buffer Local Keymaps (which-key)',
+      },
+    },
   },
 }
