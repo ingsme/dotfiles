@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
+# vim: ft=bash
 
 set -eufo pipefail
 
 {{ $brews := list
   "chezmoi"
+  "eza"
   "jq"
   "yq"
   "lazygit"
@@ -14,12 +16,8 @@ set -eufo pipefail
 {{ $casks := list -}}
 
 {{ $packages := list 
-  "eza"
   "keychain"
   "tmux"
-  "fonts-nerd-font-ubuntumono"
-  "fonts-nerd-font-hack"
-  "fonts-nerd-font-sourcecodepro"
 }}
 
 {{ $snaps := list 
