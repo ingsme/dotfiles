@@ -42,7 +42,7 @@ set -eufo pipefail
 {{   end }}
 {{ end }}
 
-brew bundle --no-lock --file=/dev/stdin <<EOF
+/home/linuxbrew/.linuxbrew/bin/brew bundle --no-lock --file=/dev/stdin <<EOF
 {{ range ($brews | sortAlpha | uniq) -}}
 brew "{{ . }}"
 {{ end -}}
