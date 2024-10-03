@@ -1,0 +1,51 @@
+Host *
+# ForwardX11 yes
+ForwardAgent yes
+StrictHostKeyChecking no
+AddressFamily inet
+HashKnownHosts no
+ControlMaster auto
+ControlPath ~/.ssh/control/%r@%h:%p
+ControlPersist yes
+#SendEnv LANG LC_* LS_COLORS
+GSSAPITrustDns yes
+GSSAPIAuthentication yes
+GSSAPIDelegateCredentials yes
+
+Host 158.39.*
+# RSAAuthentication yes
+IdentityFile ~/.ssh/iaas.pem
+
+Host 158.37.*
+# RSAAuthentication yes
+IdentityFile ~/.ssh/iaas.pem
+
+Host gitlab.uib.no
+# RSAAuthentication yes
+IdentityFile ~/.ssh/id_gitlab
+
+Host git.app.uib.no
+# RSAAuthentication yes
+IdentityFile ~/.ssh/id_gitlab
+
+Host itgit.app.uib.no
+# RSAAuthentication yes
+IdentityFile ~/.ssh/id_gitlab
+
+Host github.com
+# RSAAuthentication yes
+IdentityFile ~/.ssh/id_github
+
+# Spesielle servere
+Host terra
+HostName terra.uib.no
+User ingar
+
+Host theos
+HostName theos.uib.no
+User ingar
+
+Host melt
+Hostname geo0223892.dyn.uib.no
+User ism089
+ForwardX11 yes
