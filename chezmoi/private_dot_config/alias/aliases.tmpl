@@ -1,10 +1,11 @@
 #!/bin/bash
 
-{{ if eq .chezmoi.os "darwin" }}
-alias ls='ls -Gh'
-{{ else if eq .chezmoi.os "linux" }}
-# alias ls='ls --group-directories-first --color=auto -h'
-{{ end }}
+# Obsidian
+alias oo='cd $HOME/Documents/obsidian/Vault42'
+alias or='nvim $HOME/Documents/obsidian/Vault42/inbox/*.md'
+
+alias ls='ls --group-directories-first --color=auto -h'
+
 
 alias cal='cal -3'
 
