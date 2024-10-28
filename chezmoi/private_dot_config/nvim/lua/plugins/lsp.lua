@@ -55,6 +55,7 @@ return {
         'cmake',
         'jsonls',
         'lua_ls',
+        'marksman',
         'puppet',
         'pyright',
         'ruff_lsp',

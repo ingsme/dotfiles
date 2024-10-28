@@ -3,7 +3,7 @@ return {
   -- Autocompletion
   {
     'hrsh7th/nvim-cmp',
-    event = 'InsertEnter',
+    event = { 'InsertEnter', 'CmdlineEnter' },
     dependencies = {
       {
         'hrsh7th/cmp-nvim-lsp-signature-help',
@@ -45,14 +45,22 @@ return {
         formatting = {
           format = lspkind.cmp_format(),
           mode = 'symbol_text',
+          menu = {
+            buffer = '[Buffer]',
+            nvim_lsp = '[LSP]',
+            luasnip = '[LuaSnip]',
+            nvim_lua = '[Lua]',
+            latex_symbols = '[Latex]',
+            path = '[Path]',
+          },
         },
         sources = {
           { name = 'luasnip', max_item_count = 5, group_index = 1 },
+          { name = 'buffer', max_item_count = 5, group_index = 2, keyword_length = 3 },
+          { name = 'path', max_item_count = 5, group_index = 2 },
           { name = 'nvim-lsp', max_item_count = 5, group_index = 1 },
           { name = 'nvim_lsp_signature_help', group_index = 1 },
           -- { name = 'codeium', max_item_count = 5, group_index = 1 },
-          { name = 'buffer', max_item_count = 5, group_index = 2, keyword_length = 3 },
-          { name = 'path', max_item_count = 5, group_index = 2 },
           -- { name = 'emoji', max_item_count = 9, group_index = 2 },
           { name = 'treesitter' },
         },
@@ -63,7 +71,17 @@ return {
           ['<C-d>'] = cmp.mapping.scroll_docs(4),
           -- ['<C-f>'] = luasnip.jump(1),
           -- ['<C-b>'] = luasnip.jump(-1),
-          ['<CR>'] = cmp.mapping.confirm({ select = true }),
+          ['<CR>'] = cmp.mapping.confirm({
+            i = function(fallback)
+              if cmp.visible() and cmp.get_active_entry() then
+                cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+              else
+                fallback()
+              end
+            end,
+            s = cmp.mapping.confirm({ select = true }),
+            c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+          }),
           ['<Tab>'] = cmp.mapping(function(fallback)
             if luasnip.locally_jumpable(1) then
               luasnip.jump(1)
