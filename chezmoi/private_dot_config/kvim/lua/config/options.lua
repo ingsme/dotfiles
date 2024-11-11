@@ -1,48 +1,44 @@
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-vim.g.vim_markdown_frontmatter = 0
-vim.g.python3_host_prog = '/scratch/pyenv/versions/3.12.2/envs/neovim3/bin/python3'
+local g = vim.g
+local o = vim.opt
+
+g.mapleader = ' '
+g.maplocalleader = ' '
+g.vim_markdown_frontmatter = 0
+g.python3_host_prog = '/scratch/pyenv/versions/3.12.2/envs/neovim3/bin/python3'
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = true
+g.have_nerd_font = true
 
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.mouse = 'a'
-vim.opt.showmode = false
+o.number = true
+o.relativenumber = true
+o.clipboard = "unnamedplus"
+o.syntax = "on"
+o.autoindent = true
+o.smartindent = true
+o.cursorline = true
+o.expandtab = true
+o.tabstop = 2
+o.softtabstop = 2
+o.shiftwidth = 2
+o.encoding = "UTF-8"
+o.ruler = true
+o.mouse = "a"
+o.title = true
+o.hidden = true
+o.ttimeoutlen = 0
+o.wildmenu = true
+o.showcmd = true
+o.showmatch = true
+o.inccommand = "split"
+o.splitright = true
+o.splitbelow = true
+o.termguicolors = true
+o.ignorecase = true
+o.smartcase = true
+o.conceallevel = 2
 
--- Sync clipboard between OS and Neovim.
---  Schedule the setting after `UiEnter` because it can increase startup-time.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.schedule(function()
-  vim.opt.clipboard = 'unnamedplus'
-end)
+o.showmode = false
 
-vim.opt.breakindent = true
-vim.opt.undofile = true
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.signcolumn = 'yes'
--- vim.opt.updatetime = 250
--- vim.opt.timeoutlen = 300
-vim.opt.splitright = true
-vim.opt.splitbelow = true
--- vim.opt.list = true
--- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-vim.opt.inccommand = 'split'
-vim.opt.cursorline = true
-vim.opt.scrolloff = 10
-vim.opt.smartindent = true
-vim.opt.expandtab = true
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.grepformat = '%f:%l:%c:%m'
--- if vim.fn.executable('rg') then
---   vim.opt.grepprg = 'rg --vimgrep --no-heading' .. (opt.smartcase and ' --smart-case' or '') .. ' --'
--- elseif vim.fn.executable('ag') then
---   vim.opt.grepprg = 'ag --vimgrep' .. (opt.smartcase and ' --smart-case' or '') .. ' --'
--- end
-
-vim.opt.conceallevel = 2
+o.breakindent = true
+o.undofile = true
+o.signcolumn = 'yes'
