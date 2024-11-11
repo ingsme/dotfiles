@@ -35,3 +35,9 @@ map('n', 'td', ':bdelete<enter>', { noremap = false })
 -- Remap for dealing with word wrap
 map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- Aliasing vim motions
+map('o', 'ir', 'i[')
+map('o', 'ar', 'a[')
+map('o', 'ia', 'i<')
+map('o', 'aa', 'a<')
