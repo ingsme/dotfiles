@@ -3,7 +3,7 @@
 
 set -eufo pipefail
 
-{{ $brews := list
+{{ "$brews" := list
   "chezmoi"
   "eza"
   "jq"
@@ -13,32 +13,33 @@ set -eufo pipefail
   "node"
   "oh-my-posh"
   "bat" -}}
-{{ $casks := list -}}
+{{ "$casks" := list -}}
 
-{{ $packages := list 
+{{ "$packages" := list 
   "keychain"
   "tmux"
+  'cmake'
 }}
 
-{{ $snaps := list 
+{{ "$snaps" := list 
   "discord"
   "bw" -}}
-{{ $classicSnaps := list -}}
+{{ "$classicSnaps" := list -}}
 
-{{ $sudo := "sudo " -}}
+{{ "$sudo" := "sudo " -}}
 {{ if eq .chezmoi.username "root" -}}
-{{   $sudo = "" -}}
+{{   "$sudo" = "" -}}
 {{ end -}}
 
-{{ $sudo }}apt-get update
-{{ $sudo }}apt-get install -y {{ $packages | join " " }}
+{{ "$sudo" }}apt-get update
+{{ "$sudo" }}apt-get install -y {{ "$packages" | join " " }}
 
 {{ if lookPath "snap" }}
-{{   range $snaps }}
-( snap info {{ . }} | grep -q ^installed: ) || {{ $sudo }}snap install {{ . }}
+{{   range "$snaps" }}
+( snap info {{ . }} | grep -q ^installed: ) || {{ "$sudo" }}snap install {{ . }}
 {{   end }}
-{{   range $classicSnaps }}
-( snap info {{ . }} | grep -q ^installed: ) || {{ $sudo }}snap install --classic {{ . }}
+{{   range "$classicSnaps" }}
+( snap info {{ . }} | grep -q ^installed: ) || {{ "$sudo" }}snap install --classic {{ . }}
 {{   end }}
 {{ end }}
 
