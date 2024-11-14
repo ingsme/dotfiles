@@ -57,16 +57,23 @@ return {
           capabilities = capabilities,
         })
       end,
-      ['cssls'] = function()
-        nvim_lsp['cssls'].setup({
+      ['bashls'] = function()
+        nvim_lsp['bashls'].setup({
           on_attach = on_attach,
           capabilities = capabilities,
         })
       end,
-      ['tailwindcss'] = function()
-        nvim_lsp['tailwindcss'].setup({
+      ['lua_ls'] = function()
+        nvim_lsp['lua_ls'].setup({
           on_attach = on_attach,
           capabilities = capabilities,
+          -- settings = {
+          --   Lua = {
+          --     diagnostiscs = {
+          --       globals = { 'vim' },
+          --     },
+          --   },
+          -- },
         })
       end,
       ['html'] = function()

@@ -37,7 +37,7 @@ return {
         'flake8',
         'isort',
         'luacheck',
-        'luaformatter',
+        -- 'luaformatter',
         'markdown-toc',
         'markdownlint-cli2',
         'mypy',
