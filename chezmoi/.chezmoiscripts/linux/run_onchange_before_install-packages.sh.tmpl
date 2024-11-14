@@ -3,44 +3,43 @@
 
 set -eufo pipefail
 
-{{ "$brews" := list
-  "chezmoi"
-  "eza"
-  "jq"
-  "yq"
-  "lazygit"
-  "fzf"
-  "node"
-  "oh-my-posh"
-  "bat" -}}
-{{ "$casks" := list -}}
+{{ $brews := list
+"chezmoi"
+"eza"
+"jq"
+"yq"
+"lazygit"
+"fzf"
+"node"
+"oh-my-posh"
+"bat" -}}
+{{ $casks := list -}}
 
-{{ "$packages" := list 
-  "keychain"
-  "tmux"
-  'cmake'
-}}
+{{ $packages := list
+"keychain"
+"tmux"
+"cmake" -}}
 
-{{ "$snaps" := list 
-  "discord"
-  "bw" -}}
-{{ "$classicSnaps" := list -}}
+{{ $snaps := list
+"discord"
+"bw" -}}
+{{ $classicSnaps := list -}}
 
-{{ "$sudo" := "sudo " -}}
+{{ $sudo := "sudo " -}}
 {{ if eq .chezmoi.username "root" -}}
-{{   "$sudo" = "" -}}
+{{ $sudo = "" -}}
 {{ end -}}
 
 {{ "$sudo" }}apt-get update
 {{ "$sudo" }}apt-get install -y {{ "$packages" | join " " }}
 
 {{ if lookPath "snap" }}
-{{   range "$snaps" }}
-( snap info {{ . }} | grep -q ^installed: ) || {{ "$sudo" }}snap install {{ . }}
-{{   end }}
-{{   range "$classicSnaps" }}
-( snap info {{ . }} | grep -q ^installed: ) || {{ "$sudo" }}snap install --classic {{ . }}
-{{   end }}
+{{ range $snaps }}
+(snap info {{ . }} | grep -q ^installed:) || {{ "$sudo" }}snap install {{ . }}
+{{ end }}
+{{ range $classicSnaps }}
+(snap info {{ . }} | grep -q ^installed:) || {{ "$sudo" }}snap install --classic {{ . }}
+{{ end }}
 {{ end }}
 
 /home/linuxbrew/.linuxbrew/bin/brew bundle --no-lock --file=/dev/stdin <<EOF
@@ -51,4 +50,3 @@ brew "{{ . }}"
 cask "{{ . }}"
 {{ end -}}
 EOF
-
