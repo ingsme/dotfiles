@@ -1,3 +1,3 @@
 return {
-  { 'marklcrns/vim-smartq' },
+  { 'marklcrns/vim-smartq', event = { 'BufReadPre', 'BufNewFile' } },
 }
