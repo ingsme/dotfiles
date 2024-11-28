@@ -76,6 +76,12 @@ return {
           -- },
         })
       end,
+      ['rubocop'] = function()
+        nvim_lsp['rubocop'].setup({
+          on_attach = on_attach,
+          capabilities = capabilities,
+        })
+      end,
       ['html'] = function()
         nvim_lsp['html'].setup({
           on_attach = on_attach,

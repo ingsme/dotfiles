@@ -7,18 +7,20 @@ return {
 
       conform.setup({
         formatters_by_ft = {
-          javascript = { 'prettierd' },
-          typescript = { 'prettierd' },
-          javascriptreact = { 'prettierd' },
-          typescriptreact = { 'prettierd' },
+          bash = { 'shfmt' },
           css = { 'prettierd' },
           html = { 'prettierd' },
+          javascript = { 'prettierd' },
+          javascriptreact = { 'prettierd' },
           json = { 'prettierd' },
-          bash = { 'shfmt' },
-          yaml = { 'prettierd', 'yamlfix' },
-          markdown = { 'prettierd', 'markdownlint-cli2', 'markdown-toc' },
           lua = { 'stylua', 'luaformatter' },
+          markdown = { 'prettierd', 'markdownlint-cli2', 'markdown-toc' },
+          puppet = { 'puppet-lint' },
           python = { 'isort', 'black' },
+          ruby = { 'rubocop' },
+          typescript = { 'prettierd' },
+          typescriptreact = { 'prettierd' },
+          yaml = { 'prettierd', 'yamlfix' },
         },
         formatters = {
           yamlfix = {

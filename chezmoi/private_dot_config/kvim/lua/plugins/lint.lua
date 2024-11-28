@@ -5,10 +5,11 @@ return {
     config = function()
       local lint = require('lint')
       lint.linters_by_ft = {
-        markdown = { 'markdownlint-cli2' },
-        lua = { 'luacheck' },
-        bash = { 'shellcheck' },
         ansible = { 'ansible-lint' },
+        bash = { 'shellcheck' },
+        lua = { 'luacheck' },
+        markdown = { 'markdownlint-cli2' },
+        ruby = { 'rubocop' },
         yaml = { 'yamllint' },
       }
       local lint_augroup = vim.api.nvim_create_augroup('lint', { clear = true })
