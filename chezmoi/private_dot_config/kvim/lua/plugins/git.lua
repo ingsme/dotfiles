@@ -2,6 +2,7 @@ return {
   {
     'kdheepak/lazygit.nvim',
     cmd = 'LazyGit',
+    enabled = false,
     dependencies = {
       'nvim-lua/plenary.nvim',
     },
