@@ -58,7 +58,7 @@ return {
         'marksman',
         'puppet',
         'pyright',
-        'ruff_lsp',
+        'ruff',
         'taplo',
         'texlab',
         'yamlls',

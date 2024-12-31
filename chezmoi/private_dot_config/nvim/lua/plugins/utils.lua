@@ -1,6 +1,9 @@
 return {
   { 'robbles/logstash.vim', ft = 'logstash' },
-  { 'marklcrns/vim-smartq' },
+  {
+    'marklcrns/vim-smartq',
+    event = { 'BufReadPre', 'BufNewFile' },
+  },
   -- better indentation behavior
   -- by default, vim has some weird indentation behavior in some edge cases,
   -- which this plugin fixes
