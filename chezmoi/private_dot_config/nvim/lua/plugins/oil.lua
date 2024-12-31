@@ -8,7 +8,7 @@ return {
     },
     dependencies = {
       { 'nvim-tree/nvim-web-devicons' },
-      { 'refractalize/oil-git-status.nvim', config = true },
+      -- { 'refractalize/oil-git-status.nvim', config = true },
     },
     keys = {
       { '-', '<cmd>Oil<cr>', { desc = 'Open parent directory' } },

@@ -40,6 +40,7 @@ return {
         'php-cs-fixer',
         'pylint',
         'prettier',
+        'shellcheck',
         'stylua',
         'yamllint',
       },
@@ -113,7 +114,7 @@ return {
           },
         },
       })
-      lspconfig.ruff_lsp.setup({
+      lspconfig.ruff.setup({
         settings = {
           organizeImports = false,
         },

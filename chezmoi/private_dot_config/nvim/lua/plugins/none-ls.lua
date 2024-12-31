@@ -15,7 +15,7 @@ return {
           null_ls.builtins.formatting.shfmt,
           null_ls.builtins.formatting.puppet_lint,
           null_ls.builtins.diagnostics.puppet_lint,
-          null_ls.builtins.diagnostics.shellcheck,
+          -- null_ls.builtins.diagnostics.shellcheck,
           null_ls.builtins.diagnostics.yamllint,
         },
       })
