@@ -15,6 +15,10 @@ map('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]ui
 map('i', '<C-l>', '<C-g>u<Esc>[s1z=`]a<C-g>ua', {})
 map('i', 'jk', '<Esc>', {})
 
+-- Movement
+map('n', '<C-d>', '<C-d>zz', { desc = 'senter cursor on move' })
+map('n', '<C-u>', '<C-u>zz', { desc = 'senter cursor on move' })
+
 -- Add undo break-points
 map('i', ',', ',<c-g>u', {})
 map('i', '.', '.<c-g>u', {})

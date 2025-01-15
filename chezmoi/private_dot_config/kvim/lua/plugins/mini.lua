@@ -1,5 +1,11 @@
 return {
   {
+    'echasnovski/mini.ai',
+    version = '*',
+    event = { 'BufReadPre', 'BufNewFile' },
+    opts = {},
+  },
+  {
     'echasnovski/mini.clue',
     version = '*',
     enabled = false,
