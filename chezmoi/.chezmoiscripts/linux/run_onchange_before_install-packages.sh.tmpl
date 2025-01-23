@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # vim: ft=bash
-
 set -eufo pipefail
 
 {{ $brews := list
@@ -30,15 +29,15 @@ set -eufo pipefail
 {{ $sudo = "" -}}
 {{ end -}}
 
-{{ "$sudo" }}apt-get update
-{{ "$sudo" }}apt-get install -y {{ "$packages" | join " " }}
+{{ $sudo }} apt-get update
+{{ $sudo }} apt-get install -y {{ $packages | join " " }}
 
 {{ if lookPath "snap" }}
 {{ range $snaps }}
-(snap info {{ . }} | grep -q ^installed:) || {{ "$sudo" }}snap install {{ . }}
+(snap info {{ . }} | grep -q ^installed:) || {{ $sudo }} snap install {{ . }}
 {{ end }}
 {{ range $classicSnaps }}
-(snap info {{ . }} | grep -q ^installed:) || {{ "$sudo" }}snap install --classic {{ . }}
+(snap info {{ . }} | grep -q ^installed:) || {{ $sudo }} snap install --classic {{ . }}
 {{ end }}
 {{ end }}
 
