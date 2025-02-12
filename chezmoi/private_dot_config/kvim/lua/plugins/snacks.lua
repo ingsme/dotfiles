@@ -36,6 +36,10 @@ return {
       { '<leader>gg', function() Snacks.lazygit() end,               desc = 'Lazygit', },
       { '<leader>gl', function() Snacks.lazygit.log() end,           desc = 'Lazygit Log (cwd)', },
       { '<leader>un', function() Snacks.notifier.hide() end,         desc = 'Dismiss All Notifications', },
+      { '<leader>ud', function() Snacks.toggle.diagnostics() end,    desc = 'Toggle diagnostics' },
+      { '<leader>us', function() Snacks.toggle.option('spell') end,  desc = 'Toggle Spelling' },
+      { '<leader>uw', function() Snacks.toggle.option('wrap') end,   desc = 'Toggle Wrap' },
+      { '<leader>uT', function() Snacks.toggle.treesitter() end,     desc = 'Toggle Treesitter' },
       -- stylua: ignore end
     },
   },
