@@ -1,5 +1,2 @@
-require('config.options')
-require('config.autocommands')
-require('config.keymaps')
----@diagnostic disable-next-line: different-requires
-require('config.lazy')
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
