@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
-# vim: ft=bash
 set -eufo pipefail
 
 {{ $brews := list
+"bat"
 "chezmoi"
 "eza"
-"jq"
-"yq"
-"lazygit"
 "fzf"
+"jq"
+"lazygit"
+"markdown-toc"
+"markdownlint-cli2"
 "node"
 "oh-my-posh"
-"bat" -}}
+"prettier"
+"yq" -}}
 {{ $casks := list -}}
 
 {{ $packages := list
