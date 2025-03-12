@@ -11,6 +11,15 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("my_group_" .. name, { clear = true })
 end
 
+-- create dir on write if it does not exist
+autocmd("BufWritePre", {
+  group = augroup("auto_mkdir"),
+  callback = function(event)
+    local dirname = vim.fs.dirname(event.match)
+    vim.uv.fs_mkdir(dirname, tonumber("0755", 8))
+  end,
+})
+
 autocmd("FileType", {
   group = augroup("puppet"),
   pattern = { "puppet" },

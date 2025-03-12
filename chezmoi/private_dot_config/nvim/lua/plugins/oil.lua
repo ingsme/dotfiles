@@ -1,19 +1,20 @@
 return {
   {
     "stevearc/oil.nvim",
+    ---@module 'oil'
+    ---@type oil.SetupOpts
     opts = {
+      columns = {
+        "icon",
+        "permissions",
+        "size",
+      },
       skip_confirm_for_simple_edits = true,
       win_options = {
         signcolumn = "yes:2",
       },
     },
-    dependencies = {
-      { "nvim-tree/nvim-web-devicons" },
-      -- {
-      --   'refractalize/oil-git-status.nvim',
-      --   opts = {},
-      -- },
-    },
+    dependencies = { { "echasnovski/mini.icons", opts = {} } },
     keys = {
       { "-", "<cmd>Oil<cr>", { desc = "Open parent directory" } },
     },
