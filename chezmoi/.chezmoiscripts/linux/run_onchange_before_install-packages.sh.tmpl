@@ -13,10 +13,13 @@ set -eufo pipefail
 "node"
 "oh-my-posh"
 "prettier"
+"tree-sitter"
 "yq" -}}
 {{ $casks := list -}}
 
 {{ $packages := list
+"gnome-tweaks"
+"luarocks"
 "keychain"
 "tmux"
 "cmake" -}}
@@ -43,7 +46,7 @@ set -eufo pipefail
 {{ end }}
 {{ end }}
 
-/home/linuxbrew/.linuxbrew/bin/brew bundle --no-lock --file=/dev/stdin <<EOF
+/home/linuxbrew/.linuxbrew/bin/brew bundle --file=/dev/stdin <<EOF
 {{ range ($brews | sortAlpha | uniq) -}}
 brew "{{ . }}"
 {{ end -}}
