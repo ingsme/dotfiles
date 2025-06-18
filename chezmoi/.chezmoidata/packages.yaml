@@ -1,0 +1,22 @@
+---
+packages:
+  linux:
+    brews:
+      - bat
+      - chezmoi
+      - delta
+      - eza
+      - fzf
+      - jq
+      - lazygit
+      - markdown-toc
+      - markdownlint-cli2
+      - node
+      - oh-my-posh
+      - prettier
+      - tree-sitter
+      - yq
+    casks:
+    debs: [cmake, gnome-tweaks, keychain, luarocks, tmux]
+    snaps: [discord, bw]
+    classicsnaps:
