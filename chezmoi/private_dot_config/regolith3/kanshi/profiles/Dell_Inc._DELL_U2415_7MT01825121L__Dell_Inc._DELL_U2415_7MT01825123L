@@ -1,0 +1,4 @@
+profile {
+	output "Dell Inc. DELL U2415 7MT01825123L" mode 1920x1200@59.95Hz position 1920,0 transform normal scale 1 enable
+	output "Dell Inc. DELL U2415 7MT01825121L" mode 1920x1200@59.95Hz position 0,0 transform normal scale 1 enable
+}
