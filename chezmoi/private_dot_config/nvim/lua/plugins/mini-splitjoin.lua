@@ -1,13 +1,13 @@
 return {
   {
-    "echasnovski/mini.splitjoin",
-    version = "*",
-    event = "VeryLazy",
+    'nvim-mini/mini.splitjoin',
+    version = '*',
+    event = 'VeryLazy',
     opts = {
       mappings = {
-        toggle = "gS",
-        split = "gs",
-        join = "gj",
+        toggle = 'gS',
+        split = 'gs',
+        join = 'gj',
       },
     },
   },

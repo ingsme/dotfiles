@@ -1,8 +1,8 @@
 return {
   {
-    "echasnovski/mini.ai",
-    version = "*",
-    event = { "BufReadPre", "BufNewFile" },
+    'nvim-mini/mini.ai',
+    version = '*',
+    event = { 'BufReadPre', 'BufNewFile' },
     opts = {},
   },
 }
