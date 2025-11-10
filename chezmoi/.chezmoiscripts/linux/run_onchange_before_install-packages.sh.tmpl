@@ -5,6 +5,7 @@ set -eufo pipefail
 "bat"
 "chezmoi"
 "eza"
+"fd"
 "fzf"
 "jq"
 "lazygit"
@@ -14,16 +15,19 @@ set -eufo pipefail
 "node"
 "oh-my-posh"
 "prettier"
+"poppler"
 "tree-sitter"
+"yazi"
 "yq" -}}
 {{ $casks := list -}}
 
 {{ $packages := list
+"cmake"
 "gnome-tweaks"
-"luarocks"
 "keychain"
-"tmux"
-"cmake" -}}
+"luarocks"
+"ripgrep"
+"tmux" -}}
 
 {{ $snaps := list
 "discord"
