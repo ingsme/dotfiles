@@ -9,8 +9,8 @@ return {
     -- refer to `:h file-pattern` for more examples
     'BufReadPre '
       .. vim.fn.expand('~')
-      .. ' /Documents/obsidian/vault42/*.md',
-    'BufNewFile ' .. vim.fn.expand('~') .. ' /Documents/obsidian/vault42/*.md',
+      .. '/Documents/obsidian/**/*.md',
+    'BufNewFile ' .. vim.fn.expand('~') .. '/Documents/obsidian/**/*.md',
   },
   ---@module 'obsidian'
   ---@type obsidian.config
@@ -21,6 +21,11 @@ return {
         name = 'Vault42',
         path = '~/Documents/obsidian/Vault42/',
       },
+    },
+    templates = {
+      folder = 'templates',
+      date_format = '%Y-%m-%d-%a',
+      time_format = '%H:%M',
     },
 
     -- see below for full list of options 👇

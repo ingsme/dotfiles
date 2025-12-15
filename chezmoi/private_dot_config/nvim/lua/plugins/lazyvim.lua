@@ -52,7 +52,6 @@ return {
         javascriptreact = { 'prettierd' },
         json = { 'prettierd' },
         lua = { 'stylua' },
-        markdown = { 'prettierd', 'markdownlint-cli2', 'markdown-toc' },
         puppet = { 'puppet-lint' },
         python = { 'isort', 'black' },
         -- ruby = { 'rubocop' },
@@ -71,4 +70,13 @@ return {
       },
     },
   },
+  -- {
+  --   'mfussenegger/nvim-lint',
+  --   config = function()
+  --     local mdlint = require('lint').linters.markdownlint
+  --     mdlint.args = {
+  --       '--config=~/.config/markdownlint/markdownlint.yaml',
+  --     }
+  --   end,
+  -- },
 }
