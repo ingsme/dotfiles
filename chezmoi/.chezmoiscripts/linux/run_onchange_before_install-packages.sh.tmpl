@@ -5,8 +5,10 @@ set -eufo pipefail
 "bat"
 "chezmoi"
 "eza"
+"fastfetch"
 "fd"
 "fzf"
+"glow"
 "jq"
 "lazygit"
 "lazydocker"
@@ -23,6 +25,7 @@ set -eufo pipefail
 
 {{ $packages := list
 "cmake"
+"flameshot"
 "gnome-tweaks"
 "keychain"
 "luarocks"
@@ -30,9 +33,13 @@ set -eufo pipefail
 "tmux" -}}
 
 {{ $snaps := list
-"discord"
 "bw" -}}
-{{ $classicSnaps := list -}}
+{{ $classicSnaps := list 
+"discord"
+"ghostty"
+"obsidian"-}}
+{{ $edgeSnaps := list
+"nvim" -}}
 
 {{ $sudo := "sudo " -}}
 {{ if eq .chezmoi.username "root" -}}
@@ -48,6 +55,8 @@ set -eufo pipefail
 {{ end }}
 {{ range $classicSnaps }}
 (snap info {{ . }} | grep -q ^installed:) || {{ $sudo }} snap install --classic {{ . }}
+{{ range $edgeSnaps }}
+(snap info {{ . }} | grep -q ^installed:) || {{ $sudo }} snap install --classic --edge {{ . }}
 {{ end }}
 {{ end }}
 

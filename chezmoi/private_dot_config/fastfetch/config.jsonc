@@ -1,0 +1,32 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+  "logo": {
+    "source": "ubuntu_old"
+  },
+  "modules": [
+    "title",
+    "separator",
+    "os",
+    "host",
+    "kernel",
+    "uptime",
+    "packages",
+    "editor",
+    "display",
+    "de",
+    "wm",
+    "wmtheme",
+    "font",
+    "terminal",
+    "terminalfont",
+    "cpu",
+    "gpu",
+    "camera",
+    "localip",
+    "battery",
+    "poweradapter",
+    "locale",
+    "break",
+    "colors"
+  ]
+}
