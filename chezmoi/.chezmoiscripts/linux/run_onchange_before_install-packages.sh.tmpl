@@ -37,7 +37,7 @@ set -eufo pipefail
 {{ $classicSnaps := list 
 "discord"
 "ghostty"
-"obsidian"-}}
+"obsidian" -}}
 {{ $edgeSnaps := list
 "nvim" -}}
 
@@ -55,6 +55,7 @@ set -eufo pipefail
 {{ end }}
 {{ range $classicSnaps }}
 (snap info {{ . }} | grep -q ^installed:) || {{ $sudo }} snap install --classic {{ . }}
+{{ end }}
 {{ range $edgeSnaps }}
 (snap info {{ . }} | grep -q ^installed:) || {{ $sudo }} snap install --classic --edge {{ . }}
 {{ end }}
