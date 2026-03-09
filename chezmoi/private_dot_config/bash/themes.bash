@@ -1,4 +1,4 @@
-export BASH_IT_THEME=
+export BASH_IT_THEME=simple
 #export BASH_IT_THEME=bakke
 #export BASH_IT_THEME=bobby
 #export BASH_IT_THEME=candy
