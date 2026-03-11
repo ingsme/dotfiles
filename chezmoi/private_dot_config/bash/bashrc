@@ -129,7 +129,7 @@ fi
 #
 shopt -s autocd
 
-test -r "$XDG_CONFIG_HOME/bash/dircolors" && eval $(dircolors -b "$XDG_CONFIG_HOME/bash/dircolors") || eval "$(dirco    lors -b)"
+test -r "$XDG_CONFIG_HOME/bash/dircolors" && eval $(dircolors -b "$XDG_CONFIG_HOME/bash/dircolors") || eval "$(dircolors -b)"
 
 # BASH_IT themes
 source "$XDG_CONFIG_HOME/bash/themes.bash"
